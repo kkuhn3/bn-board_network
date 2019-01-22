@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<style>
+			#hidn {display:none;}
+		</style>
+	</head>
+	<body>
+		<div style='display: block;margin: 0 auto;'>
+			<canvas id='timer_canvas' width='400' height='50' style="display: block;margin: 0 auto;"></canvas>
+			<input type='button' id='nextturn' value='Next Turn' onclick='timer.nextTurn();' style="display: block;margin: 0 auto;"/>
+			<input type='button' id='switch' value='switchPlayer' onclick='board.switchPlayer()' style="display: block;margin: 0 auto;"/>
+			<input type='button' id='rturn' value='randomTurn' onclick='board.card(1); board.card(2); board.randomMovePlayer(playerOne); board.randomMovePlayer(playerTwo); timer.nextTurn()' style="display: block;margin: 0 auto;"/>
+		</div>
+		<canvas id='board_canvas' width='800' height='400' style="display: block;margin: 0 auto;"></canvas>
+		<div style='display: block;margin: 0 auto;' width='800'>
+			<input type='button' id='p1buster' value='p1 Buster' onclick='board.buster(1)' style="float: left;"/>
+			<input type='button' id='p2buster' value='p2 Buster' onclick='board.buster(2)' style="float: right;"/>
+			<input type='button' id='p1card' value='p1 Card' onclick='board.card(1)' style="float: left;"/>
+			<input type='button' id='p2card' value='p2 Card' onclick='board.card(2)' style="float: right;"/>
+		</div>
+	</body>
+	<script src='cards.js'></script>
+	<script src='board.js'></script>
+	<script src='timer.js'></script>
+	<script>
+		function init(){
+			board = new Board(6,3,board_canvas);
+			board.reset();
+			board.draw();
+			board_canvas.onmousedown = board.mouseDown;
+			board_canvas.onmouseup = board.mouseUp;
+			board_canvas.onmousemove = board.mouseMove;
+
+			timer = new Timer(4,timer_canvas);
+			timer.initTimer();
+			timer.draw();
+		}
+		init();
+	</script>
+</html>
