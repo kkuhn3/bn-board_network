@@ -35,7 +35,6 @@ function Timer(turncount,canvas){
 		var ctx = canvas.getContext('2d');
 		var cwidth = canvas.width;
 		var cheight = canvas.height;
-		var cellWidth = cwidth/this.turncount;
 		ctx.fillStyle="#000000";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		for(var i=0;i<this.turncount;i++){
@@ -47,6 +46,8 @@ function Timer(turncount,canvas){
 		this.currentturn++;
 		if(this.currentturn > 3){
 			this.currentturn = 0;
+			HAND = [];
+			custom.drawFromDeck();
 		}
 		for(var i=0;i<turncount;i++){
 			if(i < this.currentturn){
@@ -59,5 +60,6 @@ function Timer(turncount,canvas){
 		this.timercells[this.currentturn] = TURNCELL.INPROGRESS;
 		board.resolveTurn();
 		this.draw();
+		custom.drawHand();
 	}
 }

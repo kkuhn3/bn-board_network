@@ -15,14 +15,16 @@
 		<canvas id='board_canvas' width='800' height='400' style="display: block;margin: 0 auto;"></canvas>
 		<div style='display: block;margin: 0 auto;' width='800'>
 			<input type='button' id='p1buster' value='p1 Buster' onclick='board.buster(1)' style="float: left;"/>
-			<input type='button' id='p2buster' value='p2 Buster' onclick='board.buster(2)' style="float: right;"/>
+			<input type='button' id='p2buster' value='p2 Buster' onclick='board.buster(2)' style="float: right; display: none"/>
 			<input type='button' id='p1card' value='p1 Card' onclick='board.card(1)' style="float: left;"/>
-			<input type='button' id='p2card' value='p2 Card' onclick='board.card(2)' style="float: right;"/>
+			<input type='button' id='p2card' value='p2 Card' onclick='board.card(2)' style="float: right; display: none"/>
 		</div>
+		<canvas id='custom_canvas' width='400' height='50' style="display: block;margin: 0 auto;"></canvas>
 	</body>
 	<script src='cards.js'></script>
 	<script src='board.js'></script>
 	<script src='timer.js'></script>
+	<script src='custom.js'></script>
 	<script>
 		function init(){
 			board = new Board(6,3,board_canvas);
@@ -35,6 +37,12 @@
 			timer = new Timer(4,timer_canvas);
 			timer.initTimer();
 			timer.draw();
+
+			custom = new Custom(custom_canvas);
+			custom.initCustom();
+			custom.drawHand();
+			custom_canvas.onmousedown = custom.mouseDown;
+			custom_canvas.onmouseup = custom.mouseUp;
 		}
 		init();
 	</script>

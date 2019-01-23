@@ -67,7 +67,7 @@ function Board(width,height,canvas){
 		playerTwo.hp = 1000;
 		playerTwo.x = 4;
 		playerTwo.y = 1;
-		this.switchPlayer();
+		player = playerOne;
 	}
 
 	this.drawCell = function(x,y){
@@ -126,10 +126,10 @@ function Board(width,height,canvas){
 		this.selected = -1;
 		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
 		this.mouseCellY = Math.floor(this.height * e.offsetY/e.target.height);
-		if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === 1){
+		if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === playerOne){
 			this.selected = 1;
 		}
-		else if(playerTwo.x === this.mouseCellX && playerTwo.y === this.mouseCellY && player === 2){
+		else if(playerTwo.x === this.mouseCellX && playerTwo.y === this.mouseCellY && player === playerTwo){
 			this.selected = 2;
 		}
 	}.bind(this);
@@ -212,6 +212,7 @@ function Board(width,height,canvas){
 			else if(attacker.action === ACTIONS.CARD){
 				console.log("player " + attacker.name + " used: " + attacker.card.name);
 				if(attacker.card.hithuh(attacker, defender)){
+					attacker.card.effecthit(attacker, defender);
 					if(defender.guard < 1){
 						defender.hp = defender.hp - attacker.card.damage;
 						console.log("it hit!");
@@ -222,6 +223,7 @@ function Board(width,height,canvas){
 					}
 				}
 				else{
+					attacker.card.effectmiss(attacker, defender);
 					console.log("it missed!");
 				}
 			}
@@ -233,21 +235,21 @@ function Board(width,height,canvas){
 
 	this.resetPlayer = function(player){
 		player.action = ACTIONS.NONE;
-		player.card = -1
+		player.card = null;
 		player.invis = player.invis - 1;
 		player.guard = player.guard - 1;
 	}
 
 	// Player functions:
 	this.switchPlayer = function(){
-		if(player === 1){
-			player = 2;
+		if(player === playerOne){
+			player = playerTwo;
 		}
 		else{
-			player = 1;
+			player = playerOne;
 		}
 
-		if(player === 1){
+		if(player === playerOne){
 			document.getElementById("p2buster").style.display='none';
 			document.getElementById("p2card").style.display='none';
 			document.getElementById("p1buster").style.display='block';
@@ -264,20 +266,63 @@ function Board(width,height,canvas){
 	this.buster = function(playerNum){
 		if(playerNum === 1){
 			playerOne.action = ACTIONS.BUSTER;
+			if(playerOne.card !== null){
+				HAND.unshift(playerOne.card);
+				playerOne.card = null;
+			}
 		}
 		else if (playerNum === 2){
 			playerTwo.action = ACTIONS.BUSTER;
+			if(playerTwo.card !== null){
+				HAND.unshift(playerTwo.card);
+				playerTwo.card = null;
+			}
 		}
 	}
 
 	this.card = function(playerNum){
-		if(playerNum === 1){
-			playerOne.action = ACTIONS.CARD;
-			playerOne.card = randomCard();
+		if(HAND.length === 0){
+			this.buster(playerNum);
 		}
-		else if (playerNum === 2){
-			playerTwo.action = ACTIONS.CARD;
-			playerTwo.card = randomCard();
+		else{
+			if(playerNum === 1){
+				if(playerOne.action !== ACTIONS.CARD){
+					playerOne.action = ACTIONS.CARD;
+					playerOne.card = HAND.shift();
+				}
+			}
+			else if (playerNum === 2){
+				if(playerTwo.action !== ACTIONS.CARD){
+					playerTwo.action = ACTIONS.CARD;
+					playerTwo.card = HAND.shift();
+				}
+			}
+		}
+	}
+
+	this.showRange = function(attacker, card){
+		var fakeDefender = {
+			x: -1,
+			y: -1,
+			invis: 0
+		};
+		for(var x=0;x<cells.length;x++){
+			for(var y=0;y<cells[x].length;y++){
+				fakeDefender.x = x;
+				fakeDefender.y = y;
+				if(card.hithuh(attacker, fakeDefender)){
+					var canvas = this.canvas;
+					var ctx = canvas.getContext('2d');
+					var cwidth = canvas.width;
+					var cheight = canvas.height;
+					var cellWidth = cwidth/this.width;
+					var cellHeight = cheight/this.height;
+					var top = x*cellWidth;
+					var left = y*cellHeight;
+					ctx.fillStyle="#00FF00";
+					ctx.fillRect(top+cellWidth/4,left+cellHeight/4,cellWidth/2,cellHeight/2);
+				}
+			}
 		}
 	}
 
