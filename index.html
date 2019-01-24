@@ -6,22 +6,29 @@
 		</style>
 	</head>
 	<body>
-		<div style='display: block;margin: 0 auto;'>
-			<canvas id='timer_canvas' width='400' height='50' style="display: block;margin: 0 auto;"></canvas>
-			<input type='button' id='nextturn' value='Next Turn' onclick='timer.nextTurn();' style="display: block;margin: 0 auto;"/>
-			<input type='button' id='switch' value='switchPlayer' onclick='board.switchPlayer()' style="display: block;margin: 0 auto;"/>
-			<input type='button' id='rturn' value='randomTurn' onclick='board.card(1); board.card(2); board.randomMovePlayer(playerOne); board.randomMovePlayer(playerTwo); timer.nextTurn()' style="display: block;margin: 0 auto;"/>
+		<div style='display: block;margin: 0 auto; width: 880px'>
+			<div style='display: block;margin: 0 auto; width: 800px; float: right;'>
+				<canvas id='timer_canvas' width='400' height='50' style="display: block;margin: 0 auto; float: left;"></canvas>
+				<input type='button' id='nextturn' value='Next Turn' onclick='timer.nextTurn();' style="display: block;margin: 0 auto;"/>
+				<input type='button' id='switch' value='switchPlayer' onclick='board.switchPlayer()' style="display: block;margin: 0 auto;"/>
+				<input type='button' id='rturn' value='randomTurn' onclick='board.card(1); board.card(2); board.randomMovePlayer(playerOne); board.randomMovePlayer(playerTwo); timer.nextTurn()' style="display: block;margin: 0 auto;"/>
+
+
+				<canvas id='board_canvas' width='800' height='400' style="display: block;margin: 0 auto; float: right;"></canvas>
+				
+				<canvas id='pick_canvas' width='400' height='50' style="display: block;margin: 0 auto; float: left;"></canvas>
+				<input type='button' id='confirm' value='Confirm' onclick='customPick.confirm()' style="float: left;"/>
+
+			
+				<input type='button' id='p1buster' value='p1 Buster' onclick='board.buster(1)' style="float: left;"/>
+				<input type='button' id='p2buster' value='p2 Buster' onclick='board.buster(2)' style="float: right; display: none;"/>
+				<input type='button' id='p1card' value='p1 Card' onclick='board.card(1)' style="float: left;"/>
+				<input type='button' id='p2card' value='p2 Card' onclick='board.card(2)' style="float: right; display: none;"/>
+			</div>
+			<div style='display: block;margin: 50 0 0 0; width: 80px; float: left;'>
+				<canvas id='custom_canvas' width='80' height='400' style="display: block;margin: 0 auto; display: none; float: left;"></canvas>
+			</div>
 		</div>
-		<canvas id='board_canvas' width='800' height='400' style="display: block;margin: 0 auto;"></canvas>
-		<div style='display: block;margin: 0 auto;' width='800'>
-			<input type='button' id='p1buster' value='p1 Buster' onclick='board.buster(1)' style="float: left;"/>
-			<input type='button' id='p2buster' value='p2 Buster' onclick='board.buster(2)' style="float: right; display: none;"/>
-			<input type='button' id='p1card' value='p1 Card' onclick='board.card(1)' style="float: left;"/>
-			<input type='button' id='p2card' value='p2 Card' onclick='board.card(2)' style="float: right; display: none;"/>
-		</div>
-		<canvas id='custom_canvas' width='400' height='50' style="display: block;margin: 0 auto; display: none;"></canvas>
-		<canvas id='pick_canvas' width='400' height='50' style="display: block;margin: 0 auto;"></canvas>
-		<input type='button' id='confirm' value='Confirm' onclick='customPick.confirm()' style="float: right;"/>
 	</body>
 	<script src='cards.js'></script>
 	<script src='board.js'></script>
@@ -42,8 +49,6 @@
 			timer.draw();
 
 			custom = new Custom(custom_canvas);
-			//custom.initCustom();
-			//custom.drawHand();
 			custom_canvas.onmousedown = custom.mouseDown;
 			custom_canvas.onmouseup = custom.mouseUp;
 

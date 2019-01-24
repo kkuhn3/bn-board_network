@@ -21,6 +21,14 @@ function CustomPick(canvas){
 		document.getElementById("pick_canvas").style.display='block';
 		document.getElementById("custom_canvas").style.display='none';
 		document.getElementById("confirm").style.display='block';
+		if(player.name === "one"){
+			document.getElementById("p1buster").style.display='none';
+			document.getElementById("p1card").style.display='none';
+		}
+		else{
+			document.getElementById("p2buster").style.display='none';
+			document.getElementById("p2card").style.display='none';
+		}
 		this.drawHand();
 	}
 
@@ -65,10 +73,16 @@ function CustomPick(canvas){
 		ctx.font = "11px Arial";
 		ctx.textAlign = "center";
 		if(!DRAW[x]){
-			ctx.fillText("No Card", left+cellWidth/2, cheight-6);
+			ctx.fillText("No Card", left+cellWidth/2, cheight-10);
 		}
 		else{
-			ctx.fillText(DRAW[x].name, left+cellWidth/2, cheight-6);
+			if(DRAW[x].code.length === 26){
+				ctx.fillText("*", left+cellWidth/2, cheight-20);
+			}
+			else{
+				ctx.fillText(DRAW[x].code, left+cellWidth/2, cheight-20);
+			}
+			ctx.fillText(DRAW[x].name, left+cellWidth/2, cheight-10);
 		}
 	}
 
@@ -82,6 +96,14 @@ function CustomPick(canvas){
 		document.getElementById("pick_canvas").style.display='none';
 		document.getElementById("custom_canvas").style.display='block';
 		document.getElementById("confirm").style.display='none';
+		if(player.name === "one"){
+			document.getElementById("p1buster").style.display='block';
+			document.getElementById("p1card").style.display='block';
+		}
+		else {
+			document.getElementById("p2buster").style.display='block';
+			document.getElementById("p2card").style.display='block';
+		}
 		custom.drawHand();
 	}
 

@@ -4,18 +4,6 @@ function Custom(canvas){
 	this.canvas = canvas;
 	this.handSize = 5;
 	this.width = 5;
-/*
-	this.initCustom = function(){
-		//to do: import a decklist
-		DECK = CARDLIST;
-		this.drawFromDeck();
-	}*/
-/*
-	this.drawFromDeck = function(){
-		for(var i = 0; i < 5; i++){
-			HAND[i] = DECK[Math.floor(Math.random() * DECK.length)];
-		}
-	}*/
 
 	this.drawHand = function(){
 		var canvas = this.canvas;
@@ -31,27 +19,37 @@ function Custom(canvas){
 		var canvas = this.canvas;
 		var cwidth = canvas.width;
 		var cheight = canvas.height;
-		var cellWidth = cwidth/this.handSize;
-		var left = x*cellWidth;
+		var cellHeight = cheight/this.handSize;
+		var down = x*cellHeight;
 		var ctx = canvas.getContext('2d');
-		ctx.fillStyle="#FFFFFF";
-		if(x === 0){
-			ctx.fillStyle="#00FF00";
-		}
-		ctx.fillRect(left+2,2,cellWidth-4,cheight-4);
-		ctx.fillStyle="#000000";
-		ctx.font = "11px Arial";
-		ctx.textAlign = "center";
+		console.log(down+cellHeight);
 		if(!HAND[x]){
-			ctx.fillText("No Card", left+cellWidth/2, cheight-6);
+			ctx.fillStyle="#000000";
+			ctx.fillRect(0 ,down, cwidth, down + cellHeight);
+			ctx.fillStyle="#FFFFFF";
+			ctx.fillRect(2 ,down+2, cwidth-4, down + cellHeight - 4);
+			ctx.fillStyle="#000000";
+			ctx.fillRect(4 ,down+4, cwidth-8, down + cellHeight - 8);
+			ctx.fillStyle="#FFFFFF";
+			ctx.font = "11px Arial";
+			ctx.textAlign = "center";
+			ctx.fillText("No Data", cwidth/2, down + cellHeight - 10);
 		}
 		else{
-			ctx.fillText(HAND[x].name, left+cellWidth/2, cheight-6);
+			ctx.fillStyle="#FFFFFF";
+			if(x === 0){
+				ctx.fillStyle="#00FF00";
+			}
+			ctx.fillRect(2,down+2,cwidth-4,down + cellHeight - 4);
+			ctx.fillStyle="#000000";
+			ctx.font = "11px Arial";
+			ctx.textAlign = "center";
+			ctx.fillText(HAND[x].name, cwidth/2, down + cellHeight - 10);
 		}
 	}
 
 	this.mouseDown = function(e){
-		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
+		this.mouseCellX = Math.floor(this.width * e.offsetY/e.target.width);
 		board.showRange(player, HAND[this.mouseCellX]);
 	}.bind(this);
 
