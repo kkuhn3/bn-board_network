@@ -25,11 +25,11 @@ function Custom(canvas){
 		console.log(down+cellHeight);
 		if(!HAND[x]){
 			ctx.fillStyle="#000000";
-			ctx.fillRect(0 ,down, cwidth, down + cellHeight);
+			ctx.fillRect(0 ,down, cwidth, cellHeight);
 			ctx.fillStyle="#FFFFFF";
-			ctx.fillRect(2 ,down+2, cwidth-4, down + cellHeight - 4);
+			ctx.fillRect(2 ,down+2, cwidth-4, cellHeight - 4);
 			ctx.fillStyle="#000000";
-			ctx.fillRect(4 ,down+4, cwidth-8, down + cellHeight - 8);
+			ctx.fillRect(4 ,down+4, cwidth-8, cellHeight - 8);
 			ctx.fillStyle="#FFFFFF";
 			ctx.font = "11px Arial";
 			ctx.textAlign = "center";
@@ -40,7 +40,7 @@ function Custom(canvas){
 			if(x === 0){
 				ctx.fillStyle="#00FF00";
 			}
-			ctx.fillRect(2,down+2,cwidth-4,down + cellHeight - 4);
+			ctx.fillRect(2,down+2,cwidth-4,cellHeight - 4);
 			ctx.fillStyle="#000000";
 			ctx.font = "11px Arial";
 			ctx.textAlign = "center";
