@@ -47,7 +47,7 @@ function Timer(turncount,canvas){
 		if(this.currentturn > 3){
 			this.currentturn = 0;
 			HAND = [];
-			custom.drawFromDeck();
+			customPick.openCustom();
 		}
 		for(var i=0;i<turncount;i++){
 			if(i < this.currentturn){

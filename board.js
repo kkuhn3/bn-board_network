@@ -304,7 +304,8 @@ function Board(width,height,canvas){
 		var fakeDefender = {
 			x: -1,
 			y: -1,
-			invis: 0
+			invis: 0,
+			guard: 0
 		};
 		for(var x=0;x<cells.length;x++){
 			for(var y=0;y<cells[x].length;y++){

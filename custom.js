@@ -1,33 +1,21 @@
 var HAND = [];
-var DRAW = [];
-var SELECTED = []
-var DECK = [];
-var CURRENTCARD = -1;
 
 function Custom(canvas){
 	this.canvas = canvas;
 	this.handSize = 5;
 	this.width = 5;
-
+/*
 	this.initCustom = function(){
 		//to do: import a decklist
 		DECK = CARDLIST;
-		for(var i = 0; i < 5; i++){
-			DRAW[i] = null;
-			SELECTED[i] = false;
-		}
 		this.drawFromDeck();
-	}
-
+	}*/
+/*
 	this.drawFromDeck = function(){
 		for(var i = 0; i < 5; i++){
-			if(DRAW[i] === null){
-				//to do: remove card from deck
-				DRAW[i] = DECK[Math.floor(Math.random() * DECK.length)];
-			}
 			HAND[i] = DECK[Math.floor(Math.random() * DECK.length)];
 		}
-	}
+	}*/
 
 	this.drawHand = function(){
 		var canvas = this.canvas;

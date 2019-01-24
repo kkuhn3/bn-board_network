@@ -3,7 +3,7 @@ var CANNON1 = {
 	// It's name! (just for printouts)
 	name:"Cannon1",
 	// what codes it can be selected with. any character listed and * means all.
-	code:"ABC",
+	code:["A","B","C"],
 	// how much damage it does on hit
 	damage:40,
 	// 0 "stop time", cannot counter. p2 gets priority
@@ -30,7 +30,7 @@ var CANNON1 = {
 
 var CANNON2 = {
 	name:"Cannon2",
-	code:"BCD",
+	code:["B","C","D"],
 	damage:80,
 	priority:2,
 	hithuh: function(attacker, defender){
@@ -42,7 +42,7 @@ var CANNON2 = {
 
 var CANNON3 = {
 	name:"Cannon3",
-	code:"CDE",
+	code:["C","D","E"],
 	damage:120,
 	priority:2,
 	hithuh: function(attacker, defender){
@@ -54,7 +54,7 @@ var CANNON3 = {
 
 var PIERCECANNON = {
 	name:"Pierce Cannon",
-	code:"DEF",
+	code:["D","E","F"],
 	damage:100,
 	priority:2,
 	hithuh: function(attacker, defender){
@@ -71,14 +71,16 @@ var PIERCECANNON = {
 		return false;
 	},
 	effecthit: function(attacker, defender){
-		defender.invis = 0;
+		if(defender.guard < 1){
+			defender.invis = 0;
+		}
 	},
 	effectmiss: function(attacker, defender){}
 }
 
 var BREAKCANNON = {
 	name:"Break Cannon",
-	code:"EFG",
+	code:["E","F","G"],
 	damage:100,
 	priority:2,
 	hithuh: function(attacker, defender){
@@ -95,7 +97,7 @@ var BREAKCANNON = {
 
 var STUNCANNON = {
 	name:"Stun Cannon",
-	code:"FGH",
+	code:["F","G","H"],
 	damage:100,
 	priority:2,
 	hithuh: function(attacker, defender){
@@ -114,7 +116,7 @@ var STUNCANNON = {
 
 var GUARD = {
 	name:"Guard",
-	code:"*",
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 	damage:0,
 	priority:1,
 	hithuh: function(attacker, defender){
@@ -128,7 +130,7 @@ var GUARD = {
 
 var INVIS = {
 	name:"Invis",
-	code:"*",
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 	damage:0,
 	priority:0,
 	hithuh: function(attacker, defender){
@@ -142,7 +144,7 @@ var INVIS = {
 
 var AREAGRAB = {
 	name:"Area Grab",
-	code:"*",
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 	damage:10,
 	priority:0,
 	hithuh: function(attacker, defender){
@@ -203,7 +205,7 @@ var AREAGRAB = {
 
 var SWORD = {
 	name:"Sword",
-	code:"GHI",
+	code:["G","H","I"],
 	damage:100,
 	priority:1,
 	hithuh: function(attacker, defender){
@@ -230,7 +232,7 @@ var SWORD = {
 
 var WIDESWORD = {
 	name:"Wide Sword",
-	code:"HIJ",
+	code:["H","I","J"],
 	damage:80,
 	priority:1,
 	hithuh: function(attacker, defender){
@@ -257,7 +259,7 @@ var WIDESWORD = {
 
 var LONGSWORD = {
 	name:"Long Sword",
-	code:"IJK",
+	code:["I","J","K"],
 	damage:80,
 	priority:1,
 	hithuh: function(attacker, defender){
