@@ -6,6 +6,7 @@ function Custom(canvas){
 	this.width = 5;
 
 	this.drawHand = function(){
+		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});
 		var canvas = this.canvas;
 		var ctx = canvas.getContext('2d');
 		ctx.fillStyle="#000000";
@@ -22,7 +23,6 @@ function Custom(canvas){
 		var cellHeight = cheight/this.handSize;
 		var down = x*cellHeight;
 		var ctx = canvas.getContext('2d');
-		console.log(down+cellHeight);
 		if(!HAND[x]){
 			ctx.fillStyle="#000000";
 			ctx.fillRect(0 ,down, cwidth, cellHeight);

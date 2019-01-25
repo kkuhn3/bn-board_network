@@ -285,10 +285,19 @@ var LONGSWORD = {
 }
 
 var CARDLIST = [CANNON1, CANNON2, CANNON3, PIERCECANNON, BREAKCANNON, STUNCANNON, GUARD, INVIS, AREAGRAB, SWORD, WIDESWORD, LONGSWORD];
+var TEMPDECKLIST = [CANNON1, CANNON2, CANNON3, PIERCECANNON, BREAKCANNON, STUNCANNON, GUARD, INVIS, AREAGRAB, SWORD, WIDESWORD, LONGSWORD];
 
 var randomCard = function(){
 	return CARDLIST[Math.floor(Math.random() * CARDLIST.length)]
 }
 
 function Cards(){
+	this.getCardByName = function(name){
+		for(var i = 0; i < CARDLIST.length; i++){
+			if(CARDLIST[i].name === name){
+				return CARDLIST[i];
+			}
+		}
+		return false;
+	}
 }

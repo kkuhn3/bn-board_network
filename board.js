@@ -68,6 +68,8 @@ function Board(width,height,canvas){
 		playerTwo.x = 4;
 		playerTwo.y = 1;
 		player = playerOne;
+		$.post("save.php",{id:"confirmone", state: JSON.stringify(false)});
+		$.post("save.php",{id:"confirmtwo", state: JSON.stringify(false)});
 	}
 
 	this.drawCell = function(x,y){
@@ -155,6 +157,7 @@ function Board(width,height,canvas){
 	}.bind(this);
 
 	this.resolveTurn = function(){
+		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});
 		console.log("======================= turn start =======================");
 		this.p1priority = 2;
 		this.p2priority = 2;
@@ -187,6 +190,7 @@ function Board(width,height,canvas){
 		this.resetPlayer(playerOne);
 		this.resetPlayer(playerTwo);
 		this.draw();
+		custom.drawHand();
 		console.log("======================== turn end ========================");
 		this.isGameOver();
 	}

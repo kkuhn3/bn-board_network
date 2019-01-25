@@ -10,7 +10,7 @@ function CustomPick(canvas){
 
 	this.initCustomPick = function(){
 		//to do: import a decklist
-		DECK = CARDLIST;
+		DECK = TEMPDECKLIST;
 		for(var i = 0; i < this.drawSize; i++){
 			DRAW[i] = null;
 		}
@@ -104,8 +104,28 @@ function CustomPick(canvas){
 			document.getElementById("p2buster").style.display='block';
 			document.getElementById("p2card").style.display='block';
 		}
-		custom.drawHand();
+		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
+		this.getConfirm();
 	}
+	
+	this.confirmTimeout = 0;
+	this.getConfirm = function(){
+		this.otherPlayer = "one";
+		if(player.name === "one"){
+			this.otherPlayer = "two";
+		}
+		clearTimeout(this.confirmTimeout);
+		$.post("get.php",{id:"confirm"+this.otherPlayer},function(data){
+			try{
+				var d = JSON.parse(data);
+				if(d){
+					custom.drawHand();
+					return true;
+				}
+			}catch(e){}
+			this.confirmTimeout = setTimeout(this.getConfirm(), 1000);
+		}.bind(this));
+	}.bind(this);
 
 	this.mouseDown = function(e){
 		this.mouseCellX = Math.floor(this.drawSize * e.offsetX/e.target.width);

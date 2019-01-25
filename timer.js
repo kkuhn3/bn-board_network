@@ -58,8 +58,58 @@ function Timer(turncount,canvas){
 			}
 		}
 		this.timercells[this.currentturn] = TURNCELL.INPROGRESS;
-		board.resolveTurn();
-		this.draw();
-		custom.drawHand();
+		
+		$.post("save.php",{id:"player"+player.name, state: JSON.stringify(player)});
+		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
+		this.getConfirmTurn();
 	}
+	
+	this.confirmNextTurnTimeout = 0;
+	this.getConfirmTurn = function(){
+		clearTimeout(this.confirmNextTurnTimeout);
+		this.otherPlayer = "one";
+		if(player.name === "one"){
+			this.otherPlayer = "two";
+		}
+		$.post("get.php",{id:"confirm"+this.otherPlayer},function(data){
+			try{
+				var d = JSON.parse(data);
+				if(d){
+					$.post("get.php",{id:"player"+this.otherPlayer},function(data){
+						var playerData = JSON.parse(data);
+						if(player.name === "one"){
+							playerTwo.hp = playerData.hp;
+							playerTwo.x = playerData.x;
+							playerTwo.y = playerData.y;
+							playerTwo.action = playerData.action;
+							if(playerTwo.action === ACTIONS.CARD){
+								playerTwo.card = cards.getCardByName(playerData.card.name);
+							}
+							playerTwo.invis = playerData.invis;
+							playerTwo.guard = playerData.guard;
+							playerTwo.stunned = playerData.stunned;
+						}
+						else{
+							playerOne.hp = playerData.hp;
+							playerOne.x = playerData.x;
+							playerOne.y = playerData.y;
+							playerOne.action = playerData.action;
+							if(playerOne.action === ACTIONS.CARD){
+								playerOne.card = cards.getCardByName(playerData.card.name);
+							}
+							playerOne.invis = playerData.invis;
+							playerOne.guard = playerData.guard;
+							playerOne.stunned = playerData.stunned;
+						}
+						this.draw();
+						board.resolveTurn();
+					}.bind(this));
+					return true;
+				}
+			}catch(e){
+				console.log("some exception was thrown");
+			}
+			this.confirmNextTurnTimeout = setTimeout(this.getConfirmTurn(), 1000);
+		}.bind(this));
+	}.bind(this);
 }

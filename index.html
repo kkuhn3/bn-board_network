@@ -11,7 +11,7 @@
 				<canvas id='timer_canvas' width='400' height='50' style="display: block;margin: 0 auto; float: left;"></canvas>
 				<input type='button' id='nextturn' value='Next Turn' onclick='timer.nextTurn();' style="display: block;margin: 0 auto;"/>
 				<input type='button' id='switch' value='switchPlayer' onclick='board.switchPlayer()' style="display: block;margin: 0 auto;"/>
-				<input type='button' id='rturn' value='randomTurn' onclick='board.card(1); board.card(2); board.randomMovePlayer(playerOne); board.randomMovePlayer(playerTwo); timer.nextTurn()' style="display: block;margin: 0 auto;"/>
+				<input type='button' id='rturn' value='randomTurn' onclick='board.card(1); board.card(2); board.randomMovePlayer(playerOne); board.randomMovePlayer(playerTwo); timer.nextTurn()' style="display: none;margin: 0 auto;"/>
 
 
 				<canvas id='board_canvas' width='800' height='400' style="display: block;margin: 0 auto; float: right;"></canvas>
@@ -47,6 +47,8 @@
 			timer = new Timer(4,timer_canvas);
 			timer.initTimer();
 			timer.draw();
+			
+			cards = new Cards();
 
 			custom = new Custom(custom_canvas);
 			custom_canvas.onmousedown = custom.mouseDown;
