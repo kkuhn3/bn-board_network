@@ -129,7 +129,9 @@ function CustomPick(canvas){
 
 	this.mouseDown = function(e){
 		this.mouseCellX = Math.floor(this.drawSize * e.offsetX/e.target.width);
-		board.showRange(player, DRAW[this.mouseCellX]);
+		if(DRAW[this.mouseCellX]){
+			board.showRange(player, DRAW[this.mouseCellX]);
+		}
 
 		this.alreadyInd = SELECTEDIND.indexOf(this.mouseCellX);
 		if(this.alreadyInd !== -1){

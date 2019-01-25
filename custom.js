@@ -49,8 +49,10 @@ function Custom(canvas){
 	}
 
 	this.mouseDown = function(e){
-		this.mouseCellX = Math.floor(this.width * e.offsetY/e.target.width);
-		board.showRange(player, HAND[this.mouseCellX]);
+		this.mouseCellX = Math.floor(this.handSize * e.offsetY/e.target.height);
+		if(HAND[this.mouseCellX]){
+			board.showRange(player, HAND[this.mouseCellX]);
+		}
 	}.bind(this);
 
 	this.mouseUp = function(e){
