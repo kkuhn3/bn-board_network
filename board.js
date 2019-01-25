@@ -83,6 +83,7 @@ function Board(width,height,canvas){
 		var ctx = canvas.getContext('2d');
 		ctx.fillStyle=cells[x][y];
 		ctx.fillRect(top+2,left+2,cellWidth-4,cellHeight-4);
+		ctx.drawImage(tile_overlay,top+2,left+2,cellWidth-4,cellHeight-4);
 	}
 
 	this.drawPlayer = function(player){

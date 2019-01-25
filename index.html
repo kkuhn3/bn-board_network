@@ -6,6 +6,9 @@
 		</style>
 	</head>
 	<body>
+		<div style='display:none;' id='imagePreloader'>
+			<img id='tile_overlay' src='img/tile_overlay.png'/>
+		</div>
 		<div style='display: block;margin: 0 auto; width: 880px'>
 			<div style='display: block;margin: 0 auto; width: 800px; float: right;'>
 				<canvas id='timer_canvas' width='400' height='50' style="display: block;margin: 0 auto; float: left;"></canvas>
@@ -60,6 +63,6 @@
 			pick_canvas.onmousedown = customPick.mouseDown;
 			pick_canvas.onmouseup = customPick.mouseUp;
 		}
-		init();
+		$(document).ready(function(){init();});
 	</script>
 </html>
