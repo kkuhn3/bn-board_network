@@ -1,6 +1,6 @@
 SIDE = {
-	LEFT: "#FF0000",
-	RIGHT: "#0000FF",
+	LEFT: red_tile,
+	RIGHT: blue_tile,
 }
 
 ACTIONS = {
@@ -13,6 +13,7 @@ var playerOne = {
 	name:"one",
 	hp:1000,
 	color:"#0000FF",
+	image: blue_man,
 	x:1,
 	y:1,
 	action:ACTIONS.NONE,
@@ -26,6 +27,7 @@ var playerTwo = {
 	name:"two",
 	hp:1000,
 	color:"#FF0000",
+	image: grey_man,
 	x:4,
 	y:1,
 	action:ACTIONS.NONE,
@@ -44,6 +46,12 @@ function Board(width,height,canvas){
 	this.height = height;
 	this.canvas = canvas;
 	this.selected = -1;
+	var ctx = canvas.getContext('2d');
+	var cwidth = this.canvas.width;
+	var cheight = this.canvas.height / 2;
+	var cellWidth = cwidth/this.width;
+	var cellHeight = cheight/this.height;
+
 	this.initCells = function(){
 		cells = [];
 		for(var x=0;x<this.width;x++){
@@ -73,33 +81,21 @@ function Board(width,height,canvas){
 	}
 
 	this.drawCell = function(x,y){
-		var canvas = this.canvas;
-		var cwidth = canvas.width;
-		var cheight = canvas.height;
-		var cellWidth = cwidth/this.width;
-		var cellHeight = cheight/this.height;
 		var top = x*cellWidth;
-		var left = y*cellHeight;
-		var ctx = canvas.getContext('2d');
-		ctx.fillStyle=cells[x][y];
-		ctx.fillRect(top+2,left+2,cellWidth-4,cellHeight-4);
-		ctx.drawImage(tile_overlay,top+2,left+2,cellWidth-4,cellHeight-4);
+		var left = y*cellHeight + cheight;
+		ctx.drawImage(cells[x][y],top+2,left+2,cellWidth-4,cellHeight-4);
 	}
 
 	this.drawPlayer = function(player){
-		var canvas = this.canvas;
-		var ctx = canvas.getContext('2d');
-		var cwidth = canvas.width;
-		var cheight = canvas.height;
-		var cellWidth = cwidth/this.width;
-		var cellHeight = cheight/this.height;
 		var centerX = player.x * cellWidth + cellWidth / 2;
-		var centerY = player.y * cellHeight + cellHeight / 2;
+		var centerY = player.y * cellHeight + cellHeight / 2 + cheight;
 
-		ctx.fillStyle=player.color;
-		ctx.beginPath();
-      	ctx.arc(centerX, centerY, cellHeight/2.5, 0, 2 * Math.PI, false);
-    	ctx.fill();
+		this.drawPlayerImage(centerX, centerY, player.image);
+	}
+
+	this.drawPlayerImage = function(centerX, centerY, image){
+    	ctx.drawImage(image,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+
     	ctx.fillStyle="#FFFFFF";
     	ctx.textAlign = "center";
     	ctx.font = "20px Arial";
@@ -107,12 +103,6 @@ function Board(width,height,canvas){
 	}
 
 	this.draw = function(){
-		var canvas = this.canvas;
-		var ctx = canvas.getContext('2d');
-		var cwidth = canvas.width;
-		var cheight = canvas.height;
-		var cellWidth = cwidth/this.width;
-		var cellHeight = cheight/this.height;
 		ctx.fillStyle="#000000";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		for(var x=0;x<this.width;x++){
@@ -124,11 +114,10 @@ function Board(width,height,canvas){
 		this.drawPlayer(playerTwo);
 	}
 
-
 	this.mouseDown = function(e){
 		this.selected = -1;
 		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
-		this.mouseCellY = Math.floor(this.height * e.offsetY/e.target.height);
+		this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
 		if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === playerOne){
 			this.selected = 1;
 		}
@@ -138,12 +127,22 @@ function Board(width,height,canvas){
 	}.bind(this);
 
 	this.mouseMove = function(e){
-
-	}
+		this.draw();
+		if(this.selected !== -1){
+			this.image = -1;
+			if(this.selected === 1){
+				this.image=playerOne.image;
+			}
+			else if (this.selected === 2){
+				this.image=playerTwo.image;
+			}
+			this.drawPlayerImage(e.offsetX, e.offsetY, this.image);
+		}
+	}.bind(this);
 
 	this.mouseUp = function(e){
 		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
-		this.mouseCellY = Math.floor(this.height * e.offsetY/e.target.height);
+		this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
 		if(this.selected === 1 && cells[this.mouseCellX][this.mouseCellY] === SIDE.LEFT){
 			playerOne.x = this.mouseCellX;
 			playerOne.y = this.mouseCellY;
@@ -154,7 +153,7 @@ function Board(width,height,canvas){
 		}
 
 		this.draw();
-		return false;
+		this.selected = -1;
 	}.bind(this);
 
 	this.resolveTurn = function(){
