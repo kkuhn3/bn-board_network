@@ -316,16 +316,10 @@ function Board(width,height,canvas){
 				fakeDefender.x = x;
 				fakeDefender.y = y;
 				if(card.hithuh(attacker, fakeDefender)){
-					var canvas = this.canvas;
-					var ctx = canvas.getContext('2d');
-					var cwidth = canvas.width;
-					var cheight = canvas.height;
-					var cellWidth = cwidth/this.width;
-					var cellHeight = cheight/this.height;
-					var top = x*cellWidth;
-					var left = y*cellHeight;
+					var left = x*cellWidth;
+					var top = y*cellHeight + cheight;
 					ctx.fillStyle="#00FF00";
-					ctx.fillRect(top+cellWidth/4,left+cellHeight/4,cellWidth/2,cellHeight/2);
+					ctx.fillRect(left+cellWidth/4,top+cellHeight/4,cellWidth/2,cellHeight/2);
 				}
 			}
 		}
