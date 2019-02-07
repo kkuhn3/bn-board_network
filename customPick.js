@@ -7,6 +7,7 @@ function CustomPick(canvas){
 	this.canvas = canvas;
 	this.handSize = 5;
 	this.drawSize = 5;
+	var canvas = this.canvas;
 
 	this.initCustomPick = function(){
 		//to do: import a decklist
@@ -43,7 +44,6 @@ function CustomPick(canvas){
 	}
 
 	this.drawHand = function(){
-		var canvas = this.canvas;
 		var ctx = canvas.getContext('2d');
 		ctx.fillStyle="#000000";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -53,22 +53,22 @@ function CustomPick(canvas){
 	}
 
 	this.drawCard = function(x){
-		var canvas = this.canvas;
 		var cwidth = canvas.width;
 		var cheight = canvas.height;
 		var cellWidth = cwidth/this.drawSize;
 		var left = x*cellWidth;
 		var ctx = canvas.getContext('2d');
-		if(this.matchesCode(SELECTED, DRAW[x])){
-			ctx.fillStyle="#FFFFFF";
+		ctx.drawImage(card,left,0,cellWidth,cheight)
+
+		if(!this.matchesCode(SELECTED, DRAW[x])){
+			ctx.fillStyle="rgba(225,0,0,0.5)";
+			ctx.fillRect(left+2,0,cellWidth-4,cheight);
 		}
-		else{
-			ctx.fillStyle="#FF0000";
+		else if(SELECTEDIND.indexOf(x) !== -1){
+			ctx.fillStyle="rgba(0,225,0,0.5)";
+			ctx.fillRect(left+2,0,cellWidth-4,cheight);
 		}
-		if(SELECTEDIND.indexOf(x) !== -1){
-			ctx.fillStyle="#00FF00";
-		}
-		ctx.fillRect(left+2,2,cellWidth-4,cheight-4);
+		
 		ctx.fillStyle="#000000";
 		ctx.font = "11px Arial";
 		ctx.textAlign = "center";
@@ -77,12 +77,17 @@ function CustomPick(canvas){
 		}
 		else{
 			if(DRAW[x].code.length === 26){
-				ctx.fillText("*", left+cellWidth/2, cheight-20);
+				ctx.fillText("*", left+cellWidth/2, cheight-40);
 			}
 			else{
-				ctx.fillText(DRAW[x].code, left+cellWidth/2, cheight-20);
+				ctx.fillText(DRAW[x].code, left+cellWidth/2, cheight-40);
 			}
-			ctx.fillText(DRAW[x].name, left+cellWidth/2, cheight-10);
+			ctx.fillText(DRAW[x].name, left+cellWidth/2, cheight-30);
+			ctx.fillText(DRAW[x].damage, left+cellWidth/2, cheight-20);
+			if(DRAW[x].image){
+				ctx.fillRect(left+7, 2, cellWidth-14, cheight/2 + 2)
+				ctx.drawImage(DRAW[x].image, left+8, 3, cellWidth-16, cheight/2);
+			}
 		}
 	}
 
@@ -127,12 +132,14 @@ function CustomPick(canvas){
 		}.bind(this));
 	}.bind(this);
 
-	this.mouseDown = function(e){
+	this.drawRange = function(e){
 		this.mouseCellX = Math.floor(this.drawSize * e.offsetX/e.target.width);
 		if(DRAW[this.mouseCellX]){
 			board.showRange(player, DRAW[this.mouseCellX]);
 		}
+	}
 
+	this.mouseDown = function(e){
 		this.alreadyInd = SELECTEDIND.indexOf(this.mouseCellX);
 		if(this.alreadyInd !== -1){
 			SELECTED.splice(this.alreadyInd, 1);
@@ -144,6 +151,12 @@ function CustomPick(canvas){
 				SELECTEDIND.push(this.mouseCellX);
 			}
 		}
+	}.bind(this);
+
+	this.mouseMove = function(e){
+		board.draw();
+		this.drawHand();
+		this.drawRange(e);
 	}.bind(this);
 
 	this.matchesCode = function(selectedArr, cardtoAdd){
@@ -165,6 +178,12 @@ function CustomPick(canvas){
 	}
 
 	this.mouseUp = function(e){
+		board.draw();
+		this.drawHand();
+		this.drawRange(e);
+	}.bind(this);
+
+	this.mouseOut = function(e){
 		board.draw();
 		this.drawHand();
 	}.bind(this);

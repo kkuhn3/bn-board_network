@@ -2,6 +2,8 @@
 var CANNON1 = {
 	// It's name! (just for printouts)
 	name:"Cannon1",
+	// The image used for this card
+	image:cannon1,
 	// what codes it can be selected with. any character listed and * means all.
 	code:["A","B","C"],
 	// how much damage it does on hit
@@ -24,12 +26,15 @@ var CANNON1 = {
 		}
 		return false;
 	},
+	// effects that trigger when the attack hits
 	effecthit: function(attacker, defender){},
+	// effects that trigger when teh attack misses
 	effectmiss: function(attacker, defender){}
 }
 
 var CANNON2 = {
 	name:"Cannon2",
+	image:cannon2,
 	code:["B","C","D"],
 	damage:80,
 	priority:2,
@@ -42,6 +47,7 @@ var CANNON2 = {
 
 var CANNON3 = {
 	name:"Cannon3",
+	image:cannon3,
 	code:["C","D","E"],
 	damage:120,
 	priority:2,
@@ -54,6 +60,7 @@ var CANNON3 = {
 
 var PIERCECANNON = {
 	name:"Pierce Cannon",
+	image:piercecannon,
 	code:["D","E","F"],
 	damage:100,
 	priority:2,
@@ -80,6 +87,7 @@ var PIERCECANNON = {
 
 var BREAKCANNON = {
 	name:"Break Cannon",
+	image:breakcannon,
 	code:["E","F","G"],
 	damage:100,
 	priority:2,
@@ -97,6 +105,7 @@ var BREAKCANNON = {
 
 var STUNCANNON = {
 	name:"Stun Cannon",
+	image:stuncannon,
 	code:["F","G","H"],
 	damage:100,
 	priority:2,
@@ -116,6 +125,7 @@ var STUNCANNON = {
 
 var GUARD = {
 	name:"Guard",
+	image:guard,
 	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 	damage:0,
 	priority:1,
@@ -130,6 +140,7 @@ var GUARD = {
 
 var INVIS = {
 	name:"Invis",
+	image:invis,
 	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 	damage:0,
 	priority:0,
@@ -144,6 +155,7 @@ var INVIS = {
 
 var AREAGRAB = {
 	name:"Area Grab",
+	image:areagrab,
 	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 	damage:10,
 	priority:0,
@@ -205,6 +217,7 @@ var AREAGRAB = {
 
 var SWORD = {
 	name:"Sword",
+	image:sword,
 	code:["G","H","I"],
 	damage:100,
 	priority:1,
@@ -232,6 +245,7 @@ var SWORD = {
 
 var WIDESWORD = {
 	name:"Wide Sword",
+	image:widesword,
 	code:["H","I","J"],
 	damage:80,
 	priority:1,
@@ -259,6 +273,7 @@ var WIDESWORD = {
 
 var LONGSWORD = {
 	name:"Long Sword",
+	image:longsword,
 	code:["I","J","K"],
 	damage:80,
 	priority:1,

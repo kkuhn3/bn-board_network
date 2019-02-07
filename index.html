@@ -12,6 +12,19 @@
 			<img id='blue_tile' src='img/bgBlue.png'/>
 			<img id='blue_man' src='img/blueMan.png'/>
 			<img id='grey_man' src='img/greyMan.png'/>
+			<img id='card' src='img/card.png'/>
+			<img id='cannon1' src='img/cards/cannon1.png'/>
+			<img id='cannon2' src='img/cards/cannon2.png'/>
+			<img id='cannon3' src='img/cards/cannon3.png'/>
+			<img id='stuncannon' src='img/cards/stuncannon.png'/>
+			<img id='sword' src='img/cards/sword.png'/>
+			<img id='widesword' src='img/cards/widesword.png'/>
+			<img id='longsword' src='img/cards/longsword.png'/>
+			<img id='invis' src='img/cards/invis.png'/>
+			<img id='guard' src='img/cards/guard.png'/>
+			<img id='areagrab' src='img/cards/areagrab.png'/>
+			<img id='piercecannon' src='img/cards/piercecannon.png'/>
+			<img id='breakcannon' src='img/cards/breakcannon.png'/>
 		</div>
 		<div style='display: block;margin: 0 auto; width: 880px'>
 			<div style='display: block;margin: 0 auto; width: 800px; float: right;'>
@@ -23,7 +36,7 @@
 
 				<canvas id='board_canvas' width='800' height='400' style="display: block;margin: 0 auto; float: right;"></canvas>
 				
-				<canvas id='pick_canvas' width='400' height='50' style="display: block;margin: 0 auto; float: left;"></canvas>
+				<canvas id='pick_canvas' width='400' height='120' style="display: block;margin: 0 auto; float: left;"></canvas>
 				<input type='button' id='confirm' value='Confirm' onclick='customPick.confirm()' style="float: left;"/>
 
 			
@@ -66,6 +79,8 @@
 			customPick.drawFromDeck();
 			pick_canvas.onmousedown = customPick.mouseDown;
 			pick_canvas.onmouseup = customPick.mouseUp;
+			pick_canvas.onmousemove = customPick.mouseMove;
+			pick_canvas.onmouseout = customPick.mouseOut;
 		}
 		$(document).ready(function(){init();});
 	</script>
