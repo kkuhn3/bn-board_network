@@ -38,13 +38,12 @@
 				
 				<canvas id='pick_canvas' width='400' height='120' style="display: block;margin: 0 auto; float: left;"></canvas>
 				<input type='button' id='confirm' value='Confirm' onclick='customPick.confirm()' style="float: left;"/>
-
-			
 				<input type='button' id='p1buster' value='p1 Buster' onclick='board.buster(1)' style="float: left;"/>
 				<input type='button' id='p2buster' value='p2 Buster' onclick='board.buster(2)' style="float: right; display: none;"/>
 				<input type='button' id='p1card' value='p1 Card' onclick='board.card(1)' style="float: left;"/>
 				<input type='button' id='p2card' value='p2 Card' onclick='board.card(2)' style="float: right; display: none;"/>
 			</div>
+
 			<div style='display: block;margin: 50 0 0 0; width: 80px; float: left;'>
 				<canvas id='custom_canvas' width='80' height='400' style="display: block;margin: 0 auto; display: none; float: left;"></canvas>
 			</div>
@@ -73,6 +72,8 @@
 			custom = new Custom(custom_canvas);
 			custom_canvas.onmousedown = custom.mouseDown;
 			custom_canvas.onmouseup = custom.mouseUp;
+			custom_canvas.onmousemove = custom.mouseMove;
+			custom_canvas.onmouseout = custom.mouseOut;
 
 			customPick = new CustomPick(pick_canvas);
 			customPick.initCustomPick();
