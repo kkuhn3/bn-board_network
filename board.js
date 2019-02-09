@@ -194,8 +194,6 @@ function Board(width,height,canvas){
 		this.resetPlayer(playerOne);
 		this.resetPlayer(playerTwo);
 		this.draw();
-		console.log(playerOne.hp);
-		console.log(playerTwo.hp);
 		custom.drawHand();
 		console.log("======================== turn end ========================");
 		document.getElementById("nextturn").style.display='none';
@@ -313,7 +311,6 @@ function Board(width,height,canvas){
 
 	this.showRange = function(attacker, card){
 		var fakeDefender = {
-			x: -1,
 			x: -1,
 			y: -1,
 			invis: 0,
