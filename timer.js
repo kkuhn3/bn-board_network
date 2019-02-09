@@ -41,6 +41,18 @@ function Timer(turncount,canvas){
 			this.drawCell(i);
 		}
 	}
+	
+	this.nextTurnConfirmed = function(){
+		document.getElementById("nextturn").disabled = true;
+		document.getElementById("p1buster").disabled = true;
+		document.getElementById("p2buster").disabled = true;
+		document.getElementById("p1card").disabled = true;
+		document.getElementById("p2card").disabled = true;
+		movementEnabled = false;
+		$.post("save.php",{id:"player"+player.name, state: JSON.stringify(player)});
+		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
+		this.getConfirmTurn();
+	}
 
 	this.nextTurn = function(){
 		this.currentturn++;
@@ -58,10 +70,13 @@ function Timer(turncount,canvas){
 			}
 		}
 		this.timercells[this.currentturn] = TURNCELL.INPROGRESS;
-		
-		$.post("save.php",{id:"player"+player.name, state: JSON.stringify(player)});
-		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
-		this.getConfirmTurn();
+		document.getElementById("nextturn").style.display='none';
+		document.getElementById("nextturn").disabled = false;
+		document.getElementById("p1buster").disabled = false;
+		document.getElementById("p2buster").disabled = false;
+		document.getElementById("p1card").disabled = false;
+		document.getElementById("p2card").disabled = false;
+		movementEnabled = true;
 	}
 	
 	this.confirmNextTurnTimeout = 0;
@@ -101,6 +116,7 @@ function Timer(turncount,canvas){
 							playerOne.guard = playerData.guard;
 							playerOne.stunned = playerData.stunned;
 						}
+						this.nextTurn();
 						this.draw();
 						board.resolveTurn();
 					}.bind(this));

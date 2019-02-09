@@ -55,7 +55,7 @@ function Custom(canvas){
 				ctx.fillStyle="#FFFFFF";
 				ctx.font = "11px Arial";
 				ctx.textAlign = "center";
-				ctx.fillText("No Data", cwidth/2, down + restCardHeight - 10);
+				ctx.fillText("No Data", cwidth/2, down + restCardHeight - 20);
 			}
 			else{
 				ctx.fillStyle="#000000";
@@ -81,7 +81,6 @@ function Custom(canvas){
 		else{
 			this.mouseCellY = Math.floor((this.handSize - 1 ) * (e.offsetY - firstCardHeight)/(e.target.height - firstCardHeight)) + 1;
 		}
-		console.log(this.mouseCellY);
 		if(HAND[this.mouseCellY]){
 			board.showRange(player, HAND[this.mouseCellY]);
 		}

@@ -29,15 +29,15 @@
 		<div style='display: block;margin: 0 auto; width: 880px'>
 			<div style='display: block;margin: 0 auto; width: 800px; float: right;'>
 				<canvas id='timer_canvas' width='400' height='50' style="display: block;margin: 0 auto; float: left;"></canvas>
-				<input type='button' id='nextturn' value='Next Turn' onclick='timer.nextTurn();' style="display: block;margin: 0 auto;"/>
-				<input type='button' id='switch' value='switchPlayer' onclick='board.switchPlayer()' style="display: block;margin: 0 auto;"/>
-				<input type='button' id='rturn' value='randomTurn' onclick='board.card(1); board.card(2); board.randomMovePlayer(playerOne); board.randomMovePlayer(playerTwo); timer.nextTurn()' style="display: none;margin: 0 auto;"/>
-
+				<input type='button' id='nextturn' value='Next Turn' onclick='timer.nextTurnConfirmed();' style="display: none;margin: 0 auto;"/>
+				<input type='button' id='P1' value='P1' onclick='board.turnOffbuttons()' style="display: block;margin: 0 auto;"/>
+				<input type='button' id='P2' value='P2' onclick='board.switchPlayer(); board.turnOffbuttons()' style="display: block;margin: 0 auto;"/>
+				<div style="display: none;margin: 0 auto;" id='playerText'>You are player X</div>
 
 				<canvas id='board_canvas' width='800' height='400' style="display: block;margin: 0 auto; float: right;"></canvas>
 				
 				<canvas id='pick_canvas' width='400' height='120' style="display: block;margin: 0 auto; float: left;"></canvas>
-				<input type='button' id='confirm' value='Confirm' onclick='customPick.confirm()' style="float: left;"/>
+				<input type='button' id='confirm' value='Confirm' onclick='customPick.confirmButton()' style="display: none;float: left;"/>
 				<input type='button' id='p1buster' value='p1 Buster' onclick='board.buster(1)' style="float: left;"/>
 				<input type='button' id='p2buster' value='p2 Buster' onclick='board.buster(2)' style="float: right; display: none;"/>
 				<input type='button' id='p1card' value='p1 Card' onclick='board.card(1)' style="float: left;"/>

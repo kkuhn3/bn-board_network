@@ -9,9 +9,11 @@ ACTIONS = {
 	CARD: 2,
 }
 
+var playerHP = 500;
+
 var playerOne = {
 	name:"one",
-	hp:1000,
+	hp:playerHP,
 	color:"#0000FF",
 	image: blue_man,
 	x:1,
@@ -25,7 +27,7 @@ var playerOne = {
 
 var playerTwo = {
 	name:"two",
-	hp:1000,
+	hp:playerHP,
 	color:"#FF0000",
 	image: grey_man,
 	x:4,
@@ -39,6 +41,8 @@ var playerTwo = {
 
 var player = -1;
 var cells = null;
+var playerSelected = false;
+var movementEnabled = false;
 
 function Board(width,height,canvas){
 	cells = [[]];
@@ -69,10 +73,10 @@ function Board(width,height,canvas){
 
 	this.reset = function(){
 		this.initCells();
-		playerOne.hp = 1000;
+		playerOne.hp = playerHP;
 		playerOne.x = 1;
 		playerOne.y = 1;
-		playerTwo.hp = 1000;
+		playerTwo.hp = playerHP;
 		playerTwo.x = 4;
 		playerTwo.y = 1;
 		player = playerOne;
@@ -86,20 +90,20 @@ function Board(width,height,canvas){
 		ctx.drawImage(cells[x][y],top+2,left+2,cellWidth-4,cellHeight-4);
 	}
 
-	this.drawPlayer = function(player){
-		var centerX = player.x * cellWidth + cellWidth / 2;
-		var centerY = player.y * cellHeight + cellHeight / 2 + cheight;
+	this.drawPlayer = function(playerDraw){
+		var centerX = playerDraw.x * cellWidth + cellWidth / 2;
+		var centerY = playerDraw.y * cellHeight + cellHeight / 2 + cheight;
 
-		this.drawPlayerImage(centerX, centerY, player.image);
+		this.drawPlayerImage(centerX, centerY, playerDraw);
 	}
 
-	this.drawPlayerImage = function(centerX, centerY, image){
-    	ctx.drawImage(image,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+	this.drawPlayerImage = function(centerX, centerY, playerDraw){
+    	ctx.drawImage(playerDraw.image,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
 
     	ctx.fillStyle="#FFFFFF";
     	ctx.textAlign = "center";
     	ctx.font = "20px Arial";
-		ctx.fillText(player.hp,centerX,centerY+cellHeight/4);
+		ctx.fillText(playerDraw.hp,centerX,centerY+cellHeight/4);
 	}
 
 	this.draw = function(){
@@ -116,27 +120,27 @@ function Board(width,height,canvas){
 
 	this.mouseDown = function(e){
 		this.selected = -1;
-		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
-		this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
-		if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === playerOne){
-			this.selected = 1;
-		}
-		else if(playerTwo.x === this.mouseCellX && playerTwo.y === this.mouseCellY && player === playerTwo){
-			this.selected = 2;
+		if(movementEnabled){
+			this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
+			this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
+			if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === playerOne){
+				this.selected = 1;
+			}
+			else if(playerTwo.x === this.mouseCellX && playerTwo.y === this.mouseCellY && player === playerTwo){
+				this.selected = 2;
+			}
 		}
 	}.bind(this);
 
 	this.mouseMove = function(e){
 		this.draw();
 		if(this.selected !== -1){
-			this.image = -1;
 			if(this.selected === 1){
-				this.image=playerOne.image;
+				this.drawPlayerImage(e.offsetX, e.offsetY, playerOne);
 			}
 			else if (this.selected === 2){
-				this.image=playerTwo.image;
+				this.drawPlayerImage(e.offsetX, e.offsetY, playerTwo);
 			}
-			this.drawPlayerImage(e.offsetX, e.offsetY, this.image);
 		}
 	}.bind(this);
 
@@ -190,8 +194,11 @@ function Board(width,height,canvas){
 		this.resetPlayer(playerOne);
 		this.resetPlayer(playerTwo);
 		this.draw();
+		console.log(playerOne.hp);
+		console.log(playerTwo.hp);
 		custom.drawHand();
 		console.log("======================== turn end ========================");
+		document.getElementById("nextturn").style.display='none';
 		this.isGameOver();
 	}
 
@@ -201,7 +208,7 @@ function Board(width,height,canvas){
 				console.log("player " + attacker.name + " used: their BUSTER");
 				if(attacker.y === defender.y){
 					if(defender.guard < 1){
-						defender.hp = defender.hp - 10;
+						defender.hp = defender.hp - 1000;
 						console.log("it hit!");
 					}
 					else{
@@ -252,22 +259,21 @@ function Board(width,height,canvas){
 		else{
 			player = playerOne;
 		}
-
-		if(player === playerOne){
-			document.getElementById("p2buster").style.display='none';
-			document.getElementById("p2card").style.display='none';
-			document.getElementById("p1buster").style.display='block';
-			document.getElementById("p1card").style.display='block';
-		}
-		else{
-			document.getElementById("p1buster").style.display='none';
-			document.getElementById("p1card").style.display='none';
-			document.getElementById("p2buster").style.display='block';
-			document.getElementById("p2card").style.display='block';
-		}
+	}
+	
+	this.turnOffbuttons = function(){
+		document.getElementById("P1").style.display='none';
+		document.getElementById("P2").style.display='none';
+		
+		document.getElementById("playerText").style.display='block';
+		document.getElementById("playerText").innerHTML ='You are player ' + player.name;
+		
+		document.getElementById("confirm").style.display='block';
+		playerSelected = true;
 	}
 
 	this.buster = function(playerNum){
+		document.getElementById("nextturn").style.display='block';
 		if(playerNum === 1){
 			playerOne.action = ACTIONS.BUSTER;
 			if(playerOne.card !== null){
@@ -285,6 +291,7 @@ function Board(width,height,canvas){
 	}
 
 	this.card = function(playerNum){
+		document.getElementById("nextturn").style.display='block';
 		if(HAND.length === 0){
 			this.buster(playerNum);
 		}
@@ -306,6 +313,7 @@ function Board(width,height,canvas){
 
 	this.showRange = function(attacker, card){
 		var fakeDefender = {
+			x: -1,
 			x: -1,
 			y: -1,
 			invis: 0,
@@ -339,17 +347,14 @@ function Board(width,height,canvas){
 		if(playerOne.hp < 1 && playerTwo.hp < 1){
 			console.log("GAME OVER - TIE");
 			document.getElementById("nextturn").disabled = true;
-			document.getElementById("rturn").disabled = true;
 		}
 		else if(playerOne.hp < 1){
 			console.log("GAME OVER - P2 Wins");
 			document.getElementById("nextturn").disabled = true;
-			document.getElementById("rturn").disabled = true;
 		}
 		else if(playerTwo.hp < 1){
 			console.log("GAME OVER - P1 Wins");
 			document.getElementById("nextturn").disabled = true;
-			document.getElementById("rturn").disabled = true;
 		}
 	}
 }

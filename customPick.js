@@ -18,10 +18,13 @@ function CustomPick(canvas){
 		this.openCustom();
 	}
 	this.openCustom = function(){
+		movementEnabled = false;
 		this.drawFromDeck();
 		document.getElementById("pick_canvas").style.display='block';
 		document.getElementById("custom_canvas").style.display='none';
-		document.getElementById("confirm").style.display='block';
+		if(playerSelected){
+			document.getElementById("confirm").style.display='block';
+		}
 		if(player.name === "one"){
 			document.getElementById("p1buster").style.display='none';
 			document.getElementById("p1card").style.display='none';
@@ -90,8 +93,15 @@ function CustomPick(canvas){
 			}
 		}
 	}
+	
+	this.confirmButton = function(){
+		document.getElementById("confirm").disabled = true;
+		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
+		this.getConfirm();
+	}
 
 	this.confirm = function(){
+		movementEnabled = true;
 		HAND = SELECTED;
 		for(var i=0;i<SELECTEDIND.length;i++){
 			DRAW[SELECTEDIND[i]] = null;
@@ -109,8 +119,6 @@ function CustomPick(canvas){
 			document.getElementById("p2buster").style.display='block';
 			document.getElementById("p2card").style.display='block';
 		}
-		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
-		this.getConfirm();
 	}
 	
 	this.confirmTimeout = 0;
@@ -124,6 +132,7 @@ function CustomPick(canvas){
 			try{
 				var d = JSON.parse(data);
 				if(d){
+					this.confirm();
 					custom.drawHand();
 					return true;
 				}
