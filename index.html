@@ -7,12 +7,14 @@
 	</head>
 	<body>
 		<div style='display:none;' id='imagePreloader'>
-			<img id='tile_overlay' src='img/tile_overlay.png'/>
+			<!-- Basic Game Images -->
 			<img id='red_tile' src='img/bgRed.png'/>
 			<img id='blue_tile' src='img/bgBlue.png'/>
 			<img id='blue_man' src='img/blueMan.png'/>
 			<img id='grey_man' src='img/greyMan.png'/>
 			<img id='card' src='img/card.png'/>
+
+			<!-- Inital Card list -->
 			<img id='cannon1' src='img/cards/cannon1.png'/>
 			<img id='cannon2' src='img/cards/cannon2.png'/>
 			<img id='cannon3' src='img/cards/cannon3.png'/>
@@ -54,6 +56,7 @@
 	<script src='timer.js'></script>
 	<script src='custom.js'></script>
 	<script src='customPick.js'></script>
+	<script src='bn6cards.js'></script>
 	<script>
 		function init(){
 			board = new Board(6,3,board_canvas);
@@ -68,6 +71,8 @@
 			timer.draw();
 			
 			cards = new Cards();
+			bn6cards = new Bn6Cards();
+			cards.initCards();
 
 			custom = new Custom(custom_canvas);
 			custom_canvas.onmousedown = custom.mouseDown;

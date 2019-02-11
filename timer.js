@@ -98,7 +98,7 @@ function Timer(turncount,canvas){
 							playerTwo.y = playerData.y;
 							playerTwo.action = playerData.action;
 							if(playerTwo.action === ACTIONS.CARD){
-								playerTwo.card = cards.getCardByName(playerData.card.name);
+								playerTwo.card = cards.getCardById(playerData.card.id);
 							}
 							playerTwo.invis = playerData.invis;
 							playerTwo.guard = playerData.guard;
@@ -110,7 +110,7 @@ function Timer(turncount,canvas){
 							playerOne.y = playerData.y;
 							playerOne.action = playerData.action;
 							if(playerOne.action === ACTIONS.CARD){
-								playerOne.card = cards.getCardByName(playerData.card.name);
+								playerOne.card = cards.getCardById(playerData.card.id);
 							}
 							playerOne.invis = playerData.invis;
 							playerOne.guard = playerData.guard;
