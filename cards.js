@@ -1,3 +1,15 @@
+ELEMENTS = {
+	fire: "fire",
+	aqua: "aqua",
+	elec: "elec",
+	wood: "wood",
+
+	break: "break",
+	cursor: "cursor",
+	wind: "wind",
+	sword: "sword"
+}
+
 // Use cannon for example
 var CANNON1 = {
 	// It's an ID. Used to map the card to itself.
@@ -33,9 +45,19 @@ var CANNON1 = {
 	hithuh: function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
+				for(var i=1; i <= defender.x - attacker.x; i++){
+					if(cells[attacker.x + i - 1][attacker.y].object){
+						return false;
+					}
+				}
 				return attacker.y === defender.y && defender.x > attacker.x;
 			}
 			else{
+				for(var i=1; i <= attacker.x - defender.x; i++){
+					if(cells[attacker.x - i + 1][attacker.y].object){
+						return false;
+					}
+				}
 				return attacker.y === defender.y && defender.x < attacker.x;
 			}
 		}
@@ -93,17 +115,23 @@ var PIERCECANNON = {
 	damage:100,
 	hits:1,
 	priority:2,
-	elements:['Targetting'],
+	elements:[ELEMENTS.cursor],
 	hithuh: function(attacker, defender){
 		if(attacker.name === "one"){
-			if(attacker.y === defender.y && defender.x > attacker.x){
-				return true;
+			for(var i=1; i <= defender.x - attacker.x; i++){
+				if(cells[attacker.x + i][attacker.y].object){
+					return false;
+				}
 			}
+			return attacker.y === defender.y && defender.x > attacker.x;
 		}
 		else{
-			if(attacker.y === defender.y && defender.x < attacker.x){
-				return true;
+			for(var i=1; i <= attacker.x - defender.x; i++){
+				if(cells[attacker.x - i][attacker.y].object){
+					return false;
+				}
 			}
+			return attacker.y === defender.y && defender.x < attacker.x;
 		}
 		return false;
 	},
@@ -125,12 +153,9 @@ var BREAKCANNON = {
 	damage:100,
 	hits:1,
 	priority:2,
-	elements:['Breaking'],
+	elements:[ELEMENTS.break],
 	hithuh: function(attacker, defender){
-		if(CANNON1.hithuh(attacker, defender)){
-			return true;
-		}
-		return false;
+		return CANNON1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
 		defender.guard = 0;
@@ -148,12 +173,9 @@ var STUNCANNON = {
 	damage:100,
 	hits:1,
 	priority:2,
-	elements:['Elec'],
+	elements:[ELEMENTS.elec],
 	hithuh: function(attacker, defender){
-		if(CANNON1.hithuh(attacker, defender)){
-			return true;
-		}
-		return false;
+		return CANNON1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
 		if(defender.guard < 1){
@@ -249,7 +271,7 @@ var AREAGRAB = {
 		if(attacker.name === "one"){
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
-					if(x === this.column && !(playerTwo.x === x && playerTwo.y === y)){
+					if(x === this.column && !(playerTwo.x === x && playerTwo.y === y) && cells[x][y].object === null){
 						cells[x][y] = SIDE.LEFT;
 					}
 				}
@@ -258,7 +280,7 @@ var AREAGRAB = {
 		else{
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
-					if(x === this.column && !(playerOne.x === x && playerOne.y === y)){
+					if(x === this.column && !(playerOne.x === x && playerOne.y === y) && cells[x][y].object === null){
 						cells[x][y] = SIDE.RIGHT;
 					}
 				}
@@ -280,7 +302,7 @@ var SWORD = {
 	mb:0,
 	rank:"standard",
 	priority:1,
-	elements:['Sword'],
+	elements:[ELEMENTS.sword],
 	hithuh: function(attacker, defender){
 		this.direction = 0;
 		if(attacker.name === "one"){
@@ -313,7 +335,7 @@ var WIDESWORD = {
 	mb:0,
 	rank:"standard",
 	priority:1,
-	elements:['Sword'],
+	elements:[ELEMENTS.sword],
 	hithuh: function(attacker, defender){
 		this.direction = 0;
 		if(attacker.name === "one"){
@@ -346,7 +368,7 @@ var LONGSWORD = {
 	mb:0,
 	rank:"standard",
 	priority:1,
-	elements:['Sword'],
+	elements:[ELEMENTS.sword],
 	hithuh: function(attacker, defender){
 		this.direction = 0;
 		if(attacker.name === "one"){
@@ -389,6 +411,15 @@ function Cards(){
 
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS;
-		TEMPDECKLIST = BN6CARDS;
+		TEMPDECKLIST = [BN6WideShot,BN6WideShot,BN6WideShot,BN6WideShot,BN6WideShot];
+	}
+
+	this.around = function(x, y, defender){
+		var offX = Math.abs(defender.x - x);
+		var offY = Math.abs(defender.y - y);
+		if(offX === 0 && offY === 0){
+			return false;
+		}
+		return offX < 2 && offY < 2;
 	}
 }

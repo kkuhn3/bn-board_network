@@ -63,7 +63,7 @@ var BN6AirShot = {
 	damage:20,
 	hits:1,
 	priority:1,
-	elements:[],
+	elements:[ELEMENTS.wind],
 	hithuh: function(attacker, defender){
 		return BN6Cannon.hithuh(attacker, defender);
 	},
@@ -92,7 +92,29 @@ var BN6Vulcan1 = {
 	priority:1,
 	elements:[],
 	hithuh: function(attacker, defender){
-		return BN6Cannon.hithuh(attacker, defender);
+		if(defender.invis < 1){
+			if(attacker.name === "one"){
+				for(var i=1; i <= 5 - attacker.x; i++){
+					if(attacker.y === defender.y && attacker.x + i === defender.x){
+						return true;
+					}
+					if(cells[attacker.x + i][attacker.y].object){
+						return attacker.y === defender.y && (defender.x === attacker.x + i + 1);
+					}
+				}
+			}
+			else{
+				for(var i=1; i <= attacker.x; i++){
+					if(attacker.y === defender.y && attacker.x - i === defender.x){
+						return true;
+					}
+					if(cells[attacker.x - i][attacker.y].object){
+						return attacker.y === defender.y && (defender.x === attacker.x - i - 1);
+					}
+				}
+			}
+		}
+		return false;
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
@@ -164,7 +186,29 @@ var BN6Spreader1 = {
 	priority:1,
 	elements:[],
 	hithuh: function(attacker, defender){
-		return BN6Cannon.hithuh(attacker, defender);
+		if(defender.invis < 1){
+			if(attacker.name === "one"){
+				for(var i=1; i <= 5 - attacker.x; i++){
+					if(attacker.y === defender.y && attacker.x + i === defender.x){
+						return true;
+					}
+					if(cells[attacker.x + i][attacker.y].object){
+						return cards.around(attacker.x + i, attacker.y, defender);
+					}
+				}
+			}
+			else{
+				for(var i=1; i <= attacker.x; i++){
+					if(attacker.y === defender.y && attacker.x - i === defender.x){
+						return true;
+					}
+					if(cells[attacker.x - i][attacker.y].object){
+						return cards.around(attacker.x - i, attacker.y, defender);
+					}
+				}
+			}
+		}
+		return false;
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
@@ -221,6 +265,11 @@ var BN6BigTank1 = {
 		if(defender.invis < 1){
 			if(BN6Cannon.hithuh(attacker, defender)){
 				return true;
+			}
+			for(var i=1; i <= 5 - attacker.x; i++){
+				if(cells[attacker.x + i][attacker.y].object){
+					return false;
+				}
 			}
 			if(attacker.name === "one" && defender.x === 5){
 				return true;
@@ -391,7 +440,7 @@ var BN6HellBurner1 = {
 	damage:70,
 	hits:1,
 	priority:1,
-	elements:['Fire'],
+	elements:[ELEMENTS.fire],
 	hithuh: function(attacker, defender){
 		if(defender.invis < 1){
 			if(LONGSWORD.hithuh(attacker, defender)){
@@ -426,7 +475,7 @@ var BN6HellBurner2 = {
 	damage:110,
 	hits:1,
 	priority:1,
-	elements:['Fire'],
+	elements:[ELEMENTS.fire],
 	hithuh: function(attacker, defender){
 		return BN6HellBurner1.hithuh(attacker, defender);
 	},
@@ -444,7 +493,7 @@ var BN6HellBurner3 = {
 	damage:150,
 	hits:1,
 	priority:1,
-	elements:['Fire'],
+	elements:[ELEMENTS.fire],
 	hithuh: function(attacker, defender){
 		return BN6HellBurner1.hithuh(attacker, defender);
 	},
@@ -462,22 +511,36 @@ var BN6WideShot = {
 	damage:100,
 	hits:1,
 	priority:2,
-	elements:['Aqua'],
+	elements:[ELEMENTS.aqua],
 	hithuh: function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
-				if(attacker.y === defender.y || attacker.y + 1 === defender.y || attacker.y -1 === defender.y){
-					if(attacker.x < defender.x){
-						return true;
+				for(var i=1; i <= defender.x - attacker.x; i++){
+					if(cells[attacker.x + i - 1][attacker.y].object){
+						return false;
+					}
+					if(cells[attacker.x + i - 1][attacker.y+1].object){
+						return false;
+					}
+					if(cells[attacker.x + i - 1][attacker.y-1].object){
+						return false;
 					}
 				}
+				return (attacker.y === defender.y || attacker.y+1 === defender.y || attacker.y-1 === defender.y) && defender.x > attacker.x;
 			}
 			else{
-				if(attacker.y === defender.y || attacker.y + 1 === defender.y || attacker.y -1 === defender.y){
-					if(attacker.x > defender.x){
-						return true;
+				for(var i=1; i <= attacker.x; i++){
+					if(cells[attacker.x - i - 1][attacker.y].object){
+						return false;
+					}
+					if(cells[attacker.x - i - 1][attacker.y+1].object){
+						return false;
+					}
+					if(cells[attacker.x - i - 1][attacker.y-1].object){
+						return false;
 					}
 				}
+				return (attacker.y === defender.y || attacker.y+1 === defender.y || attacker.y-1 === defender.y) && defender.x < attacker.x;
 			}
 		}
 		return false;

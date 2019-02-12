@@ -3,6 +3,10 @@ SIDE = {
 	RIGHT: blue_tile,
 }
 
+PANELTYPE = {
+	NORMAL: "normal",
+}
+
 ACTIONS = {
 	NONE: 0,
 	BUSTER: 1,
@@ -10,6 +14,7 @@ ACTIONS = {
 }
 
 var playerHP = 500;
+var busterDefualt = 10;
 
 var playerOne = {
 	name:"one",
@@ -22,7 +27,8 @@ var playerOne = {
 	card:null,
 	invis:0,
 	guard:0,
-	stunned: 0
+	stunned: 0,
+	busterDamage: busterDefualt
 };
 
 var playerTwo = {
@@ -36,7 +42,8 @@ var playerTwo = {
 	card:null,
 	invis:0,
 	guard:0,
-	stunned:0
+	stunned:0,
+	busterDamage: busterDefualt
 };
 
 var player = -1;
@@ -62,13 +69,30 @@ function Board(width,height,canvas){
 			cells[x]=[];
 			for(var y=0;y<this.height;y++){
 				if(x < 3){
-					cells[x][y]=SIDE.LEFT;
+					cells[x][y]={
+						side:SIDE.LEFT,
+						currentSide:SIDE.LEFT,
+						sideTimer:0,
+						object:null,
+						panelType:PANELTYPE.NORMAL,
+						panelTimer:0,
+						player:null
+					};
 				}
 				else{
-					cells[x][y]=SIDE.RIGHT;
+					cells[x][y]={
+						side:SIDE.RIGHT,
+						currentSide:SIDE.RIGHT,
+						sideTimer:0,
+						object:null,
+						panelType:PANELTYPE.NORMAL,
+						panelTimer:0,
+						player:null
+					};
 				}
 			}
 		}
+		//cells[3][1].object = new BN6RockCube(4, 1);
 	}
 
 	this.reset = function(){
@@ -79,15 +103,20 @@ function Board(width,height,canvas){
 		playerTwo.hp = playerHP;
 		playerTwo.x = 4;
 		playerTwo.y = 1;
+		cells[1][1].player = playerOne;
+		cells[4][1].player = playerTwo;
 		player = playerOne;
 		$.post("save.php",{id:"confirmone", state: JSON.stringify(false)});
 		$.post("save.php",{id:"confirmtwo", state: JSON.stringify(false)});
 	}
 
 	this.drawCell = function(x,y){
-		var top = x*cellWidth;
-		var left = y*cellHeight + cheight;
-		ctx.drawImage(cells[x][y],top+2,left+2,cellWidth-4,cellHeight-4);
+		var left = x*cellWidth;
+		var top = y*cellHeight + cheight;
+		ctx.drawImage(cells[x][y].side,left+2,top+2,cellWidth-4,cellHeight-4);
+		if(cells[x][y].object){
+			ctx.drawImage(cells[x][y].object.image, left+4, top+4, cellWidth-8, cellHeight-4);
+		}
 	}
 
 	this.drawPlayer = function(playerDraw){
@@ -125,9 +154,11 @@ function Board(width,height,canvas){
 			this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
 			if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === playerOne){
 				this.selected = 1;
+				cells[this.mouseCellX][this.mouseCellY] = null;
 			}
 			else if(playerTwo.x === this.mouseCellX && playerTwo.y === this.mouseCellY && player === playerTwo){
 				this.selected = 2;
+				cells[this.mouseCellX][this.mouseCellY] = null;
 			}
 		}
 	}.bind(this);
@@ -150,10 +181,12 @@ function Board(width,height,canvas){
 		if(this.selected === 1 && cells[this.mouseCellX][this.mouseCellY] === SIDE.LEFT){
 			playerOne.x = this.mouseCellX;
 			playerOne.y = this.mouseCellY;
+			cells[this.mouseCellX][this.mouseCellY] = playerOne;
 		}
 		else if (this.selected === 2 && cells[this.mouseCellX][this.mouseCellY] === SIDE.RIGHT){
 			playerTwo.x = this.mouseCellX;
 			playerTwo.y = this.mouseCellY;
+			cells[this.mouseCellX][this.mouseCellY] = playerTwo;
 		}
 
 		this.draw();
@@ -174,20 +207,26 @@ function Board(width,height,canvas){
 
 		if(this.p1priority === 0 && this.p2priority === 0){
 			this.resolveActions(playerTwo, playerOne);
+			this.resolveObjects(playerTwo, playerOne);
 			playerTwo.stunned = playerTwo.stunned - 1;
 			this.resolveActions(playerOne, playerTwo);
+			this.resolveObjects(playerOne, playerTwo);
 			playerOne.stunned = playerOne.stunned - 1;
 		}
 		else if(this.p1priority <= this.p2priority){
 			this.resolveActions(playerOne, playerTwo);
+			this.resolveObjects(playerOne, playerTwo);
 			playerOne.stunned = playerOne.stunned - 1;
 			this.resolveActions(playerTwo, playerOne);
+			this.resolveObjects(playerTwo, playerOne);
 			playerTwo.stunned = playerTwo.stunned - 1;
 		}
 		else{
 			this.resolveActions(playerTwo, playerOne);
+			this.resolveObjects(playerTwo, playerOne);
 			playerTwo.stunned = playerTwo.stunned - 1;
 			this.resolveActions(playerOne, playerTwo);
+			this.resolveObjects(playerOne, playerTwo);
 			playerOne.stunned = playerOne.stunned - 1;
 		}
 
@@ -204,9 +243,9 @@ function Board(width,height,canvas){
 		if(attacker.stunned < 1){
 			if(attacker.action === ACTIONS.BUSTER){
 				console.log("player " + attacker.name + " used: their BUSTER");
-				if(attacker.y === defender.y){
+				if(CANNON1.hithuh(attacker, defender)){
 					if(defender.guard < 1){
-						defender.hp = defender.hp - 1000;
+						defender.hp = defender.hp - attacker.busterDamage;
 						console.log("it hit!");
 					}
 					else{
@@ -242,6 +281,41 @@ function Board(width,height,canvas){
 		}
 	}
 
+	this.resolveObjects = function(attacker, defender){
+		var fakeDefender = {
+			x: -1,
+			y: -1,
+			invis: 0,
+			guard: 0
+		};
+
+		cells[defender.x][defender.y].object = "player";
+		for(var x=0; x < cells.length; x++){
+			for(var y=0; y < cells[x].length; y++){
+				if(cells[x][y].object){
+					fakeDefender.x = x;
+					fakeDefender.y = y;
+
+					if(attacker.action === ACTIONS.BUSTER){
+						if(CANNON1.hithuh(attacker, fakeDefender)){
+							cells[x][y].object.hitByBuster(attacker);
+						}
+					}
+					else if(attacker.action === ACTIONS.CARD){
+						if(attacker.card.hithuh(attacker, fakeDefender)){
+							if(attacker.name === "one"){
+								cells[x][y].object.effecthit(attacker.card, "east");
+							}
+							else{
+								cells[x][y].object.effecthit(attacker.card, "west");
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	this.resetPlayer = function(player){
 		player.action = ACTIONS.NONE;
 		player.card = null;
@@ -249,7 +323,6 @@ function Board(width,height,canvas){
 		player.guard = player.guard - 1;
 	}
 
-	// Player functions:
 	this.switchPlayer = function(){
 		if(player === playerOne){
 			player = playerTwo;
