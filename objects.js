@@ -3,6 +3,7 @@ function BN6RockCube(x, y){
 	this.id = "BN6RockCube";
 	this.hp = 200;
 	this.image = grey_man;
+	this.solid = true;
 	this.effecthit = function(cardHitBy, direction){
 		if(cardHitBy.elements.indexOf(ELEMENTS.wind) !== -1){
 			if(direction = "east"){
@@ -47,6 +48,30 @@ function BN6RockCube(x, y){
 	};
 	this.hitByBuster = function(player){
 		this.hp = this.hp - player.busterDamage;
+	}
+	this.passive = function(){
+		if(this.hp < 1){
+			cells[this.x][this.y].object = null;
+		}
+	}
+	this.x = x;
+	this.y = y;
+}
+
+function BN6Thunder(x, y, players){
+	this.id = "BN6Thunder";
+	this.hp = 8;
+	this.image = grey_man;
+	this.solid = false;
+	this.players = players;
+	this.effecthit = function(cardHitBy, direction){};
+	this.hitByBuster = function(player){}
+	this.passive = function(){
+		this.hp--;
+		if(this.hp < 1){
+			cells[this.x][this.y].object = null;
+		}
+
 	}
 	this.x = x;
 	this.y = y;

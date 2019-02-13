@@ -95,8 +95,10 @@ function Timer(turncount,canvas){
 						var playerData = JSON.parse(data);
 						if(player.name === "one"){
 							playerTwo.hp = playerData.hp;
+							cells[playerTwo.x][playerTwo.y].player = null;
 							playerTwo.x = playerData.x;
 							playerTwo.y = playerData.y;
+							cells[playerTwo.x][playerTwo.y].player = playerTwo;
 							playerTwo.action = playerData.action;
 							if(playerTwo.action === ACTIONS.CARD){
 								playerTwo.card = cards.getCardById(playerData.card.id);
@@ -107,8 +109,10 @@ function Timer(turncount,canvas){
 						}
 						else{
 							playerOne.hp = playerData.hp;
+							cells[playerOne.x][playerOne.y].player = null;
 							playerOne.x = playerData.x;
 							playerOne.y = playerData.y;
+							cells[playerOne.x][playerOne.y].player = playerOne;
 							playerOne.action = playerData.action;
 							if(playerOne.action === ACTIONS.CARD){
 								playerOne.card = cards.getCardById(playerData.card.id);

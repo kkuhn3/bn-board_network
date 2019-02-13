@@ -46,7 +46,7 @@ var CANNON1 = {
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				for(var i=1; i <= defender.x - attacker.x; i++){
-					if(cells[attacker.x + i - 1][attacker.y].object){
+					if(board.cellHasObject(attacker.x + i - 1, attacker.y)){
 						return false;
 					}
 				}
@@ -54,7 +54,7 @@ var CANNON1 = {
 			}
 			else{
 				for(var i=1; i <= attacker.x - defender.x; i++){
-					if(cells[attacker.x - i + 1][attacker.y].object){
+					if(board.cellHasSolidObject(attacker.x - i + 1, attacker.y)){
 						return false;
 					}
 				}
@@ -119,7 +119,7 @@ var PIERCECANNON = {
 	hithuh: function(attacker, defender){
 		if(attacker.name === "one"){
 			for(var i=1; i <= defender.x - attacker.x; i++){
-				if(cells[attacker.x + i][attacker.y].object){
+				if(board.cellHasSolidObject(attacker.x + i, attacker.y)){
 					return false;
 				}
 			}
@@ -127,7 +127,7 @@ var PIERCECANNON = {
 		}
 		else{
 			for(var i=1; i <= attacker.x - defender.x; i++){
-				if(cells[attacker.x - i][attacker.y].object){
+				if(board.cellHasSolidObject(attacker.x - i, attacker.y)){
 					return false;
 				}
 			}
@@ -271,7 +271,7 @@ var AREAGRAB = {
 		if(attacker.name === "one"){
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
-					if(x === this.column && !(playerTwo.x === x && playerTwo.y === y) && cells[x][y].object === null){
+					if(x === this.column && !(playerTwo.x === x && playerTwo.y === y) && !board.cellHasSolidObject(x,y)){
 						cells[x][y].side = SIDE.LEFT;
 					}
 				}
@@ -280,7 +280,7 @@ var AREAGRAB = {
 		else{
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
-					if(x === this.column && !(playerOne.x === x && playerOne.y === y) && cells[x][y].object === null){
+					if(x === this.column && !(playerOne.x === x && playerOne.y === y) && !board.cellHasSolidObject(x,y)){
 						cells[x][y].side = SIDE.RIGHT;
 					}
 				}
@@ -412,6 +412,7 @@ function Cards(){
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
+		TEMPDECKLIST = [BN6TrainArrow1, BN6BubbleStar1, BN6Yoyo, BN6Thunder, BN6TrainArrow3];
 	}
 
 	this.around = function(x, y, defender){

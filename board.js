@@ -29,6 +29,7 @@ var playerOne = {
 	invis:0,
 	guard:0,
 	stunned: 0,
+	bubbled: 0,
 	busterDamage: busterDefualt,
 	reflDamage: reflDefault
 };
@@ -45,6 +46,7 @@ var playerTwo = {
 	invis:0,
 	guard:0,
 	stunned:0,
+	bubbled: 0,
 	busterDamage: busterDefualt,
 	reflDamage: reflDefault
 };
@@ -95,7 +97,7 @@ function Board(width,height,canvas){
 				}
 			}
 		}
-		//cells[3][1].object = new BN6RockCube(4, 1);
+		//cells[5][1].object = new BN6RockCube(4, 1);
 	}
 
 	this.reset = function(){
@@ -209,28 +211,16 @@ function Board(width,height,canvas){
 		}
 
 		if(this.p1priority === 0 && this.p2priority === 0){
-			this.resolveActions(playerTwo, playerOne);
-			this.resolveObjects(playerTwo, playerOne);
-			playerTwo.stunned = playerTwo.stunned - 1;
-			this.resolveActions(playerOne, playerTwo);
-			this.resolveObjects(playerOne, playerTwo);
-			playerOne.stunned = playerOne.stunned - 1;
+			this.resolve(playerTwo, playerOne);
+			this.resolve(playerOne, playerTwo);
 		}
 		else if(this.p1priority <= this.p2priority){
-			this.resolveActions(playerOne, playerTwo);
-			this.resolveObjects(playerOne, playerTwo);
-			playerOne.stunned = playerOne.stunned - 1;
-			this.resolveActions(playerTwo, playerOne);
-			this.resolveObjects(playerTwo, playerOne);
-			playerTwo.stunned = playerTwo.stunned - 1;
+			this.resolve(playerOne, playerTwo);
+			this.resolve(playerTwo, playerOne);
 		}
 		else{
-			this.resolveActions(playerTwo, playerOne);
-			this.resolveObjects(playerTwo, playerOne);
-			playerTwo.stunned = playerTwo.stunned - 1;
-			this.resolveActions(playerOne, playerTwo);
-			this.resolveObjects(playerOne, playerTwo);
-			playerOne.stunned = playerOne.stunned - 1;
+			this.resolve(playerTwo, playerOne);
+			this.resolve(playerOne, playerTwo);
 		}
 
 		this.resetPlayer(playerOne);
@@ -242,8 +232,15 @@ function Board(width,height,canvas){
 		this.isGameOver();
 	}
 
+	this.resolve = function(attacker, defender){
+		this.resolveActions(attacker, defender);
+		this.resolveObjects(attacker, defender);
+		attacker.stunned = attacker.stunned - 1;
+		attacker.bubbled = attacker.bubbled - 1;
+	}
+
 	this.resolveActions = function(attacker, defender){
-		if(attacker.stunned < 1){
+		if(attacker.stunned < 1 && attacker.bubbled < 1){
 			if(attacker.action === ACTIONS.BUSTER){
 				console.log("player " + attacker.name + " used: their BUSTER");
 				if(CANNON1.hithuh(attacker, defender)){
@@ -318,6 +315,13 @@ function Board(width,height,canvas){
 			}
 		}
 		cells[defender.x][defender.y].object = null;
+	}
+
+	this.cellHasSolidObject = function(x, y){
+		if(cell[x][y].object){
+			return cell[x][y].object.solid;
+		}
+		return false;
 	}
 
 	this.resetPlayer = function(player){
