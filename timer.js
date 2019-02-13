@@ -60,6 +60,7 @@ function Timer(turncount,canvas){
 			this.currentturn = 0;
 			HAND = [];
 			customPick.openCustom();
+			document.getElementById("confirm").disabled = false;
 		}
 		for(var i=0;i<turncount;i++){
 			if(i < this.currentturn){

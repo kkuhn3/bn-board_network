@@ -36,7 +36,12 @@ function Custom(canvas){
 					ctx.fillText(HAND[x].code, cwidth/2, firstCardHeight-40);
 				}
 				ctx.fillText(HAND[x].name, cwidth/2, firstCardHeight-30);
-				ctx.fillText(HAND[x].damage, cwidth/2, firstCardHeight-20);
+				if(HAND[x].hits > 1){
+					ctx.fillText(HAND[x].damage + 'x' + HAND[x].hits, cwidth/2, firstCardHeight-20);
+				}
+				else{
+					ctx.fillText(HAND[x].damage, cwidth/2, firstCardHeight-20);
+				}
 				if(HAND[x].image){
 					ctx.fillRect(7, 2, cwidth-14, firstCardHeight/2 + 2)
 					ctx.drawImage(HAND[x].image, 8, 3, cwidth-16, firstCardHeight/2);
@@ -55,7 +60,7 @@ function Custom(canvas){
 				ctx.fillStyle="#FFFFFF";
 				ctx.font = "11px Arial";
 				ctx.textAlign = "center";
-				ctx.fillText("No Data", cwidth/2, down + restCardHeight - 20);
+				ctx.fillText("No Data", cwidth/2, down + restCardHeight - 30);
 			}
 			else{
 				ctx.fillStyle="#000000";
@@ -64,7 +69,9 @@ function Custom(canvas){
 				ctx.fillRect(2 ,down+2, cwidth-4, restCardHeight - 4);
 				ctx.fillStyle="#000000";
 				ctx.fillRect(4 ,down+4, cwidth-8, restCardHeight - 8);
-				ctx.drawImage(HAND[x].image, 6, down+6, cwidth-12, restCardHeight-12);
+				if(HAND[x].image){
+					ctx.drawImage(HAND[x].image, 6, down+6, cwidth-12, restCardHeight-12);
+				}
 			}
 		}
 	}

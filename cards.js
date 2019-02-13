@@ -247,7 +247,7 @@ var AREAGRAB = {
 			this.column = 7;
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
-					if(cells[x][y]===SIDE.RIGHT && x < this.column){
+					if(cells[x][y].side===SIDE.RIGHT && x < this.column){
 						this.column = x;
 					}
 				}
@@ -258,7 +258,7 @@ var AREAGRAB = {
 			this.column = -1;
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
-					if(cells[x][y]===SIDE.LEFT && x > this.column){
+					if(cells[x][y].side===SIDE.LEFT && x > this.column){
 						this.column = x;
 					}
 				}
@@ -272,7 +272,7 @@ var AREAGRAB = {
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
 					if(x === this.column && !(playerTwo.x === x && playerTwo.y === y) && cells[x][y].object === null){
-						cells[x][y] = SIDE.LEFT;
+						cells[x][y].side = SIDE.LEFT;
 					}
 				}
 			}
@@ -281,7 +281,7 @@ var AREAGRAB = {
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
 					if(x === this.column && !(playerOne.x === x && playerOne.y === y) && cells[x][y].object === null){
-						cells[x][y] = SIDE.RIGHT;
+						cells[x][y].side = SIDE.RIGHT;
 					}
 				}
 			}
@@ -410,8 +410,8 @@ function Cards(){
 	}
 
 	this.initCards = function(){
-		CARDLIST = DEFAULTCARDS;
-		TEMPDECKLIST = [BN6WideShot,BN6WideShot,BN6WideShot,BN6WideShot,BN6WideShot];
+		CARDLIST = DEFAULTCARDS.concat(BN6CARDS);
+		TEMPDECKLIST = [].concat(BN6CARDS);
 	}
 
 	this.around = function(x, y, defender){

@@ -15,6 +15,7 @@ ACTIONS = {
 
 var playerHP = 500;
 var busterDefualt = 10;
+var reflDefault = 50;
 
 var playerOne = {
 	name:"one",
@@ -28,7 +29,8 @@ var playerOne = {
 	invis:0,
 	guard:0,
 	stunned: 0,
-	busterDamage: busterDefualt
+	busterDamage: busterDefualt,
+	reflDamage: reflDefault
 };
 
 var playerTwo = {
@@ -43,7 +45,8 @@ var playerTwo = {
 	invis:0,
 	guard:0,
 	stunned:0,
-	busterDamage: busterDefualt
+	busterDamage: busterDefualt,
+	reflDamage: reflDefault
 };
 
 var player = -1;
@@ -154,11 +157,11 @@ function Board(width,height,canvas){
 			this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
 			if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === playerOne){
 				this.selected = 1;
-				cells[this.mouseCellX][this.mouseCellY] = null;
+				cells[this.mouseCellX][this.mouseCellY].player = null;
 			}
 			else if(playerTwo.x === this.mouseCellX && playerTwo.y === this.mouseCellY && player === playerTwo){
 				this.selected = 2;
-				cells[this.mouseCellX][this.mouseCellY] = null;
+				cells[this.mouseCellX][this.mouseCellY].player = null;
 			}
 		}
 	}.bind(this);
@@ -178,15 +181,15 @@ function Board(width,height,canvas){
 	this.mouseUp = function(e){
 		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
 		this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
-		if(this.selected === 1 && cells[this.mouseCellX][this.mouseCellY] === SIDE.LEFT){
+		if(this.selected === 1 && cells[this.mouseCellX][this.mouseCellY].side === SIDE.LEFT){
 			playerOne.x = this.mouseCellX;
 			playerOne.y = this.mouseCellY;
-			cells[this.mouseCellX][this.mouseCellY] = playerOne;
+			cells[this.mouseCellX][this.mouseCellY].player = playerOne;
 		}
-		else if (this.selected === 2 && cells[this.mouseCellX][this.mouseCellY] === SIDE.RIGHT){
+		else if (this.selected === 2 && cells[this.mouseCellX][this.mouseCellY].side === SIDE.RIGHT){
 			playerTwo.x = this.mouseCellX;
 			playerTwo.y = this.mouseCellY;
-			cells[this.mouseCellX][this.mouseCellY] = playerTwo;
+			cells[this.mouseCellX][this.mouseCellY].player = playerTwo;
 		}
 
 		this.draw();
@@ -249,7 +252,7 @@ function Board(width,height,canvas){
 						console.log("it hit!");
 					}
 					else{
-						attacker.hp = attacker.hp - 50;
+						attacker.hp = attacker.hp - defender.reflDamage;
 						console.log("it was reflected!");
 					}
 				}
@@ -262,11 +265,11 @@ function Board(width,height,canvas){
 				if(attacker.card.hithuh(attacker, defender)){
 					attacker.card.effecthit(attacker, defender);
 					if(defender.guard < 1){
-						defender.hp = defender.hp - attacker.card.damage;
+						defender.hp = defender.hp - attacker.card.damage * attacker.card.hits;
 						console.log("it hit!");
 					}
 					else{
-						attacker.hp = attacker.hp - 50;
+						attacker.hp = attacker.hp - defender.reflDamage;
 						console.log("it was reflected!");
 					}
 				}
@@ -292,7 +295,7 @@ function Board(width,height,canvas){
 		cells[defender.x][defender.y].object = "player";
 		for(var x=0; x < cells.length; x++){
 			for(var y=0; y < cells[x].length; y++){
-				if(cells[x][y].object){
+				if(cells[x][y].object && cells[x][y].object !== "player"){
 					fakeDefender.x = x;
 					fakeDefender.y = y;
 
@@ -314,6 +317,7 @@ function Board(width,height,canvas){
 				}
 			}
 		}
+		cells[defender.x][defender.y].object = null;
 	}
 
 	this.resetPlayer = function(player){
