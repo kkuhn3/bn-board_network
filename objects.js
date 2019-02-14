@@ -42,6 +42,7 @@ function BN6RockCube(x, y){
 			this.hp = this.hp - cardHitBy.damage * cardHitBy.hits;
 		}
 		if(this.hp < 1){
+			cells[this.x][this.y].object = null;
 			this.x = -1;
 			this.y = -1;
 		}
@@ -49,31 +50,67 @@ function BN6RockCube(x, y){
 	this.hitByBuster = function(player){
 		this.hp = this.hp - player.busterDamage;
 	}
-	this.passive = function(){
-		if(this.hp < 1){
-			cells[this.x][this.y].object = null;
-		}
-	}
+	this.passiveTriggered = false;
+	this.passive = function(){}
 	this.x = x;
 	this.y = y;
 }
 
-function BN6Thunder(x, y, players){
+function BN6ThunderBall(x, y, attacker, defender, hp){
 	this.id = "BN6Thunder";
-	this.hp = 8;
+	this.hp = hp;
 	this.image = grey_man;
 	this.solid = false;
-	this.players = players;
 	this.effecthit = function(cardHitBy, direction){};
 	this.hitByBuster = function(player){}
+	this.passiveTriggered = false;
 	this.passive = function(){
 		this.hp--;
 		if(this.hp < 1){
 			cells[this.x][this.y].object = null;
 		}
-
+		else{
+			cells[this.x][this.y].object = null;
+			if(this.x < defender.x){
+				if(!board.cellHasSolidObject(this.x+1, this.y)){
+					cells[this.x+1][this.y].object = this;
+					this.x++;
+				}
+			}
+			else if(this.x > defender.x){
+				if(!board.cellHasSolidObject(this.x-1, this.y)){
+					cells[this.x-1][this.y].object = this;
+					this.x--;
+				}
+			}
+			else if(this.y < defender.y){
+				if(!board.cellHasSolidObject(this.x, this.y+1)){
+					cells[this.x][this.y+1].object = this;
+					this.y++;
+				}
+			}
+			else if(this.y > defender.y){
+				if(!board.cellHasSolidObject(this.x, this.y-1)){
+					cells[this.x][this.y-1].object = this;
+					this.y--;
+				}
+			}
+			if(this.x === defender.x && this.y === defender.y){
+				console.log("Player " + attacker.name + "'s thunder hit!");
+				defender.hp = defender.hp - BN6Thunder.damage;
+				BN6Thunder.effecthit(attacker, defender);
+			}
+		}
 	}
 	this.x = x;
 	this.y = y;
 }
 
+function PlayerObject(){
+	this.id = "playerObject";
+	this.image = grey_man;
+	this.solid = true;
+	this.effecthit = function(cardHitBy, direction){};
+	this.hitByBuster = function(player){}
+	this.passive = function(){}
+}

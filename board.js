@@ -201,6 +201,7 @@ function Board(width,height,canvas){
 	this.resolveTurn = function(){
 		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});
 		console.log("======================= turn start =======================");
+		this.objectPassives();
 		this.p1priority = 2;
 		this.p2priority = 2;
 		if(playerOne.action === ACTIONS.CARD){
@@ -222,7 +223,6 @@ function Board(width,height,canvas){
 			this.resolve(playerTwo, playerOne);
 			this.resolve(playerOne, playerTwo);
 		}
-
 		this.resetPlayer(playerOne);
 		this.resetPlayer(playerTwo);
 		this.draw();
@@ -230,6 +230,24 @@ function Board(width,height,canvas){
 		console.log("======================== turn end ========================");
 		document.getElementById("nextturn").style.display='none';
 		this.isGameOver();
+	}
+	
+	this.objectPassives = function(){
+		for(var x=0; x < cells.length; x++){
+			for(var y=0; y < cells[x].length; y++){
+				if(cells[x][y].object && !cells[x][y].object.passiveTriggered){
+					cells[x][y].object.passiveTriggered = true;
+					cells[x][y].object.passive();
+				}
+			}
+		}
+		for(var x=0; x < cells.length; x++){
+			for(var y=0; y < cells[x].length; y++){
+				if(cells[x][y].object){
+					cells[x][y].object.passiveTriggered = false;
+				}
+			}
+		}
 	}
 
 	this.resolve = function(attacker, defender){
@@ -289,10 +307,10 @@ function Board(width,height,canvas){
 			guard: 0
 		};
 
-		cells[defender.x][defender.y].object = "player";
+		cells[defender.x][defender.y].object = new PlayerObject();
 		for(var x=0; x < cells.length; x++){
 			for(var y=0; y < cells[x].length; y++){
-				if(cells[x][y].object && cells[x][y].object !== "player"){
+				if(cells[x][y].object && cells[x][y].object.id !== "playerObject"){
 					fakeDefender.x = x;
 					fakeDefender.y = y;
 
@@ -318,8 +336,10 @@ function Board(width,height,canvas){
 	}
 
 	this.cellHasSolidObject = function(x, y){
-		if(cell[x][y].object){
-			return cell[x][y].object.solid;
+		if(cells[x][y]){
+			if(cells[x][y].object){
+				return cells[x][y].object.solid;
+			}
 		}
 		return false;
 	}
