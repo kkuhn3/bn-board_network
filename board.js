@@ -5,6 +5,8 @@ SIDE = {
 
 PANELTYPE = {
 	NORMAL: "normal",
+	HOLE: "hole",
+	GRASS: "grass",
 }
 
 ACTIONS = {
@@ -31,7 +33,8 @@ var playerOne = {
 	stunned: 0,
 	bubbled: 0,
 	busterDamage: busterDefualt,
-	reflDamage: reflDefault
+	reflDamage: reflDefault,
+	bugs: []
 };
 
 var playerTwo = {
@@ -48,7 +51,8 @@ var playerTwo = {
 	stunned:0,
 	bubbled: 0,
 	busterDamage: busterDefualt,
-	reflDamage: reflDefault
+	reflDamage: reflDefault,
+	bugs: []
 };
 
 var player = -1;
@@ -223,6 +227,7 @@ function Board(width,height,canvas){
 			this.resolve(playerTwo, playerOne);
 			this.resolve(playerOne, playerTwo);
 		}
+		this.resolveBugs();
 		this.resetPlayer(playerOne);
 		this.resetPlayer(playerTwo);
 		this.draw();
@@ -230,6 +235,15 @@ function Board(width,height,canvas){
 		console.log("======================== turn end ========================");
 		document.getElementById("nextturn").style.display='none';
 		this.isGameOver();
+	}
+
+	this.resolveBugs = function(){
+		for(var i = 0; i < playerOne.bugs.length; i++){
+			player.bugs[i].resolve(playerOne);
+		}
+		for(var j = 0; j < playerTwo.bugs.length; j++){
+			player.bugs[j].resolve(playerTwo);
+		}
 	}
 	
 	this.objectPassives = function(){
