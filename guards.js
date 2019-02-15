@@ -28,3 +28,26 @@ function Reflector(damage){
 		}
 	}
 }
+
+function HoneyGuard(damage){
+	this.id = "HoneyGuard";
+	this.damage = damage;
+	this.hitHuh = function(attacker, defender){
+		BN6RiskyHoney1.hitHuh(defender, attacker);
+	}
+	this.onHit = function(attacker, defender){
+		if(this.hitHuh(attacker, defender)){
+			attacker.hp = attacker.hp - this.damage*5;
+		}
+		if(defender.name === "one"){
+			if(!board.cellHasSolidObject(defender.x+1, defender.y)){
+				cells[defender.x+1][defender.y].object.push(new BN6HoneyBall(defender.x+1, defender.y, defender, attacker, this.damage));
+			}
+		}
+		else{	
+			if(!board.cellHasSolidObject(defender.x-1, defender.y)){
+				cells[defender.x-1][defender.y].object.push(new BN6HoneyBall(defender.x-1, defender.y, defender, attacker, this.damage));
+			}
+		}
+	}
+}

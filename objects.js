@@ -107,6 +107,80 @@ function BN6ThunderBall(x, y, attacker, defender, hp){
 	this.y = y;
 }
 
+function BN6HoneyBall(x, y, attacker, defender, damage){
+	this.id = "BN6HoneyBall";
+	this.damage = damage;
+	this.image = grey_man;
+	this.solid = false;
+	this.hp = 2;
+	this.directionX = -1;
+	this.directionY = 0;
+	if(attacker.name === "one"){
+		this.directionX = 1;
+	}
+	this.directionX
+	this.effecthit = function(cardHitBy, direction){};
+	this.hitByBuster = function(player){}
+	this.passiveTriggered = false;
+	this.passive = function(){
+		this.index = cells[this.x][this.y].object.indexOf(this);
+		if(this.x === defender.x && this.y === defender.y){
+			console.log("Player " + attacker.name + "'s HoneyBall hit!");
+			defender.hp = defender.hp - this.damage * 5;
+		}
+		else{
+			if(this.hp < 1){
+				cells[this.x][this.y].object.splice(this.index, 1);
+				if(cells[this.x+this.directionX] && cells[this.x+this.directionX][this.y+this.directionY]){
+					this.x = this.x + this.directionX;
+					this.y = this.y + this.directionY;
+					cells[this.x][this.y].object.push(this);
+				}
+			}
+			else{
+				var towardsX = 0;
+				var towardsY = 0;
+				if(this.x < defender.x){
+					towardsX = 1;
+				}
+				if(this.x > defender.x){
+					towardsX = -1
+				}
+				if(this.y < defender.y){
+					towardsY = 1;
+				}
+				if(this.y > defender.y){
+					towardsY = -1
+				}
+
+				if(towardsX === this.directionX && towardsX !== 0){}
+				else if(towardsY === this.directionY && towardsY !== 0){}
+				else if(this.directionX === 0 && towardsX !== 0){
+					this.directionY = 0;
+					this.directionX = towardsX;
+					this.hp--;
+				}
+				else if(this.directionY === 0 && towardsY !== 0){
+					this.directionY = towardsY;
+					this.directionX = 0;
+					this.hp--;
+				}
+				this.x = this.x + this.directionX;
+				this.y = this.y + this.directionY;
+				if(!board.cellHasSolidObject(this.x, this.y)){
+					cells[this.x][this.y].object.push(this);
+				}
+			}
+			if(this.x === defender.x && this.y === defender.y){
+				console.log("Player " + attacker.name + "'s HoneyBall hit!");
+				defender.hp = defender.hp - this.damage * 5;
+			}
+		}
+	}
+	this.x = x;
+	this.y = y;
+}
+
 function PlayerObject(){
 	this.id = "playerObject";
 	this.image = grey_man;

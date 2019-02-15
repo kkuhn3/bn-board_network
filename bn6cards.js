@@ -1175,6 +1175,38 @@ var BN6CornShot3 = {
 	}
 }
 
+var BN6RiskyHoney1 = {
+	id:"BN6RiskyHoney1",
+	name:"RiskyHoney1",
+	image:BN6RiskyHoney1IMG,
+	code:["B", "G", "S"],
+	mb:21,
+	rank:"standard",
+	damage:10,
+	hits:5,
+	priority:1,
+	elements:[ELEMENTS.wood],
+	hithuh: function(attacker, defender){
+		SWORD.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		attacker.guard = new HoneyGuard(this.damage);
+	},
+	effectmiss: function(attacker, defender){
+		BN6RiskyHoney1.effecthit(attacker, defender);
+		if(attacker.name === "one"){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
+				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+		else{	
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y)){
+				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+	}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, BN6SuperVulcan, BN6Spreader1, BN6Spreader2, 
 				BN6Spreader3, BN6BigTank1, BN6BigTank2, BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
 				BN6HellBurner3, BN6WideShot, BN6TrainArrow1, BN6TrainArrow2, BN6TrainArrow3, BN6BubbleStar1, BN6BubbleStar2, BN6BubbleStar3, BN6Thunder, 
