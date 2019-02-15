@@ -69,15 +69,15 @@ var BN6AirShot = {
 	},
 	effecthit: function(attacker, defender){
 		if(defender.guard < 1){
-			if(attacker.name === "one" && defender.x !== 5){
-				if(!cellHasSolidObject[defender.x+1][defender.y] && cells[defender.x-1][defender.y].panelType !== PANELTYPE.HOLE){
+			if(attacker.name === "one" && defender.x < 5){
+				if(!board.cellHasSolidObject(defender.x+1, defender.y) && cells[defender.x+1][defender.y].panelType !== PANELTYPE.HOLE){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x+1;
 					cells[defender.x][defender.y].player = defender;
 				}
 			}
-			else if(defender.x !== 0){
-				if(!cellHasSolidObject[defender.x-1][defender.y] && cells[defender.x-1][defender.y].panelType !== PANELTYPE.HOLE){
+			else if(defender.x > 0){
+				if(!board.cellHasSolidObject(defender.x-1, defender.y) && cells[defender.x-1][defender.y].panelType !== PANELTYPE.HOLE){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x-1;
 					cells[defender.x][defender.y].player = defender;
@@ -823,12 +823,12 @@ var BN6Thunder = {
 	effectmiss: function(attacker, defender){
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
-				cells[attacker.x+1][attacker.y].object = new BN6ThunderBall(attacker.x+1, attacker.y, attacker, defender, 8);
+			cells[attacker.x+1][attacker.y].object.push(new BN6ThunderBall(attacker.x+1, attacker.y, attacker, defender, 8));
 			}
 		}
 		else{
-			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
-				cells[attacker.x-1][attacker.y].object = new BN6ThunderBall(attacker.x-1, attacker.y, attacker, defender, 8);
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y)){
+				cells[attacker.x-1][attacker.y].object.push(new BN6ThunderBall(attacker.x-1, attacker.y, attacker, defender, 8));
 			}
 		}
 	}
@@ -1051,7 +1051,7 @@ var BN6CornShot1 = {
 		return false;
 	},
 	effecthit: function(attacker, defender){
-		effectmiss(attacker, defender);
+		BN6CornShot1.effectmiss(attacker, defender);
 		cells[defender.x][defender.y].panelType = PANELTYPE.GRASS;
 	},
 	effectmiss: function(attacker, defender){

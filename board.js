@@ -82,7 +82,7 @@ function Board(width,height,canvas){
 						side:SIDE.LEFT,
 						currentSide:SIDE.LEFT,
 						sideTimer:0,
-						object:null,
+						object:[],
 						panelType:PANELTYPE.NORMAL,
 						panelTimer:0,
 						player:null
@@ -93,7 +93,7 @@ function Board(width,height,canvas){
 						side:SIDE.RIGHT,
 						currentSide:SIDE.RIGHT,
 						sideTimer:0,
-						object:null,
+						object:[],
 						panelType:PANELTYPE.NORMAL,
 						panelTimer:0,
 						player:null
@@ -123,8 +123,8 @@ function Board(width,height,canvas){
 		var left = x*cellWidth;
 		var top = y*cellHeight + cheight;
 		ctx.drawImage(cells[x][y].side,left+2,top+2,cellWidth-4,cellHeight-4);
-		if(cells[x][y].object){
-			ctx.drawImage(cells[x][y].object.image, left+4, top+4, cellWidth-8, cellHeight-4);
+		for(var i = 0; i < cells[x][y].object.length; i++){
+			ctx.drawImage(cells[x][y].object[i].image, left+4, top+4, cellWidth-8, cellHeight-4);
 		}
 	}
 
@@ -249,16 +249,18 @@ function Board(width,height,canvas){
 	this.objectPassives = function(){
 		for(var x=0; x < cells.length; x++){
 			for(var y=0; y < cells[x].length; y++){
-				if(cells[x][y].object && !cells[x][y].object.passiveTriggered){
-					cells[x][y].object.passiveTriggered = true;
-					cells[x][y].object.passive();
+				for(var i=0; i < cells[x][y].object.length; i++){
+					if(!cells[x][y].object[i].passiveTriggered){
+						cells[x][y].object[i].passiveTriggered = true;
+						cells[x][y].object[i].passive();
+					}
 				}
 			}
 		}
 		for(var x=0; x < cells.length; x++){
 			for(var y=0; y < cells[x].length; y++){
-				if(cells[x][y].object){
-					cells[x][y].object.passiveTriggered = false;
+				for(var i=0; i < cells[x][y].object.length; i++){
+					cells[x][y].object[i].passiveTriggered = false;
 				}
 			}
 		}
@@ -321,38 +323,42 @@ function Board(width,height,canvas){
 			guard: 0
 		};
 
-		cells[defender.x][defender.y].object = new PlayerObject();
+		cells[defender.x][defender.y].object.concat([new PlayerObject()]);
 		for(var x=0; x < cells.length; x++){
 			for(var y=0; y < cells[x].length; y++){
-				if(cells[x][y].object && cells[x][y].object.id !== "playerObject"){
-					fakeDefender.x = x;
-					fakeDefender.y = y;
+				for(var i=0; i < cells[x][y].object.length; i++){
+					if(cells[x][y].object[i].id !== "playerObject"){
+						fakeDefender.x = x;
+						fakeDefender.y = y;
 
-					if(attacker.action === ACTIONS.BUSTER){
-						if(CANNON1.hithuh(attacker, fakeDefender)){
-							cells[x][y].object.hitByBuster(attacker);
-						}
-					}
-					else if(attacker.action === ACTIONS.CARD){
-						if(attacker.card.hithuh(attacker, fakeDefender)){
-							if(attacker.name === "one"){
-								cells[x][y].object.effecthit(attacker.card, "east");
+						if(attacker.action === ACTIONS.BUSTER){
+							if(CANNON1.hithuh(attacker, fakeDefender)){
+								cells[x][y].object[i].hitByBuster(attacker);
 							}
-							else{
-								cells[x][y].object.effecthit(attacker.card, "west");
+						}
+						else if(attacker.action === ACTIONS.CARD){
+							if(attacker.card.hithuh(attacker, fakeDefender)){
+								if(attacker.name === "one"){
+									cells[x][y].object[i].effecthit(attacker.card, "east");
+								}
+								else{
+									cells[x][y].object[i].effecthit(attacker.card, "west");
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-		cells[defender.x][defender.y].object = null;
+		cells[defender.x][defender.y].object = [];
 	}
 
 	this.cellHasSolidObject = function(x, y){
 		if(cells[x][y]){
-			if(cells[x][y].object){
-				return cells[x][y].object.solid;
+			for(var i=0; i < cells[x][y].length; i++){
+				if(cells[x][y].object[i].solid){
+					return true;
+				}
 			}
 		}
 		return false;

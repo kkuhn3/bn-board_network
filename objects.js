@@ -65,33 +65,34 @@ function BN6ThunderBall(x, y, attacker, defender, hp){
 	this.hitByBuster = function(player){}
 	this.passiveTriggered = false;
 	this.passive = function(){
+		this.index = cells[this.x][this.y].object.indexOf(this);
 		this.hp--;
 		if(this.hp < 1){
-			cells[this.x][this.y].object = null;
+			cells[this.x][this.y].object.splice(this.index, 1);
 		}
 		else{
-			cells[this.x][this.y].object = null;
+			cells[this.x][this.y].object.splice(this.index, 1);
 			if(this.x < defender.x){
 				if(!board.cellHasSolidObject(this.x+1, this.y)){
-					cells[this.x+1][this.y].object = this;
+					cells[this.x+1][this.y].object.push(this);
 					this.x++;
 				}
 			}
 			else if(this.x > defender.x){
 				if(!board.cellHasSolidObject(this.x-1, this.y)){
-					cells[this.x-1][this.y].object = this;
+					cells[this.x-1][this.y].object.push(this);
 					this.x--;
 				}
 			}
 			else if(this.y < defender.y){
 				if(!board.cellHasSolidObject(this.x, this.y+1)){
-					cells[this.x][this.y+1].object = this;
+					cells[this.x][this.y+1].object.push(this);
 					this.y++;
 				}
 			}
 			else if(this.y > defender.y){
 				if(!board.cellHasSolidObject(this.x, this.y-1)){
-					cells[this.x][this.y-1].object = this;
+					cells[this.x][this.y-1].object.push(this);
 					this.y--;
 				}
 			}
