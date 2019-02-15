@@ -136,7 +136,7 @@ var PIERCECANNON = {
 		return false;
 	},
 	effecthit: function(attacker, defender){
-		if(defender.guard < 1){
+		if(defender.guard === null){
 			defender.invis = 0;
 		}
 	},
@@ -158,7 +158,7 @@ var BREAKCANNON = {
 		return CANNON1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
-		defender.guard = 0;
+		defender.guard = null;
 	},
 	effectmiss: function(attacker, defender){}
 }
@@ -178,7 +178,7 @@ var STUNCANNON = {
 		return CANNON1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
-		if(defender.guard < 1){
+		if(defender.guard === null){
 			defender.stunned = 1;
 		}
 	},
@@ -190,7 +190,7 @@ var GUARD = {
 	name:"Guard",
 	image:guard,
 	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	damage:0,
+	damage:50,
 	hits:0,
 	mb:0,
 	rank:"standard",
@@ -201,7 +201,7 @@ var GUARD = {
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
-		attacker.guard = 1;
+		attacker.guard = new Reflector(GUARD.damage);
 	}
 }
 

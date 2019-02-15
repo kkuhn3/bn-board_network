@@ -13,6 +13,7 @@ ACTIONS = {
 	NONE: 0,
 	BUSTER: 1,
 	CARD: 2,
+	SPECIAL: 3,
 }
 
 var playerHP = 500;
@@ -29,11 +30,10 @@ var playerOne = {
 	action:ACTIONS.NONE,
 	card:null,
 	invis:0,
-	guard:0,
+	guard:null,
 	stunned: 0,
 	bubbled: 0,
 	busterDamage: busterDefualt,
-	reflDamage: reflDefault,
 	bugs: []
 };
 
@@ -47,11 +47,10 @@ var playerTwo = {
 	action:ACTIONS.NONE,
 	card:null,
 	invis:0,
-	guard:0,
+	guard:null,
 	stunned:0,
 	bubbled: 0,
 	busterDamage: busterDefualt,
-	reflDamage: reflDefault,
 	bugs: []
 };
 
@@ -101,7 +100,6 @@ function Board(width,height,canvas){
 				}
 			}
 		}
-		//cells[5][1].object = new BN6RockCube(4, 1);
 	}
 
 	this.reset = function(){
@@ -208,10 +206,10 @@ function Board(width,height,canvas){
 		this.objectPassives();
 		this.p1priority = 2;
 		this.p2priority = 2;
-		if(playerOne.action === ACTIONS.CARD){
+		if(playerOne.action === ACTIONS.CARD || playerOne.action === ACTIONS.SPECIAL){
 			this.p1priority = playerOne.card.priority;
 		}
-		if(playerTwo.action === ACTIONS.CARD){
+		if(playerTwo.action === ACTIONS.CARD || playerTwo.action === ACTIONS.SPECIAL){
 			this.p2priority = playerTwo.card.priority;
 		}
 
@@ -274,33 +272,45 @@ function Board(width,height,canvas){
 	}
 
 	this.resolveActions = function(attacker, defender){
+		document.getElementById("special").style.display='none';
 		if(attacker.stunned < 1 && attacker.bubbled < 1){
 			if(attacker.action === ACTIONS.BUSTER){
 				console.log("player " + attacker.name + " used: their BUSTER");
 				if(CANNON1.hithuh(attacker, defender)){
-					if(defender.guard < 1){
+					if(defender.guard === null){
 						defender.hp = defender.hp - attacker.busterDamage;
+						defender.bubbled = 0;
 						console.log("it hit!");
 					}
 					else{
-						attacker.hp = attacker.hp - defender.reflDamage;
-						console.log("it was reflected!");
+						defender.guard.onhit(attacker, defender);
+						console.log("it was guarded!");
 					}
 				}
 				else{
 					console.log("it missed!");
 				}
 			}
-			else if(attacker.action === ACTIONS.CARD){
+			else if(attacker.action === ACTIONS.CARD || attacker.action === ACTIONS.SPECIAL){
 				console.log("player " + attacker.name + " used: " + attacker.card.name);
 				if(attacker.card.hithuh(attacker, defender)){
 					attacker.card.effecthit(attacker, defender);
-					if(defender.guard < 1){
-						defender.hp = defender.hp - attacker.card.damage * attacker.card.hits;
+					if(defender.guard === null){
+						if(defender.bubbled > 0 && attacker.card.element === ELEMENTS.elec){
+							defender.hp = defender.hp - (attacker.card.damage * 2 + attacker.card.damage * (attacker.card.hits-1));
+						}
+						if(cells[x][y].panelType === PANELTYPE.GRASS && attacker.card.element === ELEMENTS.fire){
+							cells[x][y].panelType = PANELTYPE.NORMAL;
+							defender.hp = defender.hp - (attacker.card.damage * 2 + attacker.card.damage * (attacker.card.hits-1));
+						} 
+						else{
+							defender.hp = defender.hp - attacker.card.damage * attacker.card.hits;
+						}
+						defender.bubbled = 0;
 						console.log("it hit!");
 					}
 					else{
-						attacker.hp = attacker.hp - defender.reflDamage;
+						defender.guard.onhit(attacker, defender);
 						console.log("it was reflected!");
 					}
 				}
@@ -320,7 +330,7 @@ function Board(width,height,canvas){
 			x: -1,
 			y: -1,
 			invis: 0,
-			guard: 0
+			guard: null
 		};
 
 		cells[defender.x][defender.y].object.concat([new PlayerObject()]);
@@ -368,7 +378,7 @@ function Board(width,height,canvas){
 		player.action = ACTIONS.NONE;
 		player.card = null;
 		player.invis = player.invis - 1;
-		player.guard = player.guard - 1;
+		player.guard = null;
 	}
 
 	this.switchPlayer = function(){
@@ -394,18 +404,18 @@ function Board(width,height,canvas){
 	this.buster = function(playerNum){
 		document.getElementById("nextturn").style.display='block';
 		if(playerNum === 1){
-			playerOne.action = ACTIONS.BUSTER;
-			if(playerOne.card !== null){
+			if(playerOne.action === ACTIONS.CARD){
 				HAND.unshift(playerOne.card);
 				playerOne.card = null;
 			}
+			playerOne.action = ACTIONS.BUSTER;
 		}
 		else if (playerNum === 2){
-			playerTwo.action = ACTIONS.BUSTER;
-			if(playerTwo.card !== null){
+			if(playerTwo.action === ACTIONS.CARD){
 				HAND.unshift(playerTwo.card);
 				playerTwo.card = null;
 			}
+			playerTwo.action = ACTIONS.BUSTER;
 		}
 	}
 
@@ -435,7 +445,7 @@ function Board(width,height,canvas){
 			x: -1,
 			y: -1,
 			invis: 0,
-			guard: 0
+			guard: null
 		};
 		for(var x=0;x<cells.length;x++){
 			for(var y=0;y<cells[x].length;y++){

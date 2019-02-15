@@ -68,7 +68,7 @@ var BN6AirShot = {
 		return BN6Cannon.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
-		if(defender.guard < 1){
+		if(defender.guard === null){
 			if(attacker.name === "one" && defender.x < 5){
 				if(!board.cellHasSolidObject(defender.x+1, defender.y) && cells[defender.x+1][defender.y].panelType !== PANELTYPE.HOLE){
 					cells[defender.x][defender.y].player = null;
@@ -339,7 +339,34 @@ var BN6GunSol1 = {
 	hits:10,
 	priority:2,
 	elements:[],
-	special:"GunSol",
+	showSpecial: function(attacker, defender){
+		document.getElementById("special").style.display='block';
+		document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
+		document.getElementById("special").onclick ='BN6GunSol1.useSpecial(BN6GunSol1)';
+		if(attacker.name === "one"){
+			document.getElementById("special").style.display.float='left';
+		}
+		else{
+			document.getElementById("special").style.display.float='right';
+		}
+	},
+	useSpecial: function(card){
+		document.getElementById("nextturn").style.display='block';
+		if(player === 1){
+			if(playerOne.action === ACTIONS.CARD){
+				HAND.unshift(playerOne.card);
+			}
+			playerOne.action = ACTIONS.SPECIAL;
+			playerOne.card = card;
+		}
+		else if (player === 2){
+			if(playerTwo.action === ACTIONS.CARD){
+				HAND.unshift(playerTwo.card);
+			}
+			playerTwo.card = card;
+			playerTwo.action = ACTIONS.SPECIAL;
+		}
+	},
 	hithuh: function(attacker, defender){
 		if(attacker.name === "one"){
 			if(attacker.x + 2 === defender.x){
@@ -354,10 +381,13 @@ var BN6GunSol1 = {
 		return false;
 	},
 	effecthit: function(attacker, defender){
-		defender.guard = 0;
+		BN6GunSol1.showSpecial(attacker, defender);
+		defender.guard = null;
 		defender.invis = 0;
 	},
-	effectmiss: function(attacker, defender){}
+	effectmiss: function(attacker, defender){
+		BN6GunSol1.showSpecial(attacker, defender);
+	}
 }
 
 var BN6GunSol2 = {
@@ -371,14 +401,30 @@ var BN6GunSol2 = {
 	hits:10,
 	priority:2,
 	elements:[],
-	special:"GunSol",
+	showSpecial: function(attacker, defender){
+		document.getElementById("special").style.display='block';
+		document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
+		document.getElementById("special").onclick ='BN6GunSol2.useSpecial(BN6GunSol2)';
+		if(attacker.name === "one"){
+			document.getElementById("special").style.display.float='left';
+		}
+		else{
+			document.getElementById("special").style.display.float='right';
+		}
+	},
+	useSpecial: function(card){
+		BN6GunSol1.useSpecial(card);
+	},
 	hithuh: function(attacker, defender){
 		return BN6GunSol1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
+		BN6GunSol2.showSpecial(attacker, defender);
 		return BN6GunSol1.effecthit(attacker, defender);
 	},
-	effectmiss: function(attacker, defender){}
+	effectmiss: function(attacker, defender){
+		BN6GunSol2.showSpecial(attacker, defender);
+	}
 }
 
 var BN6GunSol3 = {
@@ -392,14 +438,30 @@ var BN6GunSol3 = {
 	hits:10,
 	priority:2,
 	elements:[],
-	special:"GunSol",
+	showSpecial: function(attacker, defender){
+		document.getElementById("special").style.display='block';
+		document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
+		document.getElementById("special").onclick ='BN6GunSol3.useSpecial(BN6GunSol3)';
+		if(attacker.name === "one"){
+			document.getElementById("special").style.display.float='left';
+		}
+		else{
+			document.getElementById("special").style.display.float='right';
+		}
+	},
+	useSpecial: function(card){
+		BN6GunSol1.useSpecial(card);
+	},
 	hithuh: function(attacker, defender){
 		return BN6GunSol1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
+		BN6GunSol3.showSpecial(attacker, defender);
 		return BN6GunSol1.effecthit(attacker, defender);
 	},
-	effectmiss: function(attacker, defender){}
+	effectmiss: function(attacker, defender){
+		BN6GunSol3.showSpecial(attacker, defender);
+	}
 }
 
 var BN6Yoyo = {
@@ -746,7 +808,7 @@ var BN6BubbleStar1 = {
 		return false;
 	},
 	effecthit: function(attacker, defender){
-		if(defender.guard < 1){
+		if(defender.guard === null){
 			defender.bubbled = 2;
 		}
 	},
@@ -816,7 +878,7 @@ var BN6Thunder = {
 		return false;
 	},
 	effecthit: function(attacker, defender){
-		if(defender.guard < 1){
+		if(defender.guard === null){
 			defender.stunned = 2;
 		}
 	},
@@ -934,7 +996,7 @@ var BN6ElecPulse1 = {
 	},
 	effecthit: function(attacker, defender){
 		defender.invis = 0;
-		if(defender.guard < 1){
+		if(defender.guard === null){
 			defender.stunned = 1;
 		}
 	},
@@ -958,7 +1020,7 @@ var BN6ElecPulse2 = {
 	},
 	effecthit: function(attacker, defender){
 		defender.invis = 0;
-		if(defender.guard < 1){
+		if(defender.guard === null){
 			if(attacker === "one"){
 				if(!cellHasSolidObject[defender.x-1][defender.y] && cells[defender.x-1][defender.y].panelType !== PANELTYPE.HOLE){
 					cells[defender.x][defender.y].player = null;
@@ -994,7 +1056,7 @@ var BN6ElecPulse3 = {
 	},
 	effecthit: function(attacker, defender){
 		defender.invis = 0;
-		if(defender.guard < 1){
+		if(defender.guard === null){
 			defender.bugs.concat[new HPBug(10)];
 		}
 	},

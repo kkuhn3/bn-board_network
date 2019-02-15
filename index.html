@@ -84,6 +84,7 @@
 				<input type='button' id='p2buster' value='p2 Buster' onclick='board.buster(2)' style="float: right; display: none;"/>
 				<input type='button' id='p1card' value='p1 Card' onclick='board.card(1)' style="float: left;"/>
 				<input type='button' id='p2card' value='p2 Card' onclick='board.card(2)' style="float: right; display: none;"/>
+				<input type='button' id='special' value='Special' onclick='' style="display: none;"/>
 			</div>
 
 			<div style='display: block;margin: 50 0 0 0; width: 80px; float: left;'>
@@ -98,6 +99,8 @@
 	<script src='customPick.js'></script>
 	<script src='bn6cards.js'></script>
 	<script src='objects.js'></script>
+	<script src='bugs.js'></script>
+	<script src='guards.js'></script>
 	<script>
 		function init(){
 			board = new Board(6,3,board_canvas);
