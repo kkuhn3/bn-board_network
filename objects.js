@@ -124,6 +124,7 @@ function BN6HoneyBall(x, y, attacker, defender, damage){
 	this.passiveTriggered = false;
 	this.passive = function(){
 		this.index = cells[this.x][this.y].object.indexOf(this);
+		cells[this.x][this.y].object.splice(this.index, 1);
 		if(this.x === defender.x && this.y === defender.y){
 			console.log("Player " + attacker.name + "'s HoneyBall hit!");
 			defender.hp = defender.hp - this.damage * 5;

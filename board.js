@@ -272,7 +272,10 @@ function Board(width,height,canvas){
 	}
 
 	this.resolveActions = function(attacker, defender){
-		document.getElementById("special").style.display='none';
+		
+		if(attacker.name === player.name){
+			document.getElementById("special").style.display='none';
+		}
 		if(attacker.stunned < 1 && attacker.bubbled < 1){
 			if(attacker.action === ACTIONS.BUSTER){
 				console.log("player " + attacker.name + " used: their BUSTER");
@@ -283,7 +286,7 @@ function Board(width,height,canvas){
 						console.log("it hit!");
 					}
 					else{
-						defender.guard.onhit(attacker, defender);
+						defender.guard.onHit(attacker, defender);
 						console.log("it was guarded!");
 					}
 				}
@@ -299,8 +302,8 @@ function Board(width,height,canvas){
 						if(defender.bubbled > 0 && attacker.card.element === ELEMENTS.elec){
 							defender.hp = defender.hp - (attacker.card.damage * 2 + attacker.card.damage * (attacker.card.hits-1));
 						}
-						if(cells[x][y].panelType === PANELTYPE.GRASS && attacker.card.element === ELEMENTS.fire){
-							cells[x][y].panelType = PANELTYPE.NORMAL;
+						if(cells[defender.x][defender.y].panelType === PANELTYPE.GRASS && attacker.card.element === ELEMENTS.fire){
+							cells[defender.x][defender.y].panelType = PANELTYPE.NORMAL;
 							defender.hp = defender.hp - (attacker.card.damage * 2 + attacker.card.damage * (attacker.card.hits-1));
 						} 
 						else{
@@ -310,7 +313,7 @@ function Board(width,height,canvas){
 						console.log("it hit!");
 					}
 					else{
-						defender.guard.onhit(attacker, defender);
+						defender.guard.onHit(attacker, defender);
 						console.log("it was reflected!");
 					}
 				}

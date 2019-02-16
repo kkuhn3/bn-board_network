@@ -340,26 +340,30 @@ var BN6GunSol1 = {
 	priority:2,
 	elements:[],
 	showSpecial: function(attacker, defender){
-		document.getElementById("special").style.display='block';
-		document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
-		document.getElementById("special").onclick ='BN6GunSol1.useSpecial(BN6GunSol1)';
-		if(attacker.name === "one"){
-			document.getElementById("special").style.display.float='left';
-		}
-		else{
-			document.getElementById("special").style.display.float='right';
+		if(attacker.name == player.name){
+			document.getElementById("special").style.display='block';
+			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
+			document.getElementById("special").onclick=function () { BN6GunSol1.useSpecial(BN6GunSol1); };
+			if(attacker.name === "one"){
+				document.getElementById("special").style.float='left';
+			}
+			else{
+				document.getElementById("special").style.float='right';
+			}
 		}
 	},
 	useSpecial: function(card){
+		console.log(card);
 		document.getElementById("nextturn").style.display='block';
-		if(player === 1){
+		if(player.name === "one"){
+			console.log(playerOne.action);
 			if(playerOne.action === ACTIONS.CARD){
 				HAND.unshift(playerOne.card);
 			}
 			playerOne.action = ACTIONS.SPECIAL;
 			playerOne.card = card;
 		}
-		else if (player === 2){
+		else if (player.name === "two"){
 			if(playerTwo.action === ACTIONS.CARD){
 				HAND.unshift(playerTwo.card);
 			}
@@ -402,14 +406,16 @@ var BN6GunSol2 = {
 	priority:2,
 	elements:[],
 	showSpecial: function(attacker, defender){
-		document.getElementById("special").style.display='block';
-		document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
-		document.getElementById("special").onclick ='BN6GunSol2.useSpecial(BN6GunSol2)';
-		if(attacker.name === "one"){
-			document.getElementById("special").style.display.float='left';
-		}
-		else{
-			document.getElementById("special").style.display.float='right';
+		if(attacker.name == player.name){
+			document.getElementById("special").style.display='block';
+			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
+			document.getElementById("special").onclick= function () { BN6GunSol2.useSpecial(BN6GunSol2); };
+			if(attacker.name === "one"){
+				document.getElementById("special").style.float='left';
+			}
+			else{
+				document.getElementById("special").style.float='right';
+			}
 		}
 	},
 	useSpecial: function(card){
@@ -419,8 +425,8 @@ var BN6GunSol2 = {
 		return BN6GunSol1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
+		BN6GunSol1.effecthit(attacker, defender);
 		BN6GunSol2.showSpecial(attacker, defender);
-		return BN6GunSol1.effecthit(attacker, defender);
 	},
 	effectmiss: function(attacker, defender){
 		BN6GunSol2.showSpecial(attacker, defender);
@@ -439,14 +445,16 @@ var BN6GunSol3 = {
 	priority:2,
 	elements:[],
 	showSpecial: function(attacker, defender){
-		document.getElementById("special").style.display='block';
-		document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
-		document.getElementById("special").onclick ='BN6GunSol3.useSpecial(BN6GunSol3)';
-		if(attacker.name === "one"){
-			document.getElementById("special").style.display.float='left';
-		}
-		else{
-			document.getElementById("special").style.display.float='right';
+		if(attacker.name == player.name){
+			document.getElementById("special").style.display='block';
+			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
+			document.getElementById("special").onclick =function () { BN6GunSol3.useSpecial(BN6GunSol3); };
+			if(attacker.name === "one"){
+				document.getElementById("special").style.float='left';
+			}
+			else{
+				document.getElementById("special").style.float='right';
+			}
 		}
 	},
 	useSpecial: function(card){
@@ -456,8 +464,8 @@ var BN6GunSol3 = {
 		return BN6GunSol1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
+		BN6GunSol1.effecthit(attacker, defender);
 		BN6GunSol3.showSpecial(attacker, defender);
-		return BN6GunSol1.effecthit(attacker, defender);
 	},
 	effectmiss: function(attacker, defender){
 		BN6GunSol3.showSpecial(attacker, defender);
@@ -1187,7 +1195,7 @@ var BN6RiskyHoney1 = {
 	priority:1,
 	elements:[ELEMENTS.wood],
 	hithuh: function(attacker, defender){
-		SWORD.hithuh(attacker, defender);
+		return SWORD.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
 		attacker.guard = new HoneyGuard(this.damage);
@@ -1207,11 +1215,75 @@ var BN6RiskyHoney1 = {
 	}
 }
 
+var BN6RiskyHoney2 = {
+	id:"BN6RiskyHoney2",
+	name:"RiskyHoney2",
+	image:BN6RiskyHoney2IMG,
+	code:["C", "R", "V"],
+	mb:28,
+	rank:"standard",
+	damage:15,
+	hits:5,
+	priority:1,
+	elements:[ELEMENTS.wood],
+	hithuh: function(attacker, defender){
+		return BN6RiskyHoney1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		attacker.guard = new HoneyGuard(this.damage);
+	},
+	effectmiss: function(attacker, defender){
+		BN6RiskyHoney2.effecthit(attacker, defender);
+		if(attacker.name === "one"){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
+				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+		else{	
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y)){
+				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+	}
+}
+
+var BN6RiskyHoney3 = {
+	id:"BN6RiskyHoney3",
+	name:"RiskyHoney3",
+	image:BN6RiskyHoney3IMG,
+	code:["A", "D", "M"],
+	mb:35,
+	rank:"standard",
+	damage:20,
+	hits:5,
+	priority:1,
+	elements:[ELEMENTS.wood],
+	hithuh: function(attacker, defender){
+		return BN6RiskyHoney1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		attacker.guard = new HoneyGuard(this.damage);
+	},
+	effectmiss: function(attacker, defender){
+		BN6RiskyHoney3.effecthit(attacker, defender);
+		if(attacker.name === "one"){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
+				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+		else{	
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y)){
+				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+	}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, BN6SuperVulcan, BN6Spreader1, BN6Spreader2, 
 				BN6Spreader3, BN6BigTank1, BN6BigTank2, BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
 				BN6HellBurner3, BN6WideShot, BN6TrainArrow1, BN6TrainArrow2, BN6TrainArrow3, BN6BubbleStar1, BN6BubbleStar2, BN6BubbleStar3, BN6Thunder, 
 				BN6DollThunder1, BN6DollThunder2, BN6DollThunder3, BN6ElecPulse1, BN6ElecPulse2, BN6ElecPulse3, BN6CornShot1, BN6CornShot2, BN6CornShot3, 
-				];
+				BN6RiskyHoney1, BN6RiskyHoney2, BN6RiskyHoney3];
 
 function Bn6Cards(){
 
