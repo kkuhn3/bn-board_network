@@ -9,8 +9,7 @@ function Custom(canvas){
 	var firstCardHeight = 120;
 	var restCardHeight = (canvas.height - firstCardHeight) / (this.handSize - 1);
 
-	this.drawHand = function(){
-		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});	
+	this.drawHand = function(){	
 		ctx.fillStyle="#000000";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		for(var i=0;i<this.handSize;i++){
@@ -31,6 +30,11 @@ function Custom(canvas){
 				ctx.drawImage(nodata, 8, 3, cwidth-16, firstCardHeight/2);
 			}
 			else{
+				this.defender = playerOne;
+				if(player.name === "one"){
+					this.defender = playerTwo;
+				}
+				HAND[x].hithuh(player, this.defender);
 				if(HAND[x].code.length === 26){
 					ctx.fillText("*", cwidth/2, firstCardHeight-40);
 				}
@@ -74,9 +78,7 @@ function Custom(canvas){
 		}
 	}
 
-	this.mouseDown = function(e){
-
-	}.bind(this);
+	this.mouseDown = function(e){}.bind(this);
 
 	this.mouseMove = function(e){
 		board.draw();
@@ -89,13 +91,12 @@ function Custom(canvas){
 		if(HAND[this.mouseCellY]){
 			board.showRange(player, HAND[this.mouseCellY]);
 		}
+		this.drawHand();
 	}.bind(this);
 
 	this.mouseOut = function(e){
 		board.draw();
 	}.bind(this);
 
-	this.mouseUp = function(e){
-		board.draw();
-	}.bind(this);
+	this.mouseUp = function(e){}.bind(this);
 }

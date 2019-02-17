@@ -72,6 +72,11 @@ function CustomPick(canvas){
 			ctx.drawImage(nodata, left+8, 3, cellWidth-16, cheight/2);
 		}
 		else{
+			this.defender = playerOne;
+			if(player.name === "one"){
+				this.defender = playerTwo;
+			}
+			DRAW[x].hithuh(player, this.defender);
 			if(!this.matchesCode(SELECTED, DRAW[x])){
 				ctx.fillStyle="rgba(225,0,0,0.5)";
 				ctx.fillRect(left+2,0,cellWidth-4,cheight);
@@ -139,6 +144,7 @@ function CustomPick(canvas){
 				var d = JSON.parse(data);
 				if(d){
 					this.confirm();
+					$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});
 					custom.drawHand();
 					return true;
 				}

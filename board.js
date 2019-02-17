@@ -462,6 +462,11 @@ function Board(width,height,canvas){
 				}
 			}
 		}
+		this.defender = playerOne;
+		if(attacker.name === "one"){
+			this.defender = playerTwo;
+		}
+		card.hithuh(attacker, this.defender);
 	}
 
 	this.randomMovePlayer = function(player){
