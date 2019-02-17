@@ -66,8 +66,10 @@ function CustomPick(canvas){
 		ctx.fillStyle="#000000";
 		ctx.font = "11px Arial";
 		ctx.textAlign = "center";
+		ctx.fillRect(left+7, 2, cellWidth-14, cheight/2 + 2)
 		if(!DRAW[x]){
 			ctx.fillText("No Card", left+cellWidth/2, cheight-30);
+			ctx.drawImage(nodata, left+8, 3, cellWidth-16, cheight/2);
 		}
 		else{
 			if(!this.matchesCode(SELECTED, DRAW[x])){
@@ -93,7 +95,6 @@ function CustomPick(canvas){
 				ctx.fillText(DRAW[x].damage, left+cellWidth/2, cheight-20);
 			}
 			if(DRAW[x].image && DRAW[x].image !== false){
-				ctx.fillRect(left+7, 2, cellWidth-14, cheight/2 + 2)
 				ctx.drawImage(DRAW[x].image, left+8, 3, cellWidth-16, cheight/2);
 			}
 		}
@@ -174,18 +175,20 @@ function CustomPick(canvas){
 	}.bind(this);
 
 	this.matchesCode = function(selectedArr, cardtoAdd){
-		selectedCodeArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-		for(var i = 0; i < selectedArr.length; i++){
-			if(selectedCodeArr.length === 0){
-				selectedCodeArr = selectedArr[0].code;
+		if(cardtoAdd){
+			selectedCodeArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+			for(var i = 0; i < selectedArr.length; i++){
+				if(selectedCodeArr.length === 0){
+					selectedCodeArr = selectedArr[0].code;
+				}
+				else{
+					selectedCodeArr = selectedCodeArr.filter(value => -1 !== selectedArr[i].code.indexOf(value));
+				}
 			}
-			else{
-				selectedCodeArr = selectedCodeArr.filter(value => -1 !== selectedArr[i].code.indexOf(value));
-			}
-		}
-		for(var j = 0; j < cardtoAdd.code.length; j++){
-			if(selectedCodeArr.indexOf(cardtoAdd.code[j]) !== -1){
-				return true;
+			for(var j = 0; j < cardtoAdd.code.length; j++){
+				if(selectedCodeArr.indexOf(cardtoAdd.code[j]) !== -1){
+					return true;
+				}
 			}
 		}
 		return false;

@@ -2,7 +2,7 @@
 function BN6RockCube(x, y){
 	this.id = "BN6RockCube";
 	this.hp = 200;
-	this.image = grey_man;
+	this.image = rock;
 	this.solid = true;
 	this.effecthit = function(cardHitBy, direction){
 		if(cardHitBy.elements.indexOf(ELEMENTS.wind) !== -1){
@@ -59,7 +59,7 @@ function BN6RockCube(x, y){
 function BN6ThunderBall(x, y, attacker, defender, hp){
 	this.id = "BN6Thunder";
 	this.hp = hp;
-	this.image = grey_man;
+	this.image = thunderball;
 	this.solid = false;
 	this.effecthit = function(cardHitBy, direction){};
 	this.hitByBuster = function(player){}
@@ -110,7 +110,7 @@ function BN6ThunderBall(x, y, attacker, defender, hp){
 function BN6HoneyBall(x, y, attacker, defender, damage){
 	this.id = "BN6HoneyBall";
 	this.damage = damage;
-	this.image = grey_man;
+	this.image = honeyball;
 	this.solid = false;
 	this.hp = 2;
 	this.directionX = -1;

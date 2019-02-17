@@ -343,6 +343,7 @@ var BN6GunSol1 = {
 		if(attacker.name == player.name){
 			document.getElementById("special").style.display='block';
 			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
+			document.getElementById("special").value ='Continue Using GunDelSol!';
 			document.getElementById("special").onclick=function () { BN6GunSol1.useSpecial(BN6GunSol1); };
 			if(attacker.name === "one"){
 				document.getElementById("special").style.float='left';
@@ -353,10 +354,8 @@ var BN6GunSol1 = {
 		}
 	},
 	useSpecial: function(card){
-		console.log(card);
 		document.getElementById("nextturn").style.display='block';
 		if(player.name === "one"){
-			console.log(playerOne.action);
 			if(playerOne.action === ACTIONS.CARD){
 				HAND.unshift(playerOne.card);
 			}
@@ -409,6 +408,7 @@ var BN6GunSol2 = {
 		if(attacker.name == player.name){
 			document.getElementById("special").style.display='block';
 			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
+			document.getElementById("special").value ='Continue Using GunDelSol!';
 			document.getElementById("special").onclick= function () { BN6GunSol2.useSpecial(BN6GunSol2); };
 			if(attacker.name === "one"){
 				document.getElementById("special").style.float='left';
@@ -448,6 +448,7 @@ var BN6GunSol3 = {
 		if(attacker.name == player.name){
 			document.getElementById("special").style.display='block';
 			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
+			document.getElementById("special").value ='Continue Using GunDelSol!';
 			document.getElementById("special").onclick =function () { BN6GunSol3.useSpecial(BN6GunSol3); };
 			if(attacker.name === "one"){
 				document.getElementById("special").style.float='left';
