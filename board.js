@@ -302,6 +302,12 @@ function Board(width,height,canvas){
 			else if(attacker.action === ACTIONS.CARD || attacker.action === ACTIONS.SPECIAL){
 				console.log("player " + attacker.name + " used: " + attacker.card.name);
 				if(attacker.card.hithuh(attacker, defender)){
+					if(attacker.card.elements.includes(ELEMENTS.break)){
+						defender.guard = null;
+					}
+					if(attacker.card.elements.includes(ELEMENTS.wind)){
+						defender.barrier = null;
+					}
 					attacker.card.effecthit(attacker, defender);
 					if(defender.guard === null){
 						if(defender.bubbled > 0 && attacker.card.element === ELEMENTS.elec){

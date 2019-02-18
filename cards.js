@@ -157,9 +157,7 @@ var BREAKCANNON = {
 	hithuh: function(attacker, defender){
 		return CANNON1.hithuh(attacker, defender);
 	},
-	effecthit: function(attacker, defender){
-		defender.guard = null;
-	},
+	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
 }
 
@@ -412,7 +410,7 @@ function Cards(){
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
-		//TEMPDECKLIST = [BN6AuraHead2, BN6AuraHead3, BN6AuraHead1, BN6Thunder, BN6RollingLog1];
+		TEMPDECKLIST = [BN6AuraHead2, BN6AirHock, BN6AuraHead1, BN6Thunder, BN6RollingLog1];
 	}
 
 	this.around = function(x, y, defender){

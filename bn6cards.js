@@ -483,7 +483,7 @@ var BN6Yoyo = {
 	damage:50,
 	hits:1,
 	priority:2,
-	elements:[],
+	elements:[ELEMENTS.sword],
 	hithuh: function(attacker, defender){
 		this.hits = 1;
 		if(defender.invis < 1){
@@ -1019,8 +1019,8 @@ var BN6ElecPulse1 = {
 		return false;
 	},
 	effecthit: function(attacker, defender){
-		defender.invis = 0;
 		if(defender.guard === null){
+			defender.invis = 0;
 			defender.stunned = 1;
 		}
 	},
@@ -1043,8 +1043,8 @@ var BN6ElecPulse2 = {
 		return BN6ElecPulse1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
-		defender.invis = 0;
 		if(defender.guard === null){
+			defender.invis = 0;
 			if(attacker === "one"){
 				if(!cellHasSolidObject[defender.x-1][defender.y] && cells[defender.x-1][defender.y].panelType !== PANELTYPE.HOLE){
 					cells[defender.x][defender.y].player = null;
@@ -1079,8 +1079,8 @@ var BN6ElecPulse3 = {
 		return BN6ElecPulse1.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
-		defender.invis = 0;
 		if(defender.guard === null){
+			defender.invis = 0;
 			defender.bugs.concat[new HPBug(10)];
 		}
 	},
@@ -1453,9 +1453,7 @@ var BN6IronShell1 = {
 		}
 		return false;
 	},
-	effecthit: function(attacker, defender){
-		defender.guard = null;
-	},
+	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
 }
 
@@ -1475,9 +1473,7 @@ var BN6IronShell2 = {
 		this.hits = BN6IronShell1.hits;
 		return hitbool;
 	},
-	effecthit: function(attacker, defender){
-		BN6IronShell1.effecthit(attacker, defender);
-	},
+	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
 }
 
@@ -1497,9 +1493,7 @@ var BN6IronShell3 = {
 		this.hits = BN6IronShell1.hits;
 		return hitbool;
 	},
-	effecthit: function(attacker, defender){
-		BN6IronShell1.effecthit(attacker, defender);
-	},
+	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
 }
 
@@ -1540,9 +1534,7 @@ var BN6AuraHead1 = {
 		}
 		return false;
 	},
-	effecthit: function(attacker, defender){
-		defender.guard = null;
-	},
+	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
 }
 
@@ -1564,9 +1556,7 @@ var BN6AuraHead2 = {
 		}
 		return BN6AuraHead1.hitbool(attacker, defender);
 	},
-	effecthit: function(attacker, defender){
-		BN6AuraHead1.effecthit(attacker, defender);
-	},
+	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
 }
 
@@ -1588,9 +1578,84 @@ var BN6AuraHead3 = {
 		}
 		return BN6AuraHead1.hitbool(attacker, defender);
 	},
-	effecthit: function(attacker, defender){
-		BN6AuraHead1.effecthit(attacker, defender);
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6AirHock = {
+	id:"BN6AirHock",
+	name:"AirHock",
+	image:BN6AirHockIMG,
+	code:["Q", "R", "S"],
+	mb:40,
+	rank:"standard",
+	damage:60,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.break],
+	hithuh: function(attacker, defender){
+		this.hitbool = false;
+		this.hits = 0;
+		if(defender.invis < 1){
+			this.xDirection = -1;
+			this.yDirection = 1;
+			this.puckX = attacker.x - 1;
+			this.puckY = attacker.y;
+			this.side = SIDE.RIGHT;
+			this.switchedSides = false;
+				
+			if(attacker.name === "one"){
+				this.xDirection = 1;
+				this.puckX = attacker.x + 1;
+				this.side = SIDE.LEFT;
+			}
+			
+			for(var i = 0; i < 11; i++){
+				if(cells[this.puckX][this.puckY].panelType === PANELTYPE.HOLE){
+					return false;
+				}
+				if(this.puckX === defender.x && this.puckY === defender.y){
+					this.hitbool = true;
+					this.hits++;
+				}
+				if(cells[this.puckX][this.puckY].side !== this.side){
+					this.switchedSides = true;
+				}
+				
+				if(!cells[this.puckX + this.xDirection]){
+					this.xDirection = this.xDirection * -1;
+				}
+				this.puckX = this.puckX + this.xDirection;
+				
+				if(!cells[this.puckX][this.puckY + this.yDirection]){
+					this.yDirection = this.yDirection * -1;
+				}
+				this.puckY = this.puckY + this.yDirection;
+				
+				if(this.switchedSides){
+					if(cells[this.puckX][this.puckY].side === this.side){
+						this.xDirection = this.xDirection * -1;
+						this.puckX = this.puckX + this.xDirection * 2;
+					}
+					if(!cells[this.puckX]){
+						return this.hitbool;
+					}
+					if(cells[this.puckX][this.puckY].side === this.side){
+						this.yDirection = this.yDirection * -1;
+						this.puckY = this.puckY + this.xDirection * 2;
+					}
+					if(!cells[this.puckX][this.puckY]){
+						return this.hitbool;
+					}
+				}
+			}
+		}
+		if(this.hits < 1){
+			this.hits === 1
+		}
+		return this.hitbool;
 	},
+	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
 }
 
@@ -1603,7 +1668,7 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6ElecPulse1, BN6ElecPulse2, BN6ElecPulse3, BN6CornShot1, BN6CornShot2, 
 				BN6CornShot3, BN6RiskyHoney1, BN6RiskyHoney2, BN6RiskyHoney3, BN6RollingLog1, 
 				BN6RollingLog2, BN6RollingLog3, BN6IronShell1, BN6IronShell2, BN6IronShell3, 
-				BN6AuraHead1, BN6AuraHead2, BN6AuraHead3];
+				BN6AuraHead1, BN6AuraHead2, BN6AuraHead3, BN6AirHock];
 
 function Bn6Cards(){
 
