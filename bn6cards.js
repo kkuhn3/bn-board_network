@@ -1659,16 +1659,67 @@ var BN6AirHock = {
 	effectmiss: function(attacker, defender){}
 }
 
-var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, 
-				BN6Vulcan3, BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, 
-				BN6BigTank1, BN6BigTank2, BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, 
-				BN6Yoyo, BN6HellBurner1, BN6HellBurner2, BN6HellBurner3, BN6WideShot, 
-				BN6TrainArrow1, BN6TrainArrow2, BN6TrainArrow3, BN6BubbleStar1, BN6BubbleStar2, 
-				BN6BubbleStar3, BN6Thunder, BN6DollThunder1, BN6DollThunder2, BN6DollThunder3, 
-				BN6ElecPulse1, BN6ElecPulse2, BN6ElecPulse3, BN6CornShot1, BN6CornShot2, 
+var BN6DrillArm = {
+	id:"BN6DrillArm",
+	name:"DrillArm",
+	image:BN6DrillArmIMG,
+	code:["G", "M", "W"],
+	mb:32,
+	rank:"standard",
+	damage:70,
+	hits:1,
+	priority:1,
+	elements:[ELEMENTS.break],
+	hithuh: function(attacker, defender){
+		this.hitbool = false;
+		this.tempDefX = defender.x;
+		this.hits = 0;
+		
+		if(defender.invis < 1 && defender.y == attacker.y){
+			this.xDirection = -1;
+			if(attacker.name == "one"){
+				this.xDirection = 1;
+			}
+			for(var i = 0; i < 3; i++){
+				if(attacker.x + this.xDirection === this.tempDefX || attacker.x + this.xDirection*2 === this.tempDefX){
+					this.hitbool = true;
+					this.hits++;
+					if(cells[this.tempDefX + this.xDirection] && cells[this.tempDefX + this.xDirection][defender.y].panelType !== PANELTYPE.HOLE){
+						this.tempDefX = this.tempDefX + this.xDirection;
+					}
+				}
+			}
+		}
+		if(this.hits < 1){
+			this.hits = 1;
+		}
+		return this.hitbool;
+	},
+	effecthit: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name == "one"){
+			this.xDirection = 1;
+		}
+		for(var i = 0; i < 2; i ++){
+			if(attacker.x + this.xDirection === defender.x || attacker.x + this.xDirection*2 === defender.x){
+				if(cells[defender.x + this.xDirection] && cells[defender.x + this.xDirection][defender.y].panelType !== PANELTYPE.HOLE){
+					defender.x = defender.x + this.xDirection
+				}
+			}
+		}
+	},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
+				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
+				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
+				BN6HellBurner3, BN6WideShot, BN6TrainArrow1, BN6TrainArrow2, BN6TrainArrow3, BN6BubbleStar1, 
+				BN6BubbleStar2, BN6BubbleStar3, BN6Thunder, BN6DollThunder1, BN6DollThunder2, 
+				BN6DollThunder3, BN6ElecPulse1, BN6ElecPulse2, BN6ElecPulse3, BN6CornShot1, BN6CornShot2, 
 				BN6CornShot3, BN6RiskyHoney1, BN6RiskyHoney2, BN6RiskyHoney3, BN6RollingLog1, 
-				BN6RollingLog2, BN6RollingLog3, BN6IronShell1, BN6IronShell2, BN6IronShell3, 
-				BN6AuraHead1, BN6AuraHead2, BN6AuraHead3, BN6AirHock];
+				BN6RollingLog2, BN6RollingLog3, BN6IronShell1, BN6IronShell2, BN6IronShell3, BN6AuraHead1, 
+				BN6AuraHead2, BN6AuraHead3, BN6AirHock, BN6DrillArm];
 
 function Bn6Cards(){
 
