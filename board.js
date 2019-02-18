@@ -111,6 +111,7 @@ function Board(width,height,canvas){
 		playerOne.hp = playerHP;
 		playerOne.x = 1;
 		playerOne.y = 1;
+		playerOne.barrier = new BasicBarrier(10);
 		playerTwo.hp = playerHP;
 		playerTwo.x = 4;
 		playerTwo.y = 1;

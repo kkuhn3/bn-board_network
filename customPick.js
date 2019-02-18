@@ -76,7 +76,9 @@ function CustomPick(canvas){
 			if(player.name === "one"){
 				this.defender = playerTwo;
 			}
+			
 			DRAW[x].hithuh(player, this.defender);
+			
 			if(!this.matchesCode(SELECTED, DRAW[x])){
 				ctx.fillStyle="rgba(225,0,0,0.5)";
 				ctx.fillRect(left+2,0,cellWidth-4,cheight);
@@ -85,20 +87,16 @@ function CustomPick(canvas){
 				ctx.fillStyle="rgba(0,225,0,0.5)";
 				ctx.fillRect(left+2,0,cellWidth-4,cheight);
 			}
-			
 			if(DRAW[x].code.length === 26){
 				ctx.fillText("*", left+cellWidth/2, cheight-40);
 			}
 			else{
 				ctx.fillText(DRAW[x].code, left+cellWidth/2, cheight-40);
 			}
+			
 			ctx.fillText(DRAW[x].name, left+cellWidth/2, cheight-30);
-			if(DRAW[x].hits > 1){
-				ctx.fillText(DRAW[x].damage + 'x' + DRAW[x].hits, left+cellWidth/2, cheight-20);
-			}
-			else{
-				ctx.fillText(DRAW[x].damage, left+cellWidth/2, cheight-20);
-			}
+			ctx.fillText(cards.damageText(player, DRAW[x]), left+cellWidth/2, cheight-20);
+
 			if(DRAW[x].image && DRAW[x].image !== false){
 				ctx.drawImage(DRAW[x].image, left+8, 3, cellWidth-16, cheight/2);
 			}

@@ -502,6 +502,21 @@ var BN6Yoyo = {
 					}
 				}
 			}
+			else{
+				for(var i=1; i < 4; i++){
+					if(cells[attacker.x - i][attacker.y].player){
+						if(i < 3){
+							this.hits = 2;
+						}
+						else{
+							this.hits = 3;
+						}
+					}
+					if(attacker.x-i === defender.x && attacker.y === defender.y){
+						return true;
+					}
+				}
+			}
 		}
 		return false;
 	},

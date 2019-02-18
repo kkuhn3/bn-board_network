@@ -423,4 +423,24 @@ function Cards(){
 		}
 		return offX < 2 && offY < 2;
 	}
+	
+	this.damageText = function(attacker, aCard){
+		this.damageTxt = "" + aCard.damage;
+		if(aCard.addDamage && aCard.addDamage > 0){
+			this.damageTxt = this.damageTxt + "+" + (aCard.addDamage + player.bonusDamage);
+			if(aCard.hits > 1){
+				return "(" + this.damageTxt + ")x" + aCard.hits;
+			}
+		}
+		else if(player.bonusDamage > 0){
+			this.damageTxt = this.damageTxt + "+" + player.bonusDamage;
+			if(aCard.hits > 1){
+				return "(" + this.damageTxt + ")x" + aCard.hits;
+			}
+		}
+		else if(aCard.hits > 1){
+			return this.damageTxt + "x" + aCard.hits;
+		}
+		return this.damageTxt;
+	}
 }

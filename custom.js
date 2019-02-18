@@ -42,12 +42,8 @@ function Custom(canvas){
 					ctx.fillText(HAND[x].code, cwidth/2, firstCardHeight-40);
 				}
 				ctx.fillText(HAND[x].name, cwidth/2, firstCardHeight-30);
-				if(HAND[x].hits > 1){
-					ctx.fillText(HAND[x].damage + 'x' + HAND[x].hits, cwidth/2, firstCardHeight-20);
-				}
-				else{
-					ctx.fillText(HAND[x].damage, cwidth/2, firstCardHeight-20);
-				}
+				ctx.fillText(cards.damageText(player, HAND[x]), cwidth/2, firstCardHeight-20);
+
 				if(HAND[x].image){
 					ctx.drawImage(HAND[x].image, 8, 3, cwidth-16, firstCardHeight/2);
 				}
