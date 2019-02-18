@@ -1488,6 +1488,97 @@ var BN6IronShell3 = {
 	effectmiss: function(attacker, defender){}
 }
 
+var BN6AuraHead1 = {
+	id:"BN6AuraHead1",
+	name:"AuraHead1",
+	image:BN6AuraHead1IMG,
+	code:["B", "C", "D"],
+	mb:25,
+	rank:"standard",
+	damage:130,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.break],
+	hithuh: function(attacker, defender){
+		this.addDamage = null;
+		if(attacker.barrier){
+			this.addDamage = 50;
+		}
+		return BN6AuraHead1.hitbool(attacker, defender);
+	},
+	hitbool: function(attacker, defender){
+		if(attacker.y === defender.y && defender.invis < 1){
+			if(attacker.name == "one"){
+				for(var i = 1; i < 4; i++){
+					if(attacker.x + i === defender.x){
+						return true;
+					}
+				}
+			}
+			else{
+				for(var i = 1; i < 4; i++){
+					if(attacker.x - i === defender.x){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){
+		defender.guard = null;
+	},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6AuraHead2 = {
+	id:"BN6AuraHead2",
+	name:"AuraHead2",
+	image:BN6AuraHead2IMG,
+	code:["D", "E", "F"],
+	mb:33,
+	rank:"standard",
+	damage:150,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.break],
+	hithuh: function(attacker, defender){
+		this.addDamage = null;
+		if(attacker.barrier){
+			this.addDamage = 50;
+		}
+		return BN6AuraHead1.hitbool(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6AuraHead1.effecthit(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6AuraHead3 = {
+	id:"BN6AuraHead3",
+	name:"AuraHead3",
+	image:BN6AuraHead3IMG,
+	code:["F", "G", "H"],
+	mb:39,
+	rank:"standard",
+	damage:170,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.break],
+	hithuh: function(attacker, defender){
+		this.addDamage = null;
+		if(attacker.barrier){
+			this.addDamage = 50;
+		}
+		return BN6AuraHead1.hitbool(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6AuraHead1.effecthit(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, 
 				BN6Vulcan3, BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, 
 				BN6BigTank1, BN6BigTank2, BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, 
@@ -1496,7 +1587,8 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6BubbleStar3, BN6Thunder, BN6DollThunder1, BN6DollThunder2, BN6DollThunder3, 
 				BN6ElecPulse1, BN6ElecPulse2, BN6ElecPulse3, BN6CornShot1, BN6CornShot2, 
 				BN6CornShot3, BN6RiskyHoney1, BN6RiskyHoney2, BN6RiskyHoney3, BN6RollingLog1, 
-				BN6RollingLog2, BN6RollingLog3, BN6IronShell1, BN6IronShell2, BN6IronShell3];
+				BN6RollingLog2, BN6RollingLog3, BN6IronShell1, BN6IronShell2, BN6IronShell3, 
+				BN6AuraHead1, BN6AuraHead2, BN6AuraHead3];
 
 function Bn6Cards(){
 

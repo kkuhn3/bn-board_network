@@ -34,7 +34,9 @@ var playerOne = {
 	stunned: 0,
 	bubbled: 0,
 	busterDamage: busterDefualt,
-	bugs: []
+	bugs: [],
+	barrier: null, 
+	bonusDamage: 0,
 };
 
 var playerTwo = {
@@ -51,7 +53,9 @@ var playerTwo = {
 	stunned:0,
 	bubbled: 0,
 	busterDamage: busterDefualt,
-	bugs: []
+	bugs: [],
+	barrier: null,
+	bonusDamage: 0,
 };
 
 var player = -1;
@@ -300,14 +304,14 @@ function Board(width,height,canvas){
 					attacker.card.effecthit(attacker, defender);
 					if(defender.guard === null){
 						if(defender.bubbled > 0 && attacker.card.element === ELEMENTS.elec){
-							defender.hp = defender.hp - (attacker.card.damage * 2 + attacker.card.damage * (attacker.card.hits-1));
+							defender.hp = defender.hp - this.calculateDamage(attacker, 2, 1);
 						}
 						if(cells[defender.x][defender.y].panelType === PANELTYPE.GRASS && attacker.card.element === ELEMENTS.fire){
 							cells[defender.x][defender.y].panelType = PANELTYPE.NORMAL;
-							defender.hp = defender.hp - (attacker.card.damage * 2 + attacker.card.damage * (attacker.card.hits-1));
+							defender.hp = defender.hp - this.calculateDamage(attacker, 2, 1);
 						} 
 						else{
-							defender.hp = defender.hp - attacker.card.damage * attacker.card.hits;
+							defender.hp = defender.hp - this.calculateDamage(attacker, 1, 1);
 						}
 						defender.bubbled = 0;
 						console.log("it hit!");
@@ -326,6 +330,26 @@ function Board(width,height,canvas){
 		else{
 			console.log("player " + attacker.name + " is Stunned!");
 		}
+	}
+	
+	this.calculateDamage = function(attacker, oneHitMulti, allHitMulti){
+		if(attacker.card.damage === 0){
+			return 0;
+		}
+		if(!attacker.card.addDamage){
+			attacker.card.addDamage = 0;
+		}
+		if(!attacker.bonusDamage){
+			attacker.bonusDamage = 0;
+		}
+		this.baseDamage = attacker.card.damage + attacker.card.addDamage + attacker.bonusDamage;
+		this.firstHit = this.baseDamage * oneHitMulti;
+		this.restHits = 0;
+		if(attacker.card.hits > 1){
+			this.restHits = this.baseDamage * (attacker.card.hits - 1);
+		}
+		this.totalBase = this.firstHit + this.restHits;
+		return this.totalBase * allHitMulti;
 	}
 
 	this.resolveObjects = function(attacker, defender){
