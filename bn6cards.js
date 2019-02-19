@@ -1780,6 +1780,82 @@ var BN6NoiseStorm = {
 	effectmiss: function(attacker, defender){}
 }
 
+var BN6MachineGun1 = {
+	id:"BN6MachineGun1",
+	name:"MachineGun1",
+	image:BN6MachineGun1IMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:12,
+	rank:"standard",
+	damage:30,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.target],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.affectedColumn = playerOne.x;
+			if(attacker.name === "one"){
+				this.affectedColumn = playerTwo.x;
+			}
+			if(defender.x === this.affectedColumn){
+				if(defender.y === 0){
+					this.hits = 2;
+				}
+				else if(defender.y === 1){
+					this.hits = 4;
+				}
+				else{
+					this.hits = 3;
+				}
+				return true;
+			}
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6MachineGun2 = {
+	id:"BN6MachineGun2",
+	name:"MachineGun2",
+	image:BN6MachineGun2IMG,
+	code:["E", "G", "S"],
+	mb:24,
+	rank:"standard",
+	damage:50,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.target],
+	hithuh: function(attacker, defender){
+		this.hitbool = BN6MachineGun1.hithuh(attacker, defender);
+		this.hits = BN6MachineGun1.hits;
+		return this.hitbool;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6MachineGun3 = {
+	id:"BN6MachineGun3",
+	name:"MachineGun3",
+	image:BN6MachineGun3IMG,
+	code:["B", "F", "M"],
+	mb:36,
+	rank:"standard",
+	damage:70,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.target],
+	hithuh: function(attacker, defender){
+		this.hitbool = BN6MachineGun1.hithuh(attacker, defender);
+		this.hits = BN6MachineGun1.hits;
+		return this.hitbool;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -1788,7 +1864,8 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6DollThunder3, BN6ElecPulse1, BN6ElecPulse2, BN6ElecPulse3, BN6CornShot1, BN6CornShot2, 
 				BN6CornShot3, BN6RiskyHoney1, BN6RiskyHoney2, BN6RiskyHoney3, BN6RollingLog1, 
 				BN6RollingLog2, BN6RollingLog3, BN6IronShell1, BN6IronShell2, BN6IronShell3, BN6AuraHead1, 
-				BN6AuraHead2, BN6AuraHead3, BN6AirHock, BN6DrillArm, BN6Tornado, BN6NoiseStorm];
+				BN6AuraHead2, BN6AuraHead3, BN6AirHock, BN6DrillArm, BN6Tornado, BN6NoiseStorm, 
+				BN6MachineGun1, BN6MachineGun2, BN6MachineGun3];
 
 function Bn6Cards(){
 
