@@ -381,12 +381,7 @@ function Board(width,height,canvas){
 						}
 						else if(attacker.action === ACTIONS.CARD){
 							if(attacker.card.hithuh(attacker, fakeDefender)){
-								if(attacker.name === "one"){
-									cells[x][y].object[i].effecthit(attacker.card, "east");
-								}
-								else{
-									cells[x][y].object[i].effecthit(attacker.card, "west");
-								}
+								cells[x][y].object[i].effecthit(attacker);
 							}
 						}
 					}
@@ -397,10 +392,12 @@ function Board(width,height,canvas){
 	}
 
 	this.cellHasSolidObject = function(x, y){
-		if(cells[x][y]){
-			for(var i=0; i < cells[x][y].length; i++){
-				if(cells[x][y].object[i].solid){
-					return true;
+		if(cells[x]){
+			if(cells[x][y]){
+				for(var i=0; i < cells[x][y].length; i++){
+					if(cells[x][y].object[i].solid){
+						return true;
+					}
 				}
 			}
 		}

@@ -1947,6 +1947,96 @@ var BN6MegEnBomb = {
 	effectmiss: function(attacker, defender){}
 }
 
+var BN6FlashBomb1 = {
+	id:"BN6FlashBomb1",
+	name:"FlashBomb1",
+	image:BN6FlashBomb1IMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:30,
+	rank:"standard",
+	damage:40,
+	hits:1,
+	priority:3,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6MiniBomb.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		if(cells[attacker.x + this.xDirection]){
+			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
+				if(!cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
+					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+1, attacker.y, attacker, defender, this.damage));
+				}
+			}
+		}
+	}
+}
+
+var BN6FlashBomb2 = {
+	id:"BN6FlashBomb2",
+	name:"FlashBomb2",
+	image:BN6FlashBomb2IMG,
+	code:["G", "K", "R"],
+	mb:34,
+	rank:"standard",
+	damage:70,
+	hits:1,
+	priority:3,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6MiniBomb.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		if(cells[attacker.x + this.xDirection]){
+			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
+				if(!cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
+					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+1, attacker.y, attacker, defender, this.damage));
+				}
+			}
+		}
+	}
+}
+
+var BN6FlashBomb3 = {
+	id:"BN6FlashBomb3",
+	name:"FlashBomb3",
+	image:BN6FlashBomb3IMG,
+	code:["H", "P", "S"],
+	mb:38,
+	rank:"standard",
+	damage:100,
+	hits:1,
+	priority:3,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6MiniBomb.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		if(cells[attacker.x + this.xDirection]){
+			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
+				if(!cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
+					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+1, attacker.y, attacker, defender, this.damage));
+				}
+			}
+		}
+	}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -1957,7 +2047,7 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6RollingLog2, BN6RollingLog3, BN6IronShell1, BN6IronShell2, BN6IronShell3, BN6AuraHead1, 
 				BN6AuraHead2, BN6AuraHead3, BN6AirHock, BN6DrillArm, BN6Tornado, BN6NoiseStorm, 
 				BN6MachineGun1, BN6MachineGun2, BN6MachineGun3, BN6MiniBomb, BN6BigBomb, BN6EnergyBomb, 
-				BN6MegEnBomb];
+				BN6MegEnBomb, BN6FlashBomb1, BN6FlashBomb2, BN6FlashBomb3];
 
 function Bn6Cards(){
 

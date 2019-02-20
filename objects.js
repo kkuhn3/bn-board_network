@@ -4,9 +4,10 @@ function BN6RockCube(x, y){
 	this.hp = 200;
 	this.image = rock;
 	this.solid = true;
-	this.effecthit = function(cardHitBy, direction){
+	this.effecthit = function(attacker){
+		var cardHitBy = attacker.card;
 		if(cardHitBy.elements.indexOf(ELEMENTS.wind) !== -1){
-			if(direction = "east"){
+			if(attacker.name === "one"){
 				for(var i=this.x; i < 6; i++){
 					if(playerOne.x === i && playerOne.y === this.y){
 						playerOne.hp = playerOne.hp - this.hp;
@@ -189,4 +190,47 @@ function PlayerObject(){
 	this.effecthit = function(cardHitBy, direction){};
 	this.hitByBuster = function(player){}
 	this.passive = function(){}
+}
+
+
+function BN6FlashBomb(x, y, attacker, defender, damage){
+	this.id = "BN6FlashBomb";
+	this.hp = 1;
+	this.image = rock;
+	this.solid = true;
+	this.countDown = 2;
+	this.effecthit = function(hitBy){
+		if(hitBy.name === defender.name){
+			this.hp = this.hp - hitBy.card.damage;
+		}
+		if(this.hp < 1){
+			cells[this.x][this.y].object = null;
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		if(hitBy.name === defender.name){
+			this.hp = this.hp - hitBy.busterDamage;
+		}
+		if(this.hp < 1){
+			cells[this.x][this.y].object = null;
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		this.countDown--;
+		if(this.countDown < 1){
+			defender.invis = 0;
+			defender.stun = 1;
+			defender.hp = defender.hp - damage;
+			cells[this.x][this.y].object = null;
+			this.x = -1;
+			this.y = -1;
+		}
+	}
+	this.x = x;
+	this.y = y;
 }
