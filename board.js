@@ -7,7 +7,12 @@ PANELTYPE = {
 	NORMAL: "normal",
 	HOLE: "hole",
 	GRASS: "grass",
+	POISON: "poison",
+	CRACKED: "cracked",
+	ICE: "ice",
+	HOLY: "holy",
 }
+var paneltypes = [PANELTYPE.NORMAL, PANELTYPE.HOLE, PANELTYPE.GRASS, PANELTYPE.POISON, PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY];
 
 ACTIONS = {
 	NONE: 0,
@@ -241,10 +246,10 @@ function Board(width,height,canvas){
 
 	this.resolveBugs = function(){
 		for(var i = 0; i < playerOne.bugs.length; i++){
-			player.bugs[i].resolve(playerOne);
+			playerOne.bugs[i].resolve(playerOne);
 		}
 		for(var j = 0; j < playerTwo.bugs.length; j++){
-			player.bugs[j].resolve(playerTwo);
+			playerTwo.bugs[j].resolve(playerTwo);
 		}
 	}
 	

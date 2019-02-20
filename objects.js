@@ -6,32 +6,26 @@ function BN6RockCube(x, y){
 	this.solid = true;
 	this.effecthit = function(attacker){
 		var cardHitBy = attacker.card;
-		if(cardHitBy.elements.indexOf(ELEMENTS.wind) !== -1){
+		if(cardHitBy.id === "BN6AirShot"){
 			if(attacker.name === "one"){
 				for(var i=this.x; i < 6; i++){
-					if(playerOne.x === i && playerOne.y === this.y){
-						playerOne.hp = playerOne.hp - this.hp;
+					if(board.cellHasSolidObject(i, this.y)){
 						this.hp = 0;
-						return true;
 					}
-					if(playerTwo.x === i && playerTwo.y === this.y){
+					else if(playerTwo.x === i && playerTwo.y === this.y){
 						playerTwo.hp = playerTwo.hp - this.hp;
 						this.hp = 0;
-						return true;
 					}
 				}
 			}
 			else{
 				for(var i=this.x; i > -1 ; i--){
-					if(playerOne.x === i && playerOne.y === this.y){
+					if(board.cellHasSolidObject(i, this.y)){
+						this.hp = 0;
+					}
+					else if(playerOne.x === i && playerOne.y === this.y){
 						playerOne.hp = playerOne.hp - this.hp;
 						this.hp = 0;
-						return true;
-					}
-					if(playerTwo.x === i && playerTwo.y === this.y){
-						playerTwo.hp = playerTwo.hp - this.hp;
-						this.hp = 0;
-						return true;
 					}
 				}
 			}
@@ -231,6 +225,46 @@ function BN6FlashBomb(x, y, attacker, defender, damage){
 			this.y = -1;
 		}
 	}
+	this.x = x;
+	this.y = y;
+}
+
+
+function BN6BlackBombObj(x, y){
+	this.id = "BN6BlackBombObj";
+	this.damage = 250;
+	this.image = rock;
+	this.solid = true;
+	this.effecthit = function(attacker){
+		var cardHitBy = attacker.card;
+		if(cardHitBy.elements.indexOf(ELEMENTS.fire)){
+			for(var i = -1; i < 2; i++){
+				for(var j = -1; i < 2; j++){
+					if(cells[i+this.x]){
+						if(cells[i+this.x][j+this.y]){
+							if(cells[i+this.x][j+this.y].player){
+								cells[i+this.x][j+this.y].player.hp = cells[i+this.x][j+this.y].player.hp - 250;
+							}
+							if(board.cellHasSolidObject(i, j)){
+								cells[i+this.x][j+this.y].object = null;
+							}
+						}
+					}
+				}
+			}
+			cells[this.x][this.y].object = null;
+			this.x = -1;
+			this.y = -1;
+		}
+		else if(cardHitBy.elements.indexOf(ELEMENTS.break)){
+			cells[this.x][this.y].object = null;
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.hitByBuster = function(player){}
+	this.passiveTriggered = false;
+	this.passive = function(){}
 	this.x = x;
 	this.y = y;
 }

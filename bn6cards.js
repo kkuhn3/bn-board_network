@@ -2030,7 +2030,198 @@ var BN6FlashBomb3 = {
 		if(cells[attacker.x + this.xDirection]){
 			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
 				if(!cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
-					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+1, attacker.y, attacker, defender, this.damage));
+					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
+				}
+			}
+		}
+	}
+}
+
+var BN6BlackBomb = {
+	id:"BN6BlackBomb",
+	name:"BlackBomb",
+	image:BN6BlackBombIMG,
+	code:["B", "F", "O"],
+	mb:32,
+	rank:"standard",
+	damage:100,
+	hits:1,
+	priority:3,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		return BN6MiniBomb.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		if(cells[attacker.x + this.xDirection]){
+			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
+				if(!cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
+					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6BlackBombObj(attacker.x+this.xDirection, attacker.y));
+				}
+			}
+		}
+	}
+}
+
+var BN6BugBomb = {
+	id:"BN6BugBomb",
+	name:"BugBomb",
+	image:BN6BugBombIMG,
+	code:["G", "S", "V"],
+	mb:24,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:3,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6BigBomb.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		defender.bugs.push(new HPBug(10), new BusterBug(), new PathBug());
+	},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6GrassSeed = {
+	id:"BN6GrassSeed",
+	name:"GrassSeed",
+	image:BN6GrassSeedIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:19,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:3,
+	elements:[ELEMNTS.wood],
+	hithuh: function(attacker, defender){
+		return BN6MiniBomb.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		if(cells[defender.x][defender.y].panelType !== PANELTYPE.HOLE){
+			cells[defender.x][defender.y].panelType = PANELTYPE.GRASS;
+		}
+	},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		this.x = attacker.x + this.xDirection;
+		this.y = attacker.y
+		if(cells[this.x]){
+			if(cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+				if(cellHasSolidObject(this.x, this.y)){
+					cells[this.x][this.y] = PANELTYPE.GRASS;
+				}
+				else{
+					for(var i = -1; i < 2; i++){
+						for(var j = -1; i < 2; j++){
+							if(cells[i+this.x]){
+								if(cells[i+this.x][j+this.y]){
+									cells[i+this.x][j+this.y].panelType = PANELTYPE.GRASS;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+var BN6IceSeed = {
+	id:"BN6IceSeed",
+	name:"IceSeed",
+	image:BN6IceSeedIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:31,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:3,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		return BN6MiniBomb.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		if(cells[defender.x][defender.y].panelType !== PANELTYPE.HOLE){
+			cells[defender.x][defender.y].panelType = PANELTYPE.ICE;
+		}
+	},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		this.x = attacker.x + this.xDirection;
+		this.y = attacker.y
+		if(cells[this.x]){
+			if(cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+				if(cellHasSolidObject(this.x, this.y)){
+					cells[this.x][this.y] = PANELTYPE.ICE;
+				}
+				else{
+					for(var i = -1; i < 2; i++){
+						for(var j = -1; i < 2; j++){
+							if(cells[i+this.x]){
+								if(cells[i+this.x][j+this.y]){
+									cells[i+this.x][j+this.y].panelType = PANELTYPE.ICE;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+var BN6PoisonSeed = {
+	id:"BN6PoisonSeed",
+	name:"PoisonSeed",
+	image:BN6PoisonSeedIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:37,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:3,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6MiniBomb.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		if(cells[defender.x][defender.y].panelType !== PANELTYPE.HOLE){
+			cells[defender.x][defender.y].panelType = PANELTYPE.POISON;
+		}
+	},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		this.x = attacker.x + this.xDirection;
+		this.y = attacker.y
+		if(cells[this.x]){
+			if(cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+				if(cellHasSolidObject(this.x, this.y)){
+					cells[this.x][this.y] = PANELTYPE.POISON;
+				}
+				else{
+					for(var i = -1; i < 2; i++){
+						for(var j = -1; i < 2; j++){
+							if(cells[i+this.x]){
+								if(cells[i+this.x][j+this.y]){
+									cells[i+this.x][j+this.y].panelType = PANELTYPE.POISON;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -2047,7 +2238,8 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6RollingLog2, BN6RollingLog3, BN6IronShell1, BN6IronShell2, BN6IronShell3, BN6AuraHead1, 
 				BN6AuraHead2, BN6AuraHead3, BN6AirHock, BN6DrillArm, BN6Tornado, BN6NoiseStorm, 
 				BN6MachineGun1, BN6MachineGun2, BN6MachineGun3, BN6MiniBomb, BN6BigBomb, BN6EnergyBomb, 
-				BN6MegEnBomb, BN6FlashBomb1, BN6FlashBomb2, BN6FlashBomb3];
+				BN6MegEnBomb, BN6FlashBomb1, BN6FlashBomb2, BN6FlashBomb3, BN6BlackBomb, BN6BugBomb, 
+				BN6GrassSeed, BN6IceSeed, BN6PoisonSeed];
 
 function Bn6Cards(){
 
