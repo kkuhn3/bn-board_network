@@ -6,7 +6,7 @@ function BN6RockCube(x, y){
 	this.solid = true;
 	this.effecthit = function(attacker){
 		var cardHitBy = attacker.card;
-		if(cardHitBy.id === "BN6AirShot"){
+		if(cardHitBy.id === "BN6AirShot" || cardHitBy.id === "BN6WindRacket"){
 			if(attacker.name === "one"){
 				for(var i=this.x; i < 6; i++){
 					if(board.cellHasSolidObject(i, this.y)){
