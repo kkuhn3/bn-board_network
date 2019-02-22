@@ -129,7 +129,7 @@ function Board(width,height,canvas){
 	this.drawCell = function(x,y){
 		var left = x*cellWidth;
 		var top = y*cellHeight + cheight;
-		ctx.drawImage(cells[x][y].side,left+2,top+2,cellWidth-4,cellHeight-4);
+		ctx.drawImage(cells[x][y].side,left,top,cellWidth,cellHeight);
 		for(var i = 0; i < cells[x][y].object.length; i++){
 			ctx.drawImage(cells[x][y].object[i].image, left+4, top+4, cellWidth-8, cellHeight-4);
 		}
