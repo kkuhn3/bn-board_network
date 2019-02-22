@@ -70,14 +70,14 @@ var BN6AirShot = {
 	effecthit: function(attacker, defender){
 		if(defender.guard === null){
 			if(attacker.name === "one" && defender.x < 5){
-				if(!board.cellHasSolidObject(defender.x+1, defender.y) && cells[defender.x+1][defender.y].panelType !== PANELTYPE.HOLE){
+				if(isCellPlayerValid(defender.x+1, defender.y)){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x+1;
 					cells[defender.x][defender.y].player = defender;
 				}
 			}
 			else if(defender.x > 0){
-				if(!board.cellHasSolidObject(defender.x-1, defender.y) && cells[defender.x-1][defender.y].panelType !== PANELTYPE.HOLE){
+				if(isCellPlayerValid(defender.x+1, defender.y)){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x-1;
 					cells[defender.x][defender.y].player = defender;
@@ -1046,14 +1046,14 @@ var BN6ElecPulse2 = {
 		if(defender.guard === null){
 			defender.invis = 0;
 			if(attacker === "one"){
-				if(!cellHasSolidObject[defender.x-1][defender.y] && cells[defender.x-1][defender.y].panelType !== PANELTYPE.HOLE){
+				if(board.isCellPlayerValid(defender.x-1, defender.y)){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x-1;
 					cells[defender.x][defender.y].player = defender;
 				}
 			}
 			else{
-				if(!cellHasSolidObject[defender.x+1][defender.y] && cells[defender.x-1][defender.y].panelType !== PANELTYPE.HOLE){
+				if(board.isCellPlayerValid(defender.x+1, defender.y)){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x+1;
 					cells[defender.x][defender.y].player = defender;
@@ -1138,13 +1138,14 @@ var BN6CornShot1 = {
 	},
 	effecthit: function(attacker, defender){
 		BN6CornShot1.effectmiss(attacker, defender);
-		cells[defender.x][defender.y].panelType = PANELTYPE.GRASS;
+		board.convertPanel(defender.x, defender.y, PANELTYPE.GRASS);
 	},
 	effectmiss: function(attacker, defender){
 		if(attacker.name === "one"){
-			if(cells[attacker.x+2][attacker.y]){
-				cells[attacker.x+2][attacker.y].panelType = PANELTYPE.GRASS;
-			}
+			board.convertPanel(attacker.x+2, attacker.y, PANELTYPE.GRASS);
+		}
+		else{
+			board.convertPanel(attacker.x-2, attacker.y, PANELTYPE.GRASS);
 		}
 	}
 }
@@ -1344,7 +1345,7 @@ var BN6RollingLog1 = {
 				if(board.cellHasSolidObject(attacker.x + i - 1, top) || board.cellHasSolidObject(attacker.x + i - 1, bottom)){
 					return false;
 				}
-				if(cells[attacker.x+i][top].panelType === PANELTYPE.HOLE || cells[attacker.x+i][bottom].panelType === PANELTYPE.HOLE){
+				if(board.isHole(attacker.x+i, top) || board.isHole(attacker.x+i, bottom)){
 					return false;
 				}
 			}
@@ -1355,7 +1356,7 @@ var BN6RollingLog1 = {
 				if(board.cellHasSolidObject(attacker.x - i + 1, top) || board.cellHasSolidObject(attacker.x - i + 1, bottom)){
 					return false;
 				}
-				if(cells[attacker.x-i][top].panelType === PANELTYPE.HOLE || cells[attacker.x-i][bottom].panelType === PANELTYPE.HOLE){
+				if(board.isHole(attacker.x-i, top) || board.isHole(attacker.x-i, bottom)){
 					return false;
 				}
 			}
@@ -1422,7 +1423,7 @@ var BN6IronShell1 = {
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				for(var i=1; i <= defender.x - attacker.x; i++){
-					if(cells[attacker.x + i][attacker.y].panelType === PANELTYPE.HOLE){
+					if(board.isHole(attacker.x+i, attacker.y)){
 						return false;
 					}
 				}
@@ -1437,7 +1438,7 @@ var BN6IronShell1 = {
 			}
 			else{
 				for(var i=1; i <= attacker.x - defender.x; i++){
-					if(cells[attacker.x - i][attacker.y].panelType === PANELTYPE.HOLE){
+					if(board.isHole(attacker.x-i, attacker.y)){
 						return false;
 					}
 				}
@@ -1611,7 +1612,7 @@ var BN6AirHock = {
 			}
 			
 			for(var i = 0; i < 11; i++){
-				if(cells[this.puckX][this.puckY].panelType === PANELTYPE.HOLE){
+				if(board.isHole(this.puckX, this.puckY)){
 					return false;
 				}
 				if(this.puckX === defender.x && this.puckY === defender.y){
@@ -1684,7 +1685,7 @@ var BN6DrillArm = {
 				if(attacker.x + this.xDirection === this.tempDefX || attacker.x + this.xDirection*2 === this.tempDefX){
 					this.hitbool = true;
 					this.hits++;
-					if(cells[this.tempDefX + this.xDirection] && cells[this.tempDefX + this.xDirection][defender.y].panelType !== PANELTYPE.HOLE){
+					if(board.isHole(this.tempDefX + this.xDirection, defender.y)){
 						this.tempDefX = this.tempDefX + this.xDirection;
 					}
 				}
@@ -1702,7 +1703,7 @@ var BN6DrillArm = {
 		}
 		for(var i = 0; i < 2; i ++){
 			if(attacker.x + this.xDirection === defender.x || attacker.x + this.xDirection*2 === defender.x){
-				if(cells[defender.x + this.xDirection] && cells[defender.x + this.xDirection][defender.y].panelType !== PANELTYPE.HOLE){
+				if(board.isHole(this.tempDefX + this.xDirection, defender.y)){
 					defender.x = defender.x + this.xDirection
 				}
 			}
@@ -1967,12 +1968,8 @@ var BN6FlashBomb1 = {
 		if(attacker.name == "one"){
 			this.xDirection = 3;
 		}
-		if(cells[attacker.x + this.xDirection]){
-			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
-				if(!board.cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
-					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
-				}
-			}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
 		}
 	}
 }
@@ -1997,12 +1994,8 @@ var BN6FlashBomb2 = {
 		if(attacker.name == "one"){
 			this.xDirection = 3;
 		}
-		if(cells[attacker.x + this.xDirection]){
-			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
-				if(!board.cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
-					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
-				}
-			}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
 		}
 	}
 }
@@ -2027,12 +2020,8 @@ var BN6FlashBomb3 = {
 		if(attacker.name == "one"){
 			this.xDirection = 3;
 		}
-		if(cells[attacker.x + this.xDirection]){
-			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
-				if(!board.cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
-					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
-				}
-			}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
 		}
 	}
 }
@@ -2057,15 +2046,8 @@ var BN6BlackBomb = {
 		if(attacker.name == "one"){
 			this.xDirection = 3;
 		}
-		if(cells[attacker.x + this.xDirection]){
-			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
-				if(!board.cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
-					console.log(attacker.x+this.xDirection);
-					console.log(attacker.y);
-					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6BlackBombObj(attacker.x+this.xDirection, attacker.y));
-					console.log(cells[attacker.x+this.xDirection][attacker.y].object);
-				}
-			}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6BlackBombObj(attacker.x+this.xDirection, attacker.y));
 		}
 	}
 }
@@ -2105,9 +2087,7 @@ var BN6GrassSeed = {
 		return BN6MiniBomb.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
-		if(cells[defender.x][defender.y].panelType !== PANELTYPE.HOLE){
-			cells[defender.x][defender.y].panelType = PANELTYPE.GRASS;
-		}
+		board.convertPanel(defender.x, defender.y, PANELTYPE.GRASS);
 	},
 	effectmiss: function(attacker, defender){
 		this.xDirection = -3;
@@ -2116,20 +2096,14 @@ var BN6GrassSeed = {
 		}
 		this.x = attacker.x + this.xDirection;
 		this.y = attacker.y
-		if(cells[this.x]){
-			if(cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
-				if(board.cellHasSolidObject(this.x, this.y)){
-					cells[this.x][this.y] = PANELTYPE.GRASS;
-				}
-				else{
-					for(var i = -1; i < 2; i++){
-						for(var j = -1; j < 2; j++){
-							if(cells[i+this.x]){
-								if(cells[i+this.x][j+this.y]){
-									cells[i+this.x][j+this.y].panelType = PANELTYPE.GRASS;
-								}
-							}
-						}
+		if(!board.isHole(this.x, this.y)){
+			if(board.cellHasSolidObject(this.x, this.y)){
+				board.convertPanel(this.x, this.y, PANELTYPE.GRASS);
+			}
+			else{
+				for(var i = -1; i < 2; i++){
+					for(var j = -1; j < 2; j++){
+						board.convertPanel(this.x+i, this.y+j, PANELTYPE.GRASS);
 					}
 				}
 			}
@@ -2152,9 +2126,7 @@ var BN6IceSeed = {
 		return BN6MiniBomb.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
-		if(cells[defender.x][defender.y].panelType !== PANELTYPE.HOLE){
-			cells[defender.x][defender.y].panelType = PANELTYPE.ICE;
-		}
+		board.convertPanel(defender.x, defender.y, PANELTYPE.ICE);
 	},
 	effectmiss: function(attacker, defender){
 		this.xDirection = -3;
@@ -2163,20 +2135,14 @@ var BN6IceSeed = {
 		}
 		this.x = attacker.x + this.xDirection;
 		this.y = attacker.y
-		if(cells[this.x]){
-			if(cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
-				if(board.cellHasSolidObject(this.x, this.y)){
-					cells[this.x][this.y] = PANELTYPE.ICE;
-				}
-				else{
-					for(var i = -1; i < 2; i++){
-						for(var j = -1; j < 2; j++){
-							if(cells[i+this.x]){
-								if(cells[i+this.x][j+this.y]){
-									cells[i+this.x][j+this.y].panelType = PANELTYPE.ICE;
-								}
-							}
-						}
+		if(!board.isHole(this.x, this.y)){
+			if(board.cellHasSolidObject(this.x, this.y)){
+				board.convertPanel(this.x, this.y, PANELTYPE.ICE);
+			}
+			else{
+				for(var i = -1; i < 2; i++){
+					for(var j = -1; j < 2; j++){
+						board.convertPanel(this.x+i, this.y+j, PANELTYPE.ICE);
 					}
 				}
 			}
@@ -2199,9 +2165,7 @@ var BN6PoisonSeed = {
 		return BN6MiniBomb.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
-		if(cells[defender.x][defender.y].panelType !== PANELTYPE.HOLE){
-			cells[defender.x][defender.y].panelType = PANELTYPE.POISON;
-		}
+		board.convertPanel(defender.x, defender.y, PANELTYPE.POISON);
 	},
 	effectmiss: function(attacker, defender){
 		this.xDirection = -3;
@@ -2210,22 +2174,14 @@ var BN6PoisonSeed = {
 		}
 		this.x = attacker.x + this.xDirection;
 		this.y = attacker.y
-		if(cells[this.x]){
-			console.log("stuff!");
-			if(cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
-				console.log("not a hole");
-				if(board.cellHasSolidObject(this.x, this.y)){
-					cells[this.x][this.y] = PANELTYPE.POISON;
-				}
-				else{
-					for(var i = -1; i < 2; i++){
-						for(var j = -1; j < 2; j++){
-							if(cells[i+this.x]){
-								if(cells[i+this.x][j+this.y]){
-									cells[i+this.x][j+this.y].panelType = PANELTYPE.POISON;
-								}
-							}
-						}
+		if(!board.isHole(this.x, this.y)){
+			if(board.cellHasSolidObject(this.x, this.y)){
+				board.convertPanel(this.x, this.y, PANELTYPE.POISON);
+			}
+			else{
+				for(var i = -1; i < 2; i++){
+					for(var j = -1; j < 2; j++){
+						board.convertPanel(this.x+i, this.y+j, PANELTYPE.POISON);
 					}
 				}
 			}
@@ -2422,10 +2378,7 @@ var BN6WindRacket = {
 			for(var i = 0; i < 4; i++){
 				this.xTile = defender.x + this.xDirection*i;
 				this.yTile = defender.y;
-				if(!board[this.xTile] || board.cellHasSolidObject(this.xTile, this.yTile) || cells[this.xTile][this.yTile].panelType !== PANELTYPE.HOLE){
-					return false;
-				}
-				else{
+				if(board.isCellPlayerValid(this.xTile, this.yTile)){
 					cells[defender.x][defender.y].player = null;
 					cells[this.xTile][this.yTile].player = defender;
 					defender.x = this.xTile;
@@ -2450,7 +2403,7 @@ var BN6Fumikomizan = {
 	priority:2,
 	elements:[ELEMENTS.sword],
 	hithuh: function(attacker, defender){
-		if(cells[attacker.x+2] && !board.cellHasSolidObject(attacker.x+2, attacker.y)){
+		if(cells[attacker.x+2] && !board.cellHasSolidObject(attacker.x+2, attacker.y) && defender.invis < 1){
 			attacker.x = attacker.x + 2;
 			this.hitbool = BN6WideSword.hithuh(attacker, defender);
 			attacker.x = attacker.x -2;
@@ -2469,31 +2422,27 @@ var BN6VarSword = {
 	code:["K", "V", "W"],
 	mb:28,
 	rank:"standard",
-	damage:160,
+	damage:80,
 	hits:1,
 	priority:1,
 	elements:[ELEMENTS.sword],
 	hithuh: function(attacker, defender){
-		if(BN6WideSword.hithuh(attacker, defender)){
-			return true;
-		}
-		this.xDirection = -1;
-		if(attacker.name === "one"){
-			this.xDirection = 1;
-		}
-		attacker.x = attacker.x + this.xDirection;
-		this.hitbool = BN6WideSword.hithuh(attacker, defender);
-		attacker.x = attacker.x - this.xDirection;
-		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){
-		if(defender.guard === null){
-			this.randVal = Math.floor(Math.random() * 100);
-			if(this.randVal < 50){
-				defender.hp = defender.hp + this.damage * this.hits;
+		if(defender.invis < 1){
+			if(BN6WideSword.hithuh(attacker, defender)){
+				return true;
 			}
+			this.xDirection = -1;
+			if(attacker.name === "one"){
+				this.xDirection = 1;
+			}
+			attacker.x = attacker.x + this.xDirection;
+			this.hitbool = BN6WideSword.hithuh(attacker, defender);
+			attacker.x = attacker.x - this.xDirection;
+			return this.hitbool;
 		}
+		return false;
 	},
+	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
 }
 
@@ -2504,21 +2453,14 @@ var BN6NeoVarSword = {
 	code:["N"],
 	mb:52,
 	rank:"standard",
-	damage:220,
+	damage:110,
 	hits:2,
 	priority:1,
 	elements:[ELEMENTS.sword],
 	hithuh: function(attacker, defender){
 		return BN6VarSword.hithuh(attacker, defender);
 	},
-	effecthit: function(attacker, defender){
-		if(defender.guard === null){
-			this.randVal = Math.floor(Math.random() * 100);
-			if(this.randVal < 50){
-				defender.hp = defender.hp + this.damage * this.hits;
-			}
-		}
-	},
+	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
 }
 
@@ -2584,15 +2526,15 @@ var BN6MachineSword = {
 			if(this.x > 5 || this.x < 0){
 				return false;
 			}
-			if(!board.cellHasSolidObject(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+			if(board.isCellPlayerValid(this.x, this.y)){
 				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
 			}
 			this.y = this.y-1;
-			if(cells[this.x][this.y] && !board.cellHasSolidObject(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+			if(board.isCellPlayerValid(this.x, this.y)){
 				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
 			}
 			this.y = this.y+2;
-			if(cells[this.x][this.y] && !board.cellHasSolidObject(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+			if(board.isCellPlayerValid(this.x, this.y)){
 				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
 			}
 		}
@@ -2634,15 +2576,15 @@ var BN6ElementSword = {
 			if(this.x > 5 || this.x < 0){
 				return false;
 			}
-			if(!board.cellHasSolidObject(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+			if(board.isCellPlayerValid(this.x, this.y)){
 				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
 			}
 			this.y = this.y-1;
-			if(cells[this.x][this.y] && !board.cellHasSolidObject(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+			if(board.isCellPlayerValid(this.x, this.y)){
 				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
 			}
 			this.y = this.y+2;
-			if(cells[this.x][this.y] && !board.cellHasSolidObject(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+			if(board.isCellPlayerValid(this.x, this.y)){
 				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
 			}
 		}
@@ -2686,10 +2628,8 @@ var BN6CrackShoot = {
 		if(attacker.name === "one"){
 			this.xDirection = 1;
 		}
-		if(cells[attacker.x+this.xDirection] && cells[attacker.x+this.xDirection][attacker.y]){
-			if(cells[attacker.x+this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE && !board.cellHasSolidObject(attacker.x+this.xDirection, attacker.y)){
-				return BN6Cannon.hithuh(attacker, defender);
-			}
+		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y) && cells[attacker.x+this.xDirection][attacker.y].player === null){
+			return BN6Cannon.hithuh(attacker, defender);
 		}
 		return false;
 	},
@@ -2701,10 +2641,8 @@ var BN6CrackShoot = {
 		if(attacker.name === "one"){
 			this.xDirection = 1;
 		}
-		if(cells[attacker.x+this.xDirection] && cells[attacker.x+this.xDirection][attacker.y]){
-			if(cells[attacker.x+this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE && !board.cellHasSolidObject(attacker.x+this.xDirection, attacker.y) && cells[attacker.x+this.xDirection][attacker.y].player === null){
-				cells[attacker.x+this.xDirection][attacker.y].panelType = PANELTYPE.HOLE;
-			}
+		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y) && cells[attacker.x+this.xDirection][attacker.y].player === null){
+			board.convertPanel(attacker.x+this.xDirection, attacker.y, PANELTYPE.BROKEN);
 		}
 	}
 }

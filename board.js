@@ -1,6 +1,6 @@
 SIDE = {
-	LEFT: red_tile,
-	RIGHT: blue_tile,
+	LEFT: 'red',
+	RIGHT: 'blue',
 }
 
 PANELTYPE = {
@@ -11,8 +11,9 @@ PANELTYPE = {
 	CRACKED: "cracked",
 	ICE: "ice",
 	HOLY: "holy",
+	BROKEN: "broken",
 }
-var paneltypes = [PANELTYPE.NORMAL, PANELTYPE.HOLE, PANELTYPE.GRASS, PANELTYPE.POISON, PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY];
+var paneltypes = [PANELTYPE.NORMAL, PANELTYPE.HOLE, PANELTYPE.GRASS, PANELTYPE.POISON, PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY, PANELTYPE.BROKEN];
 
 ACTIONS = {
 	NONE: 0,
@@ -121,6 +122,13 @@ function Board(width,height,canvas){
 		playerTwo.y = 1;
 		cells[1][1].player = playerOne;
 		cells[4][1].player = playerTwo;
+		cells[5][1].panelType = PANELTYPE.POISON;
+		cells[5][0].panelType = PANELTYPE.ICE;
+		cells[5][2].panelType = PANELTYPE.GRASS;
+		cells[2][0].panelType = PANELTYPE.HOLE;
+		cells[2][1].panelType = PANELTYPE.CRACKED;
+		cells[2][2].panelType = PANELTYPE.BROKEN;
+		cells[3][0].panelType = PANELTYPE.HOLY;
 		player = playerOne;
 		$.post("save.php",{id:"confirmone", state: JSON.stringify(false)});
 		$.post("save.php",{id:"confirmtwo", state: JSON.stringify(false)});
@@ -129,7 +137,13 @@ function Board(width,height,canvas){
 	this.drawCell = function(x,y){
 		var left = x*cellWidth;
 		var top = y*cellHeight + cheight;
-		ctx.drawImage(cells[x][y].side,left,top,cellWidth,cellHeight);
+		if(this.isOverlayPanel(cells[x][y].panelType)){
+			ctx.drawImage(document.getElementById(cells[x][y].side+PANELTYPE.NORMAL),left,top,cellWidth,cellHeight);
+			ctx.drawImage(document.getElementById(cells[x][y].panelType+"overlay"),left,top,cellWidth,cellHeight);
+		}
+		else{
+			ctx.drawImage(document.getElementById(cells[x][y].side+cells[x][y].panelType),left,top,cellWidth,cellHeight);
+		}
 		for(var i = 0; i < cells[x][y].object.length; i++){
 			ctx.drawImage(cells[x][y].object[i].image, left+4, top+4, cellWidth-8, cellHeight-4);
 		}
@@ -281,7 +295,6 @@ function Board(width,height,canvas){
 	}
 
 	this.resolveActions = function(attacker, defender){
-		
 		if(attacker.name === player.name){
 			document.getElementById("special").style.display='none';
 		}
@@ -396,6 +409,26 @@ function Board(width,height,canvas){
 		cells[defender.x][defender.y].object = [];
 	}
 
+	this.convertPanel = function(x, y, newPanel){
+		if(cells[x]){
+			if(cells[x][y]){
+				if(cells[x][y].panelType === PANELTYPE.HOLE){
+					return false;
+				}
+				if(cells[x][y].panelType === PANELTYPE.BROKEN && PANELTYPE.NORMAL === newPanel){
+					cells[x][y].panelType = PANELTYPE.NORMAL;
+					return true;
+				}
+				if(cells[x][y].panelType === PANELTYPE.BROKEN){
+					return false;
+				}
+				cells[x][y].panelType = newPanel;
+				return true;
+			}
+		}
+		return false;
+	}
+
 	this.cellHasSolidObject = function(x, y){
 		if(cells[x]){
 			if(cells[x][y]){
@@ -405,6 +438,43 @@ function Board(width,height,canvas){
 					}
 				}
 			}
+		}
+		return false;
+	}
+
+	this.isHole = function(x, y){
+		if(cells[x]){
+			if(cells[x][y]){
+				if(cells[x][y].panelType === PANELTYPE.HOLE){
+					return true;
+				}
+				if(cells[x][y].panelType === PANELTYPE.BROKEN){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	this.isCellPlayerValid = function(x, y){
+		if(cells[x]){
+			if(cells[x][y]){
+				if(this.isHole(x, y)){
+					return false;
+				}
+				if(this.cellHasSolidObject(x, y)){
+					return false;
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+
+	this.isOverlayPanel = function(panel){
+		var normalPanels = [PANELTYPE.GRASS, PANELTYPE.POISON, PANELTYPE.ICE, PANELTYPE.HOLY];
+		if(normalPanels.indexOf(panel) !== -1){
+			return true;
 		}
 		return false;
 	}
