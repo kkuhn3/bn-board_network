@@ -1970,7 +1970,7 @@ var BN6FlashBomb1 = {
 		if(cells[attacker.x + this.xDirection]){
 			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
 				if(!board.cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
-					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+1, attacker.y, attacker, defender, this.damage));
+					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
 				}
 			}
 		}
@@ -2000,7 +2000,7 @@ var BN6FlashBomb2 = {
 		if(cells[attacker.x + this.xDirection]){
 			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
 				if(!board.cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
-					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+1, attacker.y, attacker, defender, this.damage));
+					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
 				}
 			}
 		}
@@ -2060,7 +2060,10 @@ var BN6BlackBomb = {
 		if(cells[attacker.x + this.xDirection]){
 			if(cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.HOLE){
 				if(!board.cellHasSolidObject(attacker.x + this.xDirection, attacker.y)){
+					console.log(attacker.x+this.xDirection);
+					console.log(attacker.y);
 					cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6BlackBombObj(attacker.x+this.xDirection, attacker.y));
+					console.log(cells[attacker.x+this.xDirection][attacker.y].object);
 				}
 			}
 		}
@@ -2120,7 +2123,7 @@ var BN6GrassSeed = {
 				}
 				else{
 					for(var i = -1; i < 2; i++){
-						for(var j = -1; i < 2; j++){
+						for(var j = -1; j < 2; j++){
 							if(cells[i+this.x]){
 								if(cells[i+this.x][j+this.y]){
 									cells[i+this.x][j+this.y].panelType = PANELTYPE.GRASS;
@@ -2167,7 +2170,7 @@ var BN6IceSeed = {
 				}
 				else{
 					for(var i = -1; i < 2; i++){
-						for(var j = -1; i < 2; j++){
+						for(var j = -1; j < 2; j++){
 							if(cells[i+this.x]){
 								if(cells[i+this.x][j+this.y]){
 									cells[i+this.x][j+this.y].panelType = PANELTYPE.ICE;
@@ -2208,13 +2211,15 @@ var BN6PoisonSeed = {
 		this.x = attacker.x + this.xDirection;
 		this.y = attacker.y
 		if(cells[this.x]){
+			console.log("stuff!");
 			if(cells[this.x][this.y].panelType !== PANELTYPE.HOLE){
+				console.log("not a hole");
 				if(board.cellHasSolidObject(this.x, this.y)){
 					cells[this.x][this.y] = PANELTYPE.POISON;
 				}
 				else{
 					for(var i = -1; i < 2; i++){
-						for(var j = -1; i < 2; j++){
+						for(var j = -1; j < 2; j++){
 							if(cells[i+this.x]){
 								if(cells[i+this.x][j+this.y]){
 									cells[i+this.x][j+this.y].panelType = PANELTYPE.POISON;
@@ -2472,9 +2477,13 @@ var BN6VarSword = {
 		if(BN6WideSword.hithuh(attacker, defender)){
 			return true;
 		}
-		attacker.x = attacker.x + 1;
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		attacker.x = attacker.x + this.xDirection;
 		this.hitbool = BN6WideSword.hithuh(attacker, defender);
-		attacker.x = attacker.x - 1;
+		attacker.x = attacker.x - this.xDirection;
 		return this.hitbool;
 	},
 	effecthit: function(attacker, defender){

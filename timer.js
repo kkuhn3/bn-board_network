@@ -107,6 +107,7 @@ function Timer(turncount,canvas){
 							playerTwo.invis = playerData.invis;
 							playerTwo.guard = playerData.guard;
 							playerTwo.stunned = playerData.stunned;
+							playerTwo.busterDamage = playerData.busterDamage;
 						}
 						else{
 							playerOne.hp = playerData.hp;
@@ -121,6 +122,7 @@ function Timer(turncount,canvas){
 							playerOne.invis = playerData.invis;
 							playerOne.guard = playerData.guard;
 							playerOne.stunned = playerData.stunned;
+							playerOne.busterDamage = playerData.busterDamage;
 						}
 						this.nextTurn();
 						this.draw();

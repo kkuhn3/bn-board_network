@@ -37,7 +37,7 @@ function BN6RockCube(x, y){
 			this.hp = this.hp - cardHitBy.damage * cardHitBy.hits;
 		}
 		if(this.hp < 1){
-			cells[this.x][this.y].object = null;
+			cells[this.x][this.y].object = [];
 			this.x = -1;
 			this.y = -1;
 		}
@@ -198,7 +198,7 @@ function BN6FlashBomb(x, y, attacker, defender, damage){
 			this.hp = this.hp - hitBy.card.damage;
 		}
 		if(this.hp < 1){
-			cells[this.x][this.y].object = null;
+			cells[this.x][this.y].object = [];
 			this.x = -1;
 			this.y = -1;
 		}
@@ -208,7 +208,7 @@ function BN6FlashBomb(x, y, attacker, defender, damage){
 			this.hp = this.hp - hitBy.busterDamage;
 		}
 		if(this.hp < 1){
-			cells[this.x][this.y].object = null;
+			cells[this.x][this.y].object = [];
 			this.x = -1;
 			this.y = -1;
 		}
@@ -218,9 +218,9 @@ function BN6FlashBomb(x, y, attacker, defender, damage){
 		this.countDown--;
 		if(this.countDown < 1){
 			defender.invis = 0;
-			defender.stun = 1;
+			defender.stunned = 1;
 			defender.hp = defender.hp - damage;
-			cells[this.x][this.y].object = null;
+			cells[this.x][this.y].object = [];
 			this.x = -1;
 			this.y = -1;
 		}
@@ -238,26 +238,27 @@ function BN6BlackBombObj(x, y){
 	this.effecthit = function(attacker){
 		var cardHitBy = attacker.card;
 		if(cardHitBy.elements.indexOf(ELEMENTS.fire)){
+			console.log("already hit");
 			for(var i = -1; i < 2; i++){
-				for(var j = -1; i < 2; j++){
+				for(var j = -1; j < 2; j++){
 					if(cells[i+this.x]){
 						if(cells[i+this.x][j+this.y]){
 							if(cells[i+this.x][j+this.y].player){
 								cells[i+this.x][j+this.y].player.hp = cells[i+this.x][j+this.y].player.hp - 250;
 							}
 							if(board.cellHasSolidObject(i, j)){
-								cells[i+this.x][j+this.y].object = null;
+								cells[i+this.x][j+this.y].object = [];
 							}
 						}
 					}
 				}
 			}
-			cells[this.x][this.y].object = null;
+			cells[this.x][this.y].object = [];
 			this.x = -1;
 			this.y = -1;
 		}
 		else if(cardHitBy.elements.indexOf(ELEMENTS.break)){
-			cells[this.x][this.y].object = null;
+			cells[this.x][this.y].object = [];
 			this.x = -1;
 			this.y = -1;
 		}

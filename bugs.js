@@ -16,7 +16,13 @@ function BusterBug(){
 
 function PathBug(){
 	this.id = "PathBug";
+	this.flipbool = true;
 	this.resolve = function(player){
-		cells[player.x][player.y].panelType = paneltypes[Math.floor(Math.random() * paneltypes.length)];
+		if(this.flipbool){
+			cells[player.x][player.y].panelType = PANELTYPE.POISON;
+		}
+		else{
+			cells[player.x][player.y].panelType = PANELTYPE.HOLY;
+		}
 	}
 }
