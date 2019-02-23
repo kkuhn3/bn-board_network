@@ -92,7 +92,8 @@ function Board(width,height,canvas){
 						currentSide:SIDE.LEFT,
 						sideTimer:0,
 						object:[],
-						panelType:PANELTYPE.NORMAL,
+						//panelType:PANELTYPE.NORMAL,
+						panelType: paneltypes[Math.floor(Math.random() * paneltypes.length)],
 						panelTimer:0,
 						player:null
 					};
@@ -103,7 +104,8 @@ function Board(width,height,canvas){
 						currentSide:SIDE.RIGHT,
 						sideTimer:0,
 						object:[],
-						panelType:PANELTYPE.NORMAL,
+						//panelType:PANELTYPE.NORMAL,
+						panelType: paneltypes[Math.floor(Math.random() * paneltypes.length)],
 						panelTimer:0,
 						player:null
 					};
@@ -122,13 +124,8 @@ function Board(width,height,canvas){
 		playerTwo.y = 1;
 		cells[1][1].player = playerOne;
 		cells[4][1].player = playerTwo;
-		cells[5][1].panelType = PANELTYPE.POISON;
-		cells[5][0].panelType = PANELTYPE.ICE;
-		cells[5][2].panelType = PANELTYPE.GRASS;
-		cells[2][0].panelType = PANELTYPE.HOLE;
-		cells[2][1].panelType = PANELTYPE.CRACKED;
-		cells[2][2].panelType = PANELTYPE.BROKEN;
-		cells[3][0].panelType = PANELTYPE.HOLY;
+		cells[1][1].panelType = PANELTYPE.NORMAL;
+		cells[4][1].panelType = PANELTYPE.NORMAL;
 		player = playerOne;
 		$.post("save.php",{id:"confirmone", state: JSON.stringify(false)});
 		$.post("save.php",{id:"confirmtwo", state: JSON.stringify(false)});

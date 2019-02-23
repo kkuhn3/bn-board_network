@@ -235,33 +235,39 @@ function BN6BlackBombObj(x, y){
 	this.damage = 250;
 	this.image = rock;
 	this.solid = true;
+	this.immune = true;
 	this.effecthit = function(attacker){
-		var cardHitBy = attacker.card;
-		if(cardHitBy.elements.indexOf(ELEMENTS.fire)){
-			console.log("already hit");
-			for(var i = -1; i < 2; i++){
-				for(var j = -1; j < 2; j++){
-					if(cells[i+this.x]){
-						if(cells[i+this.x][j+this.y]){
-							if(cells[i+this.x][j+this.y].player){
-								cells[i+this.x][j+this.y].player.hp = cells[i+this.x][j+this.y].player.hp - 250;
-							}
-							if(board.cellHasSolidObject(i, j)){
-								cells[i+this.x][j+this.y].object = [];
+		if(!this.immune){
+			var cardHitBy = attacker.card;
+			if(cardHitBy.elements.includes(ELEMENTS.fire)){
+				for(var i = -1; i < 2; i++){
+					for(var j = -1; j < 2; j++){
+						if(cells[i+this.x]){
+							if(cells[i+this.x][j+this.y]){
+								console.log(i+this.x);
+								console.log(j+this.y);
+								if(cells[i+this.x][j+this.y].player){
+									console.log(cells[i+this.x][j+this.y].player);
+									cells[i+this.x][j+this.y].player.hp = cells[i+this.x][j+this.y].player.hp - 250;
+								}
+								if(board.cellHasSolidObject(i, j)){
+									cells[i+this.x][j+this.y].object = [];
+								}
 							}
 						}
 					}
 				}
+				cells[this.x][this.y].object = [];
+				this.x = -1;
+				this.y = -1;
 			}
-			cells[this.x][this.y].object = [];
-			this.x = -1;
-			this.y = -1;
+			else if(cardHitBy.elements.includes(ELEMENTS.break)){
+				cells[this.x][this.y].object = [];
+				this.x = -1;
+				this.y = -1;
+			}
 		}
-		else if(cardHitBy.elements.indexOf(ELEMENTS.break)){
-			cells[this.x][this.y].object = [];
-			this.x = -1;
-			this.y = -1;
-		}
+		this.immune = false;
 	};
 	this.hitByBuster = function(player){}
 	this.passiveTriggered = false;

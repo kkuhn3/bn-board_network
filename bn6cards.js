@@ -2376,7 +2376,7 @@ var BN6WindRacket = {
 		}
 		if(defender.guard === null){
 			for(var i = 0; i < 4; i++){
-				this.xTile = defender.x + this.xDirection*i;
+				this.xTile = defender.x + this.xDirection;
 				this.yTile = defender.y;
 				if(board.isCellPlayerValid(this.xTile, this.yTile)){
 					cells[defender.x][defender.y].player = null;
