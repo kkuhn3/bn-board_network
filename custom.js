@@ -73,6 +73,49 @@ function Custom(canvas){
 			}
 		}
 	}
+	
+	this.buster = function(playerNum){
+		document.getElementById("nextturn").style.display='block';
+		if(playerNum === 1){
+			if(playerOne.action === ACTIONS.CARD){
+				playerOne.card = null;
+			}
+			playerOne.action = ACTIONS.BUSTER;
+		}
+		else if (playerNum === 2){
+			if(playerTwo.action === ACTIONS.CARD){
+				playerTwo.card = null;
+			}
+			playerTwo.action = ACTIONS.BUSTER;
+		}
+	}
+
+	this.card = function(playerNum){
+		document.getElementById("nextturn").style.display='block';
+		if(HAND.length === 0){
+			this.buster(playerNum);
+		}
+		else{
+			if(playerNum === 1){
+				if(playerOne.action !== ACTIONS.CARD){
+					playerOne.action = ACTIONS.CARD;
+					playerOne.card = HAND[0];
+				}
+			}
+			else if (playerNum === 2){
+				if(playerTwo.action !== ACTIONS.CARD){
+					playerTwo.action = ACTIONS.CARD;
+					playerTwo.card = HAND[0];
+				}
+			}
+		}
+	}
+	
+	this.nextTurn = function(){
+		if(player.action === ACTIONS.CARD){
+			HAND.shift();
+		}
+	}
 
 	this.mouseDown = function(e){}.bind(this);
 

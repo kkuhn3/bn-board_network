@@ -30,6 +30,27 @@ function Reflector(damage){
 	}
 }
 
+function ReflectMet(damage){
+	this.id = "ReflectMet";
+	this.damage = damage;
+	this.hithuh = function(attacker, defender){
+		if(attacker.invis < 1){
+			if(defender.name === "one"){
+				return attacker.y === defender.y && defender.x < attacker.x;
+			}
+			else{
+				return attacker.y === defender.y && defender.x > attacker.x;
+			}
+		}
+		return false;
+	}
+	this.onHit = function(attacker, defender){
+		if(this.hithuh(attacker, defender)){
+			attacker.hp = attacker.hp - this.damage;
+		}
+	}
+}
+
 function HoneyGuard(damage){
 	this.id = "HoneyGuard";
 	this.damage = damage;

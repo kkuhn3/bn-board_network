@@ -39,6 +39,7 @@ var playerOne = {
 	guard:null,
 	stunned: 0,
 	bubbled: 0,
+	frozen: 0,
 	busterDamage: busterDefualt,
 	bugs: [],
 	barrier: null, 
@@ -58,6 +59,7 @@ var playerTwo = {
 	guard:null,
 	stunned:0,
 	bubbled: 0,
+	frozen: 0,
 	busterDamage: busterDefualt,
 	bugs: [],
 	barrier: null,
@@ -179,11 +181,11 @@ function Board(width,height,canvas){
 		if(movementEnabled){
 			this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
 			this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
-			if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === playerOne){
+			if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === playerOne && this.playerCanMove(player)){
 				this.selected = 1;
 				cells[this.mouseCellX][this.mouseCellY].player = null;
 			}
-			else if(playerTwo.x === this.mouseCellX && playerTwo.y === this.mouseCellY && player === playerTwo){
+			else if(playerTwo.x === this.mouseCellX && playerTwo.y === this.mouseCellY && player === playerTwo && this.playerCanMove(player)){
 				this.selected = 2;
 				cells[this.mouseCellX][this.mouseCellY].player = null;
 			}
@@ -205,12 +207,12 @@ function Board(width,height,canvas){
 	this.mouseUp = function(e){
 		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
 		this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
-		if(this.selected === 1 && cells[this.mouseCellX][this.mouseCellY].side === SIDE.LEFT){
+		if(this.selected === 1 && this.isCellPlayerValid(this.mouseCellX, this.mouseCellY) && cells[this.mouseCellX][this.mouseCellY].side === SIDE.LEFT){
 			playerOne.x = this.mouseCellX;
 			playerOne.y = this.mouseCellY;
 			cells[this.mouseCellX][this.mouseCellY].player = playerOne;
 		}
-		else if (this.selected === 2 && cells[this.mouseCellX][this.mouseCellY].side === SIDE.RIGHT){
+		else if (this.selected === 2 && this.isCellPlayerValid(this.mouseCellX, this.mouseCellY) && cells[this.mouseCellX][this.mouseCellY].side === SIDE.RIGHT){
 			playerTwo.x = this.mouseCellX;
 			playerTwo.y = this.mouseCellY;
 			cells[this.mouseCellX][this.mouseCellY].player = playerTwo;
@@ -219,6 +221,19 @@ function Board(width,height,canvas){
 		this.draw();
 		this.selected = -1;
 	}.bind(this);
+	
+	this.playerCanMove = function(aPlayer){
+		if(aPlayer.stunned > 0){
+			return false;
+		}
+		if(aPlayer.frozen > 0){
+			return false;
+		}
+		if(aPlayer.bubbled > 0){
+			return false;
+		}
+		return true;
+	}
 
 	this.resolveTurn = function(){
 		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});
@@ -246,6 +261,7 @@ function Board(width,height,canvas){
 			this.resolve(playerOne, playerTwo);
 		}
 		this.resolveBugs();
+		this.resolvePanels();
 		this.resetPlayer(playerOne);
 		this.resetPlayer(playerTwo);
 		this.draw();
@@ -261,6 +277,15 @@ function Board(width,height,canvas){
 		}
 		for(var j = 0; j < playerTwo.bugs.length; j++){
 			playerTwo.bugs[j].resolve(playerTwo);
+		}
+	}
+	
+	this.resolvePanels = function(){
+		if(cells[playerOne.x][playerOne.y].panelType === PANELTYPE.POISON){
+			playerOne.hp = playerOne.hp - 50;
+		}
+		if(cells[playerTwo.x][playerTwo.y].panelType === PANELTYPE.POISON){
+			playerTwo.hp = playerTwo.hp - 50;
 		}
 	}
 	
@@ -289,6 +314,7 @@ function Board(width,height,canvas){
 		this.resolveObjects(attacker, defender);
 		attacker.stunned = attacker.stunned - 1;
 		attacker.bubbled = attacker.bubbled - 1;
+		attacker.frozen = attacker.frozen - 1;
 	}
 
 	this.resolveActions = function(attacker, defender){
@@ -322,18 +348,10 @@ function Board(width,height,canvas){
 					if(attacker.card.elements.includes(ELEMENTS.wind)){
 						defender.barrier = null;
 					}
-					attacker.card.effecthit(attacker, defender);
 					if(defender.guard === null){
-						if(defender.bubbled > 0 && attacker.card.element === ELEMENTS.elec){
-							defender.hp = defender.hp - this.calculateDamage(attacker, 2, 1);
-						}
-						if(cells[defender.x][defender.y].panelType === PANELTYPE.GRASS && attacker.card.element === ELEMENTS.fire){
-							cells[defender.x][defender.y].panelType = PANELTYPE.NORMAL;
-							defender.hp = defender.hp - this.calculateDamage(attacker, 2, 1);
-						} 
-						else{
-							defender.hp = defender.hp - this.calculateDamage(attacker, 1, 1);
-						}
+						this.oneHitmultiplier = this.calculateOneHitMultiplier(attacker, defender);
+						this.allHitmultiplier = this.calculateAllHitMultiplier(attacker, defender);
+						defender.hp = defender.hp - this.calculateDamage(attacker, this.oneHitmultiplier, this.allHitmultiplier);
 						defender.bubbled = 0;
 						console.log("it hit!");
 					}
@@ -341,6 +359,7 @@ function Board(width,height,canvas){
 						defender.guard.onHit(attacker, defender);
 						console.log("it was reflected!");
 					}
+					attacker.card.effecthit(attacker, defender);
 				}
 				else{
 					attacker.card.effectmiss(attacker, defender);
@@ -351,6 +370,30 @@ function Board(width,height,canvas){
 		else{
 			console.log("player " + attacker.name + " is Stunned!");
 		}
+	}
+	
+	this.calculateOneHitMultiplier = function(attacker, defender){
+		this.multiplier = 1.0;
+		if(attacker.card.elements.includes(ELEMENTS.fire) && cells[defender.x][defender.y].panelType === PANELTYPE.GRASS){
+			this.multiplier = this.multiplier*2;
+			this.convertPanel(defender.x, defender.y, PANELTYPE.NORMAL);
+		}
+		if(attacker.card.elements.includes(ELEMENTS.elec) && defender.bubbled > 0){
+			this.multiplier = this.multiplier*2;
+		}
+		if(attacker.card.elements.includes(ELEMENTS.break) && defender.frozen > 0){
+			this.multiplier = this.multiplier*2;
+			defender.frozen = 0;
+		}
+		return this.multiplier;
+	}
+	
+	this.calculateAllHitMultiplier = function(attacker, defender){
+		this.multiplier = 1.0;
+		if(cells[defender.x][defender.y].panelType === PANELTYPE.HOLY){
+			this.multiplier = this.multiplier * .5;
+		}
+		return this.multiplier;
 	}
 	
 	this.calculateDamage = function(attacker, oneHitMulti, allHitMulti){
@@ -429,7 +472,10 @@ function Board(width,height,canvas){
 	this.cellHasSolidObject = function(x, y){
 		if(cells[x]){
 			if(cells[x][y]){
-				for(var i=0; i < cells[x][y].length; i++){
+				for(var i=0; i < cells[x][y].object.length; i++){
+					if(x === 3 && y === 1){
+						console.log(cells[x][y].object[i].solid);
+					}
 					if(cells[x][y].object[i].solid){
 						return true;
 					}
@@ -502,45 +548,6 @@ function Board(width,height,canvas){
 		
 		document.getElementById("confirm").style.display='block';
 		playerSelected = true;
-	}
-
-	this.buster = function(playerNum){
-		document.getElementById("nextturn").style.display='block';
-		if(playerNum === 1){
-			if(playerOne.action === ACTIONS.CARD){
-				HAND.unshift(playerOne.card);
-				playerOne.card = null;
-			}
-			playerOne.action = ACTIONS.BUSTER;
-		}
-		else if (playerNum === 2){
-			if(playerTwo.action === ACTIONS.CARD){
-				HAND.unshift(playerTwo.card);
-				playerTwo.card = null;
-			}
-			playerTwo.action = ACTIONS.BUSTER;
-		}
-	}
-
-	this.card = function(playerNum){
-		document.getElementById("nextturn").style.display='block';
-		if(HAND.length === 0){
-			this.buster(playerNum);
-		}
-		else{
-			if(playerNum === 1){
-				if(playerOne.action !== ACTIONS.CARD){
-					playerOne.action = ACTIONS.CARD;
-					playerOne.card = HAND.shift();
-				}
-			}
-			else if (playerNum === 2){
-				if(playerTwo.action !== ACTIONS.CARD){
-					playerTwo.action = ACTIONS.CARD;
-					playerTwo.card = HAND.shift();
-				}
-			}
-		}
 	}
 
 	this.showRange = function(attacker, card){

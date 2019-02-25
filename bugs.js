@@ -19,10 +19,10 @@ function PathBug(){
 	this.flipbool = true;
 	this.resolve = function(player){
 		if(this.flipbool){
-			cells[player.x][player.y].panelType = PANELTYPE.POISON;
+			board.convertPanel(player.x, player.y, PANELTYPE.POISON);
 		}
 		else{
-			cells[player.x][player.y].panelType = PANELTYPE.HOLY;
+			board.convertPanel(player.x, player.y, PANELTYPE.HOLY);
 		}
 	}
 }

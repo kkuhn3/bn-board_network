@@ -2548,7 +2548,7 @@ var BN6MachineSword = {
 		this.hitbool = BN6WideSword.hithuh(attacker, defender);
 		attacker.x = this.tempX;
 		attacker.y = this.tempY;
-		return hitbool;
+		return this.hitbool;
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){}
@@ -2726,6 +2726,366 @@ var BN6TripleShoot = {
 	}
 }
 
+var BN6ReflectMet1 = {
+	id:"BN6ReflectMet1",
+	name:"ReflectMet1",
+	image:BN6ReflectMet1IMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	damage:60,
+	hits:1,
+	mb:7,
+	rank:"standard",
+	priority:1,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.guard = new ReflectMet(BN6ReflectMet1.damage);
+	}
+}
+
+var BN6ReflectMet2 = {
+	id:"BN6ReflectMet2",
+	name:"ReflectMet2",
+	image:BN6ReflectMet2IMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	damage:120,
+	hits:1,
+	mb:16,
+	rank:"standard",
+	priority:1,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.guard = new ReflectMet(BN6ReflectMet2.damage);
+	}
+}
+
+var BN6ReflectMet3 = {
+	id:"BN6ReflectMet3",
+	name:"ReflectMet3",
+	image:BN6ReflectMet3IMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	damage:200,
+	hits:1,
+	mb:25,
+	rank:"standard",
+	priority:1,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.guard = new ReflectMet(BN6ReflectMet3.damage);
+	}
+}
+
+var BN6WaveArm1 = {
+	id:"BN6WaveArm1",
+	name:"WaveArm1",
+	image:BN6WaveArm1IMG,
+	code:["E", "F", "G"],
+	damage:80,
+	hits:1,
+	mb:15,
+	rank:"standard",
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.xDirection = -1;
+			this.yDirection = 0;
+			this.target = playerOne;
+			if(attacker.name === "one"){
+				this.xDirection = 1;
+				this.target = playerTwo;
+			}
+			this.tempX = attacker.x + this.xDirection;
+			this.tempY = attacker.y;
+			while(this.tempX < 6 && this.tempX > -1){
+				if(board.isHole(this.tempX, this.tempY)){
+					return false;
+				}
+				if(this.tempX === defender.x && this.tempY === defender.y){
+					return true;
+				}
+				this.yDiff = this.target.y - this.tempY;
+				this.xDiff = this.target.x - this.tempX;
+				if(Math.abs(this.yDiff) >= Math.abs(this.xDiff) && Math.abs(this.yDiff) > 0){
+					this.yDirection = this.yDiff / Math.abs(this.yDiff);
+				}
+				this.tempX = this.tempX + this.xDirection;
+				this.tempY = this.tempY + this.yDirection;
+			}
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6WaveArm2 = {
+	id:"BN6WaveArm2",
+	name:"WaveArm2",
+	image:BN6WaveArm2IMG,
+	code:["L", "M", "N"],
+	damage:120,
+	hits:1,
+	mb:22,
+	rank:"standard",
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		WaveArm1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6WaveArm3 = {
+	id:"BN6WaveArm3",
+	name:"WaveArm3",
+	image:BN6WaveArm3IMG,
+	code:["R", "S", "T"],
+	damage:160,
+	hits:1,
+	mb:29,
+	rank:"standard",
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		WaveArm1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6SandWorm1 = {
+	id:"BN6SandWorm1",
+	name:"SandWorm1",
+	image:BN6SandWorm1IMG,
+	code:["A", "G", "L"],
+	damage:130,
+	hits:1,
+	mb:30,
+	rank:"standard",
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		this.hitbool = false;
+		if(defender.invis < 1){
+			if(attacker.name === "one"){
+				this.target = playerTwo;
+				if(this.target.x < 5){
+					this.tempX = attacker.x;
+					this.tempY = attacker.y;
+					attacker.x = this.target.x - 1;
+					attacker.y = this.target.y;
+					this.hitbool = BN6LongSword.hithuh(attacker, defender);
+					attacker.x = this.tempX;
+					attacker.y = this.tempY;
+				}
+			}
+			if(attacker.name === "two"){
+				this.target = playerOne;
+				if(this.target.x > -1){
+					this.tempX = attacker.x;
+					this.tempY = attacker.y;
+					attacker.x = this.target.x + 1;
+					attacker.y = this.target.y;
+					this.hitbool = BN6LongSword.hithuh(attacker, defender);
+					attacker.x = this.tempX;
+					attacker.y = this.tempY;
+				}
+			}
+		}
+		return this.hitbool;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6SandWorm2 = {
+	id:"BN6SandWorm2",
+	name:"SandWorm2",
+	image:BN6SandWorm2IMG,
+	code:["B", "R", "Y"],
+	damage:150,
+	hits:1,
+	mb:30,
+	rank:"standard",
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		SandWorm1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6SandWorm3 = {
+	id:"BN6SandWorm3",
+	name:"SandWorm3",
+	image:BN6SandWorm3IMG,
+	code:["H", "J", "S"],
+	damage:170,
+	hits:1,
+	mb:30,
+	rank:"standard",
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		SandWorm1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6SummonBlack1 = {
+	id:"BN6SummonBlack1",
+	name:"SummonBlack1",
+	image:BN6SummonBlack1IMG,
+	code:["E", "I", "P"],
+	damage:160,
+	hits:1,
+	mb:30,
+	rank:"standard",
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.target = playerOne;
+			this.xDirection = -1;
+			if(attacker.name === "one"){
+				this.target = playerTwo;
+				this.xDirection = 1;
+			}
+			if(board.isHole(attacker.x + this.xDirection, attacker.y)){
+				this.tempX = attacker.x;
+				this.tempY = attacker.y;
+				attacker.x = this.target.x - this.xDirection;
+				attacker.y = this.target.y;
+				this.hitbool = BN6WideSword.hithuh(attacker, defender);
+				attacker.x = this.tempX;
+				attacker.y = this.tempY;
+				return this.hitbool;
+			}
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6SummonBlack2 = {
+	id:"BN6SummonBlack2",
+	name:"SummonBlack2",
+	image:BN6SummonBlack2IMG,
+	code:["H", "O", "V"],
+	damage:200,
+	hits:1,
+	mb:40,
+	rank:"standard",
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6SummonBlack1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6SummonBlack3 = {
+	id:"BN6SummonBlack3",
+	name:"SummonBlack3",
+	image:BN6SummonBlack3IMG,
+	code:["W", "Y", "Z"],
+	damage:260,
+	hits:1,
+	mb:40,
+	rank:"standard",
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6SummonBlack1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6Snake = {
+	id:"BN6Snake",
+	name:"Snake",
+	image:BN6SnakeIMG,
+	code:["H", "M", "L"],
+	damage:30,
+	hits:1,
+	mb:34,
+	rank:"standard",
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.hits = 0;
+			this.xDirection = -1;
+			this.target = playerOne;
+			this.allySide = SIDE.RIGHT;
+			if(attacker.name === "one"){
+				this.xDirection = 1;
+				this.target = playerTwo;
+				this.allySide = SIDE.LEFT;
+			}
+			for(var i = 0; i < cells.length; i++){
+				for(var j = 0; j < cells[i].length; j++){
+					if(cells[i][j].side === this.allySide){
+						if(board.isHole(i, j)){
+							if(attacker.name == "one"){
+								if(i > attacker.x){
+									this.hits++;
+								}
+							}
+							else{
+								if(i < attacker.x){
+									this.hits++;
+								}
+							}
+						}
+					}
+				}
+			}
+			return defender.x === this.target.x && defender.y === this.target.y;
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6NumberBall = {
+	id:"BN6NumberBall",
+	name:"NumberBall",
+	image:BN6NumberBallIMG,
+	code:["N"],
+	damage:1,
+	hits:4,
+	mb:34,
+	rank:"standard",
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		this.damage = attacker.hp % 100;
+		return BN6Cannon.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -2741,7 +3101,9 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6WideBlade, BN6LongBlade, BN6FireSword, BN6AquaSword, BN6ElecSword, BN6WoodSword, 
 				BN6WindRacket, BN6Fumikomizan, BN6VarSword, BN6NeoVarSword, BN6Kunai, BN6Muramasa, 
 				BN6MachineSword, BN6ElementSword, BN6AssassinSword, BN6CrackShoot, BN6DoubleShoot, 
-				BN6TripleShoot];
+				BN6TripleShoot, BN6ReflectMet1, BN6ReflectMet2, BN6ReflectMet3, BN6WaveArm1, BN6WaveArm2, 
+				BN6WaveArm3, BN6SandWorm1, BN6SandWorm2, BN6SandWorm3, BN6SummonBlack1, BN6SummonBlack2, 
+				BN6SummonBlack3, BN6Snake, BN6NumberBall];
 
 function Bn6Cards(){
 

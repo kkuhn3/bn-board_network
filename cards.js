@@ -45,16 +45,16 @@ var CANNON1 = {
 	hithuh: function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
-				for(var i=1; i <= defender.x - attacker.x; i++){
-					if(board.cellHasSolidObject(attacker.x + i - 1, attacker.y)){
+				for(var i=0; i < defender.x - attacker.x; i++){
+					if(board.cellHasSolidObject(attacker.x + i, attacker.y)){
 						return false;
 					}
 				}
 				return attacker.y === defender.y && defender.x > attacker.x;
 			}
 			else{
-				for(var i=1; i <= attacker.x - defender.x; i++){
-					if(board.cellHasSolidObject(attacker.x - i + 1, attacker.y)){
+				for(var i=0; i < attacker.x - defender.x; i++){
+					if(board.cellHasSolidObject(attacker.x - i, attacker.y)){
 						return false;
 					}
 				}
@@ -189,7 +189,7 @@ var GUARD = {
 	image:guard,
 	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 	damage:50,
-	hits:0,
+	hits:1,
 	mb:0,
 	rank:"standard",
 	priority:1,
@@ -209,7 +209,7 @@ var INVIS = {
 	image:invis,
 	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 	damage:0,
-	hits:0,
+	hits:1,
 	mb:0,
 	rank:"standard",
 	priority:0,
@@ -410,7 +410,7 @@ function Cards(){
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
-		TEMPDECKLIST = [BN6WindRacket, BN6WindRacket, BN6WindRacket, BN6WindRacket, BN6WindRacket];
+		TEMPDECKLIST = [BN6SummonBlack3, BN6SummonBlack2, BN6SummonBlack1, BN6Snake, BN6NumberBall];
 	}
 
 	this.around = function(x, y, defender){
@@ -436,7 +436,7 @@ function Cards(){
 				return "(" + this.damageTxt + ")x" + aCard.hits;
 			}
 		}
-		else if(aCard.hits > 1){
+		else if(aCard.hits !== 1){
 			return this.damageTxt + "x" + aCard.hits;
 		}
 		return this.damageTxt;

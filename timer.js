@@ -77,6 +77,7 @@ function Timer(turncount,canvas){
 		document.getElementById("p2buster").disabled = false;
 		document.getElementById("p1card").disabled = false;
 		document.getElementById("p2card").disabled = false;
+		custom.nextTurn();
 		custom.drawHand();
 		movementEnabled = true;
 	}
