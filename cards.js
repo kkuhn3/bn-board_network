@@ -410,7 +410,7 @@ function Cards(){
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
-		TEMPDECKLIST = [BN6SummonBlack3, BN6SummonBlack2, BN6SummonBlack1, BN6Snake, BN6NumberBall];
+		TEMPDECKLIST = [BN6BurnScare3, BN6FirePunch2, BN6FirePunch3, BN6BurnScare1, BN6BurnScare2];
 	}
 
 	this.around = function(x, y, defender){

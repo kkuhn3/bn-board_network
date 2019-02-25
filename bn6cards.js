@@ -3086,6 +3086,167 @@ var BN6NumberBall = {
 	effectmiss: function(attacker, defender){}
 }
 
+var BN6FirePunch1 = {
+	id:"BN6FirePunch1",
+	name:"FirePunch1",
+	image:BN6FirePunch1IMG,
+	code:["D", "E", "F"],
+	damage:60,
+	hits:1,
+	mb:12,
+	rank:"standard",
+	priority:2,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.target = playerOne;
+			if(attacker.name === "one"){
+				this.target = playerTwo;
+			}
+			if(defender.x === playerTwo.x && defender.y === playerTwo.y){
+				if(Math.abs(attacker.x - defender.x) < 4){
+					return true;
+				}
+			}
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6FirePunch2 = {
+	id:"BN6FirePunch2",
+	name:"FirePunch2",
+	image:BN6FirePunch2IMG,
+	code:["R", "S", "T"],
+	damage:120,
+	hits:1,
+	mb:22,
+	rank:"standard",
+	priority:2,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		return BN6FirePunch1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6FirePunch3 = {
+	id:"BN6FirePunch3",
+	name:"FirePunch3",
+	image:BN6FirePunch3IMG,
+	code:["A", "B", "C"],
+	damage:180,
+	hits:1,
+	mb:32,
+	rank:"standard",
+	priority:2,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		return BN6FirePunch1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6BurnScare1 = {
+	id:"BN6BurnScare1",
+	name:"BurnScare1",
+	image:BN6BurnScare1IMG,
+	code:["H", "P", "V"],
+	damage:100,
+	hits:1,
+	mb:24,
+	rank:"standard",
+	priority:0,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.square1 = [cells[0][0], cells[0][1], cells[1][0], cells[1][1]];
+			this.square2 = [cells[0][1], cells[0][2], cells[1][1], cells[1][2]];
+			this.square3 = [cells[1][0], cells[1][1], cells[2][0], cells[2][1]];
+			this.square4 = [cells[1][1], cells[1][2], cells[2][1], cells[2][2]];
+			this.square5 = [cells[2][0], cells[2][1], cells[3][0], cells[3][1]];
+			this.square6 = [cells[2][1], cells[2][2], cells[3][1], cells[3][2]];
+			this.square7 = [cells[3][0], cells[3][1], cells[4][0], cells[4][1]];
+			this.square8 = [cells[3][1], cells[3][2], cells[4][1], cells[4][2]];
+			this.square9 = [cells[4][0], cells[4][1], cells[5][0], cells[5][1]];
+			this.square10 = [cells[4][1], cells[4][2], cells[5][1], cells[5][2]];
+
+			this.squareOrder = [this.square2, this.square4, this.square6, this.square8, this.square10,
+								this.square9, this.square7, this.square5, this.square3, this.square1];
+
+			this.targetSide = SIDE.LEFT;
+			this.targetPlayer = playerOne;
+			if(attacker.name === "one"){
+				this.targetSide = SIDE.RIGHT;
+				this.targetPlayer = playerTwo;
+			}
+
+			for(var i = 0; i < this.squareOrder.length; i++){
+				this.sideCorrect = true;
+				for(var j = 0; j < this.squareOrder[i].length; j++){
+					if(this.squareOrder[i][j].side !== this.targetSide){
+						this.sideCorrect = false;
+					}
+				}
+				if(this.sideCorrect){
+					this.isPlayerHit = false;
+					for(var j = 0; j < this.squareOrder[i].length; j++){
+						if(this.squareOrder[i][j].player === this.targetPlayer){
+							this.isPlayerHit = true;
+						}
+					}
+					if(this.isPlayerHit){
+						return this.squareOrder[i].includes(cells[defender.x][defender.y]);
+					}
+				}
+			}
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6BurnScare2 = {
+	id:"BN6BurnScare2",
+	name:"BurnScare2",
+	image:BN6BurnScare2IMG,
+	code:["D", "M", "T"],
+	damage:120,
+	hits:1,
+	mb:30,
+	rank:"standard",
+	priority:0,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		return BN6BurnScare1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6BurnScare3 = {
+	id:"BN6BurnScare3",
+	name:"BurnScare3",
+	image:BN6BurnScare3IMG,
+	code:["E", "O", "Z"],
+	damage:140,
+	hits:1,
+	mb:36,
+	rank:"standard",
+	priority:0,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		return BN6BurnScare1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -3103,7 +3264,8 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6MachineSword, BN6ElementSword, BN6AssassinSword, BN6CrackShoot, BN6DoubleShoot, 
 				BN6TripleShoot, BN6ReflectMet1, BN6ReflectMet2, BN6ReflectMet3, BN6WaveArm1, BN6WaveArm2, 
 				BN6WaveArm3, BN6SandWorm1, BN6SandWorm2, BN6SandWorm3, BN6SummonBlack1, BN6SummonBlack2, 
-				BN6SummonBlack3, BN6Snake, BN6NumberBall];
+				BN6SummonBlack3, BN6Snake, BN6NumberBall, BN6FirePunch1, BN6FirePunch2, BN6FirePunch3, 
+				BN6BurnScare1, BN6BurnScare2, BN6BurnScare3];
 
 function Bn6Cards(){
 

@@ -91,24 +91,24 @@ function Board(width,height,canvas){
 				if(x < 3){
 					cells[x][y]={
 						side:SIDE.LEFT,
-						currentSide:SIDE.LEFT,
-						sideTimer:0,
+						defaultside:SIDE.LEFT,
+						sideTimer:-1,
 						object:[],
 						//panelType:PANELTYPE.NORMAL,
 						panelType: paneltypes[Math.floor(Math.random() * paneltypes.length)],
-						panelTimer:0,
+						panelTimer:-1,
 						player:null
 					};
 				}
 				else{
 					cells[x][y]={
 						side:SIDE.RIGHT,
-						currentSide:SIDE.RIGHT,
-						sideTimer:0,
+						defaultside:SIDE.RIGHT,
+						sideTimer:-1,
 						object:[],
 						//panelType:PANELTYPE.NORMAL,
 						panelType: paneltypes[Math.floor(Math.random() * paneltypes.length)],
-						panelTimer:0,
+						panelTimer:-1,
 						player:null
 					};
 				}
@@ -287,6 +287,24 @@ function Board(width,height,canvas){
 		if(cells[playerTwo.x][playerTwo.y].panelType === PANELTYPE.POISON){
 			playerTwo.hp = playerTwo.hp - 50;
 		}
+		for(var i = 0; i < cells.length; i++){
+			for(var j = 0; j < cells[i].length; j++){
+				if(cells[i][j].sideTimer === 0){
+					cells[i][j].side = cells[i][j].defaultside;
+					cells[i][j].sideTimer = -1;
+				}
+				else if(cells[i][j].sideTimer > 0){
+					cells[i][j].sideTimer--;
+				}
+				if(cells[i][j].panelTimer === 0){
+					this.convertPanel(i, j, PANELTYPE.NORMAL);
+					cells[i][j].panelTimer = -1;
+				}
+				else if(cells[i][j].panelTimer > 0){
+					cells[i][j].panelTimer--;
+				}
+			}
+		}
 	}
 	
 	this.objectPassives = function(){
@@ -462,6 +480,9 @@ function Board(width,height,canvas){
 				if(cells[x][y].panelType === PANELTYPE.BROKEN){
 					return false;
 				}
+				if(newPanel === PANELTYPE.BROKEN){
+					cells[x][y].panelTimer = 3;
+				}
 				cells[x][y].panelType = newPanel;
 				return true;
 			}
@@ -569,11 +590,13 @@ function Board(width,height,canvas){
 				}
 			}
 		}
-		this.defender = playerOne;
+		fakeDefender.x = playerOne.x;
+		fakeDefender.y = playerOne.y;
 		if(attacker.name === "one"){
-			this.defender = playerTwo;
+			fakeDefender.x = playerTwo.x;
+			fakeDefender.y = playerTwo.y;
 		}
-		card.hithuh(attacker, this.defender);
+		card.hithuh(attacker, fakeDefender);
 	}
 
 	this.randomMovePlayer = function(player){
