@@ -909,7 +909,7 @@ var BN6Thunder = {
 	effectmiss: function(attacker, defender){
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
-			cells[attacker.x+1][attacker.y].object.push(new BN6ThunderBall(attacker.x+1, attacker.y, attacker, defender, 8));
+				cells[attacker.x+1][attacker.y].object.push(new BN6ThunderBall(attacker.x+1, attacker.y, attacker, defender, 8));
 			}
 		}
 		else{
@@ -3304,6 +3304,300 @@ var BN6Meteors = {
 	effectmiss: function(attacker, defender){}
 }
 
+var BN6AquaNeedle1 = {
+	id:"BN6AquaNeedle1",
+	name:"AquaNeedle1",
+	image:BN6AquaNeedle1IMG,
+	code:["C", "J", "P"],
+	damage:40,
+	hits:3,
+	mb:31,
+	rank:"standard",
+	priority:3,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.target = playerOne;
+			if(attacker.name === "one"){
+				this.target = playerTwo;
+			}
+			return defender.x === playerTwo.x && defender.y === playerTwo.y
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6AquaNeedle2 = {
+	id:"BN6AquaNeedle2",
+	name:"AquaNeedle2",
+	image:BN6AquaNeedle2IMG,
+	code:["F", "K", "T"],
+	damage:60,
+	hits:3,
+	mb:35,
+	rank:"standard",
+	priority:3,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		return BN6AquaNeedle1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6AquaNeedle3 = {
+	id:"BN6AquaNeedle3",
+	name:"AquaNeedle3",
+	image:BN6AquaNeedle3IMG,
+	code:["A", "L", "U"],
+	damage:80,
+	hits:3,
+	mb:39,
+	rank:"standard",
+	priority:3,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		return BN6AquaNeedle1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6BlizzardBall = {
+	id:"BN6BlizzardBall",
+	name:"BlizzardBall",
+	image:BN6BlizzardBallIMG,
+	code:["H", "N", "T"],
+	damage:150,
+	addDamage:0,
+	hits:1,
+	mb:76,
+	rank:"standard",
+	priority:0,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			if(attacker.name === "one"){
+				for(var i=0; i < defender.x - attacker.x; i++){
+					if(board.cellHasSolidObject(attacker.x + i, attacker.y)){
+						this.addDamage = this.addDamage + 150;
+					}
+				}
+				return attacker.y === defender.y && defender.x > attacker.x;
+			}
+			else{
+				for(var i=0; i < attacker.x - defender.x; i++){
+					if(board.cellHasSolidObject(attacker.x - i, attacker.y)){
+						this.addDamage = this.addDamage + 150;
+					}
+				}
+				return attacker.y === defender.y && defender.x < attacker.x;
+			}
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){
+		this.xEnd = defender.x;
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		this.xStart = attacker.x + this.xDirection;
+		for(var i = this.xStart; i !== xEnd; i = i + this.xDirection){
+			if(board.cellHasSolidObject(i, attacker.y)){
+				cells[i][attacker.y].object = [];
+			}
+		}
+	},
+	effectmiss: function(attacker, defender){
+		this.tempX = defender.x;
+		defender.x = -1;
+		if(attacker.name === "one"){
+			defender.x = 6;
+		}
+		BN6BlizzardBall.effecthit(attacker, defender);
+		defender.x = this.tempX;
+	}
+}
+
+var BN6KillerSensor1 = {
+	id:"BN6KillerSensor1",
+	name:"KillerSensor1",
+	image:BN6KillerSensor1IMG,
+	code:["J", "O", "W"],
+	mb:32,
+	rank:"standard",
+	damage:100,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.elec],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		if(attacker.name === "one"){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, BN6KillerSensor1.damage));
+			}
+		}
+		else{
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, BN6KillerSensor1.damage));
+			}
+		}
+	}
+}
+
+var BN6KillerSensor2 = {
+	id:"BN6KillerSensor2",
+	name:"KillerSensor2",
+	image:BN6KillerSensor2IMG,
+	code:["N", "U", "Y"],
+	mb:35,
+	rank:"standard",
+	damage:130,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.elec],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		if(attacker.name === "one"){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, BN6KillerSensor2.damage));
+			}
+		}
+		else{
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, BN6KillerSensor2.damage));
+			}
+		}
+	}
+}
+
+var BN6KillerSensor3 = {
+	id:"BN6KillerSensor3",
+	name:"KillerSensor3",
+	image:BN6KillerSensor3IMG,
+	code:["I", "K", "Q"],
+	mb:38,
+	rank:"standard",
+	damage:160,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.elec],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		if(attacker.name === "one"){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, BN6KillerSensor3.damage));
+			}
+		}
+		else{
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, BN6KillerSensor3.damage));
+			}
+		}
+	}
+}
+
+var BN6Boomerang = {
+	id:"BN6Boomerang",
+	name:"Boomerang",
+	image:BN6BoomerangIMG,
+	code:["J", "K", "T"],
+	mb:16,
+	rank:"standard",
+	damage:100,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.wood],
+	hithuh: function(attacker, defender){
+		if(defender.y === 0){
+			return true;
+		}
+		if(defender.y === 2){
+			return true;
+		}
+		this.xEnd = 0;
+		if(attacker.name === "one"){
+			this.xEnd = 5;
+		}
+		return defender.x === this.xEnd;
+	},
+	effecthit: function(attacker, defender){
+		BN6Boomerang.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		this.xEnd = 0;
+		if(attacker.name === "one"){
+			this.xEnd = 5;
+		}
+		for(var i = 0; i < cells.length; i++){
+			for(var j = 0; j < cells[i].length; j++){
+				if(i === this.xEnd){
+					board.convertPanel(i, j, PANELTYPE.GRASS);
+				}
+				else if(j === 0 || j === 2){
+					board.convertPanel(i, j, PANELTYPE.GRASS);
+				}
+			}
+		}
+	}
+}
+
+var BN6HiBoomerang = {
+	id:"BN6HiBoomerang",
+	name:"HiBoomerang",
+	image:BN6HiBoomerangIMG,
+	code:["B", "L", "V"],
+	mb:26,
+	rank:"standard",
+	damage:140,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.wood],
+	hithuh: function(attacker, defender){
+		BN6Boomerang.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6HiBoomerang.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		BN6Boomerang.effectmiss(attacker, defender);
+	}
+}
+
+var BN6MegaBoomerang = {
+	id:"BN6MegaBoomerang",
+	name:"MegaBoomerang",
+	image:BN6MegaBoomerangIMG,
+	code:["I", "M", "W"],
+	mb:36,
+	rank:"standard",
+	damage:170,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.wood],
+	hithuh: function(attacker, defender){
+		BN6Boomerang.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6MegaBoomerang.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		BN6Boomerang.effectmiss(attacker, defender);
+	}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -3322,7 +3616,9 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6TripleShoot, BN6ReflectMet1, BN6ReflectMet2, BN6ReflectMet3, BN6WaveArm1, BN6WaveArm2, 
 				BN6WaveArm3, BN6SandWorm1, BN6SandWorm2, BN6SandWorm3, BN6SummonBlack1, BN6SummonBlack2, 
 				BN6SummonBlack3, BN6Snake, BN6NumberBall, BN6FirePunch1, BN6FirePunch2, BN6FirePunch3, 
-				BN6BurnScare1, BN6BurnScare2, BN6BurnScare3, BN6Meteors];
+				BN6BurnScare1, BN6BurnScare2, BN6BurnScare3, BN6Meteors, BN6AquaNeedle1, BN6AquaNeedle2, 
+				BN6AquaNeedle3, BN6BlizzardBall, BN6KillerSensor1, BN6KillerSensor2, BN6KillerSensor3, 
+				BN6Boomerang, BN6HiBoomerang, BN6MegaBoomerang];
 
 function Bn6Cards(){
 

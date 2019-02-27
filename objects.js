@@ -44,9 +44,14 @@ function BN6RockCube(x, y){
 	};
 	this.hitByBuster = function(player){
 		this.hp = this.hp - player.busterDamage;
-	}
+		if(this.hp < 1){
+			cells[this.x][this.y].object = [];
+			this.x = -1;
+			this.y = -1;
+		}
+	};
 	this.passiveTriggered = false;
-	this.passive = function(){}
+	this.passive = function(){};
 	this.x = x;
 	this.y = y;
 }
@@ -57,7 +62,7 @@ function BN6ThunderBall(x, y, attacker, defender, hp){
 	this.image = thunderball;
 	this.solid = false;
 	this.effecthit = function(cardHitBy, direction){};
-	this.hitByBuster = function(player){}
+	this.hitByBuster = function(player){};
 	this.passiveTriggered = false;
 	this.passive = function(){
 		this.index = cells[this.x][this.y].object.indexOf(this);
@@ -97,7 +102,7 @@ function BN6ThunderBall(x, y, attacker, defender, hp){
 				BN6Thunder.effecthit(attacker, defender);
 			}
 		}
-	}
+	};
 	this.x = x;
 	this.y = y;
 }
@@ -113,9 +118,8 @@ function BN6HoneyBall(x, y, attacker, defender, damage){
 	if(attacker.name === "one"){
 		this.directionX = 1;
 	}
-	this.directionX
 	this.effecthit = function(cardHitBy, direction){};
-	this.hitByBuster = function(player){}
+	this.hitByBuster = function(player){};
 	this.passiveTriggered = false;
 	this.passive = function(){
 		this.index = cells[this.x][this.y].object.indexOf(this);
@@ -172,7 +176,7 @@ function BN6HoneyBall(x, y, attacker, defender, damage){
 				defender.hp = defender.hp - this.damage * 5;
 			}
 		}
-	}
+	};
 	this.x = x;
 	this.y = y;
 }
@@ -224,7 +228,7 @@ function BN6FlashBomb(x, y, attacker, defender, damage){
 			this.x = -1;
 			this.y = -1;
 		}
-	}
+	};
 	this.x = x;
 	this.y = y;
 }
@@ -269,9 +273,83 @@ function BN6BlackBombObj(x, y){
 		}
 		this.immune = false;
 	};
-	this.hitByBuster = function(player){}
+	this.hitByBuster = function(player){};
 	this.passiveTriggered = false;
 	this.passive = function(){}
+	this.x = x;
+	this.y = y;
+}
+
+function BN6KillerSensor(x, y, attacker, defender, damage){
+	this.id = "BN6KillerSensor";
+	this.image = rock;
+	this.solid = true;
+	this.hp = 1;
+	this.effecthit = function(hitBy){
+		if(hitBy.name === defender.name){
+			this.hp = this.hp - hitBy.card.damage;
+		}
+		if(this.hp < 1){
+			cells[this.x][this.y].object = [];
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		if(hitBy.name === defender.name){
+			this.hp = this.hp - hitBy.busterDamage;
+		}
+		if(this.hp < 1){
+			cells[this.x][this.y].object = [];
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		this.xLoc = this.x + this.xDirection;
+		this.yLoc = this.y;
+		while(this.xLoc > -1 && this.xLoc < 6 && this.yLoc < 3){
+			if(defender.x === this.xLoc && defender.y === this.yLoc){
+				defender.hp = defender.hp - damage;
+				defender.guard = null;
+				defender.invis = 0;
+				if(defender.frozen > 0 || defender.bubbled > 0){
+					defender.hp = defender.hp - damage;
+				}
+			}
+			this.xLoc = this.xLoc + this.xDirection;
+			this.yLoc = this.yLoc + 1;
+		}
+
+		this.xLoc = this.x + this.xDirection;
+		this.yLoc = this.y;
+		while(this.xLoc > -1 && this.xLoc < 6 && this.yLoc > -1){
+			if(defender.x === this.xLoc && defender.y === this.yLoc){
+				defender.hp = defender.hp - damage;
+				defender.guard = null;
+				defender.invis = 0;
+				if(defender.frozen > 0 || defender.bubbled > 0){
+					defender.hp = defender.hp - damage;
+				}
+			}
+			this.xLoc = this.xLoc + this.xDirection;
+			this.yLoc = this.yLoc - 1;
+		}
+
+		if(defender.y === this.y){
+			defender.hp = defender.hp - damage;
+			defender.guard = null;
+			defender.invis = 0;
+			if(defender.frozen > 0 || defender.bubbled > 0){
+				defender.hp = defender.hp - damage;
+			}
+		}
+	};
 	this.x = x;
 	this.y = y;
 }
