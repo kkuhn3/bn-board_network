@@ -3247,6 +3247,63 @@ var BN6BurnScare3 = {
 	effectmiss: function(attacker, defender){}
 }
 
+var BN6Meteors = {
+	id:"BN6Meteors",
+	name:"Meteors",
+	image:BN6MeteorsIMG,
+	code:["R"],
+	damage:40,
+	hits:1,
+	mb:73,
+	rank:"standard",
+	priority:0,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		this.hits = 0;
+		this.hitbool = false;
+		if(defender.invis < 1){
+			this.targetSide = SIDE.LEFT;
+			this.xDirection = 1;
+			this.xStart = 0;
+			this.xEnd = 5;
+			if(attacker.name == "one"){
+				this.targetSide = SIDE.RIGHT;
+				this.xDirection = -1;
+				this.xStart = 5;
+				this.xEnd = 0;
+			}
+			this.x = this.xStart;
+			var i = 0;
+			this.y = 0;
+			while(i < 30){
+				if(cells[this.x][this.y].side === this.targetSide){
+					i++;
+					if(defender.x === this.x && defender.y === this.y){
+						this.hits++;
+						this.hitbool = true;
+					}
+				}
+				this.y++;
+				if(this.y > 2){
+					this.y = 0;
+					if(this.x === this.xEnd){
+						this.x = this.xStart;
+					}
+					else{
+						this.x = this.x + this.xDirection;
+					}
+				}
+			}
+		}
+		if(this.hits === 0){
+			this.hits = 1;
+		}
+		return this.hitbool;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -3265,7 +3322,7 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6TripleShoot, BN6ReflectMet1, BN6ReflectMet2, BN6ReflectMet3, BN6WaveArm1, BN6WaveArm2, 
 				BN6WaveArm3, BN6SandWorm1, BN6SandWorm2, BN6SandWorm3, BN6SummonBlack1, BN6SummonBlack2, 
 				BN6SummonBlack3, BN6Snake, BN6NumberBall, BN6FirePunch1, BN6FirePunch2, BN6FirePunch3, 
-				BN6BurnScare1, BN6BurnScare2, BN6BurnScare3];
+				BN6BurnScare1, BN6BurnScare2, BN6BurnScare3, BN6Meteors];
 
 function Bn6Cards(){
 
