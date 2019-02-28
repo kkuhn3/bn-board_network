@@ -3566,7 +3566,7 @@ var BN6HiBoomerang = {
 	priority:2,
 	elements:[ELEMENTS.wood],
 	hithuh: function(attacker, defender){
-		BN6Boomerang.hithuh(attacker, defender);
+		return BN6Boomerang.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
 		BN6HiBoomerang.effectmiss(attacker, defender);
@@ -3588,13 +3588,502 @@ var BN6MegaBoomerang = {
 	priority:2,
 	elements:[ELEMENTS.wood],
 	hithuh: function(attacker, defender){
-		BN6Boomerang.hithuh(attacker, defender);
+		return BN6Boomerang.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
 		BN6MegaBoomerang.effectmiss(attacker, defender);
 	},
 	effectmiss: function(attacker, defender){
 		BN6Boomerang.effectmiss(attacker, defender);
+	}
+}
+
+var BN6Lance = {
+	id:"BN6Lance",
+	name:"Lance",
+	image:BN6LanceIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:42,
+	rank:"standard",
+	damage:150,
+	hits:1,
+	priority:1,
+	elements:[ELEMENTS.wood],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.lastCol = 0;
+			if(attacker.name === "one"){
+				this.lastCol = 5;
+			}
+			return defender.x === this.lastCol;
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){
+		this.nextCol = 1
+		if(attacker.name === "one"){
+			this.nextCol = 4;
+		}
+		if(board.isCellPlayerValid(this.nextCol, defender.y)){
+			cells[defender.x][defender.y].player = null;
+			defender.x = this.nextCol;
+			cells[defender.x][defender.y].player = defender;
+		}
+	},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6HeatDragon = {
+	id:"BN6HeatDragon",
+	name:"HeatDragon",
+	image:BN6HeatDragonIMG,
+	code:["G", "R", "T"],
+	mb:40,
+	rank:"standard",
+	damage:140,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.xDirection = -1;
+			this.target = playerOne;
+			if(attacker.name === "one"){
+				this.xDirection = 1;
+				this.target = playerTwo;
+			}
+			return defender.x === this.target.x || defender.x === this.target.x + this.xDirection;
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
+var BN6ElecDragon = {
+	id:"BN6ElecDragon",
+	name:"ElecDragon",
+	image:BN6ElecDragonIMG,
+	code:["A", "L", "V"],
+	mb:40,
+	rank:"standard",
+	damage:150,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.elec],
+	hithuh: function(attacker, defender){
+		return BN6HeatDragon.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6ElecDragon.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		var fakeDefender = {
+			x: -1,
+			y: -1,
+			invis: 0,
+			guard: null
+		};
+		for(var i = 0; i < cells.length; i++){
+			for(var j = 0; j < cells.length; j++){
+				fakeDefender.x = i;
+				fakeDefender.y = j;
+				if(BN6ElecDragon.hithuh(attacker, fakeDefender)){
+					board.convertPanel(i, j, PANELTYPE.CRACKED);
+				}
+			}
+		}
+	}
+}
+
+var BN6AquaDragon = {
+	id:"BN6AquaDragon",
+	name:"AquaDragon",
+	image:BN6AquaDragonIMG,
+	code:["H", "P", "S"],
+	mb:44,
+	rank:"standard",
+	damage:120,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		return BN6HeatDragon.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6AquaDragon.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		var fakeDefender = {
+			x: -1,
+			y: -1,
+			invis: 0,
+			guard: null
+		};
+		for(var i = 0; i < cells.length; i++){
+			for(var j = 0; j < cells.length; j++){
+				fakeDefender.x = i;
+				fakeDefender.y = j;
+				if(BN6AquaDragon.hithuh(attacker, fakeDefender)){
+					board.convertPanel(i, j, PANELTYPE.ICE);
+				}
+			}
+		}
+	}
+}
+
+var BN6WoodDragon = {
+	id:"BN6WoodDragon",
+	name:"WoodDragon",
+	image:BN6WoodDragonIMG,
+	code:["G", "T", "V"],
+	mb:48,
+	rank:"standard",
+	damage:130,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.wood],
+	hithuh: function(attacker, defender){
+		return BN6HeatDragon.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6WoodDragon.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		var fakeDefender = {
+			x: -1,
+			y: -1,
+			invis: 0,
+			guard: null
+		};
+		for(var i = 0; i < cells.length; i++){
+			for(var j = 0; j < cells.length; j++){
+				fakeDefender.x = i;
+				fakeDefender.y = j;
+				if(BN6WoodDragon.hithuh(attacker, fakeDefender)){
+					board.convertPanel(i, j, PANELTYPE.WOOD);
+				}
+			}
+		}
+	}
+}
+
+var BN6GolemPunch1 = {
+	id:"BN6GolemPunch1",
+	name:"GolemPunch1",
+	image:BN6GolemPunch1IMG,
+	code:["I", "K", "Y"],
+	mb:17,
+	rank:"standard",
+	damage:140,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.break],
+	hithuh: function(attacker, defender){
+		this.affectedColumn = AREAGRAB.affectedColumn(attacker, defender);
+		return Math.abs(defender.y - attacker.y) < 2 && defender.x === this.affectedColumn;
+	},
+	effecthit: function(attacker, defender){
+		BN6GolemPunch1.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		var fakeDefender = {
+			x: -1,
+			y: -1,
+			invis: 0,
+			guard: null
+		};
+		for(var i = 0; i < cells.length; i++){
+			for(var j = 0; j < cells.length; j++){
+				fakeDefender.x = i;
+				fakeDefender.y = j;
+				if(BN6GolemPunch1.hithuh(attacker, fakeDefender)){
+					board.convertPanel(i, j, PANELTYPE.CRACKED);
+				}
+			}
+		}
+	}
+}
+
+var BN6GolemPunch2 = {
+	id:"BN6GolemPunch2",
+	name:"GolemPunch2",
+	image:BN6GolemPunch2IMG,
+	code:["D", "P", "U"],
+	mb:27,
+	rank:"standard",
+	damage:190,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.break],
+	hithuh: function(attacker, defender){
+		return BN6GolemPunch1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6GolemPunch1.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		BN6GolemPunch1.effectmiss(attacker, defender);
+	}
+}
+
+var BN6GolemPunch3 = {
+	id:"BN6GolemPunch3",
+	name:"GolemPunch3",
+	image:BN6GolemPunch3IMG,
+	code:["H", "M", "V"],
+	mb:37,
+	rank:"standard",
+	damage:250,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.break],
+	hithuh: function(attacker, defender){
+		return BN6GolemPunch1.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6GolemPunch1.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		BN6GolemPunch1.effectmiss(attacker, defender);
+	}
+}
+
+var BN6JusticeOne = {
+	id:"BN6JusticeOne",
+	name:"JusticeOne",
+	image:BN6JusticeOneIMG,
+	code:["J"],
+	mb:90,
+	rank:"standard",
+	damage:100,
+	addDamage:0,
+	hits:1,
+	priority:2,
+	elements:[ELEMENTS.break],
+	hithuh: function(attacker, defender){
+		this.addDamage = 0;
+		if(BN6MiniBomb.hithuh(attacker, defender)){
+			this.addDamage = 120;
+		}
+		return BN6BigBomb.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){
+		BN6JusticeOne.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		var fakeDefender = {
+			x: -1,
+			y: -1,
+			invis: 0,
+			guard: null
+		};
+		for(var i = 0; i < cells.length; i++){
+			for(var j = 0; j < cells.length; j++){
+				fakeDefender.x = i;
+				fakeDefender.y = j;
+				if(BN6BigBomb.hithuh(attacker, fakeDefender)){
+					board.convertPanel(i, j, PANELTYPE.CRACKED);
+				}
+			}
+		}
+	}
+}
+
+var BN6AirWheel1 = {
+	id:"BN6AirWheel1",
+	name:"AirWheel1",
+	image:BN6AirWheel1IMG,
+	code:["F", "G", "R"],
+	mb:22,
+	rank:"standard",
+	damage:50,
+	hits:2,
+	priority:2,
+	elements:[ELEMENTS.wind],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		this.tempX = attacker.x + this.xDirection;
+		if(board.isCellPlayerValid(this.tempX, attacker.y)){
+			this.locReached = false;
+			while(!this.locReached){
+				if(!board.isCellPlayerValid(this.tempX, attacker.y)){
+					this.locReached = true;
+				}
+				else{
+					this.tempX = this.tempX + this.xDirection;
+				}
+			}
+			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, BN6AirWheel1.damage, BN6AirWheel1.hits)];
+		}
+	}
+}
+
+var BN6AirWheel2 = {
+	id:"BN6AirWheel2",
+	name:"AirWheel2",
+	image:BN6AirWheel2IMG,
+	code:["A", "L", "T"],
+	mb:29,
+	rank:"standard",
+	damage:50,
+	hits:3,
+	priority:2,
+	elements:[ELEMENTS.wind],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		this.tempX = attacker.x + this.xDirection;
+		if(board.isCellPlayerValid(this.tempX, attacker.y)){
+			this.locReached = false;
+			while(!this.locReached){
+				if(!board.isCellPlayerValid(this.tempX, attacker.y)){
+					this.locReached = true;
+				}
+				else{
+					this.tempX = this.tempX + this.xDirection;
+				}
+			}
+			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, BN6AirWheel2.damage, BN6AirWheel2.hits)];
+		}
+	}
+}
+
+var BN6AirWheel3 = {
+	id:"BN6AirWheel3",
+	name:"AirWheel3",
+	image:BN6AirWheel3IMG,
+	code:["N", "O", "T"],
+	mb:36,
+	rank:"standard",
+	damage:50,
+	hits:4,
+	priority:2,
+	elements:[ELEMENTS.wind],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		this.tempX = attacker.x + this.xDirection;
+		if(board.isCellPlayerValid(this.tempX, attacker.y)){
+			this.locReached = false;
+			while(!this.locReached){
+				if(!board.isCellPlayerValid(this.tempX, attacker.y)){
+					this.locReached = true;
+				}
+				else{
+					this.tempX = this.tempX + this.xDirection;
+				}
+			}
+			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, BN6AirWheel3.damage, BN6AirWheel3.hits)];
+		}
+	}
+}
+
+var BN6Wind = {
+	id:"BN6Wind",
+	name:"Wind",
+	image:BN6WindIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:10,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.wind],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, 1)];
+		}
+	}
+}
+
+var BN6Fan = {
+	id:"BN6Fan",
+	name:"Fan",
+	image:BN6FanIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:10,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.wind],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, -1)];
+		}
+	}
+}
+
+var BN6Magnum = {
+	id:"BN6Magnum",
+	name:"Magnum",
+	image:BN6MagnumIMG,
+	code:["F", "L", "W"],
+	mb:31,
+	rank:"standard",
+	damage:130,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.cursor],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.target = playerOne;
+			if(attacker.name === "one"){
+				this.target = playerTwo;
+			}
+			if(defender.x === this.target.x){
+				return true;
+			}
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){
+		BN6Magnum.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		this.target = playerOne;
+		if(attacker.name === "one"){
+			this.target = playerTwo;
+		}
+		for(var j = 0; j < cells[this.target.x].length; j++){
+			board.convertPanel(this.target.x, j, PANELTYPE.BROKEN);
+		}
 	}
 }
 
@@ -3618,7 +4107,9 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6SummonBlack3, BN6Snake, BN6NumberBall, BN6FirePunch1, BN6FirePunch2, BN6FirePunch3, 
 				BN6BurnScare1, BN6BurnScare2, BN6BurnScare3, BN6Meteors, BN6AquaNeedle1, BN6AquaNeedle2, 
 				BN6AquaNeedle3, BN6BlizzardBall, BN6KillerSensor1, BN6KillerSensor2, BN6KillerSensor3, 
-				BN6Boomerang, BN6HiBoomerang, BN6MegaBoomerang];
+				BN6Boomerang, BN6HiBoomerang, BN6MegaBoomerang, BN6Lance, BN6HeatDragon, BN6ElecDragon, 
+				BN6AquaDragon, BN6WoodDragon, BN6GolemPunch1, BN6GolemPunch2, BN6GolemPunch3, BN6JusticeOne, 
+				BN6AirWheel1, BN6AirWheel2, BN6AirWheel3, BN6Wind, BN6Fan, BN6Magnum];
 
 function Bn6Cards(){
 

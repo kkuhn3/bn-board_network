@@ -473,15 +473,23 @@ function Board(width,height,canvas){
 				if(cells[x][y].panelType === PANELTYPE.HOLE){
 					return false;
 				}
-				if(cells[x][y].panelType === PANELTYPE.BROKEN && PANELTYPE.NORMAL === newPanel){
-					cells[x][y].panelType = PANELTYPE.NORMAL;
+				if(cells[x][y].panelType === PANELTYPE.BROKEN && (PANELTYPE.NORMAL === newPanel || PANELTYPE.HOLY === newPanel)){
+					cells[x][y].panelType = newPanel;
 					return true;
 				}
 				if(cells[x][y].panelType === PANELTYPE.BROKEN){
 					return false;
 				}
+				if(cells[x][y].panelType === PANELTYPE.CRACKED && newPanel === PANELTYPE.CRACKED){
+					newPanel = PANELTYPE.BROKEN;
+				}
 				if(newPanel === PANELTYPE.BROKEN){
-					cells[x][y].panelTimer = 3;
+					if(cells[x][y].player !== null || this.cellHasSolidObject(x, y)){
+						newPanel = PANELTYPE.CRACKED;
+					}
+					else{
+						cells[x][y].panelTimer = 3;
+					}
 				}
 				cells[x][y].panelType = newPanel;
 				return true;
