@@ -2,7 +2,7 @@
 function BN6RockCube(x, y){
 	this.id = "BN6RockCube";
 	this.hp = 200;
-	this.image = rock;
+	this.image = RockCubeCube;
 	this.solid = true;
 	this.effecthit = function(attacker){
 		var cardHitBy = attacker.card;
@@ -59,7 +59,7 @@ function BN6RockCube(x, y){
 function BN6ThunderBall(x, y, attacker, defender, hp){
 	this.id = "BN6Thunder";
 	this.hp = hp;
-	this.image = thunderball;
+	this.image = ThunderBall;
 	this.solid = false;
 	this.effecthit = function(cardHitBy, direction){};
 	this.hitByBuster = function(player){};
@@ -110,7 +110,7 @@ function BN6ThunderBall(x, y, attacker, defender, hp){
 function BN6HoneyBall(x, y, attacker, defender, damage){
 	this.id = "BN6HoneyBall";
 	this.damage = damage;
-	this.image = honeyball;
+	this.image = HoneyBall;
 	this.solid = false;
 	this.hp = 2;
 	this.directionX = -1;
@@ -194,7 +194,7 @@ function PlayerObject(){
 function BN6FlashBomb(x, y, attacker, defender, damage){
 	this.id = "BN6FlashBomb";
 	this.hp = 1;
-	this.image = rock;
+	this.image = FlashBang;
 	this.solid = true;
 	this.countDown = 2;
 	this.effecthit = function(hitBy){
@@ -237,7 +237,7 @@ function BN6FlashBomb(x, y, attacker, defender, damage){
 function BN6BlackBombObj(x, y){
 	this.id = "BN6BlackBombObj";
 	this.damage = 250;
-	this.image = rock;
+	this.image = BlackBombObj;
 	this.solid = true;
 	this.immune = true;
 	this.effecthit = function(attacker){
@@ -282,7 +282,7 @@ function BN6BlackBombObj(x, y){
 
 function BN6KillerSensor(x, y, attacker, defender, damage){
 	this.id = "BN6KillerSensor";
-	this.image = rock;
+	this.image = killereye;
 	this.solid = true;
 	this.hp = 1;
 	this.effecthit = function(hitBy){
@@ -352,7 +352,7 @@ function BN6KillerSensor(x, y, attacker, defender, damage){
 
 function BN6AirWheel(x, y, attacker, defender, damage, hits){
 	this.id = "BN6AirWheel";
-	this.image = rock;
+	this.image = Airspin;
 	this.solid = true;
 	this.turns = 2;
 	this.effecthit = function(hitBy){
@@ -383,7 +383,10 @@ function BN6AirWheel(x, y, attacker, defender, damage, hits){
 
 function BN6WindBox(x, y, attacker, defender, direction){
 	this.id = "BN6WindBox";
-	this.image = rock;
+	this.image = Windbox_blow;
+	if(direction === 1){
+		this.image = Windbox_suck;
+	}
 	this.solid = true;
 	this.effecthit = function(hitBy){
 		if(hitBy.name === defender.name){

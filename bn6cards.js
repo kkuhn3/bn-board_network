@@ -4087,6 +4087,44 @@ var BN6Magnum = {
 	}
 }
 
+var BN6CircGun = {
+	id:"BN6CircGun",
+	name:"CircGun",
+	image:BN6CircGunIMG,
+	code:["P", "T", "V"],
+	mb:35,
+	rank:"standard",
+	damage:150,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.cursor],
+	hithuh: function(attacker, defender){
+		if(defender.invis < 1){
+			this.target = playerOne;
+			this.targetsX = [2, 2, 2, 1, 0, 0, 0, 1];
+			this.targetsY = [0, 1, 2, 2, 2, 1, 0, 0];
+			if(attacker.name === "one"){
+				this.target = playerTwo;
+				this.targetsX = [3, 3, 3, 4, 5, 5, 5, 4];
+			}
+			
+			for(var i = 0; i < this.targetsX.length; i++){
+				if(this.target.x === this.targetsX[i] && this.target.y === this.targetsY[i]){
+					for(var j = 0; j < 4; j++){
+						this.ind = (i + j) % this.targetsX.length;
+						if(defender.x === this.targetsX[this.ind] && defender.y === this.targetsY[this.ind]){
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -4109,7 +4147,7 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6AquaNeedle3, BN6BlizzardBall, BN6KillerSensor1, BN6KillerSensor2, BN6KillerSensor3, 
 				BN6Boomerang, BN6HiBoomerang, BN6MegaBoomerang, BN6Lance, BN6HeatDragon, BN6ElecDragon, 
 				BN6AquaDragon, BN6WoodDragon, BN6GolemPunch1, BN6GolemPunch2, BN6GolemPunch3, BN6JusticeOne, 
-				BN6AirWheel1, BN6AirWheel2, BN6AirWheel3, BN6Wind, BN6Fan, BN6Magnum];
+				BN6AirWheel1, BN6AirWheel2, BN6AirWheel3, BN6Wind, BN6Fan, BN6Magnum, BN6CircGun];
 
 function Bn6Cards(){
 

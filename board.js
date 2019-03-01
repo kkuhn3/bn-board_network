@@ -144,7 +144,7 @@ function Board(width,height,canvas){
 			ctx.drawImage(document.getElementById(cells[x][y].side+cells[x][y].panelType),left,top,cellWidth,cellHeight);
 		}
 		for(var i = 0; i < cells[x][y].object.length; i++){
-			ctx.drawImage(cells[x][y].object[i].image, left+4, top+4, cellWidth-8, cellHeight-4);
+			ctx.drawImage(cells[x][y].object[i].image, left+cellWidth/8, top-cellHeight/2, 3*cellWidth/4, cellHeight*1.5);
 		}
 	}
 
