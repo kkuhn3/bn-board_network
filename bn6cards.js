@@ -4125,6 +4125,361 @@ var BN6CircGun = {
 	effectmiss: function(attacker, defender){}
 }
 
+var BN6RockCube = {
+	id:"BN6RockCube",
+	name:"RockCube",
+	image:BN6RockCubeIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:6,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6RockCubeObj(attacker.x + this.xDirection, attacker.y)];
+		}
+	}
+}
+
+var BN6LittleBoiler1 = {
+	id:"BN6LittleBoiler1",
+	name:"LittleBoiler1",
+	image:BN6LittleBoiler1IMG,
+	code:["F", "K", "L"],
+	mb:18,
+	rank:"standard",
+	damage:100,
+	hits:1,
+	priority:3,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		this.damage = 100;
+		this.hitbool = BN6MiniBomb.hithuh(attacker, defender);
+		if(this.hitbool){
+			this.damage = 50;
+		}
+		return this.hitbool;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage));
+		}
+	}
+}
+
+var BN6LittleBoiler2 = {
+	id:"BN6LittleBoiler2",
+	name:"LittleBoiler2",
+	image:BN6LittleBoiler2IMG,
+	code:["E", "M", "V"],
+	mb:23,
+	rank:"standard",
+	damage:140,
+	hits:1,
+	priority:3,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		this.damage = 140;
+		this.hitbool = BN6MiniBomb.hithuh(attacker, defender);
+		if(this.hitbool){
+			this.damage = 70;
+		}
+		return this.hitbool;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage));
+		}
+	}
+}
+
+var BN6LittleBoiler3 = {
+	id:"BN6LittleBoiler3",
+	name:"LittleBoiler3",
+	image:BN6LittleBoiler3IMG,
+	code:["G", "S", "Z"],
+	mb:23,
+	rank:"standard",
+	damage:180,
+	hits:1,
+	priority:3,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		this.damage = 180;
+		this.hitbool = BN6MiniBomb.hithuh(attacker, defender);
+		if(this.hitbool){
+			this.damage = 90;
+		}
+		return this.hitbool;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -3;
+		if(attacker.name == "one"){
+			this.xDirection = 3;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage));
+		}
+	}
+}
+
+var BN6AirRaid1 = {
+	id:"BN6AirRaid1",
+	name:"AirRaid1",
+	image:BN6AirRaid1IMG,
+	code:["G", "K", "R"],
+	mb:26,
+	rank:"standard",
+	damage:10,
+	hits:10,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AirRaid(attacker.x + this.xDirection, attacker.y, attacker, defender, this.hits)];
+		}
+	}
+}
+
+var BN6AirRaid2 = {
+	id:"BN6AirRaid2",
+	name:"AirRaid2",
+	image:BN6AirRaid2IMG,
+	code:["O", "T", "Y"],
+	mb:32,
+	rank:"standard",
+	damage:10,
+	hits:14,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AirRaid(attacker.x + this.xDirection, attacker.y, attacker, defender, this.hits)];
+		}
+	}
+}
+
+var BN6AirRaid3 = {
+	id:"BN6AirRaid3",
+	name:"AirRaid3",
+	image:BN6AirRaid3IMG,
+	code:["N", "U", "Z"],
+	mb:39,
+	rank:"standard",
+	damage:10,
+	hits:18,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AirRaid(attacker.x + this.xDirection, attacker.y, attacker, defender, this.hits)];
+		}
+	}
+}
+
+var BN6TimeBomb1 = {
+	id:"BN6TimeBomb1",
+	name:"TimeBomb1",
+	image:BN6TimeBomb1IMG,
+	code:["F", "G", "H"],
+	mb:20,
+	rank:"standard",
+	damage:150,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		this.targetSide = SIDE.LEFT;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+			this.targetSide = SIDE.RIGHT;
+		}
+		this.bombPlaced = false;
+		this.tempX = attacker.x + this.xDirection;
+		while(!this.bombPlaced){
+			if(cells[tempX]){
+				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
+					if(board.isCellPlayerValid(this.tempX, attacker.y)){
+						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage)];
+					}
+				}
+				this.tempX++
+			}
+			this.bombPlaced = true;
+		}
+	}
+}
+
+var BN6TimeBomb2 = {
+	id:"BN6TimeBomb2",
+	name:"TimeBomb2",
+	image:BN6TimeBomb2IMG,
+	code:["C", "D", "E"],
+	mb:30,
+	rank:"standard",
+	damage:190,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		this.targetSide = SIDE.LEFT;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+			this.targetSide = SIDE.RIGHT;
+		}
+		this.bombPlaced = false;
+		this.tempX = attacker.x + this.xDirection;
+		while(!this.bombPlaced){
+			if(cells[tempX]){
+				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
+					if(board.isCellPlayerValid(this.tempX, attacker.y)){
+						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage)];
+					}
+				}
+				this.tempX++
+			}
+			this.bombPlaced = true;
+		}
+	}
+}
+
+var BN6TimeBomb3 = {
+	id:"BN6TimeBomb3",
+	name:"TimeBomb3",
+	image:BN6TimeBomb3IMG,
+	code:["L", "M", "N"],
+	mb:37,
+	rank:"standard",
+	damage:230,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.fire],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.xDirection = -1;
+		this.targetSide = SIDE.LEFT;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+			this.targetSide = SIDE.RIGHT;
+		}
+		this.bombPlaced = false;
+		this.tempX = attacker.x + this.xDirection;
+		while(!this.bombPlaced){
+			if(cells[tempX]){
+				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
+					if(board.isCellPlayerValid(this.tempX, attacker.y)){
+						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage)];
+					}
+				}
+				this.tempX++
+			}
+			this.bombPlaced = true;
+		}
+	}
+}
+
+var BN6Mine = {
+	id:"BN6Mine",
+	name:"Mine",
+	image:BN6MineIMG,
+	code:["A", "S", "T"],
+	mb:28,
+	rank:"standard",
+	damage:200,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.targetSide = SIDE.LEFT;
+		if(attacker.name === "one"){
+			this.targetSide = SIDE.RIGHT;
+		}
+		this.count = 0;
+		this.target = -1;
+		if(defender.action === ACTIONS.CARD || defender.action === ACTIONS.SPECIAL){
+			this.target = CARDLIST.indexOf(defender.card);
+		}
+		if(this.target === -1){
+			this.target = CARDLIST.length+1;
+		}
+		this.tempX = attacker.x + this.xDirection;
+		while(this.count !== this.target){
+			for(var i = 0; i < cells.length; i++){
+				for(var j = 0; j < cells[i].length; j ++){
+					if(cells[i][j].side === this.targetSide && board.isCellPlayerValid(i, j)){
+						this.count++
+						if(this.count === this.target){
+							cells[i][j].object.push((new BN6MineObj(i, j, attacker, defender, this.damage));
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -4147,7 +4502,9 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6AquaNeedle3, BN6BlizzardBall, BN6KillerSensor1, BN6KillerSensor2, BN6KillerSensor3, 
 				BN6Boomerang, BN6HiBoomerang, BN6MegaBoomerang, BN6Lance, BN6HeatDragon, BN6ElecDragon, 
 				BN6AquaDragon, BN6WoodDragon, BN6GolemPunch1, BN6GolemPunch2, BN6GolemPunch3, BN6JusticeOne, 
-				BN6AirWheel1, BN6AirWheel2, BN6AirWheel3, BN6Wind, BN6Fan, BN6Magnum, BN6CircGun];
+				BN6AirWheel1, BN6AirWheel2, BN6AirWheel3, BN6Wind, BN6Fan, BN6Magnum, BN6CircGun, BN6RockCube, 
+				BN6LittleBoiler1, BN6LittleBoiler2, BN6LittleBoiler3, BN6AirRaid1, BN6AirRaid2, BN6AirRaid3, 
+				BN6TimeBomb1, BN6TimeBomb2, BN6TimeBomb3, BN6Mine];
 
 function Bn6Cards(){
 

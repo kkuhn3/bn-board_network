@@ -502,9 +502,6 @@ function Board(width,height,canvas){
 		if(cells[x]){
 			if(cells[x][y]){
 				for(var i=0; i < cells[x][y].object.length; i++){
-					if(x === 3 && y === 1){
-						console.log(cells[x][y].object[i].solid);
-					}
 					if(cells[x][y].object[i].solid){
 						return true;
 					}
@@ -535,6 +532,9 @@ function Board(width,height,canvas){
 					return false;
 				}
 				if(this.cellHasSolidObject(x, y)){
+					return false;
+				}
+				if(cells[x][y].player !== null){
 					return false;
 				}
 				return true;

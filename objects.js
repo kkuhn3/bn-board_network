@@ -1,5 +1,5 @@
 
-function BN6RockCube(x, y){
+function BN6RockCubeObj(x, y){
 	this.id = "BN6RockCube";
 	this.hp = 200;
 	this.image = RockCubeCube;
@@ -425,6 +425,144 @@ function BN6WindBox(x, y, attacker, defender, direction){
 			defender.x = this.tempX;
 			cells[defender.x][defender.y].player = defender;
 		}
+	};
+	this.x = x;
+	this.y = y;
+}
+
+function BN6LittleBoiler(x, y, damage){
+	this.id = "BN6LittleBoiler";
+	this.image = kettle;
+	this.solid = true;
+	this.turns = 4;
+	this.hp = 3;
+	this.effecthit = function(hitBy){
+		if(hp > 0){
+			damage = damage + hitBy.card.damage;
+			hp--;
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		if(hp > 0){
+			damage = damage + hitBy.busterDamage;
+			hp--;
+		}
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		this.turns--;
+		if(this.turns < 1){
+			if(playerOne.invis < 1){
+				if(cards.around(this.x, this.y, playerOne)){
+					playerOne.hp = playerOne.hp - damage*hits;
+				}
+			}
+			if(playerTwo.invis < 1){
+				if(cards.around(this.x, this.y, playerTwo)){
+					playerTwo.hp = playerTwo.hp - damage*hits;
+				}
+			}
+			cells[this.x][this.y].object = [];
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.x = x;
+	this.y = y;
+}
+
+function BN6AirRaid(x, y, attacker, defender, hits){
+	this.id = "BN6AirRaid";
+	this.damage = 10;
+	this.image = FighterPlane;
+	this.solid = true;
+	this.hp = 1;
+	this.effecthit = function(hitBy){
+		if(hitBy.name === defender.name){
+			hp--;
+			this.remove();
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		if(hitBy.name === defender.name){
+			hp--;
+			this.remove();
+		}
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		if(defender.invis < 1){
+			defender.hp = defender.hp - this.damage*hits;
+		}
+		this.remove();
+	};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	}
+	this.x = x;
+	this.y = y;
+}
+
+function BN6TimeBomb(x, y, attacker, defender, damage){
+	this.id = "BN6TimeBomb";
+	this.image = BlackBombObj;
+	this.solid = true;
+	this.turns = 3;
+	this.hp = 20;
+	this.effecthit = function(hitBy){
+		hp = hp - hitBy.card.damage;
+		if(hp < 1){
+			this.remove();
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		hp = hp - hitBy.busterDamage;
+		if(hp < 1){
+			this.remove();
+		}
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		this.turns--;
+		if(this.turns < 1){
+			if(defender.invis < 1){
+				if(cards.around(this.x, this.y, defender)){
+					defender.hp = defender.hp - damage;
+				}
+			}
+			this.remove();
+		}
+	};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	};
+	this.x = x;
+	this.y = y;
+}
+
+function BN6MineObj(x, y, attacker, defender, damage){
+	this.id = "BN6TimeBomb";
+	this.image = noObj;
+	this.solid = false;
+	this.effecthit = function(hitBy){};
+	this.hitByBuster = function(hitBy){};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		if(defender.invis < 1){
+			if(defender.x === this.x && defender.y === this.y){
+				defender.hp = defender.hp - damage;
+				this.remove();
+			}
+		}
+	};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
 	};
 	this.x = x;
 	this.y = y;
