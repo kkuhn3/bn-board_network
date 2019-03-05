@@ -22,7 +22,7 @@ ACTIONS = {
 	SPECIAL: 3,
 }
 
-var playerHP = 500;
+var playerHP = 1500;
 var busterDefualt = 10;
 var reflDefault = 50;
 
@@ -44,6 +44,10 @@ var playerOne = {
 	bugs: [],
 	barrier: null, 
 	bonusDamage: 0,
+	invincible: 0,
+	confused: 0,
+	timpanid: 0,
+	blinded: 0,
 };
 
 var playerTwo = {
@@ -64,6 +68,10 @@ var playerTwo = {
 	bugs: [],
 	barrier: null,
 	bonusDamage: 0,
+	invincible: 0,
+	confused: 0,
+	timpanid: 0,
+	blinded: 0,
 };
 
 var player = -1;
@@ -172,8 +180,12 @@ function Board(width,height,canvas){
 				this.drawCell(x,y);
 			}
 		}
-		this.drawPlayer(playerOne);
-		this.drawPlayer(playerTwo);
+		if(player.name === playerOne.name || playerTwo.blinded < 1){
+			this.drawPlayer(playerOne);
+		}
+		if(player.name === playerTwo.name || playerOne.blinded < 1){
+			this.drawPlayer(playerTwo);
+		}
 	}
 
 	this.mouseDown = function(e){
@@ -232,6 +244,9 @@ function Board(width,height,canvas){
 		if(aPlayer.bubbled > 0){
 			return false;
 		}
+		if(aPlayer.timpanid > 0){
+			return false;
+		}
 		return true;
 	}
 
@@ -241,6 +256,12 @@ function Board(width,height,canvas){
 		this.objectPassives();
 		this.p1priority = 2;
 		this.p2priority = 2;
+		if(playerOne.confused > 0 && this.generateRandomBoolean()){
+			playerOne.action = ACTIONS.BUSTER;
+		}
+		if(playerTwo.confused > 0 && this.generateRandomBoolean()){
+			playerTwo.action = ACTIONS.BUSTER;
+		}
 		if(playerOne.action === ACTIONS.CARD || playerOne.action === ACTIONS.SPECIAL){
 			this.p1priority = playerOne.card.priority;
 		}
@@ -271,6 +292,24 @@ function Board(width,height,canvas){
 		this.isGameOver();
 	}
 
+	this.generateRandomBoolean = function(){
+		this.sum = 0;
+		if(playerOne.ACTIONS === ACTIONS.CARD){
+			sum = sum + CARDLIST.indexOf(playerOne.card);
+		}
+		else{
+			sum = sum + CARDLIST.length+1;
+		}
+		if(playerTwo.ACTIONS === ACTIONS.CARD){
+			sum = sum + CARDLIST.indexOf(playerTwo.card);
+		}
+		else{
+			sum = sum + CARDLIST.length+2;
+		}
+		this.val = this.sum % 2;
+		return this.val === 1;
+	}
+
 	this.resolveBugs = function(){
 		for(var i = 0; i < playerOne.bugs.length; i++){
 			playerOne.bugs[i].resolve(playerOne);
@@ -290,8 +329,18 @@ function Board(width,height,canvas){
 		for(var i = 0; i < cells.length; i++){
 			for(var j = 0; j < cells[i].length; j++){
 				if(cells[i][j].sideTimer === 0){
-					cells[i][j].side = cells[i][j].defaultside;
-					cells[i][j].sideTimer = -1;
+					if(cells[i][j].defaultside === SIDE.LEFT){
+						if(playerTwo.x > i || playerTwo.y !== j){
+							cells[i][j].side = cells[i][j].defaultside;
+							cells[i][j].sideTimer = -1;
+						}
+					}
+					else if(cells[i][j].defaultside === SIDE.RIGHT){
+						if(playerOne.x < i || playerOne.y !== j){
+							cells[i][j].side = cells[i][j].defaultside;
+							cells[i][j].sideTimer = -1;
+						}
+					}
 				}
 				else if(cells[i][j].sideTimer > 0){
 					cells[i][j].sideTimer--;
@@ -369,7 +418,9 @@ function Board(width,height,canvas){
 					if(defender.guard === null){
 						this.oneHitmultiplier = this.calculateOneHitMultiplier(attacker, defender);
 						this.allHitmultiplier = this.calculateAllHitMultiplier(attacker, defender);
-						defender.hp = defender.hp - this.calculateDamage(attacker, this.oneHitmultiplier, this.allHitmultiplier);
+						if(defender.invincible < 1){
+							defender.hp = defender.hp - this.calculateDamage(attacker, this.oneHitmultiplier, this.allHitmultiplier);
+						}
 						defender.bubbled = 0;
 						console.log("it hit!");
 					}
@@ -488,7 +539,7 @@ function Board(width,height,canvas){
 						newPanel = PANELTYPE.CRACKED;
 					}
 					else{
-						cells[x][y].panelTimer = 3;
+						cells[x][y].panelTimer = timer.turncount;
 					}
 				}
 				cells[x][y].panelType = newPanel;
@@ -556,6 +607,10 @@ function Board(width,height,canvas){
 		player.card = null;
 		player.invis = player.invis - 1;
 		player.guard = null;
+		player.invincible = player.invincible - 1;
+		player.confused = player.confused - 1;
+		player.timpanid = player.timpanid - 1;
+		player.blinded = player.blinded - 1;
 	}
 
 	this.switchPlayer = function(){

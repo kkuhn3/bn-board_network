@@ -271,6 +271,7 @@ var AREAGRAB = {
 				for(var y=0;y<cells[x].length;y++){
 					if(x === this.column && !(playerTwo.x === x && playerTwo.y === y) && !board.cellHasSolidObject(x,y)){
 						cells[x][y].side = SIDE.LEFT;
+						cells[x][y].sideTimer = 12;
 					}
 				}
 			}
@@ -280,6 +281,7 @@ var AREAGRAB = {
 				for(var y=0;y<cells[x].length;y++){
 					if(x === this.column && !(playerOne.x === x && playerOne.y === y) && !board.cellHasSolidObject(x,y)){
 						cells[x][y].side = SIDE.RIGHT;
+						cells[x][y].sideTimer = 12;
 					}
 				}
 			}
@@ -410,7 +412,7 @@ function Cards(){
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
-		TEMPDECKLIST = [BN6AirWheel1, BN6AirWheel2, BN6AirWheel3, BN6Magnum, BN6CircGun];
+		//TEMPDECKLIST = [BN6AirWheel1, BN6AirWheel2, BN6AirWheel3, BN6Magnum, BN6CircGun];
 	}
 
 	this.around = function(x, y, defender){

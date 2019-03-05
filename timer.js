@@ -56,7 +56,7 @@ function Timer(turncount,canvas){
 
 	this.nextTurn = function(){
 		this.currentturn++;
-		if(this.currentturn > 3){
+		if(this.currentturn > turncount - 1){
 			this.currentturn = 0;
 			HAND = [];
 			customPick.openCustom();

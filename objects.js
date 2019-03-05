@@ -567,3 +567,197 @@ function BN6MineObj(x, y, attacker, defender, damage){
 	this.x = x;
 	this.y = y;
 }
+
+function BN6FanfareObj(x, y, attacker){
+	this.id = "BN6FanfareObj";
+	this.image = Trumpy_gold;
+	this.solid = true;
+	this.playing = false;
+	this.effecthit = function(hitBy){
+		if(hitBy.name !== attacker.name){
+			this.remove();
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		this.effecthit(hitBy);
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		if(this.playing){
+			attacker.invincible = 1;
+		}
+		this.playing = !this.playing;
+	};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	};
+	this.x = x;
+	this.y = y;
+}
+
+function BN6DiscordObj(x, y, attacker, defender){
+	this.id = "BN6DiscordObj";
+	this.image = Trumpy_blue;
+	this.solid = true;
+	this.playing = false;
+	this.effecthit = function(hitBy){
+		if(hitBy.name !== attacker.name){
+			this.remove();
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		this.effecthit(hitBy);
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		if(this.playing){
+			defender.confused = 1;
+		}
+		this.playing = !this.playing;
+	};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	};
+	this.x = x;
+	this.y = y;
+}
+
+function BN6TimpaniObj(x, y, attacker, defender){
+	this.id = "BN6TimpaniObj";
+	this.image = Trumpy_pink;
+	this.solid = true;
+	this.playing = false;
+	this.effecthit = function(hitBy){
+		if(hitBy.name !== attacker.name){
+			this.remove();
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		this.effecthit(hitBy);
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		if(this.playing){
+			defender.timpanid = 2;
+		}
+		this.playing = !this.playing;
+	};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	};
+	this.x = x;
+	this.y = y;
+}
+
+function BN6SilenceObj(x, y, attacker, defender){
+	this.id = "BN6SilenceObj";
+	this.image = Trumpy_silver;
+	this.solid = true;
+	this.playing = false;
+	this.effecthit = function(hitBy){
+		if(hitBy.name !== attacker.name){
+			this.remove();
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		this.effecthit(hitBy);
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		if(this.playing){
+			defender.blinded = 2;
+		}
+		this.playing = !this.playing;
+	};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	};
+	this.x = x;
+	this.y = y;
+}
+
+function BN6VDollObj(x, y, defender){
+	this.id = "BN6VDollObj";
+	this.image = VooDooDollObj;
+	this.solid = true;
+	this.effecthit = function(hitBy){
+		defender.hp = defender.hp - hitBy.card.damage;
+		this.remove();
+	};
+	this.hitByBuster = function(hitBy){
+		this.effecthit(hitBy);
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	};
+	this.x = x;
+	this.y = y;
+}
+
+function BN6GuardianObj(x, y){
+	this.id = "BN6GuardianObj";
+	this.image = BN6GuardianIMG;
+	this.solid = true;
+	this.effecthit = function(hitBy){
+		hitBy.hp = hitBy.hp - 200;
+		this.remove();
+	};
+	this.hitByBuster = function(hitBy){
+		this.effecthit(hitBy);
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	};
+	this.x = x;
+	this.y = y;
+}
+
+function BN6AnubisObj(x, y, defender){
+	this.id = "BN6AnubisObj";
+	this.image = BN6AnubisIMG;
+	this.solid = true;
+	this.hp = 100;
+	this.effecthit = function(hitBy){
+		if(hitBy.name === defender.name){
+			this.hp = this.hp - hitBy.card.damage;
+		}
+		if(this.hp < 1){
+			this.remove();
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		if(hitBy.name === defender.name){
+			this.hp = this.hp - hitBy.busterDamage;
+		}
+		if(this.hp < 1){
+			this.remove();
+		}
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		defender.hp = defender.hp - 100 / timer.turncount;
+	};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	};
+	this.x = x;
+	this.y = y;
+}
