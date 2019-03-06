@@ -13,10 +13,9 @@ function Timer(turncount,canvas){
 	this.initTimer = function(){
 		this.timercells=[];
 		for(var i=0;i<this.turncount;i++){
-			this.timercells[i] = TURNCELL.NOTSTARTED;
+			this.timercells[i] = TURNCELL.COMPLETE;
 		}
-		this.timercells[0] = TURNCELL.INPROGRESS;
-		this.currentturn = 0;
+		this.currentturn = turncount;
 	}
 
 	this.drawCell = function(x){
@@ -57,9 +56,11 @@ function Timer(turncount,canvas){
 	this.nextTurn = function(){
 		this.currentturn++;
 		if(this.currentturn > turncount - 1){
-			this.currentturn = 0;
+			this.currentturn = turncount;
 			HAND = [];
 			customPick.openCustom();
+			barriers.resetBubbleBarrier(playerOne);
+			barriers.resetBubbleBarrier(playerTwo);
 			document.getElementById("confirm").disabled = false;
 		}
 		for(var i=0;i<turncount;i++){
@@ -70,7 +71,9 @@ function Timer(turncount,canvas){
 				this.timercells[i] = TURNCELL.NOTSTARTED;
 			}
 		}
-		this.timercells[this.currentturn] = TURNCELL.INPROGRESS;
+		if(this.currentturn < this.turncount){
+			this.timercells[this.currentturn] = TURNCELL.INPROGRESS;
+		}
 		document.getElementById("nextturn").style.display='none';
 		document.getElementById("nextturn").disabled = false;
 		document.getElementById("p1buster").disabled = false;
@@ -125,9 +128,9 @@ function Timer(turncount,canvas){
 							playerOne.stunned = playerData.stunned;
 							playerOne.busterDamage = playerData.busterDamage;
 						}
+						board.resolveTurn();
 						this.nextTurn();
 						this.draw();
-						board.resolveTurn();
 					}.bind(this));
 					return true;
 				}

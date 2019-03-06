@@ -128,6 +128,7 @@ function CustomPick(canvas){
 			document.getElementById("p2buster").style.display='block';
 			document.getElementById("p2card").style.display='block';
 		}
+		timer.currentturn = 0;
 	}
 	
 	this.confirmTimeout = 0;

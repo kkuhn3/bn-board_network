@@ -70,14 +70,14 @@ var BN6AirShot = {
 	effecthit: function(attacker, defender){
 		if(defender.guard === null){
 			if(attacker.name === "one" && defender.x < 5){
-				if(isCellPlayerValid(defender.x+1, defender.y)){
+				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x+1;
 					cells[defender.x][defender.y].player = defender;
 				}
 			}
 			else if(defender.x > 0){
-				if(isCellPlayerValid(defender.x+1, defender.y)){
+				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x-1;
 					cells[defender.x][defender.y].player = defender;
@@ -1046,14 +1046,14 @@ var BN6ElecPulse2 = {
 		if(defender.guard === null){
 			defender.invis = 0;
 			if(attacker === "one"){
-				if(board.isCellPlayerValid(defender.x-1, defender.y)){
+				if(board.isCellThisPlayerValid(defender.x-1, defender.y, defender)){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x-1;
 					cells[defender.x][defender.y].player = defender;
 				}
 			}
 			else{
-				if(board.isCellPlayerValid(defender.x+1, defender.y)){
+				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x+1;
 					cells[defender.x][defender.y].player = defender;
@@ -2370,6 +2370,7 @@ var BN6WindRacket = {
 		return BN6WideSword.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){
+		defender.barrier = null;
 		this.xDirection = 1;
 		if(attacker.name === "two"){
 			this.xDirection = -1;
@@ -2378,7 +2379,7 @@ var BN6WindRacket = {
 			for(var i = 0; i < 4; i++){
 				this.xTile = defender.x + this.xDirection;
 				this.yTile = defender.y;
-				if(board.isCellPlayerValid(this.xTile, this.yTile)){
+				if(board.isCellThisPlayerValid(this.xTile, this.yTile, defender)){
 					cells[defender.x][defender.y].player = null;
 					cells[this.xTile][this.yTile].player = defender;
 					defender.x = this.xTile;
@@ -2628,7 +2629,7 @@ var BN6CrackShoot = {
 		if(attacker.name === "one"){
 			this.xDirection = 1;
 		}
-		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y) && cells[attacker.x+this.xDirection][attacker.y].player === null){
+		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y)){
 			return BN6Cannon.hithuh(attacker, defender);
 		}
 		return false;
@@ -2641,7 +2642,7 @@ var BN6CrackShoot = {
 		if(attacker.name === "one"){
 			this.xDirection = 1;
 		}
-		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y) && cells[attacker.x+this.xDirection][attacker.y].player === null){
+		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y)){
 			board.convertPanel(attacker.x+this.xDirection, attacker.y, PANELTYPE.BROKEN);
 		}
 	}
@@ -3624,7 +3625,7 @@ var BN6Lance = {
 		if(attacker.name === "one"){
 			this.nextCol = 4;
 		}
-		if(board.isCellPlayerValid(this.nextCol, defender.y)){
+		if(board.isCellThisPlayerValid(this.nextCol, defender.y, defender)){
 			cells[defender.x][defender.y].player = null;
 			defender.x = this.nextCol;
 			cells[defender.x][defender.y].player = defender;
@@ -4452,10 +4453,6 @@ var BN6Mine = {
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
-		this.targetSide = SIDE.LEFT;
-		if(attacker.name === "one"){
-			this.targetSide = SIDE.RIGHT;
-		}
 		this.count = 0;
 		this.target = -1;
 		if(defender.action === ACTIONS.CARD || defender.action === ACTIONS.SPECIAL){
@@ -4468,7 +4465,7 @@ var BN6Mine = {
 		while(this.count !== this.target){
 			for(var i = 0; i < cells.length; i++){
 				for(var j = 0; j < cells[i].length; j ++){
-					if(cells[i][j].side === this.targetSide && board.isCellPlayerValid(i, j)){
+					if(board.isCellThisPlayerValid(i, j, defender)){
 						this.count++
 						if(this.count === this.target){
 							cells[i][j].object.push(new BN6MineObj(i, j, attacker, defender, this.damage));
@@ -5108,6 +5105,321 @@ var BN6Sanctuary = {
 	}
 }
 
+var BN6ComingRoad = {
+	id:"BN6ComingRoad",
+	name:"ComingRoad",
+	image:BN6ComingRoadIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:21,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.convertToPanel = PANELTYPE.RIGHT;
+		this.targetSide = SIDE.LEFT;
+		if(attacker.name == "one"){
+			this.convertToPanel = PANELTYPE.LEFT;
+			this.targetSide = SIDE.RIGHT;
+		}
+		for(var i = 0; i < cells.length; i ++){
+			if(cells[i][attacker.y].side === this.targetSide ){
+				board.convertPanel(i, attacker.y, this.convertToPanel);
+			}
+		}
+	}
+}
+
+var BN6GoingRoad = {
+	id:"BN6GoingRoad",
+	name:"GoingRoad",
+	image:BN6GoingRoadIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:21,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		this.convertToPanel = PANELTYPE.LEFT;
+		this.targetSide = SIDE.LEFT;
+		if(attacker.name == "one"){
+			this.convertToPanel = PANELTYPE.RIGHT;
+			this.targetSide = SIDE.RIGHT;
+		}
+		for(var i = 0; i < cells.length; i ++){
+			if(cells[i][attacker.y].side === this.targetSide ){
+				board.convertPanel(i, attacker.y, this.convertToPanel);
+			}
+		}
+	}
+}
+
+var BN6Slowgauge = {
+	id:"BN6Slowgauge",
+	name:"Slowgauge",
+	image:BN6SlowgaugeIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:42,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		timer.turncount = timer.turncount + 2;
+		if(timer.turncount > 9){
+			timer.turncount = 9;
+		}
+	}
+}
+
+var BN6Fastgauge = {
+	id:"BN6Fastgauge",
+	name:"Fastgauge",
+	image:BN6FastgaugeIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:48,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		timer.turncount = timer.turncount - 2;
+		if(timer.turncount < 3){
+			timer.turncount = 3;
+		}
+	}
+}
+
+var BN6Fullcust = {
+	id:"BN6Fullcust",
+	name:"Fullcust",
+	image:BN6FullcustIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:50,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		timer.currentturn = timer.turncount;
+	}
+}
+
+var BN6BusterUp = {
+	id:"BN6BusterUp",
+	name:"BusterUp",
+	image:BN6BusterUpIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:11,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.busterDamage = attacker.busterDamage + 10;
+	}
+}
+
+var BN6BugFix = {
+	id:"BN6BugFix",
+	name:"BugFix",
+	image:BN6BugFixIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:62,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.bugs = [];
+	}
+}
+
+var BN6Invis = {
+	id:"BN6Invis",
+	name:"Invis",
+	image:BN6InvisIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:30,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.invis = 2;
+	}
+}
+
+var BN6Barrier = {
+	id:"BN6Barrier",
+	name:"Barrier",
+	image:BN6BarrierIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:7,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.barrier = new BasicBarrier(10);
+	}
+}
+
+var BN6Barrier100 = {
+	id:"BN6Barrier100",
+	name:"Barrier100",
+	image:BN6Barrier100IMG,
+	code:["H", "O", "Y"],
+	mb:30,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.barrier = new BasicBarrier(100);
+	}
+}
+
+var BN6Barrier200 = {
+	id:"BN6Barrier200",
+	name:"Barrier200",
+	image:BN6Barrier200IMG,
+	code:["K", "U", "W"],
+	mb:52,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.barrier = new BasicBarrier(200);
+	}
+}
+
+var BN6BubbleWrap = {
+	id:"BN6BubbleWrap",
+	name:"BubbleWrap",
+	image:BN6BubbleWrapIMG,
+	code:["I", "Q", "Z"],
+	mb:58,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[ELEMENTS.aqua],
+	hithuh: function(attacker, defender){
+		return Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.barrier = new BubbleBarrier();
+	}
+}
+
+var BN6LifeAura = {
+	id:"BN6LifeAura",
+	name:"LifeAura",
+	image:BN6LifeAuraIMG,
+	code:["U"],
+	mb:70,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.barrier = new AuraBarrier(200);
+	}
+}
+
+var BN6MagneCoil = {
+	id:"BN6MagneCoil",
+	name:"MagneCoil",
+	image:BN6MagneCoilIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:14,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:3,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return false;
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		defender.stunned = 1;
+		while(defender.y !== attacker.y){
+			this.yDirection = (attacker.y - defender.y) / Math.abs(attacker.y - defender.y);
+			if(board.isCellThisPlayerValid(defender.x, defender.y+this.xDirection, defender)){
+				defender.y = defender.y + this.yDirection;
+			}
+			else{
+				break;
+			}
+		}
+	}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -5136,7 +5448,9 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6Silence, BN6VDoll, BN6Guardian, BN6Anubis, BN6Recover10, BN6Recover30, BN6Recover50, 
 				BN6Recover80, BN6Recover120, BN6Recover150, BN6Recover200, BN6Recover300, BN6PanelGrab, 
 				BN6AreaGrab, BN6GrabBanish, BN6GrabRevenge, BN6PanelReturn, BN6DeathMatch, BN6HolyPanel, 
-				BN6Sanctuary];
+				BN6Sanctuary, BN6ComingRoad, BN6GoingRoad, BN6Slowgauge, BN6Fastgauge, BN6Fullcust, 
+				BN6BusterUp, BN6BugFix, BN6Invis, BN6Barrier, BN6Barrier100, BN6Barrier200, BN6BubbleWrap, 
+				BN6LifeAura, BN6MagneCoil];
 
 function Bn6Cards(){
 

@@ -12,8 +12,14 @@ PANELTYPE = {
 	ICE: "ice",
 	HOLY: "holy",
 	BROKEN: "broken",
+	UP: "up",
+	RIGHT: "right",
+	DOWN: "down",
+	LEFT: "left",
 }
-var paneltypes = [PANELTYPE.NORMAL, PANELTYPE.HOLE, PANELTYPE.GRASS, PANELTYPE.POISON, PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY, PANELTYPE.BROKEN];
+var paneltypes = [PANELTYPE.NORMAL, PANELTYPE.HOLE, PANELTYPE.GRASS, PANELTYPE.POISON, 
+				  PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY, PANELTYPE.BROKEN, 
+				  PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT];
 
 ACTIONS = {
 	NONE: 0,
@@ -219,12 +225,12 @@ function Board(width,height,canvas){
 	this.mouseUp = function(e){
 		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
 		this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
-		if(this.selected === 1 && this.isCellPlayerValid(this.mouseCellX, this.mouseCellY) && cells[this.mouseCellX][this.mouseCellY].side === SIDE.LEFT){
+		if(this.selected === 1 && this.isCellThisPlayerValid(this.mouseCellX, this.mouseCellY, playerOne)){
 			playerOne.x = this.mouseCellX;
 			playerOne.y = this.mouseCellY;
 			cells[this.mouseCellX][this.mouseCellY].player = playerOne;
 		}
-		else if (this.selected === 2 && this.isCellPlayerValid(this.mouseCellX, this.mouseCellY) && cells[this.mouseCellX][this.mouseCellY].side === SIDE.RIGHT){
+		else if (this.selected === 2 && this.isCellThisPlayerValid(this.mouseCellX, this.mouseCellY, playerTwo)){
 			playerTwo.x = this.mouseCellX;
 			playerTwo.y = this.mouseCellY;
 			cells[this.mouseCellX][this.mouseCellY].player = playerTwo;
@@ -253,6 +259,8 @@ function Board(width,height,canvas){
 	this.resolveTurn = function(){
 		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});
 		console.log("======================= turn start =======================");
+		this.resolvePlayerPanels(playerOne);
+		this.resolvePlayerPanels(playerTwo);
 		this.objectPassives();
 		this.p1priority = 2;
 		this.p2priority = 2;
@@ -282,6 +290,8 @@ function Board(width,height,canvas){
 			this.resolve(playerOne, playerTwo);
 		}
 		this.resolveBugs();
+		this.resolvePlayerPanels(playerOne);
+		this.resolvePlayerPanels(playerTwo);
 		this.resolvePanels();
 		this.resetPlayer(playerOne);
 		this.resetPlayer(playerTwo);
@@ -318,14 +328,50 @@ function Board(width,height,canvas){
 			playerTwo.bugs[j].resolve(playerTwo);
 		}
 	}
+
+	this.resolvePlayerPanels = function(aPlayer){
+		this.movePanels = [PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT];
+		while(this.movePanels.includes(cells[aPlayer.x][aPlayer.y].panelType)){
+			this.PlayerPanel = cells[aPlayer.x][aPlayer.y].panelType;
+			if(this.PlayerPanel === PANELTYPE.UP){
+				if(board.isCellThisPlayerValid(aPlayer.x, aPlayer.y-1, aPlayer)){
+					aPlayer.y = aPlayer.y - 1;
+				}
+				else{
+					break;
+				}
+			}
+			else if(this.PlayerPanel === PANELTYPE.RIGHT){
+				if(board.isCellThisPlayerValid(aPlayer.x+1, aPlayer.y, aPlayer)){
+					aPlayer.x = aPlayer.x + 1;
+				}
+				else{
+					break;
+				}
+			}
+			else if(this.PlayerPanel === PANELTYPE.DOWN){
+				if(board.isCellThisPlayerValid(aPlayer.x, aPlayer.y+1, aPlayer)){
+					aPlayer.y = aPlayer.y + 1;
+				}
+				else{
+					break;
+				}
+			}
+			else if(this.PlayerPanel === PANELTYPE.LEFT){
+				if(board.isCellThisPlayerValid(aPlayer.x-1, aPlayer.y, aPlayer)){
+					aPlayer.x = aPlayer.x - 1;
+				}
+				else{
+					break;
+				}
+			}
+		}
+		if(cells[aPlayer.x][aPlayer.y].panelType === PANELTYPE.POISON){
+			aPlayer.hp = aPlayer.hp - 25;
+		}
+	}
 	
 	this.resolvePanels = function(){
-		if(cells[playerOne.x][playerOne.y].panelType === PANELTYPE.POISON){
-			playerOne.hp = playerOne.hp - 50;
-		}
-		if(cells[playerTwo.x][playerTwo.y].panelType === PANELTYPE.POISON){
-			playerTwo.hp = playerTwo.hp - 50;
-		}
 		for(var i = 0; i < cells.length; i++){
 			for(var j = 0; j < cells[i].length; j++){
 				if(cells[i][j].sideTimer === 0){
@@ -416,13 +462,20 @@ function Board(width,height,canvas){
 						defender.barrier = null;
 					}
 					if(defender.guard === null){
-						this.oneHitmultiplier = this.calculateOneHitMultiplier(attacker, defender);
-						this.allHitmultiplier = this.calculateAllHitMultiplier(attacker, defender);
 						if(defender.invincible < 1){
-							defender.hp = defender.hp - this.calculateDamage(attacker, this.oneHitmultiplier, this.allHitmultiplier);
+							this.oneHitmultiplier = this.calculateOneHitMultiplier(attacker, defender);
+							this.allHitmultiplier = this.calculateAllHitMultiplier(attacker, defender);
+							this.damageDealt = this.calculateDamage(attacker, defender, this.oneHitmultiplier, this.allHitmultiplier);
+							defender.hp = defender.hp - this.damageDealt;
+							if(defender.barrier.isBarrierDestroyed()){
+								defender.barrier = null;
+							}
+							console.log("it hit! Dealing " + this.damageDealt + " damage!");
+						}
+						else{
+							console.log("it hit! But Player " + defender.name + " was Invincible.");
 						}
 						defender.bubbled = 0;
-						console.log("it hit!");
 					}
 					else{
 						defender.guard.onHit(attacker, defender);
@@ -454,6 +507,10 @@ function Board(width,height,canvas){
 			this.multiplier = this.multiplier*2;
 			defender.frozen = 0;
 		}
+		if(attacker.card.elements.includes(ELEMENTS.elec) && defender.barrier !== null && defender.barrier.id === "BubbleBarrier"){
+			this.multiplier = this.multiplier*2;
+			defender.barrier = null;
+		}
 		return this.multiplier;
 	}
 	
@@ -465,7 +522,7 @@ function Board(width,height,canvas){
 		return this.multiplier;
 	}
 	
-	this.calculateDamage = function(attacker, oneHitMulti, allHitMulti){
+	this.calculateDamage = function(attacker, defender, oneHitMulti, allHitMulti){
 		if(attacker.card.damage === 0){
 			return 0;
 		}
@@ -476,13 +533,17 @@ function Board(width,height,canvas){
 			attacker.bonusDamage = 0;
 		}
 		this.baseDamage = attacker.card.damage + attacker.card.addDamage + attacker.bonusDamage;
+		this.barrierAbsorbed = 0;
+		if(defender.barrier !== null){
+			this.barrierAbsorbed = defender.barrier.calculateDamageAbsorbed(this.baseDamage, oneHitMulti, allHitMulti, attacker.card.hits);
+		}
 		this.firstHit = this.baseDamage * oneHitMulti;
 		this.restHits = 0;
 		if(attacker.card.hits > 1){
 			this.restHits = this.baseDamage * (attacker.card.hits - 1);
 		}
 		this.totalBase = this.firstHit + this.restHits;
-		return this.totalBase * allHitMulti;
+		return this.totalBase * allHitMulti - this.barrierAbsorbed;
 	}
 
 	this.resolveObjects = function(attacker, defender){
@@ -594,8 +655,20 @@ function Board(width,height,canvas){
 		return false;
 	}
 
+	this.isCellThisPlayerValid = function(x, y, aPlayer){
+		this.acceptedSide = SIDE.RIGHT;
+		if(aPlayer.name === "one"){
+			this.acceptedSide = SIDE.LEFT;
+		}
+		if(this.isCellPlayerValid(x, y)){
+			return cells[x][y].side === this.acceptedSide;
+		}
+		return false;
+	}
+
 	this.isOverlayPanel = function(panel){
-		var normalPanels = [PANELTYPE.GRASS, PANELTYPE.POISON, PANELTYPE.ICE, PANELTYPE.HOLY];
+		var normalPanels = [PANELTYPE.GRASS, PANELTYPE.POISON, PANELTYPE.ICE, PANELTYPE.HOLY, 
+							PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT];
 		if(normalPanels.indexOf(panel) !== -1){
 			return true;
 		}

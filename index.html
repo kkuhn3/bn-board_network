@@ -21,6 +21,10 @@
 			<img id='holyoverlay' src='img/panels/holyoverlay.png'/>
 			<img id='iceoverlay' src='img/panels/iceoverlay.png'/>
 			<img id='poisonoverlay' src='img/panels/poisonoverlay.png'/>
+			<img id='upoverlay' src='img/panels/iceoverlay.png'/>
+			<img id='rightoverlay' src='img/panels/iceoverlay.png'/>
+			<img id='downoverlay' src='img/panels/iceoverlay.png'/>
+			<img id='leftoverlay' src='img/panels/iceoverlay.png'/>
 			<img id='redbroken' src='img/panels/redbroken.png'/>
 			<img id='redcracked' src='img/panels/redcracked.png'/>
 			<img id='redhole' src='img/panels/redhole.png'/>
@@ -230,6 +234,20 @@
 			<img id='BN6DeathMatchIMG' src='img/cards/BN6/BN6Chip169.png'/>
 			<img id='BN6HolyPanelIMG' src='img/cards/BN6/BN6Chip170.png'/>
 			<img id='BN6SanctuaryIMG' src='img/cards/BN6/BN6Chip171.png'/>
+			<img id='BN6ComingRoadIMG' src='img/cards/BN6/BN6Chip172.png'/>
+			<img id='BN6GoingRoadIMG' src='img/cards/BN6/BN6Chip173.png'/>
+			<img id='BN6SlowgaugeIMG' src='img/cards/BN6/BN6Chip174.png'/>
+			<img id='BN6FastgaugeIMG' src='img/cards/BN6/BN6Chip175.png'/>
+			<img id='BN6FullcustIMG' src='img/cards/BN6/BN6Chip176.png'/>
+			<img id='BN6BusterUpIMG' src='img/cards/BN6/BN6Chip177.png'/>
+			<img id='BN6BugFixIMG' src='img/cards/BN6/BN6Chip178.png'/>
+			<img id='BN6InvisIMG' src='img/cards/BN6/BN6Chip179.png'/>
+			<img id='BN6BarrierIMG' src='img/cards/BN6/BN6Chip180.png'/>
+			<img id='BN6Barrier100IMG' src='img/cards/BN6/BN6Chip181.png'/>
+			<img id='BN6Barrier200IMG' src='img/cards/BN6/BN6Chip182.png'/>
+			<img id='BN6BubbleWrapIMG' src='img/cards/BN6/BN6Chip183.png'/>
+			<img id='BN6LifeAuraIMG' src='img/cards/BN6/BN6Chip184.png'/>
+			<img id='BN6MagneCoilIMG' src='img/cards/BN6/BN6Chip185.png'/>
 		</div>
 		<div style='display: block;margin: 0 auto; width: 880px'>
 			<div style='display: block;margin: 0 auto; width: 800px; float: right;'>
@@ -281,6 +299,8 @@
 			cards = new Cards();
 			bn6cards = new Bn6Cards();
 			cards.initCards();
+
+			barriers = new Barriers();
 
 			custom = new Custom(custom_canvas);
 			custom_canvas.onmousedown = custom.mouseDown;

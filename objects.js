@@ -404,17 +404,16 @@ function BN6WindBox(x, y, attacker, defender, direction){
 	};
 	this.passiveTriggered = false;
 	this.passive = function(){
+		defender.barrier = null;
 		this.xDirection = direction;
-		this.allowedSide = SIDE.LEFT;
 		if(attacker.name === "one"){
 			this.xDirection = -1*direction;
-			this.allowedSide = SIDE.RIGHT;
 		}
 		this.tempX = defender.x + this.xDirection;
-		if(board.isCellPlayerValid(this.tempX, defender.y) && cell[this.tempX][defender.y].side === this.allowedSide){
+		if(board.isCellThisPlayerValid(this.tempX, defender.y, defender)){
 			this.locReached = false;
 			while(!this.locReached){
-				if(!board.isCellPlayerValid(this.tempX, defender.y) || cell[this.tempX][defender.y].side !== this.allowedSide){
+				if(!board.isCellThisPlayerValid(this.tempX, defender.y, defender)){
 					this.locReached = true;
 				}
 				else{
