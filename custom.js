@@ -112,8 +112,10 @@ function Custom(canvas){
 	}
 	
 	this.nextTurn = function(){
-		if(player.action === ACTIONS.CARD){
-			HAND.shift();
+		if(player.stunned < 1){
+			if(player.action === ACTIONS.CARD){
+				HAND.shift();
+			}
 		}
 	}
 

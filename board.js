@@ -467,7 +467,7 @@ function Board(width,height,canvas){
 							this.allHitmultiplier = this.calculateAllHitMultiplier(attacker, defender);
 							this.damageDealt = this.calculateDamage(attacker, defender, this.oneHitmultiplier, this.allHitmultiplier);
 							defender.hp = defender.hp - this.damageDealt;
-							if(defender.barrier.isBarrierDestroyed()){
+							if(defender.barrier && defender.barrier.isBarrierDestroyed()){
 								defender.barrier = null;
 							}
 							console.log("it hit! Dealing " + this.damageDealt + " damage!");

@@ -145,6 +145,7 @@ function CustomPick(canvas){
 					this.confirm();
 					$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});
 					custom.drawHand();
+					timer.draw();
 					return true;
 				}
 			}catch(e){}

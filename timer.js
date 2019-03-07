@@ -30,6 +30,17 @@ function Timer(turncount,canvas){
 	}
 
 	this.draw = function(){
+		for(var i=0;i<turncount;i++){
+			if(i < this.currentturn){
+				this.timercells[i] = TURNCELL.COMPLETE;
+			}
+			else if(i > this.currentturn){
+				this.timercells[i] = TURNCELL.NOTSTARTED;
+			}
+		}
+		if(this.currentturn < this.turncount){
+			this.timercells[this.currentturn] = TURNCELL.INPROGRESS;
+		}
 		var canvas = this.canvas;
 		var ctx = canvas.getContext('2d');
 		var cwidth = canvas.width;
@@ -62,17 +73,6 @@ function Timer(turncount,canvas){
 			barriers.resetBubbleBarrier(playerOne);
 			barriers.resetBubbleBarrier(playerTwo);
 			document.getElementById("confirm").disabled = false;
-		}
-		for(var i=0;i<turncount;i++){
-			if(i < this.currentturn){
-				this.timercells[i] = TURNCELL.COMPLETE;
-			}
-			else if(i > this.currentturn){
-				this.timercells[i] = TURNCELL.NOTSTARTED;
-			}
-		}
-		if(this.currentturn < this.turncount){
-			this.timercells[this.currentturn] = TURNCELL.INPROGRESS;
 		}
 		document.getElementById("nextturn").style.display='none';
 		document.getElementById("nextturn").disabled = false;
@@ -128,8 +128,8 @@ function Timer(turncount,canvas){
 							playerOne.stunned = playerData.stunned;
 							playerOne.busterDamage = playerData.busterDamage;
 						}
-						board.resolveTurn();
 						this.nextTurn();
+						board.resolveTurn();
 						this.draw();
 					}.bind(this));
 					return true;

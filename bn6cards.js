@@ -2384,6 +2384,9 @@ var BN6WindRacket = {
 					cells[this.xTile][this.yTile].player = defender;
 					defender.x = this.xTile;
 				}
+				else{
+					break;
+				}
 			}
 		}
 	},
@@ -3915,7 +3918,7 @@ var BN6AirWheel1 = {
 		if(board.isCellPlayerValid(this.tempX, attacker.y)){
 			this.locReached = false;
 			while(!this.locReached){
-				if(!board.isCellPlayerValid(this.tempX, attacker.y)){
+				if(!board.isCellPlayerValid(this.tempX + this.xDirection, attacker.y)){
 					this.locReached = true;
 				}
 				else{
@@ -3951,7 +3954,7 @@ var BN6AirWheel2 = {
 		if(board.isCellPlayerValid(this.tempX, attacker.y)){
 			this.locReached = false;
 			while(!this.locReached){
-				if(!board.isCellPlayerValid(this.tempX, attacker.y)){
+				if(!board.isCellPlayerValid(this.tempX + this.xDirection, attacker.y)){
 					this.locReached = true;
 				}
 				else{
@@ -3987,7 +3990,7 @@ var BN6AirWheel3 = {
 		if(board.isCellPlayerValid(this.tempX, attacker.y)){
 			this.locReached = false;
 			while(!this.locReached){
-				if(!board.isCellPlayerValid(this.tempX, attacker.y)){
+				if(!board.isCellPlayerValid(this.tempX + this.xDirection, attacker.y)){
 					this.locReached = true;
 				}
 				else{
@@ -4348,7 +4351,7 @@ var BN6TimeBomb1 = {
 		this.bombPlaced = false;
 		this.tempX = attacker.x + this.xDirection;
 		while(!this.bombPlaced){
-			if(cells[tempX]){
+			if(cells[this.tempX]){
 				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
 					if(board.isCellPlayerValid(this.tempX, attacker.y)){
 						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage)];
@@ -4386,7 +4389,7 @@ var BN6TimeBomb2 = {
 		this.bombPlaced = false;
 		this.tempX = attacker.x + this.xDirection;
 		while(!this.bombPlaced){
-			if(cells[tempX]){
+			if(cells[this.tempX]){
 				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
 					if(board.isCellPlayerValid(this.tempX, attacker.y)){
 						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage)];
@@ -4424,7 +4427,7 @@ var BN6TimeBomb3 = {
 		this.bombPlaced = false;
 		this.tempX = attacker.x + this.xDirection;
 		while(!this.bombPlaced){
-			if(cells[tempX]){
+			if(cells[this.tempX]){
 				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
 					if(board.isCellPlayerValid(this.tempX, attacker.y)){
 						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage)];
@@ -5243,7 +5246,7 @@ var BN6BusterUp = {
 	priority:0,
 	elements:[],
 	hithuh: function(attacker, defender){
-		return Recover10.hithuh(attacker, defender);
+		return BN6Recover10.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
@@ -5263,7 +5266,7 @@ var BN6BugFix = {
 	priority:0,
 	elements:[],
 	hithuh: function(attacker, defender){
-		return Recover10.hithuh(attacker, defender);
+		return BN6Recover10.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
@@ -5283,7 +5286,7 @@ var BN6Invis = {
 	priority:0,
 	elements:[],
 	hithuh: function(attacker, defender){
-		return Recover10.hithuh(attacker, defender);
+		return BN6Recover10.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
@@ -5303,7 +5306,7 @@ var BN6Barrier = {
 	priority:0,
 	elements:[],
 	hithuh: function(attacker, defender){
-		return Recover10.hithuh(attacker, defender);
+		return BN6Recover10.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
@@ -5323,7 +5326,7 @@ var BN6Barrier100 = {
 	priority:0,
 	elements:[],
 	hithuh: function(attacker, defender){
-		return Recover10.hithuh(attacker, defender);
+		return BN6Recover10.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
@@ -5343,7 +5346,7 @@ var BN6Barrier200 = {
 	priority:0,
 	elements:[],
 	hithuh: function(attacker, defender){
-		return Recover10.hithuh(attacker, defender);
+		return BN6Recover10.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
@@ -5363,7 +5366,7 @@ var BN6BubbleWrap = {
 	priority:0,
 	elements:[ELEMENTS.aqua],
 	hithuh: function(attacker, defender){
-		return Recover10.hithuh(attacker, defender);
+		return BN6Recover10.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
@@ -5383,7 +5386,7 @@ var BN6LifeAura = {
 	priority:0,
 	elements:[],
 	hithuh: function(attacker, defender){
-		return Recover10.hithuh(attacker, defender);
+		return BN6Recover10.hithuh(attacker, defender);
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
@@ -5407,14 +5410,26 @@ var BN6MagneCoil = {
 	},
 	effecthit: function(attacker, defender){},
 	effectmiss: function(attacker, defender){
-		defender.stunned = 1;
-		while(defender.y !== attacker.y){
-			this.yDirection = (attacker.y - defender.y) / Math.abs(attacker.y - defender.y);
-			if(board.isCellThisPlayerValid(defender.x, defender.y+this.xDirection, defender)){
-				defender.y = defender.y + this.yDirection;
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		this.inRange = false;
+		for(var i = 1; i < 4; i++){
+			if(attacker.x + i * this.xDirection === defender.x){
+				this.inRange = true;
 			}
-			else{
-				break;
+		}
+		if(this.inRange){
+			defender.stunned = 1;
+			while(defender.y !== attacker.y){
+				this.yDirection = (attacker.y - defender.y) / Math.abs(attacker.y - defender.y);
+				if(board.isCellThisPlayerValid(defender.x, defender.y+this.yDirection, defender)){
+					defender.y = defender.y + this.yDirection;
+				}
+				else{
+					break;
+				}
 			}
 		}
 	}
