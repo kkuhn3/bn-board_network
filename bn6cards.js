@@ -908,12 +908,12 @@ var BN6Thunder = {
 	},
 	effectmiss: function(attacker, defender){
 		if(attacker.name === "one"){
-			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
 				cells[attacker.x+1][attacker.y].object.push(new BN6ThunderBall(attacker.x+1, attacker.y, attacker, defender, 8));
 			}
 		}
 		else{
-			if(!board.cellHasSolidObject(attacker.x-1, attacker.y)){
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x-1][attacker.y].player === null){
 				cells[attacker.x-1][attacker.y].object.push(new BN6ThunderBall(attacker.x-1, attacker.y, attacker, defender, 8));
 			}
 		}
@@ -5435,6 +5435,161 @@ var BN6MagneCoil = {
 	}
 }
 
+var BN6ColonelsArmy = {
+	id:"BN6ColonelsArmy",
+	name:"Colonel's Army",
+	image:BN6ColonelsArmyIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:25,
+	rank:"standard",
+	damage:40,
+	hits:3,
+	priority:2,
+	elements:[],
+	hithuh: function(attacker, defender){
+		this.hitbool = false;
+		if(defender.invis < 1){
+			this.targetPlayer = playerOne;
+			if(attacker.name === "one"){
+				this.targetPlayer = playerTwo;
+			}
+			this.hits = 0;
+			for(var i = 0; i < cells.length; i++){
+				for(var j = 0; j < cells[i].length; j++){
+					if(board.cellHasSolidObject(i, j)){
+						if(this.targetPlayer.x < i){
+							if(defender.x < i && defender.y === j){
+								this.hitbool = true;
+								this.hits = this.hits + 3;
+							}
+						}
+						else if(this.targetPlayer.x > i){
+							if(defender.x > i && defender.y === j){
+								this.hitbool = true;
+								this.hits = this.hits + 3;
+							}
+						}
+					}
+				}
+			}
+		}
+		return this.hitbool;
+	},
+	effecthit: function(attacker, defender){
+		defender.stunned = 2;
+		BN6ColonelsArmy.effectmiss(attacker, defender);
+	},
+	effectmiss: function(attacker, defender){
+		for(var i = 0; i < cells.length; i++){
+			for(var j = 0; j < cells[i].length; j++){
+				if(board.cellHasSolidObject(i, j)){
+					cells[i][j].object = [];
+				}
+			}
+		}
+	}
+}
+
+var BN6ElementTrap = {
+	id:"BN6ElementTrap",
+	name:"ElementTrap",
+	image:BN6ElementTrapIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:42,
+	rank:"standard",
+	damage:240,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.trap = new BN6ElementTrapTrap();
+	}
+}
+
+var BN6AntiNavi = {
+	id:"BN6AntiNavi",
+	name:"AntiNavi",
+	image:BN6AntiNaviIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:50,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.trap = new BN6AntiNaviTrap();
+	}
+}
+
+var BN6AntiDmg = {
+	id:"BN6AntiDmg",
+	name:"AntiDmg",
+	image:BN6AntiDmgIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:30,
+	rank:"standard",
+	damage:100,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.trap = new BN6AntiDmgTrap();
+	}
+}
+
+var BN6AntiSword = {
+	id:"BN6AntiSword",
+	name:"AntiSword",
+	image:BN6AntiSwordIMG,
+	code:["A", "R", "Z"],
+	mb:30,
+	rank:"standard",
+	damage:100,
+	hits:3,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.trap = new BN6AntiDmgTrap();
+	}
+}
+
+var BN6AntiRecover = {
+	id:"BN6AntiRecover",
+	name:"AntiRecover",
+	image:BN6AntiRecoverIMG,
+	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+	mb:37,
+	rank:"standard",
+	damage:0,
+	hits:1,
+	priority:0,
+	elements:[],
+	hithuh: function(attacker, defender){
+		return BN6Recover10.hithuh(attacker, defender);
+	},
+	effecthit: function(attacker, defender){},
+	effectmiss: function(attacker, defender){
+		attacker.trap = new BN6AntiRecoverTrap();
+	}
+}
+
 var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
 				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
 				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
@@ -5465,7 +5620,8 @@ var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, B
 				BN6AreaGrab, BN6GrabBanish, BN6GrabRevenge, BN6PanelReturn, BN6DeathMatch, BN6HolyPanel, 
 				BN6Sanctuary, BN6ComingRoad, BN6GoingRoad, BN6Slowgauge, BN6Fastgauge, BN6Fullcust, 
 				BN6BusterUp, BN6BugFix, BN6Invis, BN6Barrier, BN6Barrier100, BN6Barrier200, BN6BubbleWrap, 
-				BN6LifeAura, BN6MagneCoil];
+				BN6LifeAura, BN6MagneCoil, BN6ColonelsArmy, BN6ElementTrap, BN6AntiNavi, BN6AntiDmg, 
+				BN6AntiSword, BN6AntiRecover];
 
 function Bn6Cards(){
 

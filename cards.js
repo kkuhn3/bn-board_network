@@ -410,7 +410,7 @@ function Cards(){
 	}
 
 	this.initCards = function(){
-		CARDLIST = DEFAULTCARDS.concat(BN6CARDS);
+		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
 		//TEMPDECKLIST = [BN6MagneCoil, BN6Slowgauge, BN6Fastgauge, BN6Fullcust, BN6Barrier100];
 	}

@@ -46,6 +46,7 @@ var playerOne = {
 	stunned: 0,
 	bubbled: 0,
 	frozen: 0,
+	busterType: BN6Buster,
 	busterDamage: busterDefualt,
 	bugs: [],
 	barrier: null, 
@@ -54,6 +55,7 @@ var playerOne = {
 	confused: 0,
 	timpanid: 0,
 	blinded: 0,
+	trap: null,
 };
 
 var playerTwo = {
@@ -70,6 +72,7 @@ var playerTwo = {
 	stunned:0,
 	bubbled: 0,
 	frozen: 0,
+	busterType: BN6Buster,
 	busterDamage: busterDefualt,
 	bugs: [],
 	barrier: null,
@@ -78,6 +81,7 @@ var playerTwo = {
 	confused: 0,
 	timpanid: 0,
 	blinded: 0,
+	trap: null,
 };
 
 var player = -1;
@@ -434,80 +438,99 @@ function Board(width,height,canvas){
 		if(attacker.name === player.name){
 			document.getElementById("special").style.display='none';
 		}
-		if(attacker.stunned < 1 && attacker.bubbled < 1){
+		if(attacker.stunned < 1 && attacker.bubbled < 1 && attacker.frozen < 1){
 			if(attacker.action === ACTIONS.BUSTER){
 				console.log("player " + attacker.name + " used: their BUSTER");
-				if(CANNON1.hithuh(attacker, defender)){
-					if(defender.guard === null){
-						defender.hp = defender.hp - attacker.busterDamage;
-						defender.bubbled = 0;
-						console.log("it hit!");
-					}
-					else{
-						defender.guard.onHit(attacker, defender);
-						console.log("it was guarded!");
-					}
-				}
-				else{
-					console.log("it missed!");
-				}
+				this.attackWithCard(attacker, defender, attacker.busterType);
 			}
 			else if(attacker.action === ACTIONS.CARD || attacker.action === ACTIONS.SPECIAL){
 				console.log("player " + attacker.name + " used: " + attacker.card.name);
-				if(attacker.card.hithuh(attacker, defender)){
-					if(attacker.card.elements.includes(ELEMENTS.break)){
-						defender.guard = null;
-					}
-					if(attacker.card.elements.includes(ELEMENTS.wind)){
-						defender.barrier = null;
-					}
-					if(defender.guard === null){
-						if(defender.invincible < 1){
-							this.oneHitmultiplier = this.calculateOneHitMultiplier(attacker, defender);
-							this.allHitmultiplier = this.calculateAllHitMultiplier(attacker, defender);
-							this.damageDealt = this.calculateDamage(attacker, defender, this.oneHitmultiplier, this.allHitmultiplier);
-							defender.hp = defender.hp - this.damageDealt;
-							if(defender.barrier && defender.barrier.isBarrierDestroyed()){
-								defender.barrier = null;
-							}
-							console.log("it hit! Dealing " + this.damageDealt + " damage!");
-						}
-						else{
-							console.log("it hit! But Player " + defender.name + " was Invincible.");
-						}
-						defender.bubbled = 0;
-					}
-					else{
-						defender.guard.onHit(attacker, defender);
-						console.log("it was reflected!");
-					}
-					attacker.card.effecthit(attacker, defender);
-				}
-				else{
-					attacker.card.effectmiss(attacker, defender);
-					console.log("it missed!");
-				}
+				this.attackWithCard(attacker, defender, attacker.card);
 			}
 		}
 		else{
 			console.log("player " + attacker.name + " is Stunned!");
 		}
 	}
+
+	this.attackWithCard = function(attacker, defender, attackCard){
+		this.isAllowedbyTrap = true;
+		if(defender.trap && defender.trap.triggerOnCard(attackCard)){
+			this.isAllowedbyTrap = defender.trap.trigger(attacker, defender, attackCard);
+		}
+		if(this.isAllowedbyTrap){
+			if(attackCard.hithuh(attacker, defender)){
+				if(attackCard.elements.includes(ELEMENTS.cursor)){
+					defender.trap = null;
+				}
+				if(defender.trap && defender.trap.triggerOnHit(attackCard)){
+					defender.trap.trigger(attacker, defender, attackCard);
+				}
+				if(attackCard.elements.includes(ELEMENTS.break)){
+					defender.guard = null;
+				}
+				if(attackCard.elements.includes(ELEMENTS.wind)){
+					defender.barrier = null;
+				}
+				this.actuallyHit = true;
+				if(defender.guard === null){
+					if(defender.invincible < 1){
+						this.oneHitmultiplier = this.calculateOneHitMultiplier(attacker, defender, attackCard);
+						this.allHitmultiplier = this.calculateAllHitMultiplier(attacker, defender);
+						this.damageDealt = this.calculateDamage(attacker, defender, attackCard, this.oneHitmultiplier, this.allHitmultiplier);
+						this.damageReduced = 0;
+						if(this.damageDealt > 0){
+							if(defender.trap && defender.trap.triggerOnDamage(attackCard)){
+								this.damageReduced = defender.trap.dodgesDamage(attacker, attackCard, this.oneHitmultiplier, this.allHitmultiplier);
+								defender.trap.trigger(attacker, defender, attackCard);
+							}
+						}
+						if(this.damageReduced === this.damageDealt && this.damageReduced > 0){
+							this.actuallyHit = false;
+						}
+						defender.hp = defender.hp - this.damageDealt + this.damageReduced;
+						if(defender.barrier && defender.barrier.isBarrierDestroyed()){
+							defender.barrier = null;
+						}
+						console.log("it hit! Dealing " + this.damageDealt - this.damageReduced + " damage!");
+					}
+					else{
+						console.log("it hit! But Player " + defender.name + " was Invincible.");
+					}
+					defender.bubbled = 0;
+				}
+				else{
+					defender.guard.onHit(attacker, defender);
+					console.log("it was reflected!");
+				}
+				if(this.actuallyHit){
+					attackCard.effecthit(attacker, defender);
+				}
+				else{
+					attackCard.effectmiss(attacker, defender);
+				}
+			}
+			else{
+				attackCard.effectmiss(attacker, defender);
+				console.log("it missed!");
+			}
+		}
+	}
 	
-	this.calculateOneHitMultiplier = function(attacker, defender){
+	this.calculateOneHitMultiplier = function(attacker, defender, attackCard){
 		this.multiplier = 1.0;
-		if(attacker.card.elements.includes(ELEMENTS.fire) && cells[defender.x][defender.y].panelType === PANELTYPE.GRASS){
+		if(attackCard.elements.includes(ELEMENTS.fire) && cells[defender.x][defender.y].panelType === PANELTYPE.GRASS){
 			this.multiplier = this.multiplier*2;
 			this.convertPanel(defender.x, defender.y, PANELTYPE.NORMAL);
 		}
-		if(attacker.card.elements.includes(ELEMENTS.elec) && defender.bubbled > 0){
+		if(attackCard.elements.includes(ELEMENTS.elec) && defender.bubbled > 0){
 			this.multiplier = this.multiplier*2;
 		}
-		if(attacker.card.elements.includes(ELEMENTS.break) && defender.frozen > 0){
+		if(attackCard.elements.includes(ELEMENTS.break) && defender.frozen > 0){
 			this.multiplier = this.multiplier*2;
 			defender.frozen = 0;
 		}
-		if(attacker.card.elements.includes(ELEMENTS.elec) && defender.barrier !== null && defender.barrier.id === "BubbleBarrier"){
+		if(attackCard.elements.includes(ELEMENTS.elec) && defender.barrier !== null && defender.barrier.id === "BubbleBarrier"){
 			this.multiplier = this.multiplier*2;
 			defender.barrier = null;
 		}
@@ -522,25 +545,25 @@ function Board(width,height,canvas){
 		return this.multiplier;
 	}
 	
-	this.calculateDamage = function(attacker, defender, oneHitMulti, allHitMulti){
-		if(attacker.card.damage === 0){
+	this.calculateDamage = function(attacker, defender, attackCard, oneHitMulti, allHitMulti){
+		if(attackCard.damage === 0){
 			return 0;
 		}
-		if(!attacker.card.addDamage){
-			attacker.card.addDamage = 0;
+		if(!attackCard.addDamage){
+			attackCard.addDamage = 0;
 		}
 		if(!attacker.bonusDamage){
 			attacker.bonusDamage = 0;
 		}
-		this.baseDamage = attacker.card.damage + attacker.card.addDamage + attacker.bonusDamage;
+		this.baseDamage = attackCard.damage + attackCard.addDamage + attacker.bonusDamage;
 		this.barrierAbsorbed = 0;
 		if(defender.barrier !== null){
-			this.barrierAbsorbed = defender.barrier.calculateDamageAbsorbed(this.baseDamage, oneHitMulti, allHitMulti, attacker.card.hits);
+			this.barrierAbsorbed = defender.barrier.calculateDamageAbsorbed(this.baseDamage, oneHitMulti, allHitMulti, attackCard.hits);
 		}
 		this.firstHit = this.baseDamage * oneHitMulti;
 		this.restHits = 0;
-		if(attacker.card.hits > 1){
-			this.restHits = this.baseDamage * (attacker.card.hits - 1);
+		if(attackCard.hits > 1){
+			this.restHits = this.baseDamage * (attackCard.hits - 1);
 		}
 		this.totalBase = this.firstHit + this.restHits;
 		return this.totalBase * allHitMulti - this.barrierAbsorbed;
