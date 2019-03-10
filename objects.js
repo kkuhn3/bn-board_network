@@ -57,6 +57,7 @@ function BN6RockCubeObj(x, y){
 }
 
 function BN6ThunderBall(x, y, attacker, defender, hp){
+	this.attacker = attacker;
 	this.id = "BN6Thunder";
 	this.hp = hp;
 	this.image = ThunderBall;
@@ -108,6 +109,7 @@ function BN6ThunderBall(x, y, attacker, defender, hp){
 }
 
 function BN6HoneyBall(x, y, attacker, defender, damage){
+	this.attacker = attacker;
 	this.id = "BN6HoneyBall";
 	this.damage = damage;
 	this.image = HoneyBall;
@@ -192,6 +194,7 @@ function PlayerObject(){
 
 
 function BN6FlashBomb(x, y, attacker, defender, damage){
+	this.attacker = attacker;
 	this.id = "BN6FlashBomb";
 	this.hp = 1;
 	this.image = FlashBang;
@@ -281,6 +284,7 @@ function BN6BlackBombObj(x, y){
 }
 
 function BN6KillerSensor(x, y, attacker, defender, damage){
+	this.attacker = attacker;
 	this.id = "BN6KillerSensor";
 	this.image = killereye;
 	this.solid = true;
@@ -351,6 +355,7 @@ function BN6KillerSensor(x, y, attacker, defender, damage){
 }
 
 function BN6AirWheel(x, y, attacker, defender, damage, hits){
+	this.attacker = attacker;
 	this.id = "BN6AirWheel";
 	this.image = Airspin;
 	this.solid = true;
@@ -382,6 +387,7 @@ function BN6AirWheel(x, y, attacker, defender, damage, hits){
 }
 
 function BN6WindBox(x, y, attacker, defender, direction){
+	this.attacker = attacker;
 	this.id = "BN6WindBox";
 	this.image = Windbox_blow;
 	if(direction === 1){
@@ -429,22 +435,27 @@ function BN6WindBox(x, y, attacker, defender, direction){
 	this.y = y;
 }
 
-function BN6LittleBoiler(x, y, damage){
+function BN6LittleBoiler(x, y, damage, attacker){
+	this.attacker = attacker;
 	this.id = "BN6LittleBoiler";
 	this.image = kettle;
 	this.solid = true;
 	this.turns = 4;
 	this.hp = 3;
+	this.immune = true;
 	this.effecthit = function(hitBy){
-		if(hp > 0){
-			damage = damage + hitBy.card.damage;
-			hp--;
+		if(!this.immune){
+			if(this.hp > 0){
+				damage = damage + hitBy.card.damage;
+				this.hp--;
+			}
 		}
+		this.immune = false;
 	};
 	this.hitByBuster = function(hitBy){
-		if(hp > 0){
+		if(this.hp > 0){
 			damage = damage + hitBy.busterDamage;
-			hp--;
+			this.hp--;
 		}
 	};
 	this.passiveTriggered = false;
@@ -471,6 +482,7 @@ function BN6LittleBoiler(x, y, damage){
 }
 
 function BN6AirRaid(x, y, attacker, defender, hits){
+	this.attacker = attacker;
 	this.id = "BN6AirRaid";
 	this.damage = 10;
 	this.image = FighterPlane;
@@ -505,16 +517,21 @@ function BN6AirRaid(x, y, attacker, defender, hits){
 }
 
 function BN6TimeBomb(x, y, attacker, defender, damage){
+	this.attacker = attacker;
 	this.id = "BN6TimeBomb";
 	this.image = BlackBombObj;
 	this.solid = true;
 	this.turns = 3;
 	this.hp = 20;
+	this.immune = true;
 	this.effecthit = function(hitBy){
-		hp = hp - hitBy.card.damage;
-		if(hp < 1){
-			this.remove();
+		if(!this.immune){
+			hp = hp - hitBy.card.damage;
+			if(hp < 1){
+				this.remove();
+			}
 		}
+		this.immune = false;
 	};
 	this.hitByBuster = function(hitBy){
 		hp = hp - hitBy.busterDamage;
@@ -544,6 +561,7 @@ function BN6TimeBomb(x, y, attacker, defender, damage){
 }
 
 function BN6MineObj(x, y, attacker, defender, damage){
+	this.attacker = attacker;
 	this.id = "BN6TimeBomb";
 	this.image = noObj;
 	this.solid = false;
@@ -568,6 +586,7 @@ function BN6MineObj(x, y, attacker, defender, damage){
 }
 
 function BN6FanfareObj(x, y, attacker){
+	this.attacker = attacker;
 	this.id = "BN6FanfareObj";
 	this.image = Trumpy_gold;
 	this.solid = true;
@@ -597,6 +616,7 @@ function BN6FanfareObj(x, y, attacker){
 }
 
 function BN6DiscordObj(x, y, attacker, defender){
+	this.attacker = attacker;
 	this.id = "BN6DiscordObj";
 	this.image = Trumpy_blue;
 	this.solid = true;
@@ -626,6 +646,7 @@ function BN6DiscordObj(x, y, attacker, defender){
 }
 
 function BN6TimpaniObj(x, y, attacker, defender){
+	this.attacker = attacker;
 	this.id = "BN6TimpaniObj";
 	this.image = Trumpy_pink;
 	this.solid = true;
@@ -655,6 +676,7 @@ function BN6TimpaniObj(x, y, attacker, defender){
 }
 
 function BN6SilenceObj(x, y, attacker, defender){
+	this.attacker = attacker;
 	this.id = "BN6SilenceObj";
 	this.image = Trumpy_silver;
 	this.solid = true;
@@ -683,13 +705,18 @@ function BN6SilenceObj(x, y, attacker, defender){
 	this.y = y;
 }
 
-function BN6VDollObj(x, y, defender){
+function BN6VDollObj(x, y, defender, attacker){
+	this.attacker = attacker;
 	this.id = "BN6VDollObj";
 	this.image = VooDooDollObj;
 	this.solid = true;
+	this.immune = true;
 	this.effecthit = function(hitBy){
-		defender.hp = defender.hp - hitBy.card.damage;
-		this.remove();
+		if(!this.immune){
+			defender.hp = defender.hp - hitBy.card.damage;
+			this.remove();
+		}
+		this.immune = false;
 	};
 	this.hitByBuster = function(hitBy){
 		this.effecthit(hitBy);
@@ -705,13 +732,18 @@ function BN6VDollObj(x, y, defender){
 	this.y = y;
 }
 
-function BN6GuardianObj(x, y){
+function BN6GuardianObj(x, y, attacker){
+	this.attacker = attacker;
 	this.id = "BN6GuardianObj";
 	this.image = BN6GuardianIMG;
 	this.solid = true;
+	this.immune = true;
 	this.effecthit = function(hitBy){
-		hitBy.hp = hitBy.hp - 200;
-		this.remove();
+		if(!this.immune){
+			hitBy.hp = hitBy.hp - 200;
+			this.remove();
+		}
+		this.immune = false;
 	};
 	this.hitByBuster = function(hitBy){
 		this.effecthit(hitBy);
@@ -727,7 +759,8 @@ function BN6GuardianObj(x, y){
 	this.y = y;
 }
 
-function BN6AnubisObj(x, y, defender){
+function BN6AnubisObj(x, y, defender, attacker){
+	this.attacker = attacker;
 	this.id = "BN6AnubisObj";
 	this.image = BN6AnubisIMG;
 	this.solid = true;

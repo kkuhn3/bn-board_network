@@ -162,7 +162,11 @@ function Board(width,height,canvas){
 			ctx.drawImage(document.getElementById(cells[x][y].side+cells[x][y].panelType),left,top,cellWidth,cellHeight);
 		}
 		for(var i = 0; i < cells[x][y].object.length; i++){
+			if(cells[x][y].object[i].attacker !== null && cells[x][y].object[i].attacker.name === "two"){
+				ctx.scale(-1, 1);
+			}
 			ctx.drawImage(cells[x][y].object[i].image, left+cellWidth/8, top-cellHeight/2, 3*cellWidth/4, cellHeight*1.5);
+			ctx.scale(1, 1);
 		}
 	}
 
@@ -175,10 +179,42 @@ function Board(width,height,canvas){
 
 	this.drawPlayerImage = function(centerX, centerY, playerDraw){
     	ctx.drawImage(playerDraw.image,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+		if(playerDraw.barrier !== null){
+			ctx.globalAlpha = 0.5;
+			if(playerDraw.barrier.id === "BasicBarrier"){
+				if(playerDraw.barrier.hp <= 10){
+					ctx.drawImage(barrier10,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+				}
+				else if(playerDraw.barrier.hp <= 100){
+					ctx.drawImage(barrier100,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+				}
+				else{
+					ctx.drawImage(barrier200,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+				}
+			}
+			else if(playerDraw.barrier.id === "AuraBarrier"){
+				if(playerDraw.barrier.hp <= 100){
+					ctx.drawImage(aura100,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+				}
+				else{
+					ctx.drawImage(aura200,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+				}
+			}
+			else if(playerDraw.barrier.id === "BubbleBarrier"){
+				ctx.globalAlpha = 1.0;
+				if(playerDraw.barrier.hp > 0){
+					ctx.drawImage(bubblebarrier,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+				}
+			}
+		}
 
+		ctx.globalAlpha = 1.0;
     	ctx.fillStyle="#FFFFFF";
     	ctx.textAlign = "center";
     	ctx.font = "20px Arial";
+		if(playerDraw.trap !== null){
+			ctx.fillText("????", centerX, centerY);
+		}
 		ctx.fillText(playerDraw.hp,centerX,centerY+cellHeight/4);
 	}
 
@@ -492,7 +528,7 @@ function Board(width,height,canvas){
 						if(defender.barrier && defender.barrier.isBarrierDestroyed()){
 							defender.barrier = null;
 						}
-						console.log("it hit! Dealing " + this.damageDealt - this.damageReduced + " damage!");
+						console.log("it hit! Dealing " + (this.damageDealt - this.damageReduced) + " damage!");
 					}
 					else{
 						console.log("it hit! But Player " + defender.name + " was Invincible.");

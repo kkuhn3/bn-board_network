@@ -20,6 +20,9 @@ function BN6ElementTrapTrap(){
 		defender.trap = null;
 		return true;
 	};
+	this.dodgesDamage = function(attacker, theCard, one, all){
+		return 0;
+	};
 }
 
 function BN6AntiNaviTrap(){
@@ -37,6 +40,9 @@ function BN6AntiNaviTrap(){
 		board.attackWithCard(defender, attacker, theCard);
 		defender.trap = null;
 		return false;
+	};
+	this.dodgesDamage = function(attacker, theCard, one, all){
+		return 0;
 	};
 }
 
@@ -77,7 +83,9 @@ function BN6AntiSwordTrap(){
 		board.attackWithCard(defender, attacker, BN6AntiSwordSlashes);
 		defender.trap = null;
 	};
-	this.dodgesDamage = function(attacker, theCard, one, all){};
+	this.dodgesDamage = function(attacker, theCard, one, all){
+		return 0;
+	};
 }
 
 function BN6AntiRecoverTrap(){
@@ -97,6 +105,9 @@ function BN6AntiRecoverTrap(){
 		this.val = parseInt(theCard.name.substring(this.s, this.e));
 		attacker.hp = attacker.hp - this.val;
 		return false;
+	};
+	this.dodgesDamage = function(attacker, theCard, one, all){
+		return 0;
 	};
 }
 

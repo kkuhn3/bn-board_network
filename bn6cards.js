@@ -4022,6 +4022,7 @@ var BN6Wind = {
 		if(attacker.name === "one"){
 			this.xDirection = 1;
 		}
+		this.tempX = attacker.x + this.xDirection;
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, 1)];
 		}
@@ -4048,6 +4049,7 @@ var BN6Fan = {
 		if(attacker.name === "one"){
 			this.xDirection = 1;
 		}
+		this.tempX = attacker.x + this.xDirection;
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, -1)];
 		}
@@ -4181,7 +4183,7 @@ var BN6LittleBoiler1 = {
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage, attacker));
 		}
 	}
 }
@@ -4212,7 +4214,7 @@ var BN6LittleBoiler2 = {
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage, attacker));
 		}
 	}
 }
@@ -4243,7 +4245,7 @@ var BN6LittleBoiler3 = {
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage, attacker));
 		}
 	}
 }
@@ -4605,7 +4607,7 @@ var BN6VDoll = {
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6VDollObj(attacker.x+this.xDirection, attacker.y, defender));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6VDollObj(attacker.x+this.xDirection, attacker.y, defender, attacker));
 			board.convertPanel(attacker.x+this.xDirection, attacker.y, PANELTYPE.POISON);
 		}
 	}
@@ -4632,7 +4634,7 @@ var BN6Guardian = {
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6GuardianObj(attacker.x + this.xDirection, attacker.y)];
+			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6GuardianObj(attacker.x + this.xDirection, attacker.y, attacker)];
 		}
 	}
 }
@@ -4658,7 +4660,7 @@ var BN6Anubis = {
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AnubisObj(attacker.x + this.xDirection, attacker.y, defender)];
+			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AnubisObj(attacker.x + this.xDirection, attacker.y, defender, attacker)];
 		}
 	}
 }
