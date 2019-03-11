@@ -4024,7 +4024,7 @@ var BN6Wind = {
 		}
 		this.tempX = attacker.x + this.xDirection;
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, 1)];
+			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, -1)];
 		}
 	}
 }
@@ -4051,7 +4051,7 @@ var BN6Fan = {
 		}
 		this.tempX = attacker.x + this.xDirection;
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, -1)];
+			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, 1)];
 		}
 	}
 }

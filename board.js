@@ -162,11 +162,11 @@ function Board(width,height,canvas){
 			ctx.drawImage(document.getElementById(cells[x][y].side+cells[x][y].panelType),left,top,cellWidth,cellHeight);
 		}
 		for(var i = 0; i < cells[x][y].object.length; i++){
-			if(cells[x][y].object[i].attacker !== null && cells[x][y].object[i].attacker.name === "two"){
-				ctx.scale(-1, 1);
+			this.objImage = cells[x][y].object[i].image.id;
+			if(cells[x][y].object[i].attacker && cells[x][y].object[i].attacker.name === "two"){
+				this.objImage = this.objImage.concat("2");
 			}
-			ctx.drawImage(cells[x][y].object[i].image, left+cellWidth/8, top-cellHeight/2, 3*cellWidth/4, cellHeight*1.5);
-			ctx.scale(1, 1);
+			ctx.drawImage(document.getElementById(this.objImage), left+cellWidth/8, top-3*cellHeight/4, 3*cellWidth/4, cellHeight*1.5);
 		}
 	}
 
@@ -372,6 +372,7 @@ function Board(width,height,canvas){
 	this.resolvePlayerPanels = function(aPlayer){
 		this.movePanels = [PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT];
 		while(this.movePanels.includes(cells[aPlayer.x][aPlayer.y].panelType)){
+			cells[aPlayer.x][aPlayer.y].player = null;
 			this.PlayerPanel = cells[aPlayer.x][aPlayer.y].panelType;
 			if(this.PlayerPanel === PANELTYPE.UP){
 				if(board.isCellThisPlayerValid(aPlayer.x, aPlayer.y-1, aPlayer)){
@@ -406,6 +407,7 @@ function Board(width,height,canvas){
 				}
 			}
 		}
+		cells[aPlayer.x][aPlayer.y].player = aPlayer;
 		if(cells[aPlayer.x][aPlayer.y].panelType === PANELTYPE.POISON){
 			aPlayer.hp = aPlayer.hp - 25;
 		}

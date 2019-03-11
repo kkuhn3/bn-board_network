@@ -420,6 +420,7 @@ function BN6WindBox(x, y, attacker, defender, direction){
 			this.locReached = false;
 			while(!this.locReached){
 				if(!board.isCellThisPlayerValid(this.tempX, defender.y, defender)){
+					this.tempX = this.tempX - this.xDirection;
 					this.locReached = true;
 				}
 				else{
