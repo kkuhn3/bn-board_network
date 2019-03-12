@@ -10,19 +10,15 @@ function HPBug(damage){
 function BusterBug(){
 	this.id = "BusterBug";
 	this.resolve = function(player){
-		player.busterDamage = Math.floor(Math.random() * 50);
+		player.busterType.damage = board.generateRandomNum(51);
 	}
 }
 
 function PathBug(){
 	this.id = "PathBug";
-	this.flipbool = true;
 	this.resolve = function(player){
-		if(this.flipbool){
-			board.convertPanel(player.x, player.y, PANELTYPE.POISON);
-		}
-		else{
-			board.convertPanel(player.x, player.y, PANELTYPE.HOLY);
-		}
+		this.bugPanels = [PANELTYPE.NORMAL, PANELTYPE.GRASS, PANELTYPE.POISON, PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY, PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT];
+		this.bugPanel = this.bugPanels[board.generateRandomNum(this.bugPanels.length)];
+		board.convertPanel(player.x, player.y, this.bugPanel);
 	}
 }

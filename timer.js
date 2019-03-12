@@ -108,7 +108,6 @@ function Timer(turncount,canvas){
 							if(playerTwo.action === ACTIONS.CARD || playerTwo.action === ACTIONS.SPECIAL){
 								playerTwo.card = cards.getCardById(playerData.card.id);
 							}
-							playerTwo.busterDamage = playerData.busterDamage;
 						}
 						else{
 							playerOne.hp = playerData.hp;
@@ -120,7 +119,6 @@ function Timer(turncount,canvas){
 							if(playerOne.action === ACTIONS.CARD || playerOne.action === ACTIONS.SPECIAL){
 								playerOne.card = cards.getCardById(playerData.card.id);
 							}
-							playerOne.busterDamage = playerData.busterDamage;
 						}
 						this.nextTurn();
 						board.resolveTurn();

@@ -11,38 +11,38 @@ ELEMENTS = {
 }
 
 // Use cannon for example
-var CANNON1 = {
+function CANNON1(){
 	// It's an ID. Used to map the card to itself.
-	id:"CANNON1",
+	this.id="CANNON1";
 	// It's name! (just for printouts)
-	name:"Cannon1",
+	this.name="Cannon1";
 	// The image used for this card
-	image:cannon1,
+	this.image=cannon1;
 	// what codes it can be selected with. any character listed and * means all.
-	code:["A","B","C"],
+	this.code=["A","B","C"];
 	// How much it "costs" to add this to a folder. -- TODO -- Add folder restrictions on MB.
 	// a. 0-19 MB - 5
 	// b. 20-29 MB - 4
 	// c. 30-39 MB - 3
 	// d. 40-49 MB - 2
 	// e. 50+ MB - 1
-	mb:0,
+	this.mb=0;
 	// What "level" of card it is.
-	rank:"standard",
+	this.rank="standard";
 	// how much damage it does on hit
-	damage:40,
+	this.damage=40;
 	// How many times this attack hits
-	hits:1,
+	this.hits=1;
 	// 0 "stop time", cannot counter. p2 gets priority
 	// 1 "fast", can counter 3s
 	// 2 "medium", cannot counter or be countered
 	// 3 "slow", can be countered by 1s
-	priority:2,
+	this.priority=2;
 	// Which element(s) this chip is
-	elements:[],
+	this.elements=[];
 	// returns True if hits, false otherwise. 
 	// may adjust damage
-	hithuh: function(attacker, defender){
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				for(var i=0; i < defender.x - attacker.x; i++){
@@ -62,61 +62,61 @@ var CANNON1 = {
 			}
 		}
 		return false;
-	},
+	};
 	// effects that trigger when the attack hits
-	effecthit: function(attacker, defender){},
+	this.effecthit= function(attacker, defender){};
 	// effects that trigger when teh attack misses
-	effectmiss: function(attacker, defender){}
+	this.effectmiss= function(attacker, defender){};
 }
 
-var CANNON2 = {
-	id:"CANNON2",
-	name:"Cannon2",
-	image:cannon2,
-	code:["B","C","D"],
-	mb:0,
-	rank:"standard",
-	damage:80,
-	hits:1,
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return CANNON1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function CANNON2(){
+	this.id="CANNON2";
+	this.name="Cannon2";
+	this.image=cannon2;
+	this.code=["B","C","D"];
+	this.mb=0;
+	this.rank="standard";
+	this.damage=80;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new CANNON1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var CANNON3 = {
-	id:"CANNON3",
-	name:"Cannon3",
-	image:cannon3,
-	code:["C","D","E"],
-	mb:0,
-	rank:"standard",
-	damage:120,
-	hits:1,
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return CANNON1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function CANNON3(){
+	this.id="CANNON3";
+	this.name="Cannon3";
+	this.image=cannon3;
+	this.code=["C","D","E"];
+	this.mb=0;
+	this.rank="standard";
+	this.damage=120;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new CANNON1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var PIERCECANNON = {
-	id:"PIERCECANNON",
-	name:"Pierce Cannon",
-	image:piercecannon,
-	code:["D","E","F"],
-	mb:0,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.cursor],
-	hithuh: function(attacker, defender){
+function PIERCECANNON(){
+	this.id="PIERCECANNON";
+	this.name="Pierce Cannon";
+	this.image=piercecannon;
+	this.code=["D","E","F"];
+	this.mb=0;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.cursor];
+	this.hithuh= function(attacker, defender){
 		if(attacker.name === "one"){
 			for(var i=1; i <= defender.x - attacker.x; i++){
 				if(board.cellHasSolidObject(attacker.x + i, attacker.y)){
@@ -134,113 +134,113 @@ var PIERCECANNON = {
 			return attacker.y === defender.y && defender.x < attacker.x;
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			defender.invis = 0;
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BREAKCANNON = {
-	id:"BREAKCANNON",
-	name:"Break Cannon",
-	image:breakcannon,
-	code:["E","F","G"],
-	mb:0,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
-		return CANNON1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BREAKCANNON(){
+	this.id="BREAKCANNON";
+	this.name="Break Cannon";
+	this.image=breakcannon;
+	this.code=["E","F","G"];
+	this.mb=0;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new CANNON1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var STUNCANNON = {
-	id:"STUNCANNON",
-	name:"Stun Cannon",
-	image:stuncannon,
-	code:["F","G","H"],
-	mb:0,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
-		return CANNON1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function STUNCANNON(){
+	this.id="STUNCANNON";
+	this.name="Stun Cannon";
+	this.image=stuncannon;
+	this.code=["F","G","H"];
+	this.mb=0;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new CANNON1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			defender.stunned = 1;
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var GUARD = {
-	id:"GUARD",
-	name:"Guard",
-	image:guard,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	damage:50,
-	hits:1,
-	mb:0,
-	rank:"standard",
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
+function GUARD(){
+	this.id="GUARD";
+	this.name="Guard";
+	this.image=guard;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.damage=50;
+	this.hits=1;
+	this.mb=0;
+	this.rank="standard";
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.guard = new Reflector(GUARD.damage);
-	}
+	};
 }
 
-var INVIS = {
-	id:"INVIS",
-	name:"Invis",
-	image:invis,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	damage:0,
-	hits:1,
-	mb:0,
-	rank:"standard",
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function INVIS(){
+	this.id="INVIS";
+	this.name="Invis";
+	this.image=invis;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.damage=0;
+	this.hits=1;
+	this.mb=0;
+	this.rank="standard";
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.invis = 2;
-	}
+	};
 }
 
-var AREAGRAB = {
-	id:"AREAGRAB",
-	name:"Area Grab",
-	image:areagrab,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	damage:10,
-	hits:1,
-	mb:0,
-	rank:"standard",
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function AREAGRAB(){
+	this.id="AREAGRAB";
+	this.name="Area Grab";
+	this.image=areagrab;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.damage=10;
+	this.hits=1;
+	this.mb=0;
+	this.rank="standard";
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.x === AREAGRAB.affectedColumn(attacker, defender) && defender.invis < 1){
 			return true;
 		}
 		return false;
-	},
-	affectedColumn: function(attacker, defender){
+	};
+	this.affectedColumn= function(attacker, defender){
 		if(attacker.name === "one"){
 			this.column = 7;
 			for(var x=0;x<cells.length;x++){
@@ -263,8 +263,8 @@ var AREAGRAB = {
 			}
 			return this.column;
 		}
-	},
-	effecthit: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
 		this.column = AREAGRAB.affectedColumn(attacker, defender);
 		if(attacker.name === "one"){
 			for(var x=0;x<cells.length;x++){
@@ -286,24 +286,24 @@ var AREAGRAB = {
 				}
 			}
 		}
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effectmiss= function(attacker, defender){
 		AREAGRAB.effecthit(attacker, defender);
-	}
+	};
 }
 
-var SWORD = {
-	id:"SWORD",
-	name:"Sword",
-	image:sword,
-	code:["G","H","I"],
-	damage:100,
-	hits:1,
-	mb:0,
-	rank:"standard",
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function SWORD(){
+	this.id="SWORD";
+	this.name="Sword";
+	this.image=sword;
+	this.code=["G","H","I"];
+	this.damage=100;
+	this.hits=1;
+	this.mb=0;
+	this.rank="standard";
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		this.direction = 0;
 		if(attacker.name === "one"){
 			this.direction = 1;
@@ -320,23 +320,23 @@ var SWORD = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var WIDESWORD = {
-	id:"WIDESWORD",
-	name:"Wide Sword",
-	image:widesword,
-	code:["H","I","J"],
-	damage:80,
-	hits:1,
-	mb:0,
-	rank:"standard",
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function WIDESWORD(){
+	this.id="WIDESWORD";
+	this.name="Wide Sword";
+	this.image=widesword;
+	this.code=["H","I","J"];
+	this.damage=80;
+	this.hits=1;
+	this.mb=0;
+	this.rank="standard";
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		this.direction = 0;
 		if(attacker.name === "one"){
 			this.direction = 1;
@@ -353,23 +353,23 @@ var WIDESWORD = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var LONGSWORD = {
-	id:"LONGSWORD",
-	name:"Long Sword",
-	image:longsword,
-	code:["I","J","K"],
-	damage:80,
-	hits:1,
-	mb:0,
-	rank:"standard",
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function LONGSWORD(){
+	this.id="LONGSWORD";
+	this.name="Long Sword";
+	this.image=longsword;
+	this.code=["I","J","K"];
+	this.damage=80;
+	this.hits=1;
+	this.mb=0;
+	this.rank="standard";
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		this.direction = 0;
 		if(attacker.name === "one"){
 			this.direction = 1;
@@ -386,14 +386,14 @@ var LONGSWORD = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
 var CARDLIST = null;
-var DEFAULTCARDS = [CANNON1, CANNON2, CANNON3, PIERCECANNON, BREAKCANNON, STUNCANNON, GUARD, INVIS, AREAGRAB, SWORD, WIDESWORD, LONGSWORD];
-var TEMPDECKLIST = [CANNON1, CANNON2, CANNON3, PIERCECANNON, BREAKCANNON, STUNCANNON, GUARD, INVIS, AREAGRAB, SWORD, WIDESWORD, LONGSWORD];
+var DEFAULTCARDS = [new CANNON1(), new CANNON2(), new CANNON3(), new PIERCECANNON(), new BREAKCANNON(), new STUNCANNON(), new GUARD(), new INVIS(), new AREAGRAB(), new SWORD(), new WIDESWORD(), new LONGSWORD()];
+var TEMPDECKLIST = [new CANNON1(), new CANNON2(), new CANNON3(), new PIERCECANNON(), new BREAKCANNON(), new STUNCANNON(), new GUARD(), new INVIS(), new AREAGRAB(), new SWORD(), new WIDESWORD(), new LONGSWORD()];
 
 var randomCard = function(){
 	return CARDLIST[Math.floor(Math.random() * CARDLIST.length)]
@@ -412,7 +412,7 @@ function Cards(){
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
-		//TEMPDECKLIST = [BN6RockCube, BN6Fan, BN6Wind, BN6Thunder, BN6Barrier100];
+		//TEMPDECKLIST = [new BN6GunSol1(), new CANNON2(), new CANNON2(), new CANNON2(), new CANNON2()];
 	}
 
 	this.around = function(x, y, defender){

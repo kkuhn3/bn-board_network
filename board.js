@@ -46,8 +46,7 @@ var playerOne = {
 	stunned: 0,
 	bubbled: 0,
 	frozen: 0,
-	busterType: BN6Buster,
-	busterDamage: busterDefualt,
+	busterType: new BN6Buster,
 	bugs: [],
 	barrier: null, 
 	bonusDamage: 0,
@@ -72,8 +71,7 @@ var playerTwo = {
 	stunned:0,
 	bubbled: 0,
 	frozen: 0,
-	busterType: BN6Buster,
-	busterDamage: busterDefualt,
+	busterType: new BN6Buster,
 	bugs: [],
 	barrier: null,
 	bonusDamage: 0,
@@ -297,7 +295,11 @@ function Board(width,height,canvas){
 	}
 
 	this.resolveTurn = function(){
-		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});
+		this.otherPlayer = "one";
+		if(player.name === "one"){
+			this.otherPlayer = "two";
+		}
+		$.post("save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
 		console.log("======================= turn start =======================");
 		this.resolvePlayerPanels(playerOne);
 		this.resolvePlayerPanels(playerTwo);
@@ -343,6 +345,11 @@ function Board(width,height,canvas){
 	}
 
 	this.generateRandomBoolean = function(){
+		this.val = this.generateRandomNum(2);
+		return this.val === 1;
+	}
+	
+	this.generateRandomNum = function(outOf){
 		this.sum = 0;
 		if(playerOne.ACTIONS === ACTIONS.CARD){
 			sum = sum + CARDLIST.indexOf(playerOne.card);
@@ -356,8 +363,8 @@ function Board(width,height,canvas){
 		else{
 			sum = sum + CARDLIST.length+2;
 		}
-		this.val = this.sum % 2;
-		return this.val === 1;
+		this.val = this.sum % outOf;
+		return this.val;
 	}
 
 	this.resolveBugs = function(){
@@ -624,7 +631,7 @@ function Board(width,height,canvas){
 						fakeDefender.y = y;
 
 						if(attacker.action === ACTIONS.BUSTER){
-							if(CANNON1.hithuh(attacker, fakeDefender)){
+							if(attacker.busterType.hithuh(attacker, fakeDefender)){
 								cells[x][y].object[i].hitByBuster(attacker);
 							}
 						}

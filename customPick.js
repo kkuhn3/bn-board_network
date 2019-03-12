@@ -143,7 +143,11 @@ function CustomPick(canvas){
 				var d = JSON.parse(data);
 				if(d){
 					this.confirm();
-					$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(false)});
+					this.otherPlayer = "one";
+					if(player.name === "one"){
+						this.otherPlayer = "two";
+					}
+					$.post("save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
 					custom.drawHand();
 					timer.draw();
 					return true;

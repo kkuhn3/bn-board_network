@@ -1,73 +1,73 @@
 
-var BN6Cannon = {
-	id:"BN6Cannon",
-	name:"Cannon",
-	image:BN6CannonIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:6,
-	rank:"standard",
-	damage:40,
-	hits:1,
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return CANNON1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6Cannon(){
+	this.id="BN6Cannon";
+	this.name="Cannon";
+	this.image=BN6CannonIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=6;
+	this.rank="standard";
+	this.damage=40;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new CANNON1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6HiCannon = {
-	id:"BN6HiCannon",
-	name:"HiCannon",
-	image:BN6HiCannonIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:24,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Cannon.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6HiCannon(){
+	this.id="BN6HiCannon";
+	this.name="HiCannon";
+	this.image=BN6HiCannonIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=24;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Cannon()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6MegaCannon= {
-	id:"BN6MegaCannon",
-	name:"MegaCannon",
-	image:BN6MegaCannonIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:38,
-	rank:"standard",
-	damage:180,
-	hits:1,
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Cannon.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6MegaCannon(){
+	this.id="BN6MegaCannon";
+	this.name="MegaCannon";
+	this.image=BN6MegaCannonIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=180;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Cannon()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AirShot = {
-	id:"BN6AirShot",
-	name:"AirShot",
-	image:BN6AirShotIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:4,
-	rank:"standard",
-	damage:20,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.wind],
-	hithuh: function(attacker, defender){
-		return BN6Cannon.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6AirShot(){
+	this.id="BN6AirShot";
+	this.name="AirShot";
+	this.image=BN6AirShotIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=4;
+	this.rank="standard";
+	this.damage=20;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.wind];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Cannon()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			if(attacker.name === "one" && defender.x < 5){
 				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
@@ -84,22 +84,22 @@ var BN6AirShot = {
 				}
 			}
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Vulcan1 = {
-	id:"BN6Vulcan1",
-	name:"Vulcan1",
-	image:BN6Vulcan1IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:5,
-	rank:"standard",
-	damage:10,
-	hits:3,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Vulcan1(){
+	this.id="BN6Vulcan1";
+	this.name="Vulcan1";
+	this.image=BN6Vulcan1IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=5;
+	this.rank="standard";
+	this.damage=10;
+	this.hits=3;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				for(var i=1; i <= 5 - attacker.x; i++){
@@ -123,77 +123,77 @@ var BN6Vulcan1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Vulcan2 = {
-	id:"BN6Vulcan2",
-	name:"Vulcan2",
-	image:BN6Vulcan2IMG,
-	code:["D", "F", "L"],
-	mb:18,
-	rank:"standard",
-	damage:15,
-	hits:4,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Vulcan1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6Vulcan2(){
+	this.id="BN6Vulcan2";
+	this.name="Vulcan2";
+	this.image=BN6Vulcan2IMG;
+	this.code=["D", "F", "L"];
+	this.mb=18;
+	this.rank="standard";
+	this.damage=15;
+	this.hits=4;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Vulcan1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Vulcan3 = {
-	id:"BN6Vulcan3",
-	name:"Vulcan3",
-	image:BN6Vulcan3IMG,
-	code:["A", "G", "R"],
-	mb:30,
-	rank:"standard",
-	damage:20,
-	hits:5,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Vulcan1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6Vulcan3(){
+	this.id="BN6Vulcan3";
+	this.name="Vulcan3";
+	this.image=BN6Vulcan3IMG;
+	this.code=["A", "G", "R"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=20;
+	this.hits=5;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Vulcan1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6SuperVulcan = {
-	id:"BN6SuperVulcan",
-	name:"SuperVulcan",
-	image:BN6SuperVulcanIMG,
-	code:["V"],
-	mb:75,
-	rank:"standard",
-	damage:20,
-	hits:10,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Vulcan1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6SuperVulcan(){
+	this.id="BN6SuperVulcan";
+	this.name="SuperVulcan";
+	this.image=BN6SuperVulcanIMG;
+	this.code=["V"];
+	this.mb=75;
+	this.rank="standard";
+	this.damage=20;
+	this.hits=10;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Vulcan1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Spreader1 = {
-	id:"BN6Spreader1",
-	name:"Spreader1",
-	image:BN6Spreader1IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:10,
-	rank:"standard",
-	damage:30,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Spreader1(){
+	this.id="BN6Spreader1";
+	this.name="Spreader1";
+	this.image=BN6Spreader1IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=10;
+	this.rank="standard";
+	this.damage=30;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				for(var i=1; i <= 5 - attacker.x; i++){
@@ -217,61 +217,61 @@ var BN6Spreader1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Spreader2 = {
-	id:"BN6Spreader2",
-	name:"Spreader2",
-	image:BN6Spreader2IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:18,
-	rank:"standard",
-	damage:60,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Spreader1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6Spreader2(){
+	this.id="BN6Spreader2";
+	this.name="Spreader2";
+	this.image=BN6Spreader2IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=18;
+	this.rank="standard";
+	this.damage=60;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Spreader1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Spreader3 = {
-	id:"BN6Spreader3",
-	name:"Spreader3",
-	image:BN6Spreader3IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:26,
-	rank:"standard",
-	damage:90,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Spreader1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6Spreader3(){
+	this.id="BN6Spreader3";
+	this.name="Spreader3";
+	this.image=BN6Spreader3IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=26;
+	this.rank="standard";
+	this.damage=90;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Spreader1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BigTank1 = {
-	id:"BN6BigTank1",
-	name:"BigTank1",
-	image:BN6BigTank1IMG,
-	code:["A", "G", "R"],
-	mb:17,
-	rank:"standard",
-	damage:120,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6BigTank1(){
+	this.id="BN6BigTank1";
+	this.name="BigTank1";
+	this.image=BN6BigTank1IMG;
+	this.code=["A", "G", "R"];
+	this.mb=17;
+	this.rank="standard";
+	this.damage=120;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(BN6Cannon.hithuh(attacker, defender)){
+			if((new BN6Cannon()).hithuh(attacker, defender)){
 				return true;
 			}
 			for(var i=1; i <= 5 - attacker.x; i++){
@@ -287,64 +287,64 @@ var BN6BigTank1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BigTank2 = {
-	id:"BN6BigTank2",
-	name:"BigTank2",
-	image:BN6BigTank2IMG,
-	code:["L", "S", "V"],
-	mb:28,
-	rank:"standard",
-	damage:160,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6BigTank1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6BigTank2(){
+	this.id="BN6BigTank2";
+	this.name="BigTank2";
+	this.image=BN6BigTank2IMG;
+	this.code=["L", "S", "V"];
+	this.mb=28;
+	this.rank="standard";
+	this.damage=160;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6BigTank1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BigTank3 = {
-	id:"BN6BigTank3",
-	name:"BigTank3",
-	image:BN6BigTank3IMG,
-	code:["B", "M", "P"],
-	mb:39,
-	rank:"standard",
-	damage:200,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6BigTank1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6BigTank3(){
+	this.id="BN6BigTank3";
+	this.name="BigTank3";
+	this.image=BN6BigTank3IMG;
+	this.code=["B", "M", "P"];
+	this.mb=39;
+	this.rank="standard";
+	this.damage=200;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6BigTank1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6GunSol1 = {
-	id:"BN6GunSol1",
-	name:"GunSol1",
-	image:BN6GunSol1IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:15,
-	rank:"standard",
-	damage:5,
-	hits:10,
-	priority:2,
-	elements:[],
-	showSpecial: function(attacker, defender){
+function BN6GunSol1(){
+	this.id="BN6GunSol1";
+	this.name="GunSol1";
+	this.image=BN6GunSol1IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=15;
+	this.rank="standard";
+	this.damage=5;
+	this.hits=10;
+	this.priority=2;
+	this.elements=[];
+	this.showSpecial= function(attacker, defender){
 		if(attacker.name == player.name){
 			document.getElementById("special").style.display='block';
 			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
 			document.getElementById("special").value ='Continue Using GunDelSol!';
-			document.getElementById("special").onclick=function () { BN6GunSol1.useSpecial(BN6GunSol1); };
+			document.getElementById("special").onclick=function () { (new BN6GunSol1()).useSpecial((new BN6GunSol1())); };
 			if(attacker.name === "one"){
 				document.getElementById("special").style.float='left';
 			}
@@ -352,8 +352,8 @@ var BN6GunSol1 = {
 				document.getElementById("special").style.float='right';
 			}
 		}
-	},
-	useSpecial: function(card){
+	};
+	this.useSpecial= function(card){
 		document.getElementById("nextturn").style.display='block';
 		if(player.name === "one"){
 			if(playerOne.action === ACTIONS.CARD){
@@ -369,8 +369,8 @@ var BN6GunSol1 = {
 			playerTwo.card = card;
 			playerTwo.action = ACTIONS.SPECIAL;
 		}
-	},
-	hithuh: function(attacker, defender){
+	};
+	this.hithuh= function(attacker, defender){
 		if(attacker.name === "one"){
 			if(attacker.x + 2 === defender.x){
 				return attacker.y + 1 === defender.y || attacker.y === defender.y || attacker.y - 1 === defender.y;
@@ -382,34 +382,34 @@ var BN6GunSol1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){
-		BN6GunSol1.showSpecial(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6GunSol1()).showSpecial(attacker, defender);
 		defender.guard = null;
 		defender.invis = 0;
-	},
-	effectmiss: function(attacker, defender){
-		BN6GunSol1.showSpecial(attacker, defender);
-	}
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6GunSol1()).showSpecial(attacker, defender);
+	};
 }
 
-var BN6GunSol2 = {
-	id:"BN6GunSol2",
-	name:"GunSol2",
-	image:BN6GunSol2IMG,
-	code:["B", "E", "R"],
-	mb:30,
-	rank:"standard",
-	damage:10,
-	hits:10,
-	priority:2,
-	elements:[],
-	showSpecial: function(attacker, defender){
+function BN6GunSol2(){
+	this.id="BN6GunSol2";
+	this.name="GunSol2";
+	this.image=BN6GunSol2IMG;
+	this.code=["B", "E", "R"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=10;
+	this.hits=10;
+	this.priority=2;
+	this.elements=[];
+	this.showSpecial= function(attacker, defender){
 		if(attacker.name == player.name){
 			document.getElementById("special").style.display='block';
 			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
 			document.getElementById("special").value ='Continue Using GunDelSol!';
-			document.getElementById("special").onclick= function () { BN6GunSol2.useSpecial(BN6GunSol2); };
+			document.getElementById("special").onclick= function () { (new BN6GunSol2()).useSpecial((new BN6GunSol2())); };
 			if(attacker.name === "one"){
 				document.getElementById("special").style.float='left';
 			}
@@ -417,39 +417,39 @@ var BN6GunSol2 = {
 				document.getElementById("special").style.float='right';
 			}
 		}
-	},
-	useSpecial: function(card){
-		BN6GunSol1.useSpecial(card);
-	},
-	hithuh: function(attacker, defender){
-		return BN6GunSol1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6GunSol1.effecthit(attacker, defender);
-		BN6GunSol2.showSpecial(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		BN6GunSol2.showSpecial(attacker, defender);
-	}
+	};
+	this.useSpecial= function(card){
+		(new BN6GunSol1()).useSpecial(card);
+	};
+	this.hithuh= function(attacker, defender){
+		return (new BN6GunSol1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6GunSol1()).effecthit(attacker, defender);
+		(new BN6GunSol2()).showSpecial(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6GunSol2()).showSpecial(attacker, defender);
+	};
 }
 
-var BN6GunSol3 = {
-	id:"BN6GunSol3",
-	name:"GunSol3",
-	image:BN6GunSol3IMG,
-	code:["N", "Q", "W"],
-	mb:38,
-	rank:"standard",
-	damage:15,
-	hits:10,
-	priority:2,
-	elements:[],
-	showSpecial: function(attacker, defender){
+function BN6GunSol3(){
+	this.id="BN6GunSol3";
+	this.name="GunSol3";
+	this.image=BN6GunSol3IMG;
+	this.code=["N", "Q", "W"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=15;
+	this.hits=10;
+	this.priority=2;
+	this.elements=[];
+	this.showSpecial= function(attacker, defender){
 		if(attacker.name == player.name){
 			document.getElementById("special").style.display='block';
 			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
 			document.getElementById("special").value ='Continue Using GunDelSol!';
-			document.getElementById("special").onclick =function () { BN6GunSol3.useSpecial(BN6GunSol3); };
+			document.getElementById("special").onclick =function () { (new BN6GunSol3()).useSpecial((new BN6GunSol3())); };
 			if(attacker.name === "one"){
 				document.getElementById("special").style.float='left';
 			}
@@ -457,34 +457,34 @@ var BN6GunSol3 = {
 				document.getElementById("special").style.float='right';
 			}
 		}
-	},
-	useSpecial: function(card){
-		BN6GunSol1.useSpecial(card);
-	},
-	hithuh: function(attacker, defender){
-		return BN6GunSol1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6GunSol1.effecthit(attacker, defender);
-		BN6GunSol3.showSpecial(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		BN6GunSol3.showSpecial(attacker, defender);
-	}
+	};
+	this.useSpecial= function(card){
+		(new BN6GunSol1()).useSpecial(card);
+	};
+	this.hithuh= function(attacker, defender){
+		return (new BN6GunSol1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6GunSol1()).effecthit(attacker, defender);
+		(new BN6GunSol3()).showSpecial(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6GunSol3()).showSpecial(attacker, defender);
+	};
 }
 
-var BN6Yoyo = {
-	id:"BN6Yoyo",
-	name:"Yoyo",
-	image:BN6YoyoIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:32,
-	rank:"standard",
-	damage:50,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function BN6Yoyo(){
+	this.id="BN6Yoyo";
+	this.name="Yoyo";
+	this.image=BN6YoyoIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=32;
+	this.rank="standard";
+	this.damage=50;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		this.hits = 1;
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
@@ -519,25 +519,25 @@ var BN6Yoyo = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6HellBurner1 = {
-	id:"BN6HellBurner1",
-	name:"HellBurner1",
-	image:BN6HellBurner1IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:8,
-	rank:"standard",
-	damage:70,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
+function BN6HellBurner1(){
+	this.id="BN6HellBurner1";
+	this.name="HellBurner1";
+	this.image=BN6HellBurner1IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=8;
+	this.rank="standard";
+	this.damage=70;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(LONGSWORD.hithuh(attacker, defender)){
+			if((new LONGSWORD()).hithuh(attacker, defender)){
 				return true;
 			}
 			else{
@@ -554,59 +554,59 @@ var BN6HellBurner1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6HellBurner2 = {
-	id:"BN6HellBurner2",
-	name:"HellBurner2",
-	image:BN6HellBurner2IMG,
-	code:["S", "T", "U"],
-	mb:21,
-	rank:"standard",
-	damage:110,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
-		return BN6HellBurner1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6HellBurner2(){
+	this.id="BN6HellBurner2";
+	this.name="HellBurner2";
+	this.image=BN6HellBurner2IMG;
+	this.code=["S", "T", "U"];
+	this.mb=21;
+	this.rank="standard";
+	this.damage=110;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new BN6HellBurner1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6HellBurner3 = {
-	id:"BN6HellBurner3",
-	name:"HellBurner3",
-	image:BN6HellBurner3IMG,
-	code:["C", "D", "E"],
-	mb:34,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
-		return BN6HellBurner1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6HellBurner3(){
+	this.id="BN6HellBurner3";
+	this.name="HellBurner3";
+	this.image=BN6HellBurner3IMG;
+	this.code=["C", "D", "E"];
+	this.mb=34;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new BN6HellBurner1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6WideShot = {
-	id:"BN6WideShot",
-	name:"WideShot",
-	image:BN6WideShotIMG,
-	code:["P", "Q", "R"],
-	mb:34,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
+function BN6WideShot(){
+	this.id="BN6WideShot";
+	this.name="WideShot";
+	this.image=BN6WideShotIMG;
+	this.code=["P", "Q", "R"];
+	this.mb=34;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				for(var i=1; i <= defender.x - attacker.x; i++){
@@ -638,23 +638,23 @@ var BN6WideShot = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6TrainArrow1 = {
-	id:"BN6TrainArrow1",
-	name:"TrainArrow1",
-	image:BN6TrainArrow1IMG,
-	code:["A", "F", "K"],
-	mb:30,
-	rank:"standard",
-	damage:30,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
+function BN6TrainArrow1(){
+	this.id="BN6TrainArrow1";
+	this.name="TrainArrow1";
+	this.image=BN6TrainArrow1IMG;
+	this.code=["A", "F", "K"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=30;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
 		this.hits = 1;
 		this.hitPlayer = false;
 		if(defender.invis < 1){
@@ -691,68 +691,66 @@ var BN6TrainArrow1 = {
 				}
 			}
 		}
-		BN6TrainArrow2.hits = BN6TrainArrow1.hits;
-		BN6TrainArrow3.hits = BN6TrainArrow1.hits;
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6TrainArrow2 = {
-	id:"BN6TrainArrow2",
-	name:"TrainArrow2",
-	image:BN6TrainArrow2IMG,
-	code:["G", "M", "Z"],
-	mb:36,
-	rank:"standard",
-	damage:40,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		var hitbool = BN6TrainArrow1.hithuh(attacker, defender);
-		this.hits = BN6TrainArrow1.hits;
-		BN6TrainArrow3.hits = BN6TrainArrow1.hits;
+function BN6TrainArrow2(){
+	this.id="BN6TrainArrow2";
+	this.name="TrainArrow2";
+	this.image=BN6TrainArrow2IMG;
+	this.code=["G", "M", "Z"];
+	this.mb=36;
+	this.rank="standard";
+	this.damage=40;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		this.BN6TrainArrow1 = new BN6TrainArrow1();
+		var hitbool = this.BN6TrainArrow1.hithuh(attacker, defender);
+		this.hits = this.BN6TrainArrow1.hits;
 		return hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6TrainArrow3 = {
-	id:"BN6TrainArrow3",
-	name:"TrainArrow3",
-	image:BN6TrainArrow3IMG,
-	code:["M", "S", "Y"],
-	mb:42,
-	rank:"standard",
-	damage:50,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		var hitbool = BN6TrainArrow1.hithuh(attacker, defender);
-		this.hits = BN6TrainArrow1.hits;
-		BN6TrainArrow2.hits = BN6TrainArrow1.hits;
+function BN6TrainArrow3(){
+	this.id="BN6TrainArrow3";
+	this.name="TrainArrow3";
+	this.image=BN6TrainArrow3IMG;
+	this.code=["M", "S", "Y"];
+	this.mb=42;
+	this.rank="standard";
+	this.damage=50;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		this.BN6TrainArrow1 = new BN6TrainArrow1();
+		var hitbool = this.BN6TrainArrow1.hithuh(attacker, defender);
+		this.hits = this.BN6TrainArrow1.hits;
 		return hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BubbleStar1 = {
-	id:"BN6BubbleStar1",
-	name:"BubbleStar1",
-	image:BN6BubbleStar1IMG,
-	code:["B", "E", "T"],
-	mb:30,
-	rank:"standard",
-	damage:60,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
+function BN6BubbleStar1(){
+	this.id="BN6BubbleStar1";
+	this.name="BubbleStar1";
+	this.image=BN6BubbleStar1IMG;
+	this.code=["B", "E", "T"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=60;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				if(defender.x === attacker.x+1 && defender.y === attacker.y-1){
@@ -830,67 +828,67 @@ var BN6BubbleStar1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			defender.bubbled = 2;
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BubbleStar2 = {
-	id:"BN6BubbleStar2",
-	name:"BubbleStar2",
-	image:BN6BubbleStar2IMG,
-	code:["B", "E", "T"],
-	mb:38,
-	rank:"standard",
-	damage:80,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		return BN6BubbleStar1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		return BN6BubbleStar1.effecthit(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){}
+function BN6BubbleStar2(){
+	this.id="BN6BubbleStar2";
+	this.name="BubbleStar2";
+	this.image=BN6BubbleStar2IMG;
+	this.code=["B", "E", "T"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=80;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6BubbleStar1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		return (new BN6BubbleStar1()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BubbleStar3 = {
-	id:"BN6BubbleStar3",
-	name:"BubbleStar3",
-	image:BN6BubbleStar3IMG,
-	code:["B", "E", "T"],
-	mb:46,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		return BN6BubbleStar1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		return BN6BubbleStar1.effecthit(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){}
+function BN6BubbleStar3(){
+	this.id="BN6BubbleStar3";
+	this.name="BubbleStar3";
+	this.image=BN6BubbleStar3IMG;
+	this.code=["B", "E", "T"];
+	this.mb=46;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6BubbleStar1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		return (new BN6BubbleStar1()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Thunder = {
-	id:"BN6Thunder",
-	name:"Thunder",
-	image:BN6ThunderIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:7,
-	rank:"standard",
-	damage:40,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
+function BN6Thunder(){
+	this.id="BN6Thunder";
+	this.name="Thunder";
+	this.image=BN6ThunderIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=7;
+	this.rank="standard";
+	this.damage=40;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				return attacker.x+1 === defender.x && attacker.y === defender.y;
@@ -900,13 +898,13 @@ var BN6Thunder = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			defender.stunned = 2;
 		}
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effectmiss= function(attacker, defender){
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
 				cells[attacker.x+1][attacker.y].object.push(new BN6ThunderBall(attacker.x+1, attacker.y, attacker, defender, 8));
@@ -917,21 +915,21 @@ var BN6Thunder = {
 				cells[attacker.x-1][attacker.y].object.push(new BN6ThunderBall(attacker.x-1, attacker.y, attacker, defender, 8));
 			}
 		}
-	}
+	};
 }
 
-var BN6DollThunder1 = {
-	id:"BN6DollThunder1",
-	name:"DollThunder1",
-	image:BN6DollThunder1IMG,
-	code:["A", "E", "Q"],
-	mb:24,
-	rank:"standard",
-	damage:120,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
+function BN6DollThunder1(){
+	this.id="BN6DollThunder1";
+	this.name="DollThunder1";
+	this.image=BN6DollThunder1IMG;
+	this.code=["A", "E", "Q"];
+	this.mb=24;
+	this.rank="standard";
+	this.damage=120;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				return defender.y === attacker.y && defender.x > attacker.x;
@@ -941,59 +939,59 @@ var BN6DollThunder1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6DollThunder2 = {
-	id:"BN6DollThunder2",
-	name:"DollThunder2",
-	image:BN6DollThunder2IMG,
-	code:["C", "L", "P"],
-	mb:31,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
-		return BN6DollThunder1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6DollThunder2(){
+	this.id="BN6DollThunder2";
+	this.name="DollThunder2";
+	this.image=BN6DollThunder2IMG;
+	this.code=["C", "L", "P"];
+	this.mb=31;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new BN6DollThunder1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6DollThunder3 = {
-	id:"BN6DollThunder3",
-	name:"DollThunder3",
-	image:BN6DollThunder3IMG,
-	code:["B", "R", "V"],
-	mb:38,
-	rank:"standard",
-	damage:180,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
-		return BN6DollThunder1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6DollThunder3(){
+	this.id="BN6DollThunder3";
+	this.name="DollThunder3";
+	this.image=BN6DollThunder3IMG;
+	this.code=["B", "R", "V"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=180;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new BN6DollThunder1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6ElecPulse1 = {
-	id:"BN6ElecPulse1",
-	name:"ElecPulse1",
-	image:BN6ElecPulse1IMG,
-	code:["J", "L", "S"],
-	mb:32,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
+function BN6ElecPulse1(){
+	this.id="BN6ElecPulse1";
+	this.name="ElecPulse1";
+	this.image=BN6ElecPulse1IMG;
+	this.code=["J", "L", "S"];
+	this.mb=32;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
 		if(attacker.name === "one"){
 			if(attacker.y === defender.y && attacker.x+1 === defender.x){
 				return true;
@@ -1017,32 +1015,32 @@ var BN6ElecPulse1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			defender.invis = 0;
 			defender.stunned = 1;
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
 
-var BN6ElecPulse2 = {
-	id:"BN6ElecPulse2",
-	name:"ElecPulse2",
-	image:BN6ElecPulse2IMG,
-	code:["A", "E", "J"],
-	mb:36,
-	rank:"standard",
-	damage:120,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
-		return BN6ElecPulse1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6ElecPulse2(){
+	this.id="BN6ElecPulse2";
+	this.name="ElecPulse2";
+	this.image=BN6ElecPulse2IMG;
+	this.code=["A", "E", "J"];
+	this.mb=36;
+	this.rank="standard";
+	this.damage=120;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new BN6ElecPulse1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			defender.invis = 0;
 			if(attacker === "one"){
@@ -1060,45 +1058,45 @@ var BN6ElecPulse2 = {
 				}
 			}
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6ElecPulse3 = {
-	id:"BN6ElecPulse3",
-	name:"ElecPulse3",
-	image:BN6ElecPulse3IMG,
-	code:["A", "J", "S"],
-	mb:40,
-	rank:"standard",
-	damage:140,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
-		return BN6ElecPulse1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6ElecPulse3(){
+	this.id="BN6ElecPulse3";
+	this.name="ElecPulse3";
+	this.image=BN6ElecPulse3IMG;
+	this.code=["A", "J", "S"];
+	this.mb=40;
+	this.rank="standard";
+	this.damage=140;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new BN6ElecPulse1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			defender.invis = 0;
 			defender.bugs = defender.bugs.concat([new HPBug(10)]);
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6CornShot1 = {
-	id:"BN6CornShot1",
-	name:"CornShot1",
-	image:BN6CornShot1IMG,
-	code:["J", "K", "L"],
-	mb:14,
-	rank:"standard",
-	damage:50,
-	hits:1,
-	priority:3,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
+function BN6CornShot1(){
+	this.id="BN6CornShot1";
+	this.name="CornShot1";
+	this.image=BN6CornShot1IMG;
+	this.code=["J", "K", "L"];
+	this.mb=14;
+	this.rank="standard";
+	this.damage=50;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
 		this.hits = 1;
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
@@ -1132,93 +1130,91 @@ var BN6CornShot1 = {
 				}
 			}
 		}
-		BN6CornShot2.hits = this.hits;
-		BN6CornShot3.hits = this.hits;
 		return false;
-	},
-	effecthit: function(attacker, defender){
-		BN6CornShot1.effectmiss(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6CornShot1()).effectmiss(attacker, defender);
 		board.convertPanel(defender.x, defender.y, PANELTYPE.GRASS);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effectmiss= function(attacker, defender){
 		if(attacker.name === "one"){
 			board.convertPanel(attacker.x+2, attacker.y, PANELTYPE.GRASS);
 		}
 		else{
 			board.convertPanel(attacker.x-2, attacker.y, PANELTYPE.GRASS);
 		}
-	}
+	};
 }
 
-var BN6CornShot2 = {
-	id:"BN6CornShot2",
-	name:"CornShot2",
-	image:BN6CornShot2IMG,
-	code:["C", "D", "E"],
-	mb:26,
-	rank:"standard",
-	damage:60,
-	hits:1,
-	priority:3,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		var hitbool = BN6CornShot1.hithuh(attacker, defender);
-		this.hits = BN6CornShot1.hits;
-		BN6CornShot3.hits = BN6CornShot1.hits;
+function BN6CornShot2(){
+	this.id="BN6CornShot2";
+	this.name="CornShot2";
+	this.image=BN6CornShot2IMG;
+	this.code=["C", "D", "E"];
+	this.mb=26;
+	this.rank="standard";
+	this.damage=60;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		this.BN6CornShot1 = (new BN6CornShot1());
+		var hitbool = this.BN6CornShot1.hithuh(attacker, defender);
+		this.hits = this.BN6CornShot1.hits;
 		return hitbool;
-	},
-	effecthit: function(attacker, defender){
-		BN6CornShot1.effecthit(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		BN6CornShot1.effectmiss(attacker, defender);
-	}
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6CornShot1()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6CornShot1()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6CornShot3 = {
-	id:"BN6CornShot3",
-	name:"CornShot3",
-	image:BN6CornShot3IMG,
-	code:["C", "D", "E"],
-	mb:38,
-	rank:"standard",
-	damage:70,
-	hits:1,
-	priority:3,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		var hitbool = BN6CornShot1.hithuh(attacker, defender);
-		this.hits = BN6CornShot1.hits;
-		BN6CornShot2.hits = BN6CornShot1.hits;
+function BN6CornShot3(){
+	this.id="BN6CornShot3";
+	this.name="CornShot3";
+	this.image=BN6CornShot3IMG;
+	this.code=["C", "D", "E"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=70;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		this.BN6CornShot1 = (new BN6CornShot1());
+		var hitbool = this.BN6CornShot1.hithuh(attacker, defender);
+		this.hits = this.BN6CornShot1.hits;
 		return hitbool;
-	},
-	effecthit: function(attacker, defender){
-		BN6CornShot1.effecthit(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		BN6CornShot1.effectmiss(attacker, defender);
-	}
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6CornShot1()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6CornShot1()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6RiskyHoney1 = {
-	id:"BN6RiskyHoney1",
-	name:"RiskyHoney1",
-	image:BN6RiskyHoney1IMG,
-	code:["B", "G", "S"],
-	mb:21,
-	rank:"standard",
-	damage:10,
-	hits:5,
-	priority:1,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		return SWORD.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6RiskyHoney1(){
+	this.id="BN6RiskyHoney1";
+	this.name="RiskyHoney1";
+	this.image=BN6RiskyHoney1IMG;
+	this.code=["B", "G", "S"];
+	this.mb=21;
+	this.rank="standard";
+	this.damage=10;
+	this.hits=5;
+	this.priority=1;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		return (new SWORD()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		attacker.guard = new HoneyGuard(this.damage);
-	},
-	effectmiss: function(attacker, defender){
-		BN6RiskyHoney1.effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6RiskyHoney1()).effecthit(attacker, defender);
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
 				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage));
@@ -1229,28 +1225,28 @@ var BN6RiskyHoney1 = {
 				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage));
 			}
 		}
-	}
+	};
 }
 
-var BN6RiskyHoney2 = {
-	id:"BN6RiskyHoney2",
-	name:"RiskyHoney2",
-	image:BN6RiskyHoney2IMG,
-	code:["C", "R", "V"],
-	mb:28,
-	rank:"standard",
-	damage:15,
-	hits:5,
-	priority:1,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		return BN6RiskyHoney1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6RiskyHoney2(){
+	this.id="BN6RiskyHoney2";
+	this.name="RiskyHoney2";
+	this.image=BN6RiskyHoney2IMG;
+	this.code=["C", "R", "V"];
+	this.mb=28;
+	this.rank="standard";
+	this.damage=15;
+	this.hits=5;
+	this.priority=1;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		return (new BN6RiskyHoney1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		attacker.guard = new HoneyGuard(this.damage);
-	},
-	effectmiss: function(attacker, defender){
-		BN6RiskyHoney2.effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6RiskyHoney2()).effecthit(attacker, defender);
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
 				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage));
@@ -1261,28 +1257,28 @@ var BN6RiskyHoney2 = {
 				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage));
 			}
 		}
-	}
+	};
 }
 
-var BN6RiskyHoney3 = {
-	id:"BN6RiskyHoney3",
-	name:"RiskyHoney3",
-	image:BN6RiskyHoney3IMG,
-	code:["A", "D", "M"],
-	mb:35,
-	rank:"standard",
-	damage:20,
-	hits:5,
-	priority:1,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		return BN6RiskyHoney1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6RiskyHoney3(){
+	this.id="BN6RiskyHoney3";
+	this.name="RiskyHoney3";
+	this.image=BN6RiskyHoney3IMG;
+	this.code=["A", "D", "M"];
+	this.mb=35;
+	this.rank="standard";
+	this.damage=20;
+	this.hits=5;
+	this.priority=1;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		return (new BN6RiskyHoney1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		attacker.guard = new HoneyGuard(this.damage);
-	},
-	effectmiss: function(attacker, defender){
-		BN6RiskyHoney3.effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6RiskyHoney3()).effecthit(attacker, defender);
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
 				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage));
@@ -1293,53 +1289,53 @@ var BN6RiskyHoney3 = {
 				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage));
 			}
 		}
-	}
+	};
 }
 
-var BN6RollingLog1 = {
-	id:"BN6RollingLog1",
-	name:"RollingLog1",
-	image:BN6RollingLog1IMG,
-	code:["I", "K", "P"],
-	mb:14,
-	rank:"standard",
-	damage:50,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
+function BN6RollingLog1(){
+	this.id="BN6RollingLog1";
+	this.name="RollingLog1";
+	this.image=BN6RollingLog1IMG;
+	this.code=["I", "K", "P"];
+	this.mb=14;
+	this.rank="standard";
+	this.damage=50;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
 		this.hits = 1;
 		if(defender.invis < 1){
 			if(attacker.y === 0){
-				if(BN6RollingLog1.oneloghit(attacker, defender, 0, 1)){
+				if((new BN6RollingLog1()).oneloghit(attacker, defender, 0, 1)){
 					this.hits = 2;
 					return true;
 				}
 			}
 			else if(attacker.y === 2){
-				if(BN6RollingLog1.oneloghit(attacker, defender, 1, 2)){
+				if((new BN6RollingLog1()).oneloghit(attacker, defender, 1, 2)){
 					this.hits = 2;
 					return true;
 				}
 			}
 			else{
-				if(BN6RollingLog1.oneloghit(attacker, defender, 0, 1) && BN6RollingLog1.oneloghit(attacker, defender, 1, 2)){
+				if((new BN6RollingLog1()).oneloghit(attacker, defender, 0, 1) && BN6RollingLog1.oneloghit(attacker, defender, 1, 2)){
 					this.hits = 2;
 					return true;
 				}
-				else if(BN6RollingLog1.oneloghit(attacker, defender, 0, 1)){
+				else if((new BN6RollingLog1()).oneloghit(attacker, defender, 0, 1)){
 					this.hits = 1;
 					return true;
 				}
-				else if(BN6RollingLog1.oneloghit(attacker, defender, 1, 2)){
+				else if((new BN6RollingLog1()).oneloghit(attacker, defender, 1, 2)){
 					this.hits = 1;
 					return true;
 				}
 			}
 		}
 		return false;
-	},
-	oneloghit: function(attacker, defender, top, bottom){
+	};
+	this.oneloghit= function(attacker, defender, top, bottom){
 		if(attacker.name === "one"){
 			for(var i=1; i <= defender.x - attacker.x; i++){
 				if(board.cellHasSolidObject(attacker.x + i - 1, top) || board.cellHasSolidObject(attacker.x + i - 1, bottom)){
@@ -1362,63 +1358,65 @@ var BN6RollingLog1 = {
 			}
 			return (defender.y === top || defender.y === bottom) && defender.x < attacker.x;
 		}
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6RollingLog2 = {
-	id:"BN6RollingLog2",
-	name:"RollingLog2",
-	image:BN6RollingLog2IMG,
-	code:["E", "Q", "Z"],
-	mb:26,
-	rank:"standard",
-	damage:70,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		var hitbool = BN6RollingLog1.hithuh(attacker, defender);
-		this.hits = BN6RollingLog1.hits;
+function BN6RollingLog2(){
+	this.id="BN6RollingLog2";
+	this.name="RollingLog2";
+	this.image=BN6RollingLog2IMG;
+	this.code=["E", "Q", "Z"];
+	this.mb=26;
+	this.rank="standard";
+	this.damage=70;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		this.BN6RollingLog1 = (new BN6RollingLog1());
+		var hitbool = this.BN6RollingLog1.hithuh(attacker, defender);
+		this.hits = this.BN6RollingLog1.hits;
 		return hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6RollingLog3 = {
-	id:"BN6RollingLog3",
-	name:"RollingLog3",
-	image:BN6RollingLog3IMG,
-	code:["F", "N", "W"],
-	mb:38,
-	rank:"standard",
-	damage:90,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		var hitbool = BN6RollingLog1.hithuh(attacker, defender);
-		this.hits = BN6RollingLog1.hits;
+function BN6RollingLog3(){
+	this.id="BN6RollingLog3";
+	this.name="RollingLog3";
+	this.image=BN6RollingLog3IMG;
+	this.code=["F", "N", "W"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=90;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		this.BN6RollingLog1 = (new BN6RollingLog1());
+		var hitbool = this.BN6RollingLog1.hithuh(attacker, defender);
+		this.hits = this.BN6RollingLog1.hits;
 		return hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6IronShell1 = {
-	id:"BN6IronShell1",
-	name:"IronShell1",
-	image:BN6IronShell1IMG,
-	code:["J", "K", "L"],
-	mb:13,
-	rank:"standard",
-	damage:70,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
+function BN6IronShell1(){
+	this.id="BN6IronShell1";
+	this.name="IronShell1";
+	this.image=BN6IronShell1IMG;
+	this.code=["J", "K", "L"];
+	this.mb=13;
+	this.rank="standard";
+	this.damage=70;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
 		this.hits = 1;
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
@@ -1453,70 +1451,72 @@ var BN6IronShell1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6IronShell2 = {
-	id:"BN6IronShell2",
-	name:"IronShell2",
-	image:BN6IronShell2IMG,
-	code:["C", "D", "E"],
-	mb:20,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
-		var hitbool = BN6IronShell1.hithuh(attacker, defender);
-		this.hits = BN6IronShell1.hits;
+function BN6IronShell2(){
+	this.id="BN6IronShell2";
+	this.name="IronShell2";
+	this.image=BN6IronShell2IMG;
+	this.code=["C", "D", "E"];
+	this.mb=20;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.BN6IronShell1 = new BN6IronShell1();
+		var hitbool = this.BN6IronShell1.hithuh(attacker, defender);
+		this.hits = this.BN6IronShell1.hits;
 		return hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6IronShell3 = {
-	id:"BN6IronShell3",
-	name:"IronShell3",
-	image:BN6IronShell3IMG,
-	code:["L", "M", "N"],
-	mb:27,
-	rank:"standard",
-	damage:130,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
-		var hitbool = BN6IronShell1.hithuh(attacker, defender);
-		this.hits = BN6IronShell1.hits;
+function BN6IronShell3(){
+	this.id="BN6IronShell3";
+	this.name="IronShell3";
+	this.image=BN6IronShell3IMG;
+	this.code=["L", "M", "N"];
+	this.mb=27;
+	this.rank="standard";
+	this.damage=130;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.BN6IronShell1 = new BN6IronShell1();
+		var hitbool = this.BN6IronShell1.hithuh(attacker, defender);
+		this.hits = this.BN6IronShell1.hits;
 		return hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AuraHead1 = {
-	id:"BN6AuraHead1",
-	name:"AuraHead1",
-	image:BN6AuraHead1IMG,
-	code:["B", "C", "D"],
-	mb:25,
-	rank:"standard",
-	damage:130,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
+function BN6AuraHead1(){
+	this.id="BN6AuraHead1";
+	this.name="AuraHead1";
+	this.image=BN6AuraHead1IMG;
+	this.code=["B", "C", "D"];
+	this.mb=25;
+	this.rank="standard";
+	this.damage=130;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
 		if(attacker.barrier){
 			this.addDamage = 50;
 		}
-		return BN6AuraHead1.hitbool(attacker, defender);
-	},
-	hitbool: function(attacker, defender){
+		return (new BN6AuraHead1()).hitbool(attacker, defender);
+	};
+	this.hitbool= function(attacker, defender){
 		if(attacker.y === defender.y && defender.invis < 1){
 			if(attacker.name == "one"){
 				for(var i = 1; i < 4; i++){
@@ -1534,67 +1534,67 @@ var BN6AuraHead1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AuraHead2 = {
-	id:"BN6AuraHead2",
-	name:"AuraHead2",
-	image:BN6AuraHead2IMG,
-	code:["D", "E", "F"],
-	mb:33,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
+function BN6AuraHead2(){
+	this.id="BN6AuraHead2";
+	this.name="AuraHead2";
+	this.image=BN6AuraHead2IMG;
+	this.code=["D", "E", "F"];
+	this.mb=33;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
 		if(attacker.barrier){
 			this.addDamage = 50;
 		}
-		return BN6AuraHead1.hitbool(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+		return (new BN6AuraHead1()).hitbool(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AuraHead3 = {
-	id:"BN6AuraHead3",
-	name:"AuraHead3",
-	image:BN6AuraHead3IMG,
-	code:["F", "G", "H"],
-	mb:39,
-	rank:"standard",
-	damage:170,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
+function BN6AuraHead3(){
+	this.id="BN6AuraHead3";
+	this.name="AuraHead3";
+	this.image=BN6AuraHead3IMG;
+	this.code=["F", "G", "H"];
+	this.mb=39;
+	this.rank="standard";
+	this.damage=170;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
 		if(attacker.barrier){
 			this.addDamage = 50;
 		}
-		return BN6AuraHead1.hitbool(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+		return (new BN6AuraHead1()).hitbool(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AirHock = {
-	id:"BN6AirHock",
-	name:"AirHock",
-	image:BN6AirHockIMG,
-	code:["Q", "R", "S"],
-	mb:40,
-	rank:"standard",
-	damage:60,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
+function BN6AirHock(){
+	this.id="BN6AirHock";
+	this.name="AirHock";
+	this.image=BN6AirHockIMG;
+	this.code=["Q", "R", "S"];
+	this.mb=40;
+	this.rank="standard";
+	this.damage=60;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
 		this.hitbool = false;
 		this.hits = 0;
 		if(defender.invis < 1){
@@ -1655,23 +1655,23 @@ var BN6AirHock = {
 			this.hits === 1
 		}
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6DrillArm = {
-	id:"BN6DrillArm",
-	name:"DrillArm",
-	image:BN6DrillArmIMG,
-	code:["G", "M", "W"],
-	mb:32,
-	rank:"standard",
-	damage:70,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
+function BN6DrillArm(){
+	this.id="BN6DrillArm";
+	this.name="DrillArm";
+	this.image=BN6DrillArmIMG;
+	this.code=["G", "M", "W"];
+	this.mb=32;
+	this.rank="standard";
+	this.damage=70;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
 		this.hitbool = false;
 		this.tempDefX = defender.x;
 		this.hits = 0;
@@ -1695,8 +1695,8 @@ var BN6DrillArm = {
 			this.hits = 1;
 		}
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name == "one"){
 			this.xDirection = 1;
@@ -1708,22 +1708,22 @@ var BN6DrillArm = {
 				}
 			}
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Tornado = {
-	id:"BN6Tornado",
-	name:"Tornado",
-	image:BN6TornadoIMG,
-	code:["L", "R", "T"],
-	mb:16,
-	rank:"standard",
-	damage:20,
-	hits:8,
-	priority:2,
-	elements:[ELEMENTS.wind],
-	hithuh: function(attacker, defender){
+function BN6Tornado(){
+	this.id="BN6Tornado";
+	this.name="Tornado";
+	this.image=BN6TornadoIMG;
+	this.code=["L", "R", "T"];
+	this.mb=16;
+	this.rank="standard";
+	this.damage=20;
+	this.hits=8;
+	this.priority=2;
+	this.elements=[ELEMENTS.wind];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1 && defender.y == attacker.y){
 			this.xDirection = -2;
 			if(attacker.name == "one"){
@@ -1732,23 +1732,23 @@ var BN6Tornado = {
 			return attacker.x + this.xDirection === defender.x;
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6NoiseStorm = {
-	id:"BN6NoiseStorm",
-	name:"NoiseStorm",
-	image:BN6NoiseStormIMG,
-	code:["G", "S", "V"],
-	mb:30,
-	rank:"standard",
-	damage:20,
-	hits:8,
-	priority:2,
-	elements:[ELEMENTS.wind],
-	hithuh: function(attacker, defender){
+function BN6NoiseStorm(){
+	this.id="BN6NoiseStorm";
+	this.name="NoiseStorm";
+	this.image=BN6NoiseStormIMG;
+	this.code=["G", "S", "V"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=20;
+	this.hits=8;
+	this.priority=2;
+	this.elements=[ELEMENTS.wind];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.xDirection = -1;
 			if(attacker.name == "one"){
@@ -1776,23 +1776,23 @@ var BN6NoiseStorm = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6MachineGun1 = {
-	id:"BN6MachineGun1",
-	name:"MachineGun1",
-	image:BN6MachineGun1IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:12,
-	rank:"standard",
-	damage:30,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.target],
-	hithuh: function(attacker, defender){
+function BN6MachineGun1(){
+	this.id="BN6MachineGun1";
+	this.name="MachineGun1";
+	this.image=BN6MachineGun1IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=12;
+	this.rank="standard";
+	this.damage=30;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.target];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.affectedColumn = playerOne.x;
 			if(attacker.name === "one"){
@@ -1812,63 +1812,65 @@ var BN6MachineGun1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6MachineGun2 = {
-	id:"BN6MachineGun2",
-	name:"MachineGun2",
-	image:BN6MachineGun2IMG,
-	code:["E", "G", "S"],
-	mb:24,
-	rank:"standard",
-	damage:50,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.target],
-	hithuh: function(attacker, defender){
-		this.hitbool = BN6MachineGun1.hithuh(attacker, defender);
-		this.hits = BN6MachineGun1.hits;
+function BN6MachineGun2(){
+	this.id="BN6MachineGun2";
+	this.name="MachineGun2";
+	this.image=BN6MachineGun2IMG;
+	this.code=["E", "G", "S"];
+	this.mb=24;
+	this.rank="standard";
+	this.damage=50;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.target];
+	this.hithuh= function(attacker, defender){
+		this.BN6MachineGun1 = new BN6MachineGun1();
+		this.hitbool = this.BN6MachineGun1.hithuh(attacker, defender);
+		this.hits = this.BN6MachineGun1.hits;
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6MachineGun3 = {
-	id:"BN6MachineGun3",
-	name:"MachineGun3",
-	image:BN6MachineGun3IMG,
-	code:["B", "F", "M"],
-	mb:36,
-	rank:"standard",
-	damage:70,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.target],
-	hithuh: function(attacker, defender){
-		this.hitbool = BN6MachineGun1.hithuh(attacker, defender);
-		this.hits = BN6MachineGun1.hits;
+function BN6MachineGun3(){
+	this.id="BN6MachineGun3";
+	this.name="MachineGun3";
+	this.image=BN6MachineGun3IMG;
+	this.code=["B", "F", "M"];
+	this.mb=36;
+	this.rank="standard";
+	this.damage=70;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.target];
+	this.hithuh= function(attacker, defender){
+		this.BN6MachineGun1 = new BN6MachineGun1();
+		this.hitbool = this.BN6MachineGun1.hithuh(attacker, defender);
+		this.hits = this.BN6MachineGun1.hits;
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6MiniBomb = {
-	id:"BN6MiniBomb",
-	name:"MiniBomb",
-	image:BN6MiniBombIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:6,
-	rank:"standard",
-	damage:50,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6MiniBomb(){
+	this.id="BN6MiniBomb";
+	this.name="MiniBomb";
+	this.image=BN6MiniBombIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=6;
+	this.rank="standard";
+	this.damage=50;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.xDirection = -3;
 			if(attacker.name == "one"){
@@ -1877,23 +1879,23 @@ var BN6MiniBomb = {
 			return attacker.x + this.xDirection === defender.x && attacker.y === defender.y;
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BigBomb = {
-	id:"BN6BigBomb",
-	name:"BigBomb",
-	image:BN6BigBombIMG,
-	code:["O", "P", "V"],
-	mb:32,
-	rank:"standard",
-	damage:140,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6BigBomb(){
+	this.id="BN6BigBomb";
+	this.name="BigBomb";
+	this.image=BN6BigBombIMG;
+	this.code=["O", "P", "V"];
+	this.mb=32;
+	this.rank="standard";
+	this.damage=140;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.xDirection = -3;
 			if(attacker.name == "one"){
@@ -1907,63 +1909,63 @@ var BN6BigBomb = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6EnergyBomb = {
-	id:"BN6EnergyBomb",
-	name:"EnergyBomb",
-	image:BN6EnergyBombIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:11,
-	rank:"standard",
-	damage:40,
-	hits:3,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6EnergyBomb(){
+	this.id="BN6EnergyBomb";
+	this.name="EnergyBomb";
+	this.image=BN6EnergyBombIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=11;
+	this.rank="standard";
+	this.damage=40;
+	this.hits=3;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6MiniBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6MegEnBomb = {
-	id:"BN6MegEnBomb",
-	name:"MegEnBomb",
-	image:BN6MegEnBombIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:27,
-	rank:"standard",
-	damage:60,
-	hits:3,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6MegEnBomb(){
+	this.id="BN6MegEnBomb";
+	this.name="MegEnBomb";
+	this.image=BN6MegEnBombIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=27;
+	this.rank="standard";
+	this.damage=60;
+	this.hits=3;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6MiniBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6FlashBomb1 = {
-	id:"BN6FlashBomb1",
-	name:"FlashBomb1",
-	image:BN6FlashBomb1IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:30,
-	rank:"standard",
-	damage:40,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6FlashBomb1(){
+	this.id="BN6FlashBomb1";
+	this.name="FlashBomb1";
+	this.image=BN6FlashBomb1IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=40;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6MiniBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -1971,25 +1973,25 @@ var BN6FlashBomb1 = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
 		}
-	}
+	};
 }
 
-var BN6FlashBomb2 = {
-	id:"BN6FlashBomb2",
-	name:"FlashBomb2",
-	image:BN6FlashBomb2IMG,
-	code:["G", "K", "R"],
-	mb:34,
-	rank:"standard",
-	damage:70,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6FlashBomb2(){
+	this.id="BN6FlashBomb2";
+	this.name="FlashBomb2";
+	this.image=BN6FlashBomb2IMG;
+	this.code=["G", "K", "R"];
+	this.mb=34;
+	this.rank="standard";
+	this.damage=70;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6FlashBomb1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -1997,25 +1999,25 @@ var BN6FlashBomb2 = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
 		}
-	}
+	};
 }
 
-var BN6FlashBomb3 = {
-	id:"BN6FlashBomb3",
-	name:"FlashBomb3",
-	image:BN6FlashBomb3IMG,
-	code:["H", "P", "S"],
-	mb:38,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6FlashBomb3(){
+	this.id="BN6FlashBomb3";
+	this.name="FlashBomb3";
+	this.image=BN6FlashBomb3IMG;
+	this.code=["H", "P", "S"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6FlashBomb1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -2023,25 +2025,25 @@ var BN6FlashBomb3 = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
 		}
-	}
+	};
 }
 
-var BN6BlackBomb = {
-	id:"BN6BlackBomb",
-	name:"BlackBomb",
-	image:BN6BlackBombIMG,
-	code:["B", "F", "O"],
-	mb:32,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:3,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
-		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6BlackBomb(){
+	this.id="BN6BlackBomb";
+	this.name="BlackBomb";
+	this.image=BN6BlackBombIMG;
+	this.code=["B", "F", "O"];
+	this.mb=32;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new BN6MiniBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -2049,47 +2051,47 @@ var BN6BlackBomb = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6BlackBombObj(attacker.x+this.xDirection, attacker.y));
 		}
-	}
+	};
 }
 
-var BN6BugBomb = {
-	id:"BN6BugBomb",
-	name:"BugBomb",
-	image:BN6BugBombIMG,
-	code:["G", "S", "V"],
-	mb:24,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6BigBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6BugBomb(){
+	this.id="BN6BugBomb";
+	this.name="BugBomb";
+	this.image=BN6BugBombIMG;
+	this.code=["G", "S", "V"];
+	this.mb=24;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6BigBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		defender.bugs.push(new HPBug(10), new BusterBug(), new PathBug());
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6GrassSeed = {
-	id:"BN6GrassSeed",
-	name:"GrassSeed",
-	image:BN6GrassSeedIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:19,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:3,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6GrassSeed(){
+	this.id="BN6GrassSeed";
+	this.name="GrassSeed";
+	this.image=BN6GrassSeedIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=19;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		return (new BN6MiniBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		board.convertPanel(defender.x, defender.y, PANELTYPE.GRASS);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -2108,27 +2110,27 @@ var BN6GrassSeed = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6IceSeed = {
-	id:"BN6IceSeed",
-	name:"IceSeed",
-	image:BN6IceSeedIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:31,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:3,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6IceSeed(){
+	this.id="BN6IceSeed";
+	this.name="IceSeed";
+	this.image=BN6IceSeedIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=31;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6MiniBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		board.convertPanel(defender.x, defender.y, PANELTYPE.ICE);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -2147,27 +2149,27 @@ var BN6IceSeed = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6PoisonSeed = {
-	id:"BN6PoisonSeed",
-	name:"PoisonSeed",
-	image:BN6PoisonSeedIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:37,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6PoisonSeed(){
+	this.id="BN6PoisonSeed";
+	this.name="PoisonSeed";
+	this.image=BN6PoisonSeedIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=37;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6MiniBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		board.convertPanel(defender.x, defender.y, PANELTYPE.POISON);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -2186,190 +2188,190 @@ var BN6PoisonSeed = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6Sword = {
-	id:"BN6Sword",
-	name:"Sword",
-	image:BN6SwordIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:8,
-	rank:"standard",
-	damage:80,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
-		return SWORD.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6Sword(){
+	this.id="BN6Sword";
+	this.name="Sword";
+	this.image=BN6SwordIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=8;
+	this.rank="standard";
+	this.damage=80;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
+		return (new SWORD()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6WideSword = {
-	id:"BN6WideSword",
-	name:"WideSword",
-	image:BN6WideSwordIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:12,
-	rank:"standard",
-	damage:80,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
-		return WIDESWORD.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6WideSword(){
+	this.id="BN6WideSword";
+	this.name="WideSword";
+	this.image=BN6WideSwordIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=12;
+	this.rank="standard";
+	this.damage=80;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
+		return (new WIDESWORD()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6LongSword = {
-	id:"BN6LongSword",
-	name:"LongSword",
-	image:BN6LongSwordIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:25,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
-		return LONGSWORD.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6LongSword(){
+	this.id="BN6LongSword";
+	this.name="LongSword";
+	this.image=BN6LongSwordIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=25;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
+		return (new LONGSWORD()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6WideBlade = {
-	id:"BN6WideBlade",
-	name:"WideBlade",
-	image:BN6WideBladeIMG,
-	code:["B", "R", "W"],
-	mb:38,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
-		return BN6WideSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6WideBlade(){
+	this.id="BN6WideBlade";
+	this.name="WideBlade";
+	this.image=BN6WideBladeIMG;
+	this.code=["B", "R", "W"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
+		return (new BN6WideSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6LongBlade = {
-	id:"BN6LongBlade",
-	name:"LongBlade",
-	image:BN6LongBladeIMG,
-	code:["B", "M", "V"],
-	mb:38,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
-		return BN6LongSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6LongBlade(){
+	this.id="BN6LongBlade";
+	this.name="LongBlade";
+	this.image=BN6LongBladeIMG;
+	this.code=["B", "M", "V"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
+		return (new BN6LongSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6FireSword = {
-	id:"BN6FireSword",
-	name:"FireSword",
-	image:BN6FireSwordIMG,
-	code:["F", "O", "Z"],
-	mb:30,
-	rank:"standard",
-	damage:140,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword, ELEMENTS.fire],
-	hithuh: function(attacker, defender){
-		return BN6WideSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6FireSword(){
+	this.id="BN6FireSword";
+	this.name="FireSword";
+	this.image=BN6FireSwordIMG;
+	this.code=["F", "O", "Z"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=140;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword, ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new BN6WideSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AquaSword = {
-	id:"BN6AquaSword",
-	name:"AquaSword",
-	image:BN6AquaSwordIMG,
-	code:["A", "I", "Y"],
-	mb:32,
-	rank:"standard",
-	damage:160,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword, ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		return BN6WideSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6AquaSword(){
+	this.id="BN6AquaSword";
+	this.name="AquaSword";
+	this.image=BN6AquaSwordIMG;
+	this.code=["A", "I", "Y"];
+	this.mb=32;
+	this.rank="standard";
+	this.damage=160;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword, ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6WideSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6ElecSword = {
-	id:"BN6ElecSword",
-	name:"ElecSword",
-	image:BN6ElecSwordIMG,
-	code:["B", "R", "W"],
-	mb:35,
-	rank:"standard",
-	damage:120,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword, ELEMENTS.elec],
-	hithuh: function(attacker, defender){
-		return BN6WideSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6ElecSword(){
+	this.id="BN6ElecSword";
+	this.name="ElecSword";
+	this.image=BN6ElecSwordIMG;
+	this.code=["B", "R", "W"];
+	this.mb=35;
+	this.rank="standard";
+	this.damage=120;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword, ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new BN6WideSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		if(defender.guard < 1){
 			defender.stunned = 1;
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6WoodSword = {
-	id:"BN6WoodSword",
-	name:"WoodSword",
-	image:BN6WoodSwordIMG,
-	code:["H", "S", "W"],
-	mb:34,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword, ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		return BN6WideSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6WoodSword(){
+	this.id="BN6WoodSword";
+	this.name="WoodSword";
+	this.image=BN6WoodSwordIMG;
+	this.code=["H", "S", "W"];
+	this.mb=34;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword, ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		return (new BN6WideSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6WindRacket = {
-	id:"BN6WindRacket",
-	name:"WindRacket",
-	image:BN6WindRacketIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:19,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.wind],
-	hithuh: function(attacker, defender){
-		return BN6WideSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
+function BN6WindRacket(){
+	this.id="BN6WindRacket";
+	this.name="WindRacket";
+	this.image=BN6WindRacketIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=19;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.wind];
+	this.hithuh= function(attacker, defender){
+		return (new BN6WideSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
 		defender.barrier = null;
 		this.xDirection = 1;
 		if(attacker.name === "two"){
@@ -2389,50 +2391,50 @@ var BN6WindRacket = {
 				}
 			}
 		}
-	},
-	effectmiss: function(attacker, defender){
-		BN6WindRacket.effecthit(attacker, defender);
-	}
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6WindRacket()).effecthit(attacker, defender);
+	};
 }
 
-var BN6Fumikomizan = {
-	id:"BN6Fumikomizan",
-	name:"Fumikomizan",
-	image:BN6FumikomizanIMG,
-	code:["B", "L", "P"],
-	mb:28,
-	rank:"standard",
-	damage:160,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function BN6Fumikomizan(){
+	this.id="BN6Fumikomizan";
+	this.name="Fumikomizan";
+	this.image=BN6FumikomizanIMG;
+	this.code=["B", "L", "P"];
+	this.mb=28;
+	this.rank="standard";
+	this.damage=160;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		if(cells[attacker.x+2] && !board.cellHasSolidObject(attacker.x+2, attacker.y) && defender.invis < 1){
 			attacker.x = attacker.x + 2;
-			this.hitbool = BN6WideSword.hithuh(attacker, defender);
+			this.hitbool = (new BN6WideSword()).hithuh(attacker, defender);
 			attacker.x = attacker.x -2;
 			return this.hitbool;
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6VarSword = {
-	id:"BN6VarSword",
-	name:"VarSword",
-	image:BN6VarSwordIMG,
-	code:["K", "V", "W"],
-	mb:28,
-	rank:"standard",
-	damage:80,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function BN6VarSword(){
+	this.id="BN6VarSword";
+	this.name="VarSword";
+	this.image=BN6VarSwordIMG;
+	this.code=["K", "V", "W"];
+	this.mb=28;
+	this.rank="standard";
+	this.damage=80;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(BN6WideSword.hithuh(attacker, defender)){
+			if((new BN6WideSword()).hithuh(attacker, defender)){
 				return true;
 			}
 			this.xDirection = -1;
@@ -2440,86 +2442,86 @@ var BN6VarSword = {
 				this.xDirection = 1;
 			}
 			attacker.x = attacker.x + this.xDirection;
-			this.hitbool = BN6WideSword.hithuh(attacker, defender);
+			this.hitbool = (new BN6WideSword()).hithuh(attacker, defender);
 			attacker.x = attacker.x - this.xDirection;
 			return this.hitbool;
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6NeoVarSword = {
-	id:"BN6NeoVarSword",
-	name:"NeoVarSword",
-	image:BN6NeoVarSwordIMG,
-	code:["N"],
-	mb:52,
-	rank:"standard",
-	damage:110,
-	hits:2,
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
-		return BN6VarSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6NeoVarSword(){
+	this.id="BN6NeoVarSword";
+	this.name="NeoVarSword";
+	this.image=BN6NeoVarSwordIMG;
+	this.code=["N"];
+	this.mb=52;
+	this.rank="standard";
+	this.damage=110;
+	this.hits=2;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
+		return (new BN6VarSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Kunai = {
-	id:"BN6Kunai",
-	name:"Kunai",
-	image:BN6KunaiIMG,
-	code:["A", "M", "T"],
-	mb:25,
-	rank:"standard",
-	damage:120,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function BN6Kunai(){
+	this.id="BN6Kunai";
+	this.name="Kunai";
+	this.image=BN6KunaiIMG;
+	this.code=["A", "M", "T"];
+	this.mb=25;
+	this.rank="standard";
+	this.damage=120;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			return cards.around(attacker.x, attacker.y, defender);
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Muramasa = {
-	id:"BN6Muramasa",
-	name:"Muramasa",
-	image:BN6MuramasaIMG,
-	code:["M"],
-	mb:77,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function BN6Muramasa(){
+	this.id="BN6Muramasa";
+	this.name="Muramasa";
+	this.image=BN6MuramasaIMG;
+	this.code=["M"];
+	this.mb=77;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		this.damage = playerHP - attacker.hp;
-		return BN6LongSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+		return (new BN6LongSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6MachineSword = {
-	id:"BN6MachineSword",
-	name:"MachineSword",
-	image:BN6MachineSwordIMG,
-	code:["H", "L", "Q"],
-	mb:37,
-	rank:"standard",
-	damage:200,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function BN6MachineSword(){
+	this.id="BN6MachineSword";
+	this.name="MachineSword";
+	this.image=BN6MachineSwordIMG;
+	this.code=["H", "L", "Q"];
+	this.mb=37;
+	this.rank="standard";
+	this.damage=200;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		if(defender.stunned > 0 && defender.invis < 1){
 			this.x = playerOne.x+1;
 			this.y = playerOne.y;
@@ -2531,45 +2533,45 @@ var BN6MachineSword = {
 				return false;
 			}
 			if(board.isCellPlayerValid(this.x, this.y)){
-				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
+				return (new BN6MachineSword()).wideSwordJump(attacker, defender, this.x, this.y);
 			}
 			this.y = this.y-1;
 			if(board.isCellPlayerValid(this.x, this.y)){
-				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
+				return (new BN6MachineSword()).wideSwordJump(attacker, defender, this.x, this.y);
 			}
 			this.y = this.y+2;
 			if(board.isCellPlayerValid(this.x, this.y)){
-				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
+				return (new BN6MachineSword()).wideSwordJump(attacker, defender, this.x, this.y);
 			}
 		}
 		return false;
-	},
-	wideSwordJump: function(attacker, defender, x, y){
+	};
+	this.wideSwordJump= function(attacker, defender, x, y){
 		this.tempX = attacker.x;
 		this.tempY = attacker.y;
 		attacker.x = x;
 		attacker.y = y;
-		this.hitbool = BN6WideSword.hithuh(attacker, defender);
+		this.hitbool = (new BN6WideSword()).hithuh(attacker, defender);
 		attacker.x = this.tempX;
 		attacker.y = this.tempY;
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6ElementSword = {
-	id:"BN6ElementSword",
-	name:"ElementSword",
-	image:BN6ElementSwordIMG,
-	code:["J", "M", "U"],
-	mb:43,
-	rank:"standard",
-	damage:220,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
+function BN6ElementSword(){
+	this.id="BN6ElementSword";
+	this.name="ElementSword";
+	this.image=BN6ElementSwordIMG;
+	this.code=["J", "M", "U"];
+	this.mb=43;
+	this.rank="standard";
+	this.damage=220;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1 && (cells[defender.x][defender.y].panelType === PANELTYPE.GRASS || cells[defender.x][defender.y].panelType === PANELTYPE.ICE)){
 			this.x = playerOne.x+1;
 			this.y = playerOne.y;
@@ -2581,66 +2583,66 @@ var BN6ElementSword = {
 				return false;
 			}
 			if(board.isCellPlayerValid(this.x, this.y)){
-				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
+				return (new BN6MachineSword()).wideSwordJump(attacker, defender, this.x, this.y);
 			}
 			this.y = this.y-1;
 			if(board.isCellPlayerValid(this.x, this.y)){
-				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
+				return (new BN6MachineSword()).wideSwordJump(attacker, defender, this.x, this.y);
 			}
 			this.y = this.y+2;
 			if(board.isCellPlayerValid(this.x, this.y)){
-				return BN6MachineSword.wideSwordJump(attacker, defender, this.x, this.y);
+				return (new BN6MachineSword()).wideSwordJump(attacker, defender, this.x, this.y);
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AssassinSword = {
-	id:"BN6AssassinSword",
-	name:"AssassinSword",
-	image:BN6AssassinSwordIMG,
-	code:["N", "R", "Y"],
-	mb:50,
-	rank:"standard",
-	damage:240,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.sword],
-	hithuh: function(attacker, defender){
-		return BN6MachineSword.hithuh(attacker, defender) || BN6ElementSword.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6AssassinSword(){
+	this.id="BN6AssassinSword";
+	this.name="AssassinSword";
+	this.image=BN6AssassinSwordIMG;
+	this.code=["N", "R", "Y"];
+	this.mb=50;
+	this.rank="standard";
+	this.damage=240;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
+		return (new BN6MachineSword()).hithuh(attacker, defender) || (new BN6ElementSword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6CrackShoot = {
-	id:"BN6CrackShoot",
-	name:"CrackShoot",
-	image:BN6CrackShootIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:4,
-	rank:"standard",
-	damage:60,
-	hits:1,
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6CrackShoot(){
+	this.id="BN6CrackShoot";
+	this.name="CrackShoot";
+	this.image=BN6CrackShootIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=4;
+	this.rank="standard";
+	this.damage=60;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y)){
-			return BN6Cannon.hithuh(attacker, defender);
+			return (new BN6Cannon()).hithuh(attacker, defender);
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){
-		BN6CrackShoot.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6CrackShoot()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -2648,29 +2650,29 @@ var BN6CrackShoot = {
 		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y)){
 			board.convertPanel(attacker.x+this.xDirection, attacker.y, PANELTYPE.BROKEN);
 		}
-	}
+	};
 }
 
-var BN6DoubleShoot = {
-	id:"BN6DoubleShoot",
-	name:"DoubleShoot",
-	image:BN6DoubleShootIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:8,
-	rank:"standard",
-	damage:60,
-	hits:2,
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6DoubleShoot(){
+	this.id="BN6DoubleShoot";
+	this.name="DoubleShoot";
+	this.image=BN6DoubleShootIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=8;
+	this.rank="standard";
+	this.damage=60;
+	this.hits=2;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
 		}
 		attacker.x + this.xDirection;
-		this.farhitbool = BN6CrackShoot.hithuh(attacker, defender);
+		this.farhitbool = (new BN6CrackShoot()).hithuh(attacker, defender);
 		attacker.x - this.xDirection;
-		this.closehitbool = BN6CrackShoot.hithuh(attacker, defender);
+		this.closehitbool = (new BN6CrackShoot()).hithuh(attacker, defender);
 		if(this.farhitbool && this.closehitbool){
 			this.hits = 2;
 			return true;
@@ -2681,127 +2683,127 @@ var BN6DoubleShoot = {
 		}
 		this.hits = 2;
 		return false;
-	},
-	effecthit: function(attacker, defender){
-		BN6DoubleShoot.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6DoubleShoot()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
 		}
 		attacker.x + this.xDirection;
-		BN6CrackShoot.effectmiss(attacker, defender);
+		(new BN6CrackShoot()).effectmiss(attacker, defender);
 		attacker.x - this.xDirection;
-		BN6CrackShoot.effectmiss(attacker, defender);
-	}
+		(new BN6CrackShoot()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6TripleShoot = {
-	id:"BN6TripleShoot",
-	name:"TripleShoot",
-	image:BN6TripleShootIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:12,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6TripleShoot(){
+	this.id="BN6TripleShoot";
+	this.name="TripleShoot";
+	this.image=BN6TripleShootIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=12;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		attacker.y++;
-		this.bothitbool = BN6CrackShoot.hithuh(attacker, defender);
+		this.bothitbool = (new BN6CrackShoot()).hithuh(attacker, defender);
 		attacker.y = attacker.y - 2;
-		this.tophitbool = BN6CrackShoot.hithuh(attacker, defender);
+		this.tophitbool = (new BN6CrackShoot()).hithuh(attacker, defender);
 		attacker.y++;
-		this.midhitbool = BN6CrackShoot.hithuh(attacker, defender);
+		this.midhitbool = (new BN6CrackShoot()).hithuh(attacker, defender);
 		return this.bothitbool || this.tophitbool || this.midhitbool;
-	},
-	effecthit: function(attacker, defender){
-		BN6TripleShoot.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6TripleShoot()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		attacker.y++;
-		BN6CrackShoot.effectmiss(attacker, defender);
+		(new BN6CrackShoot()).effectmiss(attacker, defender);
 		attacker.y = attacker.y - 2;
-		BN6CrackShoot.effectmiss(attacker, defender);
+		(new BN6CrackShoot()).effectmiss(attacker, defender);
 		attacker.y++;
-		BN6CrackShoot.effectmiss(attacker, defender);
-	}
+		(new BN6CrackShoot()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6ReflectMet1 = {
-	id:"BN6ReflectMet1",
-	name:"ReflectMet1",
-	image:BN6ReflectMet1IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	damage:60,
-	hits:1,
-	mb:7,
-	rank:"standard",
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6ReflectMet1(){
+	this.id="BN6ReflectMet1";
+	this.name="ReflectMet1";
+	this.image=BN6ReflectMet1IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.damage=60;
+	this.hits=1;
+	this.mb=7;
+	this.rank="standard";
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return attacker.x === defender.x && attacker.y === defender.y;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.guard = new ReflectMet(BN6ReflectMet1.damage);
-	}
+	};
 }
 
-var BN6ReflectMet2 = {
-	id:"BN6ReflectMet2",
-	name:"ReflectMet2",
-	image:BN6ReflectMet2IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	damage:120,
-	hits:1,
-	mb:16,
-	rank:"standard",
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6ReflectMet2(){
+	this.id="BN6ReflectMet2";
+	this.name="ReflectMet2";
+	this.image=BN6ReflectMet2IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.damage=120;
+	this.hits=1;
+	this.mb=16;
+	this.rank="standard";
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6ReflectMet1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.guard = new ReflectMet(BN6ReflectMet2.damage);
-	}
+	};
 }
 
-var BN6ReflectMet3 = {
-	id:"BN6ReflectMet3",
-	name:"ReflectMet3",
-	image:BN6ReflectMet3IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	damage:200,
-	hits:1,
-	mb:25,
-	rank:"standard",
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6ReflectMet3(){
+	this.id="BN6ReflectMet3";
+	this.name="ReflectMet3";
+	this.image=BN6ReflectMet3IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.damage=200;
+	this.hits=1;
+	this.mb=25;
+	this.rank="standard";
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6ReflectMet1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.guard = new ReflectMet(BN6ReflectMet3.damage);
-	}
+	};
 }
 
-var BN6WaveArm1 = {
-	id:"BN6WaveArm1",
-	name:"WaveArm1",
-	image:BN6WaveArm1IMG,
-	code:["E", "F", "G"],
-	damage:80,
-	hits:1,
-	mb:15,
-	rank:"standard",
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6WaveArm1(){
+	this.id="BN6WaveArm1";
+	this.name="WaveArm1";
+	this.image=BN6WaveArm1IMG;
+	this.code=["E", "F", "G"];
+	this.damage=80;
+	this.hits=1;
+	this.mb=15;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.xDirection = -1;
 			this.yDirection = 0;
@@ -2829,59 +2831,59 @@ var BN6WaveArm1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6WaveArm2 = {
-	id:"BN6WaveArm2",
-	name:"WaveArm2",
-	image:BN6WaveArm2IMG,
-	code:["L", "M", "N"],
-	damage:120,
-	hits:1,
-	mb:22,
-	rank:"standard",
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6WaveArm1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6WaveArm2(){
+	this.id="BN6WaveArm2";
+	this.name="WaveArm2";
+	this.image=BN6WaveArm2IMG;
+	this.code=["L", "M", "N"];
+	this.damage=120;
+	this.hits=1;
+	this.mb=22;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6WaveArm1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6WaveArm3 = {
-	id:"BN6WaveArm3",
-	name:"WaveArm3",
-	image:BN6WaveArm3IMG,
-	code:["R", "S", "T"],
-	damage:160,
-	hits:1,
-	mb:29,
-	rank:"standard",
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6WaveArm1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6WaveArm3(){
+	this.id="BN6WaveArm3";
+	this.name="WaveArm3";
+	this.image=BN6WaveArm3IMG;
+	this.code=["R", "S", "T"];
+	this.damage=160;
+	this.hits=1;
+	this.mb=29;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6WaveArm1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6SandWorm1 = {
-	id:"BN6SandWorm1",
-	name:"SandWorm1",
-	image:BN6SandWorm1IMG,
-	code:["A", "G", "L"],
-	damage:130,
-	hits:1,
-	mb:30,
-	rank:"standard",
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6SandWorm1(){
+	this.id="BN6SandWorm1";
+	this.name="SandWorm1";
+	this.image=BN6SandWorm1IMG;
+	this.code=["A", "G", "L"];
+	this.damage=130;
+	this.hits=1;
+	this.mb=30;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		this.hitbool = false;
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
@@ -2891,7 +2893,7 @@ var BN6SandWorm1 = {
 					this.tempY = attacker.y;
 					attacker.x = this.target.x - 1;
 					attacker.y = this.target.y;
-					this.hitbool = BN6LongSword.hithuh(attacker, defender);
+					this.hitbool = (new BN6LongSword()).hithuh(attacker, defender);
 					attacker.x = this.tempX;
 					attacker.y = this.tempY;
 				}
@@ -2903,66 +2905,66 @@ var BN6SandWorm1 = {
 					this.tempY = attacker.y;
 					attacker.x = this.target.x + 1;
 					attacker.y = this.target.y;
-					this.hitbool = BN6LongSword.hithuh(attacker, defender);
+					this.hitbool = (new BN6LongSword()).hithuh(attacker, defender);
 					attacker.x = this.tempX;
 					attacker.y = this.tempY;
 				}
 			}
 		}
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6SandWorm2 = {
-	id:"BN6SandWorm2",
-	name:"SandWorm2",
-	image:BN6SandWorm2IMG,
-	code:["B", "R", "Y"],
-	damage:150,
-	hits:1,
-	mb:30,
-	rank:"standard",
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6SandWorm1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6SandWorm2(){
+	this.id="BN6SandWorm2";
+	this.name="SandWorm2";
+	this.image=BN6SandWorm2IMG;
+	this.code=["B", "R", "Y"];
+	this.damage=150;
+	this.hits=1;
+	this.mb=30;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6SandWorm1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6SandWorm3 = {
-	id:"BN6SandWorm3",
-	name:"SandWorm3",
-	image:BN6SandWorm3IMG,
-	code:["H", "J", "S"],
-	damage:170,
-	hits:1,
-	mb:30,
-	rank:"standard",
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6SandWorm1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6SandWorm3(){
+	this.id="BN6SandWorm3";
+	this.name="SandWorm3";
+	this.image=BN6SandWorm3IMG;
+	this.code=["H", "J", "S"];
+	this.damage=170;
+	this.hits=1;
+	this.mb=30;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6SandWorm1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6SummonBlack1 = {
-	id:"BN6SummonBlack1",
-	name:"SummonBlack1",
-	image:BN6SummonBlack1IMG,
-	code:["E", "I", "P"],
-	damage:160,
-	hits:1,
-	mb:30,
-	rank:"standard",
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6SummonBlack1(){
+	this.id="BN6SummonBlack1";
+	this.name="SummonBlack1";
+	this.image=BN6SummonBlack1IMG;
+	this.code=["E", "I", "P"];
+	this.damage=160;
+	this.hits=1;
+	this.mb=30;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.target = playerOne;
 			this.xDirection = -1;
@@ -2975,66 +2977,66 @@ var BN6SummonBlack1 = {
 				this.tempY = attacker.y;
 				attacker.x = this.target.x - this.xDirection;
 				attacker.y = this.target.y;
-				this.hitbool = BN6WideSword.hithuh(attacker, defender);
+				this.hitbool = (new BN6WideSword()).hithuh(attacker, defender);
 				attacker.x = this.tempX;
 				attacker.y = this.tempY;
 				return this.hitbool;
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6SummonBlack2 = {
-	id:"BN6SummonBlack2",
-	name:"SummonBlack2",
-	image:BN6SummonBlack2IMG,
-	code:["H", "O", "V"],
-	damage:200,
-	hits:1,
-	mb:40,
-	rank:"standard",
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6SummonBlack1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6SummonBlack2(){
+	this.id="BN6SummonBlack2";
+	this.name="SummonBlack2";
+	this.image=BN6SummonBlack2IMG;
+	this.code=["H", "O", "V"];
+	this.damage=200;
+	this.hits=1;
+	this.mb=40;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6SummonBlack1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6SummonBlack3 = {
-	id:"BN6SummonBlack3",
-	name:"SummonBlack3",
-	image:BN6SummonBlack3IMG,
-	code:["W", "Y", "Z"],
-	damage:260,
-	hits:1,
-	mb:40,
-	rank:"standard",
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6SummonBlack1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6SummonBlack3(){
+	this.id="BN6SummonBlack3";
+	this.name="SummonBlack3";
+	this.image=BN6SummonBlack3IMG;
+	this.code=["W", "Y", "Z"];
+	this.damage=260;
+	this.hits=1;
+	this.mb=40;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6SummonBlack1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Snake = {
-	id:"BN6Snake",
-	name:"Snake",
-	image:BN6SnakeIMG,
-	code:["H", "M", "L"],
-	damage:30,
-	hits:1,
-	mb:34,
-	rank:"standard",
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Snake(){
+	this.id="BN6Snake";
+	this.name="Snake";
+	this.image=BN6SnakeIMG;
+	this.code=["H", "M", "L"];
+	this.damage=30;
+	this.hits=1;
+	this.mb=34;
+	this.rank="standard";
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.hits = 0;
 			this.xDirection = -1;
@@ -3066,42 +3068,42 @@ var BN6Snake = {
 			return defender.x === this.target.x && defender.y === this.target.y;
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6NumberBall = {
-	id:"BN6NumberBall",
-	name:"NumberBall",
-	image:BN6NumberBallIMG,
-	code:["N"],
-	damage:1,
-	hits:4,
-	mb:34,
-	rank:"standard",
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6NumberBall(){
+	this.id="BN6NumberBall";
+	this.name="NumberBall";
+	this.image=BN6NumberBallIMG;
+	this.code=["N"];
+	this.damage=1;
+	this.hits=4;
+	this.mb=34;
+	this.rank="standard";
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		this.damage = attacker.hp % 100;
-		return BN6Cannon.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+		return (new BN6Cannon()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6FirePunch1 = {
-	id:"BN6FirePunch1",
-	name:"FirePunch1",
-	image:BN6FirePunch1IMG,
-	code:["D", "E", "F"],
-	damage:60,
-	hits:1,
-	mb:12,
-	rank:"standard",
-	priority:2,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
+function BN6FirePunch1(){
+	this.id="BN6FirePunch1";
+	this.name="FirePunch1";
+	this.image=BN6FirePunch1IMG;
+	this.code=["D", "E", "F"];
+	this.damage=60;
+	this.hits=1;
+	this.mb=12;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.target = playerOne;
 			if(attacker.name === "one"){
@@ -3114,59 +3116,59 @@ var BN6FirePunch1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6FirePunch2 = {
-	id:"BN6FirePunch2",
-	name:"FirePunch2",
-	image:BN6FirePunch2IMG,
-	code:["R", "S", "T"],
-	damage:120,
-	hits:1,
-	mb:22,
-	rank:"standard",
-	priority:2,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
-		return BN6FirePunch1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6FirePunch2(){
+	this.id="BN6FirePunch2";
+	this.name="FirePunch2";
+	this.image=BN6FirePunch2IMG;
+	this.code=["R", "S", "T"];
+	this.damage=120;
+	this.hits=1;
+	this.mb=22;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new BN6FirePunch1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6FirePunch3 = {
-	id:"BN6FirePunch3",
-	name:"FirePunch3",
-	image:BN6FirePunch3IMG,
-	code:["A", "B", "C"],
-	damage:180,
-	hits:1,
-	mb:32,
-	rank:"standard",
-	priority:2,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
-		return BN6FirePunch1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6FirePunch3(){
+	this.id="BN6FirePunch3";
+	this.name="FirePunch3";
+	this.image=BN6FirePunch3IMG;
+	this.code=["A", "B", "C"];
+	this.damage=180;
+	this.hits=1;
+	this.mb=32;
+	this.rank="standard";
+	this.priority=2;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new BN6FirePunch1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BurnScare1 = {
-	id:"BN6BurnScare1",
-	name:"BurnScare1",
-	image:BN6BurnScare1IMG,
-	code:["H", "P", "V"],
-	damage:100,
-	hits:1,
-	mb:24,
-	rank:"standard",
-	priority:0,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
+function BN6BurnScare1(){
+	this.id="BN6BurnScare1";
+	this.name="BurnScare1";
+	this.image=BN6BurnScare1IMG;
+	this.code=["H", "P", "V"];
+	this.damage=100;
+	this.hits=1;
+	this.mb=24;
+	this.rank="standard";
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.square1 = [cells[0][0], cells[0][1], cells[1][0], cells[1][1]];
 			this.square2 = [cells[0][1], cells[0][2], cells[1][1], cells[1][2]];
@@ -3210,59 +3212,59 @@ var BN6BurnScare1 = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BurnScare2 = {
-	id:"BN6BurnScare2",
-	name:"BurnScare2",
-	image:BN6BurnScare2IMG,
-	code:["D", "M", "T"],
-	damage:120,
-	hits:1,
-	mb:30,
-	rank:"standard",
-	priority:0,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
-		return BN6BurnScare1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6BurnScare2(){
+	this.id="BN6BurnScare2";
+	this.name="BurnScare2";
+	this.image=BN6BurnScare2IMG;
+	this.code=["D", "M", "T"];
+	this.damage=120;
+	this.hits=1;
+	this.mb=30;
+	this.rank="standard";
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new BN6BurnScare1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BurnScare3 = {
-	id:"BN6BurnScare3",
-	name:"BurnScare3",
-	image:BN6BurnScare3IMG,
-	code:["E", "O", "Z"],
-	damage:140,
-	hits:1,
-	mb:36,
-	rank:"standard",
-	priority:0,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
-		return BN6BurnScare1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6BurnScare3(){
+	this.id="BN6BurnScare3";
+	this.name="BurnScare3";
+	this.image=BN6BurnScare3IMG;
+	this.code=["E", "O", "Z"];
+	this.damage=140;
+	this.hits=1;
+	this.mb=36;
+	this.rank="standard";
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new BN6BurnScare1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6Meteors = {
-	id:"BN6Meteors",
-	name:"Meteors",
-	image:BN6MeteorsIMG,
-	code:["R"],
-	damage:40,
-	hits:1,
-	mb:73,
-	rank:"standard",
-	priority:0,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
+function BN6Meteors(){
+	this.id="BN6Meteors";
+	this.name="Meteors";
+	this.image=BN6MeteorsIMG;
+	this.code=["R"];
+	this.damage=40;
+	this.hits=1;
+	this.mb=73;
+	this.rank="standard";
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
 		this.hits = 0;
 		this.hitbool = false;
 		if(defender.invis < 1){
@@ -3303,23 +3305,23 @@ var BN6Meteors = {
 			this.hits = 1;
 		}
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AquaNeedle1 = {
-	id:"BN6AquaNeedle1",
-	name:"AquaNeedle1",
-	image:BN6AquaNeedle1IMG,
-	code:["C", "J", "P"],
-	damage:40,
-	hits:3,
-	mb:31,
-	rank:"standard",
-	priority:3,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
+function BN6AquaNeedle1(){
+	this.id="BN6AquaNeedle1";
+	this.name="AquaNeedle1";
+	this.image=BN6AquaNeedle1IMG;
+	this.code=["C", "J", "P"];
+	this.damage=40;
+	this.hits=3;
+	this.mb=31;
+	this.rank="standard";
+	this.priority=3;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.target = playerOne;
 			if(attacker.name === "one"){
@@ -3328,60 +3330,60 @@ var BN6AquaNeedle1 = {
 			return defender.x === playerTwo.x && defender.y === playerTwo.y
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AquaNeedle2 = {
-	id:"BN6AquaNeedle2",
-	name:"AquaNeedle2",
-	image:BN6AquaNeedle2IMG,
-	code:["F", "K", "T"],
-	damage:60,
-	hits:3,
-	mb:35,
-	rank:"standard",
-	priority:3,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		return BN6AquaNeedle1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6AquaNeedle2(){
+	this.id="BN6AquaNeedle2";
+	this.name="AquaNeedle2";
+	this.image=BN6AquaNeedle2IMG;
+	this.code=["F", "K", "T"];
+	this.damage=60;
+	this.hits=3;
+	this.mb=35;
+	this.rank="standard";
+	this.priority=3;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6AquaNeedle1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6AquaNeedle3 = {
-	id:"BN6AquaNeedle3",
-	name:"AquaNeedle3",
-	image:BN6AquaNeedle3IMG,
-	code:["A", "L", "U"],
-	damage:80,
-	hits:3,
-	mb:39,
-	rank:"standard",
-	priority:3,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		return BN6AquaNeedle1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+function BN6AquaNeedle3(){
+	this.id="BN6AquaNeedle3";
+	this.name="AquaNeedle3";
+	this.image=BN6AquaNeedle3IMG;
+	this.code=["A", "L", "U"];
+	this.damage=80;
+	this.hits=3;
+	this.mb=39;
+	this.rank="standard";
+	this.priority=3;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6AquaNeedle1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6BlizzardBall = {
-	id:"BN6BlizzardBall",
-	name:"BlizzardBall",
-	image:BN6BlizzardBallIMG,
-	code:["H", "N", "T"],
-	damage:150,
-	addDamage:0,
-	hits:1,
-	mb:76,
-	rank:"standard",
-	priority:0,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
+function BN6BlizzardBall(){
+	this.id="BN6BlizzardBall";
+	this.name="BlizzardBall";
+	this.image=BN6BlizzardBallIMG;
+	this.code=["H", "N", "T"];
+	this.damage=150;
+	this.addDamage=0;
+	this.hits=1;
+	this.mb=76;
+	this.rank="standard";
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				for(var i=0; i < defender.x - attacker.x; i++){
@@ -3401,8 +3403,8 @@ var BN6BlizzardBall = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
 		this.xEnd = defender.x;
 		this.xDirection = -1;
 		if(attacker.name === "one"){
@@ -3414,117 +3416,117 @@ var BN6BlizzardBall = {
 				cells[i][attacker.y].object = [];
 			}
 		}
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effectmiss= function(attacker, defender){
 		this.tempX = defender.x;
 		defender.x = -1;
 		if(attacker.name === "one"){
 			defender.x = 6;
 		}
-		BN6BlizzardBall.effecthit(attacker, defender);
+		(new BN6BlizzardBall()).effecthit(attacker, defender);
 		defender.x = this.tempX;
-	}
+	};
 }
 
-var BN6KillerSensor1 = {
-	id:"BN6KillerSensor1",
-	name:"KillerSensor1",
-	image:BN6KillerSensor1IMG,
-	code:["J", "O", "W"],
-	mb:32,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
+function BN6KillerSensor1(){
+	this.id="BN6KillerSensor1";
+	this.name="KillerSensor1";
+	this.image=BN6KillerSensor1IMG;
+	this.code=["J", "O", "W"];
+	this.mb=32;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, BN6KillerSensor1.damage));
+				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage));
 			}
 		}
 		else{
 			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, BN6KillerSensor1.damage));
+				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage));
 			}
 		}
-	}
+	};
 }
 
-var BN6KillerSensor2 = {
-	id:"BN6KillerSensor2",
-	name:"KillerSensor2",
-	image:BN6KillerSensor2IMG,
-	code:["N", "U", "Y"],
-	mb:35,
-	rank:"standard",
-	damage:130,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
+function BN6KillerSensor2(){
+	this.id="BN6KillerSensor2";
+	this.name="KillerSensor2";
+	this.image=BN6KillerSensor2IMG;
+	this.code=["N", "U", "Y"];
+	this.mb=35;
+	this.rank="standard";
+	this.damage=130;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, BN6KillerSensor2.damage));
+				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage));
 			}
 		}
 		else{
 			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, BN6KillerSensor2.damage));
+				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage));
 			}
 		}
-	}
+	};
 }
 
-var BN6KillerSensor3 = {
-	id:"BN6KillerSensor3",
-	name:"KillerSensor3",
-	image:BN6KillerSensor3IMG,
-	code:["I", "K", "Q"],
-	mb:38,
-	rank:"standard",
-	damage:160,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
+function BN6KillerSensor3(){
+	this.id="BN6KillerSensor3";
+	this.name="KillerSensor3";
+	this.image=BN6KillerSensor3IMG;
+	this.code=["I", "K", "Q"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=160;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, BN6KillerSensor3.damage));
+				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage));
 			}
 		}
 		else{
 			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, BN6KillerSensor3.damage));
+				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage));
 			}
 		}
-	}
+	};
 }
 
-var BN6Boomerang = {
-	id:"BN6Boomerang",
-	name:"Boomerang",
-	image:BN6BoomerangIMG,
-	code:["J", "K", "T"],
-	mb:16,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
+function BN6Boomerang(){
+	this.id="BN6Boomerang";
+	this.name="Boomerang";
+	this.image=BN6BoomerangIMG;
+	this.code=["J", "K", "T"];
+	this.mb=16;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
 		if(defender.y === 0){
 			return true;
 		}
@@ -3536,11 +3538,11 @@ var BN6Boomerang = {
 			this.xEnd = 5;
 		}
 		return defender.x === this.xEnd;
-	},
-	effecthit: function(attacker, defender){
-		BN6Boomerang.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6Boomerang()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		this.xEnd = 0;
 		if(attacker.name === "one"){
 			this.xEnd = 5;
@@ -3555,65 +3557,65 @@ var BN6Boomerang = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6HiBoomerang = {
-	id:"BN6HiBoomerang",
-	name:"HiBoomerang",
-	image:BN6HiBoomerangIMG,
-	code:["B", "L", "V"],
-	mb:26,
-	rank:"standard",
-	damage:140,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		return BN6Boomerang.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6HiBoomerang.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		BN6Boomerang.effectmiss(attacker, defender);
-	}
+function BN6HiBoomerang(){
+	this.id="BN6HiBoomerang";
+	this.name="HiBoomerang";
+	this.image=BN6HiBoomerangIMG;
+	this.code=["B", "L", "V"];
+	this.mb=26;
+	this.rank="standard";
+	this.damage=140;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Boomerang()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6HiBoomerang()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6Boomerang()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6MegaBoomerang = {
-	id:"BN6MegaBoomerang",
-	name:"MegaBoomerang",
-	image:BN6MegaBoomerangIMG,
-	code:["I", "M", "W"],
-	mb:36,
-	rank:"standard",
-	damage:170,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		return BN6Boomerang.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6MegaBoomerang.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		BN6Boomerang.effectmiss(attacker, defender);
-	}
+function BN6MegaBoomerang(){
+	this.id="BN6MegaBoomerang";
+	this.name="MegaBoomerang";
+	this.image=BN6MegaBoomerangIMG;
+	this.code=["I", "M", "W"];
+	this.mb=36;
+	this.rank="standard";
+	this.damage=170;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Boomerang()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6MegaBoomerang()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6Boomerang()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6Lance = {
-	id:"BN6Lance",
-	name:"Lance",
-	image:BN6LanceIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:42,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:1,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
+function BN6Lance(){
+	this.id="BN6Lance";
+	this.name="Lance";
+	this.image=BN6LanceIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=42;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.lastCol = 0;
 			if(attacker.name === "one"){
@@ -3622,8 +3624,8 @@ var BN6Lance = {
 			return defender.x === this.lastCol;
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
 		this.nextCol = 1
 		if(attacker.name === "one"){
 			this.nextCol = 4;
@@ -3633,22 +3635,22 @@ var BN6Lance = {
 			defender.x = this.nextCol;
 			cells[defender.x][defender.y].player = defender;
 		}
-	},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6HeatDragon = {
-	id:"BN6HeatDragon",
-	name:"HeatDragon",
-	image:BN6HeatDragonIMG,
-	code:["G", "R", "T"],
-	mb:40,
-	rank:"standard",
-	damage:140,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
+function BN6HeatDragon(){
+	this.id="BN6HeatDragon";
+	this.name="HeatDragon";
+	this.image=BN6HeatDragonIMG;
+	this.code=["G", "R", "T"];
+	this.mb=40;
+	this.rank="standard";
+	this.damage=140;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.xDirection = -1;
 			this.target = playerOne;
@@ -3659,29 +3661,29 @@ var BN6HeatDragon = {
 			return defender.x === this.target.x || defender.x === this.target.x + this.xDirection;
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6ElecDragon = {
-	id:"BN6ElecDragon",
-	name:"ElecDragon",
-	image:BN6ElecDragonIMG,
-	code:["A", "L", "V"],
-	mb:40,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.elec],
-	hithuh: function(attacker, defender){
-		return BN6HeatDragon.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6ElecDragon.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+function BN6ElecDragon(){
+	this.id="BN6ElecDragon";
+	this.name="ElecDragon";
+	this.image=BN6ElecDragonIMG;
+	this.code=["A", "L", "V"];
+	this.mb=40;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new BN6HeatDragon()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6ElecDragon()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		var fakeDefender = {
 			x: -1,
 			y: -1,
@@ -3692,32 +3694,32 @@ var BN6ElecDragon = {
 			for(var j = 0; j < cells.length; j++){
 				fakeDefender.x = i;
 				fakeDefender.y = j;
-				if(BN6ElecDragon.hithuh(attacker, fakeDefender)){
+				if((new BN6ElecDragon()).hithuh(attacker, fakeDefender)){
 					board.convertPanel(i, j, PANELTYPE.CRACKED);
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6AquaDragon = {
-	id:"BN6AquaDragon",
-	name:"AquaDragon",
-	image:BN6AquaDragonIMG,
-	code:["H", "P", "S"],
-	mb:44,
-	rank:"standard",
-	damage:120,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		return BN6HeatDragon.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6AquaDragon.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+function BN6AquaDragon(){
+	this.id="BN6AquaDragon";
+	this.name="AquaDragon";
+	this.image=BN6AquaDragonIMG;
+	this.code=["H", "P", "S"];
+	this.mb=44;
+	this.rank="standard";
+	this.damage=120;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6HeatDragon()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6AquaDragon()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		var fakeDefender = {
 			x: -1,
 			y: -1,
@@ -3728,32 +3730,32 @@ var BN6AquaDragon = {
 			for(var j = 0; j < cells.length; j++){
 				fakeDefender.x = i;
 				fakeDefender.y = j;
-				if(BN6AquaDragon.hithuh(attacker, fakeDefender)){
+				if((new BN6AquaDragon()).hithuh(attacker, fakeDefender)){
 					board.convertPanel(i, j, PANELTYPE.ICE);
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6WoodDragon = {
-	id:"BN6WoodDragon",
-	name:"WoodDragon",
-	image:BN6WoodDragonIMG,
-	code:["G", "T", "V"],
-	mb:48,
-	rank:"standard",
-	damage:130,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.wood],
-	hithuh: function(attacker, defender){
-		return BN6HeatDragon.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6WoodDragon.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+function BN6WoodDragon(){
+	this.id="BN6WoodDragon";
+	this.name="WoodDragon";
+	this.image=BN6WoodDragonIMG;
+	this.code=["G", "T", "V"];
+	this.mb=48;
+	this.rank="standard";
+	this.damage=130;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		return (new BN6HeatDragon()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6WoodDragon()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		var fakeDefender = {
 			x: -1,
 			y: -1,
@@ -3764,33 +3766,33 @@ var BN6WoodDragon = {
 			for(var j = 0; j < cells.length; j++){
 				fakeDefender.x = i;
 				fakeDefender.y = j;
-				if(BN6WoodDragon.hithuh(attacker, fakeDefender)){
+				if((new BN6WoodDragon()).hithuh(attacker, fakeDefender)){
 					board.convertPanel(i, j, PANELTYPE.WOOD);
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6GolemPunch1 = {
-	id:"BN6GolemPunch1",
-	name:"GolemPunch1",
-	image:BN6GolemPunch1IMG,
-	code:["I", "K", "Y"],
-	mb:17,
-	rank:"standard",
-	damage:140,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
-		this.affectedColumn = AREAGRAB.affectedColumn(attacker, defender);
+function BN6GolemPunch1(){
+	this.id="BN6GolemPunch1";
+	this.name="GolemPunch1";
+	this.image=BN6GolemPunch1IMG;
+	this.code=["I", "K", "Y"];
+	this.mb=17;
+	this.rank="standard";
+	this.damage=140;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.affectedColumn = (new AREAGRAB()).affectedColumn(attacker, defender);
 		return Math.abs(defender.y - attacker.y) < 2 && defender.x === this.affectedColumn;
-	},
-	effecthit: function(attacker, defender){
-		BN6GolemPunch1.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6GolemPunch1()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		var fakeDefender = {
 			x: -1,
 			y: -1,
@@ -3801,81 +3803,81 @@ var BN6GolemPunch1 = {
 			for(var j = 0; j < cells.length; j++){
 				fakeDefender.x = i;
 				fakeDefender.y = j;
-				if(BN6GolemPunch1.hithuh(attacker, fakeDefender)){
+				if((new BN6GolemPunch1()).hithuh(attacker, fakeDefender)){
 					board.convertPanel(i, j, PANELTYPE.CRACKED);
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6GolemPunch2 = {
-	id:"BN6GolemPunch2",
-	name:"GolemPunch2",
-	image:BN6GolemPunch2IMG,
-	code:["D", "P", "U"],
-	mb:27,
-	rank:"standard",
-	damage:190,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
-		return BN6GolemPunch1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6GolemPunch1.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		BN6GolemPunch1.effectmiss(attacker, defender);
-	}
+function BN6GolemPunch2(){
+	this.id="BN6GolemPunch2";
+	this.name="GolemPunch2";
+	this.image=BN6GolemPunch2IMG;
+	this.code=["D", "P", "U"];
+	this.mb=27;
+	this.rank="standard";
+	this.damage=190;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new BN6GolemPunch1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6GolemPunch1()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6GolemPunch1()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6GolemPunch3 = {
-	id:"BN6GolemPunch3",
-	name:"GolemPunch3",
-	image:BN6GolemPunch3IMG,
-	code:["H", "M", "V"],
-	mb:37,
-	rank:"standard",
-	damage:250,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
-		return BN6GolemPunch1.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6GolemPunch1.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		BN6GolemPunch1.effectmiss(attacker, defender);
-	}
+function BN6GolemPunch3(){
+	this.id="BN6GolemPunch3";
+	this.name="GolemPunch3";
+	this.image=BN6GolemPunch3IMG;
+	this.code=["H", "M", "V"];
+	this.mb=37;
+	this.rank="standard";
+	this.damage=250;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new BN6GolemPunch1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6GolemPunch1()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6GolemPunch1()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6JusticeOne = {
-	id:"BN6JusticeOne",
-	name:"JusticeOne",
-	image:BN6JusticeOneIMG,
-	code:["J"],
-	mb:90,
-	rank:"standard",
-	damage:100,
-	addDamage:0,
-	hits:1,
-	priority:2,
-	elements:[ELEMENTS.break],
-	hithuh: function(attacker, defender){
+function BN6JusticeOne(){
+	this.id="BN6JusticeOne";
+	this.name="JusticeOne";
+	this.image=BN6JusticeOneIMG;
+	this.code=["J"];
+	this.mb=90;
+	this.rank="standard";
+	this.damage=100;
+	this.addDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
 		this.addDamage = 0;
-		if(BN6MiniBomb.hithuh(attacker, defender)){
+		if((new BN6MiniBomb()).hithuh(attacker, defender)){
 			this.addDamage = 120;
 		}
-		return BN6BigBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6JusticeOne.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+		return (new BN6BigBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6JusticeOne()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		var fakeDefender = {
 			x: -1,
 			y: -1,
@@ -3886,30 +3888,30 @@ var BN6JusticeOne = {
 			for(var j = 0; j < cells.length; j++){
 				fakeDefender.x = i;
 				fakeDefender.y = j;
-				if(BN6BigBomb.hithuh(attacker, fakeDefender)){
+				if((new BN6BigBomb()).hithuh(attacker, fakeDefender)){
 					board.convertPanel(i, j, PANELTYPE.CRACKED);
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6AirWheel1 = {
-	id:"BN6AirWheel1",
-	name:"AirWheel1",
-	image:BN6AirWheel1IMG,
-	code:["F", "G", "R"],
-	mb:22,
-	rank:"standard",
-	damage:50,
-	hits:2,
-	priority:2,
-	elements:[ELEMENTS.wind],
-	hithuh: function(attacker, defender){
+function BN6AirWheel1(){
+	this.id="BN6AirWheel1";
+	this.name="AirWheel1";
+	this.image=BN6AirWheel1IMG;
+	this.code=["F", "G", "R"];
+	this.mb=22;
+	this.rank="standard";
+	this.damage=50;
+	this.hits=2;
+	this.priority=2;
+	this.elements=[ELEMENTS.wind];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -3925,27 +3927,27 @@ var BN6AirWheel1 = {
 					this.tempX = this.tempX + this.xDirection;
 				}
 			}
-			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, BN6AirWheel1.damage, BN6AirWheel1.hits)];
+			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, this.damage, this.hits)];
 		}
-	}
+	};
 }
 
-var BN6AirWheel2 = {
-	id:"BN6AirWheel2",
-	name:"AirWheel2",
-	image:BN6AirWheel2IMG,
-	code:["A", "L", "T"],
-	mb:29,
-	rank:"standard",
-	damage:50,
-	hits:3,
-	priority:2,
-	elements:[ELEMENTS.wind],
-	hithuh: function(attacker, defender){
+function BN6AirWheel2(){
+	this.id="BN6AirWheel2";
+	this.name="AirWheel2";
+	this.image=BN6AirWheel2IMG;
+	this.code=["A", "L", "T"];
+	this.mb=29;
+	this.rank="standard";
+	this.damage=50;
+	this.hits=3;
+	this.priority=2;
+	this.elements=[ELEMENTS.wind];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -3961,27 +3963,27 @@ var BN6AirWheel2 = {
 					this.tempX = this.tempX + this.xDirection;
 				}
 			}
-			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, BN6AirWheel2.damage, BN6AirWheel2.hits)];
+			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, this.damage, this.hits)];
 		}
-	}
+	};
 }
 
-var BN6AirWheel3 = {
-	id:"BN6AirWheel3",
-	name:"AirWheel3",
-	image:BN6AirWheel3IMG,
-	code:["N", "O", "T"],
-	mb:36,
-	rank:"standard",
-	damage:50,
-	hits:4,
-	priority:2,
-	elements:[ELEMENTS.wind],
-	hithuh: function(attacker, defender){
+function BN6AirWheel3(){
+	this.id="BN6AirWheel3";
+	this.name="AirWheel3";
+	this.image=BN6AirWheel3IMG;
+	this.code=["N", "O", "T"];
+	this.mb=36;
+	this.rank="standard";
+	this.damage=50;
+	this.hits=4;
+	this.priority=2;
+	this.elements=[ELEMENTS.wind];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -3997,27 +3999,27 @@ var BN6AirWheel3 = {
 					this.tempX = this.tempX + this.xDirection;
 				}
 			}
-			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, BN6AirWheel3.damage, BN6AirWheel3.hits)];
+			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, this.damage, this.hits)];
 		}
-	}
+	};
 }
 
-var BN6Wind = {
-	id:"BN6Wind",
-	name:"Wind",
-	image:BN6WindIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:10,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.wind],
-	hithuh: function(attacker, defender){
+function BN6Wind(){
+	this.id="BN6Wind";
+	this.name="Wind";
+	this.image=BN6WindIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=10;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.wind];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4026,25 +4028,25 @@ var BN6Wind = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, -1)];
 		}
-	}
+	};
 }
 
-var BN6Fan = {
-	id:"BN6Fan",
-	name:"Fan",
-	image:BN6FanIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:10,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.wind],
-	hithuh: function(attacker, defender){
+function BN6Fan(){
+	this.id="BN6Fan";
+	this.name="Fan";
+	this.image=BN6FanIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=10;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.wind];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4053,21 +4055,21 @@ var BN6Fan = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[this.tempX][attacker.y].object = [new BN6WindBox(this.tempX, attacker.y, attacker, defender, 1)];
 		}
-	}
+	};
 }
 
-var BN6Magnum = {
-	id:"BN6Magnum",
-	name:"Magnum",
-	image:BN6MagnumIMG,
-	code:["F", "L", "W"],
-	mb:31,
-	rank:"standard",
-	damage:130,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.cursor],
-	hithuh: function(attacker, defender){
+function BN6Magnum(){
+	this.id="BN6Magnum";
+	this.name="Magnum";
+	this.image=BN6MagnumIMG;
+	this.code=["F", "L", "W"];
+	this.mb=31;
+	this.rank="standard";
+	this.damage=130;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.cursor];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.target = playerOne;
 			if(attacker.name === "one"){
@@ -4078,11 +4080,11 @@ var BN6Magnum = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){
-		BN6Magnum.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6Magnum()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		this.target = playerOne;
 		if(attacker.name === "one"){
 			this.target = playerTwo;
@@ -4090,21 +4092,21 @@ var BN6Magnum = {
 		for(var j = 0; j < cells[this.target.x].length; j++){
 			board.convertPanel(this.target.x, j, PANELTYPE.BROKEN);
 		}
-	}
+	};
 }
 
-var BN6CircGun = {
-	id:"BN6CircGun",
-	name:"CircGun",
-	image:BN6CircGunIMG,
-	code:["P", "T", "V"],
-	mb:35,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.cursor],
-	hithuh: function(attacker, defender){
+function BN6CircGun(){
+	this.id="BN6CircGun";
+	this.name="CircGun";
+	this.image=BN6CircGunIMG;
+	this.code=["P", "T", "V"];
+	this.mb=35;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.cursor];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.target = playerOne;
 			this.targetsX = [2, 2, 2, 1, 0, 0, 0, 1];
@@ -4126,27 +4128,27 @@ var BN6CircGun = {
 			}
 		}
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){}
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
 }
 
-var BN6RockCube = {
-	id:"BN6RockCube",
-	name:"RockCube",
-	image:BN6RockCubeIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:6,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6RockCube(){
+	this.id="BN6RockCube";
+	this.name="RockCube";
+	this.image=BN6RockCubeIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=6;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4154,30 +4156,30 @@ var BN6RockCube = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6RockCubeObj(attacker.x + this.xDirection, attacker.y)];
 		}
-	}
+	};
 }
 
-var BN6LittleBoiler1 = {
-	id:"BN6LittleBoiler1",
-	name:"LittleBoiler1",
-	image:BN6LittleBoiler1IMG,
-	code:["F", "K", "L"],
-	mb:18,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:3,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
+function BN6LittleBoiler1(){
+	this.id="BN6LittleBoiler1";
+	this.name="LittleBoiler1";
+	this.image=BN6LittleBoiler1IMG;
+	this.code=["F", "K", "L"];
+	this.mb=18;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
 		this.damage = 100;
-		this.hitbool = BN6MiniBomb.hithuh(attacker, defender);
+		this.hitbool = (new BN6MiniBomb()).hithuh(attacker, defender);
 		if(this.hitbool){
 			this.damage = 50;
 		}
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -4185,30 +4187,30 @@ var BN6LittleBoiler1 = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage, attacker));
 		}
-	}
+	};
 }
 
-var BN6LittleBoiler2 = {
-	id:"BN6LittleBoiler2",
-	name:"LittleBoiler2",
-	image:BN6LittleBoiler2IMG,
-	code:["E", "M", "V"],
-	mb:23,
-	rank:"standard",
-	damage:140,
-	hits:1,
-	priority:3,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
+function BN6LittleBoiler2(){
+	this.id="BN6LittleBoiler2";
+	this.name="LittleBoiler2";
+	this.image=BN6LittleBoiler2IMG;
+	this.code=["E", "M", "V"];
+	this.mb=23;
+	this.rank="standard";
+	this.damage=140;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
 		this.damage = 140;
-		this.hitbool = BN6MiniBomb.hithuh(attacker, defender);
+		this.hitbool = (new BN6MiniBomb()).hithuh(attacker, defender);
 		if(this.hitbool){
 			this.damage = 70;
 		}
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -4216,30 +4218,30 @@ var BN6LittleBoiler2 = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage, attacker));
 		}
-	}
+	};
 }
 
-var BN6LittleBoiler3 = {
-	id:"BN6LittleBoiler3",
-	name:"LittleBoiler3",
-	image:BN6LittleBoiler3IMG,
-	code:["G", "S", "Z"],
-	mb:23,
-	rank:"standard",
-	damage:180,
-	hits:1,
-	priority:3,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
+function BN6LittleBoiler3(){
+	this.id="BN6LittleBoiler3";
+	this.name="LittleBoiler3";
+	this.image=BN6LittleBoiler3IMG;
+	this.code=["G", "S", "Z"];
+	this.mb=23;
+	this.rank="standard";
+	this.damage=180;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
 		this.damage = 180;
-		this.hitbool = BN6MiniBomb.hithuh(attacker, defender);
+		this.hitbool = (new BN6MiniBomb()).hithuh(attacker, defender);
 		if(this.hitbool){
 			this.damage = 90;
 		}
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -4247,25 +4249,25 @@ var BN6LittleBoiler3 = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage, attacker));
 		}
-	}
+	};
 }
 
-var BN6AirRaid1 = {
-	id:"BN6AirRaid1",
-	name:"AirRaid1",
-	image:BN6AirRaid1IMG,
-	code:["G", "K", "R"],
-	mb:26,
-	rank:"standard",
-	damage:10,
-	hits:10,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6AirRaid1(){
+	this.id="BN6AirRaid1";
+	this.name="AirRaid1";
+	this.image=BN6AirRaid1IMG;
+	this.code=["G", "K", "R"];
+	this.mb=26;
+	this.rank="standard";
+	this.damage=10;
+	this.hits=10;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4273,25 +4275,25 @@ var BN6AirRaid1 = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AirRaid(attacker.x + this.xDirection, attacker.y, attacker, defender, this.hits)];
 		}
-	}
+	};
 }
 
-var BN6AirRaid2 = {
-	id:"BN6AirRaid2",
-	name:"AirRaid2",
-	image:BN6AirRaid2IMG,
-	code:["O", "T", "Y"],
-	mb:32,
-	rank:"standard",
-	damage:10,
-	hits:14,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6AirRaid2(){
+	this.id="BN6AirRaid2";
+	this.name="AirRaid2";
+	this.image=BN6AirRaid2IMG;
+	this.code=["O", "T", "Y"];
+	this.mb=32;
+	this.rank="standard";
+	this.damage=10;
+	this.hits=14;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4299,25 +4301,25 @@ var BN6AirRaid2 = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AirRaid(attacker.x + this.xDirection, attacker.y, attacker, defender, this.hits)];
 		}
-	}
+	};
 }
 
-var BN6AirRaid3 = {
-	id:"BN6AirRaid3",
-	name:"AirRaid3",
-	image:BN6AirRaid3IMG,
-	code:["N", "U", "Z"],
-	mb:39,
-	rank:"standard",
-	damage:10,
-	hits:18,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6AirRaid3(){
+	this.id="BN6AirRaid3";
+	this.name="AirRaid3";
+	this.image=BN6AirRaid3IMG;
+	this.code=["N", "U", "Z"];
+	this.mb=39;
+	this.rank="standard";
+	this.damage=10;
+	this.hits=18;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4325,25 +4327,25 @@ var BN6AirRaid3 = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AirRaid(attacker.x + this.xDirection, attacker.y, attacker, defender, this.hits)];
 		}
-	}
+	};
 }
 
-var BN6TimeBomb1 = {
-	id:"BN6TimeBomb1",
-	name:"TimeBomb1",
-	image:BN6TimeBomb1IMG,
-	code:["F", "G", "H"],
-	mb:20,
-	rank:"standard",
-	damage:150,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
+function BN6TimeBomb1(){
+	this.id="BN6TimeBomb1";
+	this.name="TimeBomb1";
+	this.image=BN6TimeBomb1IMG;
+	this.code=["F", "G", "H"];
+	this.mb=20;
+	this.rank="standard";
+	this.damage=150;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		this.targetSide = SIDE.LEFT;
 		if(attacker.name === "one"){
@@ -4363,25 +4365,25 @@ var BN6TimeBomb1 = {
 			}
 			this.bombPlaced = true;
 		}
-	}
+	};
 }
 
-var BN6TimeBomb2 = {
-	id:"BN6TimeBomb2",
-	name:"TimeBomb2",
-	image:BN6TimeBomb2IMG,
-	code:["C", "D", "E"],
-	mb:30,
-	rank:"standard",
-	damage:190,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
+function BN6TimeBomb2(){
+	this.id="BN6TimeBomb2";
+	this.name="TimeBomb2";
+	this.image=BN6TimeBomb2IMG;
+	this.code=["C", "D", "E"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=190;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		this.targetSide = SIDE.LEFT;
 		if(attacker.name === "one"){
@@ -4401,25 +4403,25 @@ var BN6TimeBomb2 = {
 			}
 			this.bombPlaced = true;
 		}
-	}
+	};
 }
 
-var BN6TimeBomb3 = {
-	id:"BN6TimeBomb3",
-	name:"TimeBomb3",
-	image:BN6TimeBomb3IMG,
-	code:["L", "M", "N"],
-	mb:37,
-	rank:"standard",
-	damage:230,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.fire],
-	hithuh: function(attacker, defender){
+function BN6TimeBomb3(){
+	this.id="BN6TimeBomb3";
+	this.name="TimeBomb3";
+	this.image=BN6TimeBomb3IMG;
+	this.code=["L", "M", "N"];
+	this.mb=37;
+	this.rank="standard";
+	this.damage=230;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		this.targetSide = SIDE.LEFT;
 		if(attacker.name === "one"){
@@ -4439,25 +4441,25 @@ var BN6TimeBomb3 = {
 			}
 			this.bombPlaced = true;
 		}
-	}
+	};
 }
 
-var BN6Mine = {
-	id:"BN6Mine",
-	name:"Mine",
-	image:BN6MineIMG,
-	code:["A", "S", "T"],
-	mb:28,
-	rank:"standard",
-	damage:200,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Mine(){
+	this.id="BN6Mine";
+	this.name="Mine";
+	this.image=BN6MineIMG;
+	this.code=["A", "S", "T"];
+	this.mb=28;
+	this.rank="standard";
+	this.damage=200;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.count = 0;
 		this.target = -1;
 		if(defender.action === ACTIONS.CARD || defender.action === ACTIONS.SPECIAL){
@@ -4479,25 +4481,25 @@ var BN6Mine = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6Fanfare = {
-	id:"BN6Fanfare",
-	name:"Fanfare",
-	image:BN6FanfareIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:20,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Fanfare(){
+	this.id="BN6Fanfare";
+	this.name="Fanfare";
+	this.image=BN6FanfareIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=20;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4505,25 +4507,25 @@ var BN6Fanfare = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6FanfareObj(attacker.x + this.xDirection, attacker.y, attacker)];
 		}
-	}
+	};
 }
 
-var BN6Discord = {
-	id:"BN6Discord",
-	name:"Discord",
-	image:BN6DiscordIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:20,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Discord(){
+	this.id="BN6Discord";
+	this.name="Discord";
+	this.image=BN6DiscordIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=20;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4531,25 +4533,25 @@ var BN6Discord = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6DiscordObj(attacker.x + this.xDirection, attacker.y, attacker, defender)];
 		}
-	}
+	};
 }
 
-var BN6Timpani = {
-	id:"BN6Timpani",
-	name:"Timpani",
-	image:BN6TimpaniIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:20,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Timpani(){
+	this.id="BN6Timpani";
+	this.name="Timpani";
+	this.image=BN6TimpaniIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=20;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4557,25 +4559,25 @@ var BN6Timpani = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6TimpaniObj(attacker.x + this.xDirection, attacker.y, attacker, defender)];
 		}
-	}
+	};
 }
 
-var BN6Silence = {
-	id:"BN6Silence",
-	name:"Silence",
-	image:BN6SilenceIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:20,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Silence(){
+	this.id="BN6Silence";
+	this.name="Silence";
+	this.image=BN6SilenceIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=20;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4583,25 +4585,25 @@ var BN6Silence = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6SilenceObj(attacker.x + this.xDirection, attacker.y, attacker, defender)];
 		}
-	}
+	};
 }
 
-var BN6VDoll = {
-	id:"BN6VDoll",
-	name:"VDoll",
-	image:BN6VDollIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:39,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6VDoll(){
+	this.id="BN6VDoll";
+	this.name="VDoll";
+	this.image=BN6VDollIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=39;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return BN6MiniBomb.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
 		if(attacker.name == "one"){
 			this.xDirection = 3;
@@ -4610,25 +4612,25 @@ var BN6VDoll = {
 			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6VDollObj(attacker.x+this.xDirection, attacker.y, defender, attacker));
 			board.convertPanel(attacker.x+this.xDirection, attacker.y, PANELTYPE.POISON);
 		}
-	}
+	};
 }
 
-var BN6Guardian = {
-	id:"BN6Guardian",
-	name:"Guardian",
-	image:BN6GuardianIMG,
-	code:["O"],
-	mb:64,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Guardian(){
+	this.id="BN6Guardian";
+	this.name="Guardian";
+	this.image=BN6GuardianIMG;
+	this.code=["O"];
+	this.mb=64;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4636,25 +4638,25 @@ var BN6Guardian = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6GuardianObj(attacker.x + this.xDirection, attacker.y, attacker)];
 		}
-	}
+	};
 }
 
-var BN6Anubis = {
-	id:"BN6Anubis",
-	name:"Anubis",
-	image:BN6AnubisIMG,
-	code:["P"],
-	mb:86,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Anubis(){
+	this.id="BN6Anubis";
+	this.name="Anubis";
+	this.image=BN6AnubisIMG;
+	this.code=["P"];
+	this.mb=86;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -4662,211 +4664,211 @@ var BN6Anubis = {
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AnubisObj(attacker.x + this.xDirection, attacker.y, defender, attacker)];
 		}
-	}
+	};
 }
 
-var BN6Recover10 = {
-	id:"BN6Recover10",
-	name:"Recover10",
-	image:BN6Recover10IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:4,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Recover10(){
+	this.id="BN6Recover10";
+	this.name="Recover10";
+	this.image=BN6Recover10IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=4;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return attacker.x === defender.x && attacker.y === defender.y;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.hp = attacker.hp + 10;
 		if(attacker.hp > playerHP){
 			attacker.hp = playerHP;
 		}
-	}
+	};
 }
 
-var BN6Recover30 = {
-	id:"BN6Recover30",
-	name:"Recover30",
-	image:BN6Recover30IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:12,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Recover30(){
+	this.id="BN6Recover30";
+	this.name="Recover30";
+	this.image=BN6Recover30IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=12;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.hp = attacker.hp + 30;
 		if(attacker.hp > playerHP){
 			attacker.hp = playerHP;
 		}
-	}
+	};
 }
 
-var BN6Recover50 = {
-	id:"BN6Recover50",
-	name:"Recover50",
-	image:BN6Recover50IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:18,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Recover50(){
+	this.id="BN6Recover50";
+	this.name="Recover50";
+	this.image=BN6Recover50IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=18;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.hp = attacker.hp + 50;
 		if(attacker.hp > playerHP){
 			attacker.hp = playerHP;
 		}
-	}
+	};
 }
 
-var BN6Recover80 = {
-	id:"BN6Recover80",
-	name:"Recover80",
-	image:BN6Recover80IMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:24,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Recover80(){
+	this.id="BN6Recover80";
+	this.name="Recover80";
+	this.image=BN6Recover80IMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=24;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.hp = attacker.hp + 80;
 		if(attacker.hp > playerHP){
 			attacker.hp = playerHP;
 		}
-	}
+	};
 }
 
-var BN6Recover120 = {
-	id:"BN6Recover120",
-	name:"Recover120",
-	image:BN6Recover120IMG,
-	code:["F", "P", "S"],
-	mb:32,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Recover120(){
+	this.id="BN6Recover120";
+	this.name="Recover120";
+	this.image=BN6Recover120IMG;
+	this.code=["F", "P", "S"];
+	this.mb=32;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.hp = attacker.hp + 120;
 		if(attacker.hp > playerHP){
 			attacker.hp = playerHP;
 		}
-	}
+	};
 }
 
-var BN6Recover150 = {
-	id:"BN6Recover150",
-	name:"Recover150",
-	image:BN6Recover150IMG,
-	code:["J", "M", "T"],
-	mb:38,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Recover150(){
+	this.id="BN6Recover150";
+	this.name="Recover150";
+	this.image=BN6Recover150IMG;
+	this.code=["J", "M", "T"];
+	this.mb=38;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.hp = attacker.hp + 150;
 		if(attacker.hp > playerHP){
 			attacker.hp = playerHP;
 		}
-	}
+	};
 }
 
-var BN6Recover200 = {
-	id:"BN6Recover200",
-	name:"Recover200",
-	image:BN6Recover200IMG,
-	code:["I", "Q", "Z"],
-	mb:42,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Recover200(){
+	this.id="BN6Recover200";
+	this.name="Recover200";
+	this.image=BN6Recover200IMG;
+	this.code=["I", "Q", "Z"];
+	this.mb=42;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.hp = attacker.hp + 200;
 		if(attacker.hp > playerHP){
 			attacker.hp = playerHP;
 		}
-	}
+	};
 }
 
-var BN6Recover300 = {
-	id:"BN6Recover300",
-	name:"Recover300",
-	image:BN6Recover300IMG,
-	code:["J", "O", "Y"],
-	mb:48,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:1,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Recover300(){
+	this.id="BN6Recover300";
+	this.name="Recover300";
+	this.image=BN6Recover300IMG;
+	this.code=["J", "O", "Y"];
+	this.mb=48;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.hp = attacker.hp + 300;
 		if(attacker.hp > playerHP){
 			attacker.hp = playerHP;
 		}
-	}
+	};
 }
 
-var BN6PanelGrab = {
-	id:"BN6PanelGrab",
-	name:"PanelGrab",
-	image:BN6PanelGrabIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:6,
-	rank:"standard",
-	damage:10,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6PanelGrab(){
+	this.id="BN6PanelGrab";
+	this.name="PanelGrab";
+	this.image=BN6PanelGrabIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=6;
+	this.rank="standard";
+	this.damage=10;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			return BN6PanelGrab.affectedX(attacker, defender) === defender.x && attacker.y === defender.y;
+			return (new BN6PanelGrab()).affectedX(attacker, defender) === defender.x && attacker.y === defender.y;
 		}
 		return false;
-	},
-	affectedX: function(attacker, defender){
+	};
+	this.affectedX= function(attacker, defender){
 		this.xDirection = -1;
 		this.sideToSteal = SIDE.LEFT;
 		if(attacker.name === "one"){
@@ -4884,9 +4886,9 @@ var BN6PanelGrab = {
 			}
 		}
 		return this.tempX;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.sideToConvert = SIDE.RIGHT;
 		if(attacker.name === "one"){
 			this.sideToConvert = SIDE.LEFT;
@@ -4895,44 +4897,44 @@ var BN6PanelGrab = {
 			cells[this.affectedX(attacker, defender)][attacker.y].side = this.sideToConvert;
 			cells[this.affectedX(attacker, defender)][attacker.y].sideTimer = 12;
 		}
-	}
+	};
 }
 
-var BN6AreaGrab = {
-	id:"BN6AreaGrab",
-	name:"AreaGrab",
-	image:BN6AreaGrabIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:8,
-	rank:"standard",
-	damage:10,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return AREAGRAB.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		AREAGRAB.effecthit(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		AREAGRAB.effectmiss(attacker, defender);
-	}
+function BN6AreaGrab(){
+	this.id="BN6AreaGrab";
+	this.name="AreaGrab";
+	this.image=BN6AreaGrabIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=8;
+	this.rank="standard";
+	this.damage=10;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new AREAGRAB()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new AREAGRAB()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new AREAGRAB()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6GrabBanish = {
-	id:"BN6GrabBanish",
-	name:"GrabBanish",
-	image:BN6GrabBanishIMG,
-	code:["B", "M", "S"],
-	mb:24,
-	rank:"standard",
-	damage:20,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		this.hits = BN6GrabBanish.panelCount(attacker, defender);
+function BN6GrabBanish(){
+	this.id="BN6GrabBanish";
+	this.name="GrabBanish";
+	this.image=BN6GrabBanishIMG;
+	this.code=["B", "M", "S"];
+	this.mb=24;
+	this.rank="standard";
+	this.damage=20;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		this.hits = (new BN6GrabBanish()).panelCount(attacker, defender);
 		if(defender.invis < 1){
 			this.targetPlayer = playerOne;
 			if(attacker.name == "one"){
@@ -4941,8 +4943,8 @@ var BN6GrabBanish = {
 			return defender.x === this.targetPlayer.x && defender.y === this.targetPlayer.y;
 		}
 		return false;
-	},
-	panelCount: function(attacker, defender){
+	};
+	this.panelCount= function(attacker, defender){
 		this.count = 0;
 		this.mySide = SIDE.RIGHT;
 		if(attacker.name == "one"){
@@ -4958,11 +4960,11 @@ var BN6GrabBanish = {
 			}
 		}
 		return this.count;
-	},
-	effecthit: function(attacker, defender){
-		BN6GrabBanish.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6GrabBanish()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		this.mySide = SIDE.RIGHT;
 		if(attacker.name == "one"){
 			this.mySide = SIDE.LEFT;
@@ -4976,48 +4978,48 @@ var BN6GrabBanish = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6GrabRevenge = {
-	id:"BN6GrabRevenge",
-	name:"GrabRevenge",
-	image:BN6GrabRevengeIMG,
-	code:["F", "N", "P"],
-	mb:50,
-	rank:"standard",
-	damage:40,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		this.hits = BN6GrabBanish.panelCount(attacker, defender);
-		return BN6GrabBanish.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){
-		BN6GrabBanish.effecthit(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
-		BN6GrabBanish.effectmiss(attacker, defender);
-	}
+function BN6GrabRevenge(){
+	this.id="BN6GrabRevenge";
+	this.name="GrabRevenge";
+	this.image=BN6GrabRevengeIMG;
+	this.code=["F", "N", "P"];
+	this.mb=50;
+	this.rank="standard";
+	this.damage=40;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		this.hits = (new BN6GrabBanish()).panelCount(attacker, defender);
+		return (new BN6GrabBanish()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6GrabBanish()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6GrabBanish()).effectmiss(attacker, defender);
+	};
 }
 
-var BN6PanelReturn = {
-	id:"BN6PanelReturn",
-	name:"PanelReturn",
-	image:BN6PanelReturnIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:14,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6PanelReturn(){
+	this.id="BN6PanelReturn";
+	this.name="PanelReturn";
+	this.image=BN6PanelReturnIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=14;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.mySide = SIDE.RIGHT;
 		if(attacker.name == "one"){
 			this.mySide = SIDE.LEFT;
@@ -5029,73 +5031,73 @@ var BN6PanelReturn = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6DeathMatch = {
-	id:"BN6DeathMatch",
-	name:"DeathMatch",
-	image:BN6DeathMatchIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:47,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6DeathMatch(){
+	this.id="BN6DeathMatch";
+	this.name="DeathMatch";
+	this.image=BN6DeathMatchIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=47;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		for(var i = 0; i < cells.length; i ++){
 			for(var j = 0; j < cells[i].length; j++){
 				board.convertPanel(i, j, PANELTYPE.BROKEN);
 			}
 		}
-	}
+	};
 }
 
-var BN6HolyPanel = {
-	id:"BN6HolyPanel",
-	name:"HolyPanel",
-	image:BN6HolyPanelIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:24,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6HolyPanel(){
+	this.id="BN6HolyPanel";
+	this.name="HolyPanel";
+	this.image=BN6HolyPanelIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=24;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name == "one"){
 			this.xDirection = 1;
 		}
 		board.convertPanel(attacker.x + this.xDirection, attacker.y, PANELTYPE.HOLY);
-	}
+	};
 }
 
-var BN6Sanctuary = {
-	id:"BN6Sanctuary",
-	name:"Sanctuary",
-	image:BN6SanctuaryIMG,
-	code:["Z"],
-	mb:62,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Sanctuary(){
+	this.id="BN6Sanctuary";
+	this.name="Sanctuary";
+	this.image=BN6SanctuaryIMG;
+	this.code=["Z"];
+	this.mb=62;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.mySide = SIDE.RIGHT;
 		if(attacker.name == "one"){
 			this.mySide = SIDE.LEFT;
@@ -5107,25 +5109,25 @@ var BN6Sanctuary = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6ComingRoad = {
-	id:"BN6ComingRoad",
-	name:"ComingRoad",
-	image:BN6ComingRoadIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:21,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6ComingRoad(){
+	this.id="BN6ComingRoad";
+	this.name="ComingRoad";
+	this.image=BN6ComingRoadIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=21;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.convertToPanel = PANELTYPE.RIGHT;
 		this.targetSide = SIDE.LEFT;
 		if(attacker.name == "one"){
@@ -5137,25 +5139,25 @@ var BN6ComingRoad = {
 				board.convertPanel(i, attacker.y, this.convertToPanel);
 			}
 		}
-	}
+	};
 }
 
-var BN6GoingRoad = {
-	id:"BN6GoingRoad",
-	name:"GoingRoad",
-	image:BN6GoingRoadIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:21,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6GoingRoad(){
+	this.id="BN6GoingRoad";
+	this.name="GoingRoad";
+	this.image=BN6GoingRoadIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=21;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.convertToPanel = PANELTYPE.LEFT;
 		this.targetSide = SIDE.LEFT;
 		if(attacker.name == "one"){
@@ -5167,251 +5169,251 @@ var BN6GoingRoad = {
 				board.convertPanel(i, attacker.y, this.convertToPanel);
 			}
 		}
-	}
+	};
 }
 
-var BN6Slowgauge = {
-	id:"BN6Slowgauge",
-	name:"Slowgauge",
-	image:BN6SlowgaugeIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:42,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Slowgauge(){
+	this.id="BN6Slowgauge";
+	this.name="Slowgauge";
+	this.image=BN6SlowgaugeIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=42;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		timer.turncount = timer.turncount + 2;
 		if(timer.turncount > 9){
 			timer.turncount = 9;
 		}
-	}
+	};
 }
 
-var BN6Fastgauge = {
-	id:"BN6Fastgauge",
-	name:"Fastgauge",
-	image:BN6FastgaugeIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:48,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Fastgauge(){
+	this.id="BN6Fastgauge";
+	this.name="Fastgauge";
+	this.image=BN6FastgaugeIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=48;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		timer.turncount = timer.turncount - 2;
 		if(timer.turncount < 3){
 			timer.turncount = 3;
 		}
-	}
+	};
 }
 
-var BN6Fullcust = {
-	id:"BN6Fullcust",
-	name:"Fullcust",
-	image:BN6FullcustIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:50,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6Fullcust(){
+	this.id="BN6Fullcust";
+	this.name="Fullcust";
+	this.image=BN6FullcustIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=50;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		timer.currentturn = timer.turncount;
-	}
+	};
 }
 
-var BN6BusterUp = {
-	id:"BN6BusterUp",
-	name:"BusterUp",
-	image:BN6BusterUpIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:11,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
-		attacker.busterDamage = attacker.busterDamage + 10;
-	}
+function BN6BusterUp(){
+	this.id="BN6BusterUp";
+	this.name="BusterUp";
+	this.image=BN6BusterUpIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=11;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		attacker.busterType.damage = attacker.busterType.damage + 10;
+	};
 }
 
-var BN6BugFix = {
-	id:"BN6BugFix",
-	name:"BugFix",
-	image:BN6BugFixIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:62,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6BugFix(){
+	this.id="BN6BugFix";
+	this.name="BugFix";
+	this.image=BN6BugFixIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=62;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.bugs = [];
-	}
+	};
 }
 
-var BN6Invis = {
-	id:"BN6Invis",
-	name:"Invis",
-	image:BN6InvisIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:30,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Invis(){
+	this.id="BN6Invis";
+	this.name="Invis";
+	this.image=BN6InvisIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.invis = 2;
-	}
+	};
 }
 
-var BN6Barrier = {
-	id:"BN6Barrier",
-	name:"Barrier",
-	image:BN6BarrierIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:7,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Barrier(){
+	this.id="BN6Barrier";
+	this.name="Barrier";
+	this.image=BN6BarrierIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=7;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.barrier = new BasicBarrier(10);
-	}
+	};
 }
 
-var BN6Barrier100 = {
-	id:"BN6Barrier100",
-	name:"Barrier100",
-	image:BN6Barrier100IMG,
-	code:["H", "O", "Y"],
-	mb:30,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Barrier100(){
+	this.id="BN6Barrier100";
+	this.name="Barrier100";
+	this.image=BN6Barrier100IMG;
+	this.code=["H", "O", "Y"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.barrier = new BasicBarrier(100);
-	}
+	};
 }
 
-var BN6Barrier200 = {
-	id:"BN6Barrier200",
-	name:"Barrier200",
-	image:BN6Barrier200IMG,
-	code:["K", "U", "W"],
-	mb:52,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6Barrier200(){
+	this.id="BN6Barrier200";
+	this.name="Barrier200";
+	this.image=BN6Barrier200IMG;
+	this.code=["K", "U", "W"];
+	this.mb=52;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.barrier = new BasicBarrier(200);
-	}
+	};
 }
 
-var BN6BubbleWrap = {
-	id:"BN6BubbleWrap",
-	name:"BubbleWrap",
-	image:BN6BubbleWrapIMG,
-	code:["I", "Q", "Z"],
-	mb:58,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[ELEMENTS.aqua],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6BubbleWrap(){
+	this.id="BN6BubbleWrap";
+	this.name="BubbleWrap";
+	this.image=BN6BubbleWrapIMG;
+	this.code=["I", "Q", "Z"];
+	this.mb=58;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.barrier = new BubbleBarrier();
-	}
+	};
 }
 
-var BN6LifeAura = {
-	id:"BN6LifeAura",
-	name:"LifeAura",
-	image:BN6LifeAuraIMG,
-	code:["U"],
-	mb:70,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6LifeAura(){
+	this.id="BN6LifeAura";
+	this.name="LifeAura";
+	this.image=BN6LifeAuraIMG;
+	this.code=["U"];
+	this.mb=70;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.barrier = new AuraBarrier(200);
-	}
+	};
 }
 
-var BN6MagneCoil = {
-	id:"BN6MagneCoil",
-	name:"MagneCoil",
-	image:BN6MagneCoilIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:14,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:3,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6MagneCoil(){
+	this.id="BN6MagneCoil";
+	this.name="MagneCoil";
+	this.image=BN6MagneCoilIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=14;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		return false;
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		if(attacker.name === "one"){
 			this.xDirection = 1;
@@ -5434,21 +5436,21 @@ var BN6MagneCoil = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6ColonelsArmy = {
-	id:"BN6ColonelsArmy",
-	name:"Colonel's Army",
-	image:BN6ColonelsArmyIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:25,
-	rank:"standard",
-	damage:40,
-	hits:3,
-	priority:2,
-	elements:[],
-	hithuh: function(attacker, defender){
+function BN6ColonelsArmy(){
+	this.id="BN6ColonelsArmy";
+	this.name="Colonel's Army";
+	this.image=BN6ColonelsArmyIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=25;
+	this.rank="standard";
+	this.damage=40;
+	this.hits=3;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
 		this.hitbool = false;
 		if(defender.invis < 1){
 			this.targetPlayer = playerOne;
@@ -5476,12 +5478,12 @@ var BN6ColonelsArmy = {
 			}
 		}
 		return this.hitbool;
-	},
-	effecthit: function(attacker, defender){
+	};
+	this.effecthit= function(attacker, defender){
 		defender.stunned = 2;
-		BN6ColonelsArmy.effectmiss(attacker, defender);
-	},
-	effectmiss: function(attacker, defender){
+		(new BN6ColonelsArmy()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
 		for(var i = 0; i < cells.length; i++){
 			for(var j = 0; j < cells[i].length; j++){
 				if(board.cellHasSolidObject(i, j)){
@@ -5489,141 +5491,141 @@ var BN6ColonelsArmy = {
 				}
 			}
 		}
-	}
+	};
 }
 
-var BN6ElementTrap = {
-	id:"BN6ElementTrap",
-	name:"ElementTrap",
-	image:BN6ElementTrapIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:42,
-	rank:"standard",
-	damage:240,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6ElementTrap(){
+	this.id="BN6ElementTrap";
+	this.name="ElementTrap";
+	this.image=BN6ElementTrapIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=42;
+	this.rank="standard";
+	this.damage=240;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.trap = new BN6ElementTrapTrap();
-	}
+	};
 }
 
-var BN6AntiNavi = {
-	id:"BN6AntiNavi",
-	name:"AntiNavi",
-	image:BN6AntiNaviIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:50,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6AntiNavi(){
+	this.id="BN6AntiNavi";
+	this.name="AntiNavi";
+	this.image=BN6AntiNaviIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=50;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.trap = new BN6AntiNaviTrap();
-	}
+	};
 }
 
-var BN6AntiDmg = {
-	id:"BN6AntiDmg",
-	name:"AntiDmg",
-	image:BN6AntiDmgIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:30,
-	rank:"standard",
-	damage:100,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6AntiDmg(){
+	this.id="BN6AntiDmg";
+	this.name="AntiDmg";
+	this.image=BN6AntiDmgIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.trap = new BN6AntiDmgTrap();
-	}
+	};
 }
 
-var BN6AntiSword = {
-	id:"BN6AntiSword",
-	name:"AntiSword",
-	image:BN6AntiSwordIMG,
-	code:["A", "R", "Z"],
-	mb:30,
-	rank:"standard",
-	damage:100,
-	hits:3,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6AntiSword(){
+	this.id="BN6AntiSword";
+	this.name="AntiSword";
+	this.image=BN6AntiSwordIMG;
+	this.code=["A", "R", "Z"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=100;
+	this.hits=3;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.trap = new BN6AntiDmgTrap();
-	}
+	};
 }
 
-var BN6AntiRecover = {
-	id:"BN6AntiRecover",
-	name:"AntiRecover",
-	image:BN6AntiRecoverIMG,
-	code:["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-	mb:37,
-	rank:"standard",
-	damage:0,
-	hits:1,
-	priority:0,
-	elements:[],
-	hithuh: function(attacker, defender){
-		return BN6Recover10.hithuh(attacker, defender);
-	},
-	effecthit: function(attacker, defender){},
-	effectmiss: function(attacker, defender){
+function BN6AntiRecover(){
+	this.id="BN6AntiRecover";
+	this.name="AntiRecover";
+	this.image=BN6AntiRecoverIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=37;
+	this.rank="standard";
+	this.damage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
 		attacker.trap = new BN6AntiRecoverTrap();
-	}
+	};
 }
 
-var BN6CARDS = [BN6Cannon, BN6HiCannon, BN6MegaCannon, BN6AirShot, BN6Vulcan1, BN6Vulcan2, BN6Vulcan3, 
-				BN6SuperVulcan, BN6Spreader1, BN6Spreader2, BN6Spreader3, BN6BigTank1, BN6BigTank2, 
-				BN6BigTank3, BN6GunSol1, BN6GunSol2, BN6GunSol3, BN6Yoyo, BN6HellBurner1, BN6HellBurner2, 
-				BN6HellBurner3, BN6WideShot, BN6TrainArrow1, BN6TrainArrow2, BN6TrainArrow3, BN6BubbleStar1, 
-				BN6BubbleStar2, BN6BubbleStar3, BN6Thunder, BN6DollThunder1, BN6DollThunder2, 
-				BN6DollThunder3, BN6ElecPulse1, BN6ElecPulse2, BN6ElecPulse3, BN6CornShot1, BN6CornShot2, 
-				BN6CornShot3, BN6RiskyHoney1, BN6RiskyHoney2, BN6RiskyHoney3, BN6RollingLog1, 
-				BN6RollingLog2, BN6RollingLog3, BN6IronShell1, BN6IronShell2, BN6IronShell3, BN6AuraHead1, 
-				BN6AuraHead2, BN6AuraHead3, BN6AirHock, BN6DrillArm, BN6Tornado, BN6NoiseStorm, 
-				BN6MachineGun1, BN6MachineGun2, BN6MachineGun3, BN6MiniBomb, BN6BigBomb, BN6EnergyBomb, 
-				BN6MegEnBomb, BN6FlashBomb1, BN6FlashBomb2, BN6FlashBomb3, BN6BlackBomb, BN6BugBomb, 
-				BN6GrassSeed, BN6IceSeed, BN6PoisonSeed, BN6Sword, BN6WideSword, BN6LongSword, 
-				BN6WideBlade, BN6LongBlade, BN6FireSword, BN6AquaSword, BN6ElecSword, BN6WoodSword, 
-				BN6WindRacket, BN6Fumikomizan, BN6VarSword, BN6NeoVarSword, BN6Kunai, BN6Muramasa, 
-				BN6MachineSword, BN6ElementSword, BN6AssassinSword, BN6CrackShoot, BN6DoubleShoot, 
-				BN6TripleShoot, BN6ReflectMet1, BN6ReflectMet2, BN6ReflectMet3, BN6WaveArm1, BN6WaveArm2, 
-				BN6WaveArm3, BN6SandWorm1, BN6SandWorm2, BN6SandWorm3, BN6SummonBlack1, BN6SummonBlack2, 
-				BN6SummonBlack3, BN6Snake, BN6NumberBall, BN6FirePunch1, BN6FirePunch2, BN6FirePunch3, 
-				BN6BurnScare1, BN6BurnScare2, BN6BurnScare3, BN6Meteors, BN6AquaNeedle1, BN6AquaNeedle2, 
-				BN6AquaNeedle3, BN6BlizzardBall, BN6KillerSensor1, BN6KillerSensor2, BN6KillerSensor3, 
-				BN6Boomerang, BN6HiBoomerang, BN6MegaBoomerang, BN6Lance, BN6HeatDragon, BN6ElecDragon, 
-				BN6AquaDragon, BN6WoodDragon, BN6GolemPunch1, BN6GolemPunch2, BN6GolemPunch3, BN6JusticeOne, 
-				BN6AirWheel1, BN6AirWheel2, BN6AirWheel3, BN6Wind, BN6Fan, BN6Magnum, BN6CircGun, BN6RockCube, 
-				BN6LittleBoiler1, BN6LittleBoiler2, BN6LittleBoiler3, BN6AirRaid1, BN6AirRaid2, BN6AirRaid3, 
-				BN6TimeBomb1, BN6TimeBomb2, BN6TimeBomb3, BN6Mine, BN6Fanfare, BN6Discord, BN6Timpani, 
-				BN6Silence, BN6VDoll, BN6Guardian, BN6Anubis, BN6Recover10, BN6Recover30, BN6Recover50, 
-				BN6Recover80, BN6Recover120, BN6Recover150, BN6Recover200, BN6Recover300, BN6PanelGrab, 
-				BN6AreaGrab, BN6GrabBanish, BN6GrabRevenge, BN6PanelReturn, BN6DeathMatch, BN6HolyPanel, 
-				BN6Sanctuary, BN6ComingRoad, BN6GoingRoad, BN6Slowgauge, BN6Fastgauge, BN6Fullcust, 
-				BN6BusterUp, BN6BugFix, BN6Invis, BN6Barrier, BN6Barrier100, BN6Barrier200, BN6BubbleWrap, 
-				BN6LifeAura, BN6MagneCoil, BN6ColonelsArmy, BN6ElementTrap, BN6AntiNavi, BN6AntiDmg, 
-				BN6AntiSword, BN6AntiRecover];
+var BN6CARDS = [new BN6Cannon(), new BN6HiCannon(), new BN6MegaCannon(), new BN6AirShot(), new BN6Vulcan1(), new BN6Vulcan2(), new BN6Vulcan3(), new 
+				BN6SuperVulcan(), new BN6Spreader1(), new BN6Spreader2(), new BN6Spreader3(), new BN6BigTank1(), new BN6BigTank2(), new 
+				BN6BigTank3(), new BN6GunSol1(), new BN6GunSol2(), new BN6GunSol3(), new BN6Yoyo(), new BN6HellBurner1(), new BN6HellBurner2(), new 
+				BN6HellBurner3(), new BN6WideShot(), new BN6TrainArrow1(), new BN6TrainArrow2(), new BN6TrainArrow3(), new BN6BubbleStar1(), new 
+				BN6BubbleStar2(), new BN6BubbleStar3(), new BN6Thunder(), new BN6DollThunder1(), new BN6DollThunder2(), new 
+				BN6DollThunder3(), new BN6ElecPulse1(), new BN6ElecPulse2(), new BN6ElecPulse3(), new BN6CornShot1(), new BN6CornShot2(), new 
+				BN6CornShot3(), new BN6RiskyHoney1(), new BN6RiskyHoney2(), new BN6RiskyHoney3(), new BN6RollingLog1(), new 
+				BN6RollingLog2(), new BN6RollingLog3(), new BN6IronShell1(), new BN6IronShell2(), new BN6IronShell3(), new BN6AuraHead1(), new 
+				BN6AuraHead2(), new BN6AuraHead3(), new BN6AirHock(), new BN6DrillArm(), new BN6Tornado(), new BN6NoiseStorm(), new 
+				BN6MachineGun1(), new BN6MachineGun2(), new BN6MachineGun3(), new BN6MiniBomb(), new BN6BigBomb(), new BN6EnergyBomb(), new 
+				BN6MegEnBomb(), new BN6FlashBomb1(), new BN6FlashBomb2(), new BN6FlashBomb3(), new BN6BlackBomb(), new BN6BugBomb(), new 
+				BN6GrassSeed(), new BN6IceSeed(), new BN6PoisonSeed(), new BN6Sword(), new BN6WideSword(), new BN6LongSword(), new 
+				BN6WideBlade(), new BN6LongBlade(), new BN6FireSword(), new BN6AquaSword(), new BN6ElecSword(), new BN6WoodSword(), new 
+				BN6WindRacket(), new BN6Fumikomizan(), new BN6VarSword(), new BN6NeoVarSword(), new BN6Kunai(), new BN6Muramasa(), new 
+				BN6MachineSword(), new BN6ElementSword(), new BN6AssassinSword(), new BN6CrackShoot(), new BN6DoubleShoot(), new 
+				BN6TripleShoot(), new BN6ReflectMet1(), new BN6ReflectMet2(), new BN6ReflectMet3(), new BN6WaveArm1(), new BN6WaveArm2(), new 
+				BN6WaveArm3(), new BN6SandWorm1(), new BN6SandWorm2(), new BN6SandWorm3(), new BN6SummonBlack1(), new BN6SummonBlack2(), new 
+				BN6SummonBlack3(), new BN6Snake(), new BN6NumberBall(), new BN6FirePunch1(), new BN6FirePunch2(), new BN6FirePunch3(), new 
+				BN6BurnScare1(), new BN6BurnScare2(), new BN6BurnScare3(), new BN6Meteors(), new BN6AquaNeedle1(), new BN6AquaNeedle2(), new 
+				BN6AquaNeedle3(), new BN6BlizzardBall(), new BN6KillerSensor1(), new BN6KillerSensor2(), new BN6KillerSensor3(), new 
+				BN6Boomerang(), new BN6HiBoomerang(), new BN6MegaBoomerang(), new BN6Lance(), new BN6HeatDragon(), new BN6ElecDragon(), new 
+				BN6AquaDragon(), new BN6WoodDragon(), new BN6GolemPunch1(), new BN6GolemPunch2(), new BN6GolemPunch3(), new BN6JusticeOne(), new 
+				BN6AirWheel1(), new BN6AirWheel2(), new BN6AirWheel3(), new BN6Wind(), new BN6Fan(), new BN6Magnum(), new BN6CircGun(), new BN6RockCube(), new 
+				BN6LittleBoiler1(), new BN6LittleBoiler2(), new BN6LittleBoiler3(), new BN6AirRaid1(), new BN6AirRaid2(), new BN6AirRaid3(), new 
+				BN6TimeBomb1(), new BN6TimeBomb2(), new BN6TimeBomb3(), new BN6Mine(), new BN6Fanfare(), new BN6Discord(), new BN6Timpani(), new 
+				BN6Silence(), new BN6VDoll(), new BN6Guardian(), new BN6Anubis(), new BN6Recover10(), new BN6Recover30(), new BN6Recover50(), new 
+				BN6Recover80(), new BN6Recover120(), new BN6Recover150(), new BN6Recover200(), new BN6Recover300(), new BN6PanelGrab(), new 
+				BN6AreaGrab(), new BN6GrabBanish(), new BN6GrabRevenge(), new BN6PanelReturn(), new BN6DeathMatch(), new BN6HolyPanel(), new 
+				BN6Sanctuary(), new BN6ComingRoad(), new BN6GoingRoad(), new BN6Slowgauge(), new BN6Fastgauge(), new BN6Fullcust(), new 
+				BN6BusterUp(), new BN6BugFix(), new BN6Invis(), new BN6Barrier(), new BN6Barrier100(), new BN6Barrier200(), new BN6BubbleWrap(), new 
+				BN6LifeAura(), new BN6MagneCoil(), new BN6ColonelsArmy(), new BN6ElementTrap(), new BN6AntiNavi(), new BN6AntiDmg(), new 
+				BN6AntiSword(), new BN6AntiRecover()];
 
 function Bn6Cards(){
 
