@@ -49,7 +49,6 @@ var playerOne = {
 	busterType: new BN6Buster,
 	bugs: [],
 	barrier: null, 
-	bonusDamage: 0,
 	invincible: 0,
 	confused: 0,
 	timpanid: 0,
@@ -74,7 +73,6 @@ var playerTwo = {
 	busterType: new BN6Buster,
 	bugs: [],
 	barrier: null,
-	bonusDamage: 0,
 	invincible: 0,
 	confused: 0,
 	timpanid: 0,
@@ -597,10 +595,10 @@ function Board(width,height,canvas){
 		if(!attackCard.addDamage){
 			attackCard.addDamage = 0;
 		}
-		if(!attacker.bonusDamage){
-			attacker.bonusDamage = 0;
+		if(!attackCard.boostDamage){
+			attackCard.boostDamage = 0;
 		}
-		this.baseDamage = attackCard.damage + attackCard.addDamage + attacker.bonusDamage;
+		this.baseDamage = attackCard.damage + attackCard.addDamage + attackCard.boostDamage;
 		this.barrierAbsorbed = 0;
 		if(defender.barrier !== null){
 			this.barrierAbsorbed = defender.barrier.calculateDamageAbsorbed(this.baseDamage, oneHitMulti, allHitMulti, attackCard.hits);

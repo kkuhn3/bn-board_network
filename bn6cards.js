@@ -7,6 +7,7 @@ function BN6Cannon(){
 	this.mb=6;
 	this.rank="standard";
 	this.damage=40;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[];
@@ -25,6 +26,7 @@ function BN6HiCannon(){
 	this.mb=24;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[];
@@ -43,6 +45,7 @@ function BN6MegaCannon(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=180;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[];
@@ -61,6 +64,7 @@ function BN6AirShot(){
 	this.mb=4;
 	this.rank="standard";
 	this.damage=20;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.wind];
@@ -96,6 +100,7 @@ function BN6Vulcan1(){
 	this.mb=5;
 	this.rank="standard";
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=3;
 	this.priority=1;
 	this.elements=[];
@@ -136,6 +141,7 @@ function BN6Vulcan2(){
 	this.mb=18;
 	this.rank="standard";
 	this.damage=15;
+	this.boostDamage=0;
 	this.hits=4;
 	this.priority=1;
 	this.elements=[];
@@ -154,6 +160,7 @@ function BN6Vulcan3(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=20;
+	this.boostDamage=0;
 	this.hits=5;
 	this.priority=1;
 	this.elements=[];
@@ -172,6 +179,7 @@ function BN6SuperVulcan(){
 	this.mb=75;
 	this.rank="standard";
 	this.damage=20;
+	this.boostDamage=0;
 	this.hits=10;
 	this.priority=1;
 	this.elements=[];
@@ -190,6 +198,7 @@ function BN6Spreader1(){
 	this.mb=10;
 	this.rank="standard";
 	this.damage=30;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -230,6 +239,7 @@ function BN6Spreader2(){
 	this.mb=18;
 	this.rank="standard";
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -248,6 +258,7 @@ function BN6Spreader3(){
 	this.mb=26;
 	this.rank="standard";
 	this.damage=90;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -266,6 +277,7 @@ function BN6BigTank1(){
 	this.mb=17;
 	this.rank="standard";
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -300,6 +312,7 @@ function BN6BigTank2(){
 	this.mb=28;
 	this.rank="standard";
 	this.damage=160;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -318,6 +331,7 @@ function BN6BigTank3(){
 	this.mb=39;
 	this.rank="standard";
 	this.damage=200;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -336,6 +350,7 @@ function BN6GunSol1(){
 	this.mb=15;
 	this.rank="standard";
 	this.damage=5;
+	this.boostDamage=0;
 	this.hits=10;
 	this.priority=2;
 	this.elements=[];
@@ -401,6 +416,7 @@ function BN6GunSol2(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=10;
 	this.priority=2;
 	this.elements=[];
@@ -441,6 +457,7 @@ function BN6GunSol3(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=15;
+	this.boostDamage=0;
 	this.hits=10;
 	this.priority=2;
 	this.elements=[];
@@ -481,6 +498,7 @@ function BN6Yoyo(){
 	this.mb=32;
 	this.rank="standard";
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.sword];
@@ -532,6 +550,7 @@ function BN6HellBurner1(){
 	this.mb=8;
 	this.rank="standard";
 	this.damage=70;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.fire];
@@ -567,6 +586,7 @@ function BN6HellBurner2(){
 	this.mb=21;
 	this.rank="standard";
 	this.damage=110;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.fire];
@@ -585,6 +605,7 @@ function BN6HellBurner3(){
 	this.mb=34;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.fire];
@@ -603,6 +624,7 @@ function BN6WideShot(){
 	this.mb=34;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua];
@@ -651,6 +673,7 @@ function BN6TrainArrow1(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=30;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua];
@@ -705,6 +728,7 @@ function BN6TrainArrow2(){
 	this.mb=36;
 	this.rank="standard";
 	this.damage=40;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua];
@@ -726,6 +750,7 @@ function BN6TrainArrow3(){
 	this.mb=42;
 	this.rank="standard";
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua];
@@ -747,6 +772,7 @@ function BN6BubbleStar1(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua];
@@ -845,6 +871,7 @@ function BN6BubbleStar2(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=80;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua];
@@ -865,6 +892,7 @@ function BN6BubbleStar3(){
 	this.mb=46;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua];
@@ -885,6 +913,7 @@ function BN6Thunder(){
 	this.mb=7;
 	this.rank="standard";
 	this.damage=40;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
@@ -926,6 +955,7 @@ function BN6DollThunder1(){
 	this.mb=24;
 	this.rank="standard";
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
@@ -952,6 +982,7 @@ function BN6DollThunder2(){
 	this.mb=31;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
@@ -970,6 +1001,7 @@ function BN6DollThunder3(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=180;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
@@ -988,6 +1020,7 @@ function BN6ElecPulse1(){
 	this.mb=32;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
@@ -1034,6 +1067,7 @@ function BN6ElecPulse2(){
 	this.mb=36;
 	this.rank="standard";
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
@@ -1070,6 +1104,7 @@ function BN6ElecPulse3(){
 	this.mb=40;
 	this.rank="standard";
 	this.damage=140;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
@@ -1093,6 +1128,7 @@ function BN6CornShot1(){
 	this.mb=14;
 	this.rank="standard";
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[ELEMENTS.wood];
@@ -1154,6 +1190,7 @@ function BN6CornShot2(){
 	this.mb=26;
 	this.rank="standard";
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[ELEMENTS.wood];
@@ -1179,6 +1216,7 @@ function BN6CornShot3(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=70;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[ELEMENTS.wood];
@@ -1204,6 +1242,7 @@ function BN6RiskyHoney1(){
 	this.mb=21;
 	this.rank="standard";
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=5;
 	this.priority=1;
 	this.elements=[ELEMENTS.wood];
@@ -1211,18 +1250,18 @@ function BN6RiskyHoney1(){
 		return (new SWORD()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
-		attacker.guard = new HoneyGuard(this.damage);
+		attacker.guard = new HoneyGuard(this.damage + this.boostDamage);
 	};
 	this.effectmiss= function(attacker, defender){
 		(new BN6RiskyHoney1()).effecthit(attacker, defender);
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
-				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 		else{	
 			if(!board.cellHasSolidObject(attacker.x-1, attacker.y)){
-				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 	};
@@ -1236,6 +1275,7 @@ function BN6RiskyHoney2(){
 	this.mb=28;
 	this.rank="standard";
 	this.damage=15;
+	this.boostDamage=0;
 	this.hits=5;
 	this.priority=1;
 	this.elements=[ELEMENTS.wood];
@@ -1243,18 +1283,18 @@ function BN6RiskyHoney2(){
 		return (new BN6RiskyHoney1()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
-		attacker.guard = new HoneyGuard(this.damage);
+		attacker.guard = new HoneyGuard(this.damage + this.boostDamage);
 	};
 	this.effectmiss= function(attacker, defender){
 		(new BN6RiskyHoney2()).effecthit(attacker, defender);
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
-				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 		else{	
 			if(!board.cellHasSolidObject(attacker.x-1, attacker.y)){
-				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 	};
@@ -1268,6 +1308,7 @@ function BN6RiskyHoney3(){
 	this.mb=35;
 	this.rank="standard";
 	this.damage=20;
+	this.boostDamage=0;
 	this.hits=5;
 	this.priority=1;
 	this.elements=[ELEMENTS.wood];
@@ -1275,18 +1316,18 @@ function BN6RiskyHoney3(){
 		return (new BN6RiskyHoney1()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
-		attacker.guard = new HoneyGuard(this.damage);
+		attacker.guard = new HoneyGuard(this.damage + this.boostDamage);
 	};
 	this.effectmiss= function(attacker, defender){
 		(new BN6RiskyHoney3()).effecthit(attacker, defender);
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
-				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 		else{	
 			if(!board.cellHasSolidObject(attacker.x-1, attacker.y)){
-				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x-1][attacker.y].object.push(new BN6HoneyBall(attacker.x-1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 	};
@@ -1300,6 +1341,7 @@ function BN6RollingLog1(){
 	this.mb=14;
 	this.rank="standard";
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
@@ -1371,6 +1413,7 @@ function BN6RollingLog2(){
 	this.mb=26;
 	this.rank="standard";
 	this.damage=70;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
@@ -1392,6 +1435,7 @@ function BN6RollingLog3(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=90;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
@@ -1413,6 +1457,7 @@ function BN6IronShell1(){
 	this.mb=13;
 	this.rank="standard";
 	this.damage=70;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -1464,6 +1509,7 @@ function BN6IronShell2(){
 	this.mb=20;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -1485,6 +1531,7 @@ function BN6IronShell3(){
 	this.mb=27;
 	this.rank="standard";
 	this.damage=130;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -1506,6 +1553,7 @@ function BN6AuraHead1(){
 	this.mb=25;
 	this.rank="standard";
 	this.damage=130;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -1547,6 +1595,7 @@ function BN6AuraHead2(){
 	this.mb=33;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -1569,6 +1618,7 @@ function BN6AuraHead3(){
 	this.mb=39;
 	this.rank="standard";
 	this.damage=170;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -1591,6 +1641,7 @@ function BN6AirHock(){
 	this.mb=40;
 	this.rank="standard";
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -1668,6 +1719,7 @@ function BN6DrillArm(){
 	this.mb=32;
 	this.rank="standard";
 	this.damage=70;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.break];
@@ -1720,6 +1772,7 @@ function BN6Tornado(){
 	this.mb=16;
 	this.rank="standard";
 	this.damage=20;
+	this.boostDamage=0;
 	this.hits=8;
 	this.priority=2;
 	this.elements=[ELEMENTS.wind];
@@ -1745,6 +1798,7 @@ function BN6NoiseStorm(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=20;
+	this.boostDamage=0;
 	this.hits=8;
 	this.priority=2;
 	this.elements=[ELEMENTS.wind];
@@ -1789,6 +1843,7 @@ function BN6MachineGun1(){
 	this.mb=12;
 	this.rank="standard";
 	this.damage=30;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.target];
@@ -1825,6 +1880,7 @@ function BN6MachineGun2(){
 	this.mb=24;
 	this.rank="standard";
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.target];
@@ -1846,6 +1902,7 @@ function BN6MachineGun3(){
 	this.mb=36;
 	this.rank="standard";
 	this.damage=70;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.target];
@@ -1867,6 +1924,7 @@ function BN6MiniBomb(){
 	this.mb=6;
 	this.rank="standard";
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -1892,6 +1950,7 @@ function BN6BigBomb(){
 	this.mb=32;
 	this.rank="standard";
 	this.damage=140;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -1922,6 +1981,7 @@ function BN6EnergyBomb(){
 	this.mb=11;
 	this.rank="standard";
 	this.damage=40;
+	this.boostDamage=0;
 	this.hits=3;
 	this.priority=3;
 	this.elements=[];
@@ -1940,6 +2000,7 @@ function BN6MegEnBomb(){
 	this.mb=27;
 	this.rank="standard";
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=3;
 	this.priority=3;
 	this.elements=[];
@@ -1958,6 +2019,7 @@ function BN6FlashBomb1(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=40;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -1971,7 +2033,7 @@ function BN6FlashBomb1(){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage + this.boostDamage));
 		}
 	};
 }
@@ -1984,6 +2046,7 @@ function BN6FlashBomb2(){
 	this.mb=34;
 	this.rank="standard";
 	this.damage=70;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -1997,7 +2060,7 @@ function BN6FlashBomb2(){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage + this.boostDamage));
 		}
 	};
 }
@@ -2010,6 +2073,7 @@ function BN6FlashBomb3(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -2023,7 +2087,7 @@ function BN6FlashBomb3(){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6FlashBomb(attacker.x+this.xDirection, attacker.y, attacker, defender, this.damage + this.boostDamage));
 		}
 	};
 }
@@ -2036,6 +2100,7 @@ function BN6BlackBomb(){
 	this.mb=32;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[ELEMENTS.fire];
@@ -2062,6 +2127,7 @@ function BN6BugBomb(){
 	this.mb=24;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -2082,6 +2148,7 @@ function BN6GrassSeed(){
 	this.mb=19;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[ELEMENTS.wood];
@@ -2121,6 +2188,7 @@ function BN6IceSeed(){
 	this.mb=31;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[ELEMENTS.aqua];
@@ -2160,6 +2228,7 @@ function BN6PoisonSeed(){
 	this.mb=37;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -2199,6 +2268,7 @@ function BN6Sword(){
 	this.mb=8;
 	this.rank="standard";
 	this.damage=80;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -2217,6 +2287,7 @@ function BN6WideSword(){
 	this.mb=12;
 	this.rank="standard";
 	this.damage=80;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -2235,6 +2306,7 @@ function BN6LongSword(){
 	this.mb=25;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -2253,6 +2325,7 @@ function BN6WideBlade(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -2271,6 +2344,7 @@ function BN6LongBlade(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -2289,6 +2363,7 @@ function BN6FireSword(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=140;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword, ELEMENTS.fire];
@@ -2307,6 +2382,7 @@ function BN6AquaSword(){
 	this.mb=32;
 	this.rank="standard";
 	this.damage=160;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword, ELEMENTS.aqua];
@@ -2325,6 +2401,7 @@ function BN6ElecSword(){
 	this.mb=35;
 	this.rank="standard";
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword, ELEMENTS.elec];
@@ -2347,6 +2424,7 @@ function BN6WoodSword(){
 	this.mb=34;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword, ELEMENTS.wood];
@@ -2365,6 +2443,7 @@ function BN6WindRacket(){
 	this.mb=19;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.wind];
@@ -2405,6 +2484,7 @@ function BN6Fumikomizan(){
 	this.mb=28;
 	this.rank="standard";
 	this.damage=160;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.sword];
@@ -2429,6 +2509,7 @@ function BN6VarSword(){
 	this.mb=28;
 	this.rank="standard";
 	this.damage=80;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -2460,6 +2541,7 @@ function BN6NeoVarSword(){
 	this.mb=52;
 	this.rank="standard";
 	this.damage=110;
+	this.boostDamage=0;
 	this.hits=2;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -2478,6 +2560,7 @@ function BN6Kunai(){
 	this.mb=25;
 	this.rank="standard";
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -2499,6 +2582,7 @@ function BN6Muramasa(){
 	this.mb=77;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -2518,6 +2602,7 @@ function BN6MachineSword(){
 	this.mb=37;
 	this.rank="standard";
 	this.damage=200;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.sword];
@@ -2568,6 +2653,7 @@ function BN6ElementSword(){
 	this.mb=43;
 	this.rank="standard";
 	this.damage=220;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.sword];
@@ -2608,6 +2694,7 @@ function BN6AssassinSword(){
 	this.mb=50;
 	this.rank="standard";
 	this.damage=240;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.sword];
@@ -2626,6 +2713,7 @@ function BN6CrackShoot(){
 	this.mb=4;
 	this.rank="standard";
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[];
@@ -2661,6 +2749,7 @@ function BN6DoubleShoot(){
 	this.mb=8;
 	this.rank="standard";
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=2;
 	this.priority=2;
 	this.elements=[];
@@ -2707,6 +2796,7 @@ function BN6TripleShoot(){
 	this.mb=12;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[];
@@ -2738,6 +2828,7 @@ function BN6ReflectMet1(){
 	this.image=BN6ReflectMet1IMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=7;
 	this.rank="standard";
@@ -2748,7 +2839,7 @@ function BN6ReflectMet1(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.guard = new ReflectMet(BN6ReflectMet1.damage);
+		attacker.guard = new ReflectMet(this.damage + this.boostDamage);
 	};
 }
 
@@ -2758,6 +2849,7 @@ function BN6ReflectMet2(){
 	this.image=BN6ReflectMet2IMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=16;
 	this.rank="standard";
@@ -2768,7 +2860,7 @@ function BN6ReflectMet2(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.guard = new ReflectMet(BN6ReflectMet2.damage);
+		attacker.guard = new ReflectMet(this.damage + this.boostDamage);
 	};
 }
 
@@ -2778,6 +2870,7 @@ function BN6ReflectMet3(){
 	this.image=BN6ReflectMet3IMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.damage=200;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=25;
 	this.rank="standard";
@@ -2788,7 +2881,7 @@ function BN6ReflectMet3(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.guard = new ReflectMet(BN6ReflectMet3.damage);
+		attacker.guard = new ReflectMet(this.damage + this.boostDamage);
 	};
 }
 
@@ -2798,6 +2891,7 @@ function BN6WaveArm1(){
 	this.image=BN6WaveArm1IMG;
 	this.code=["E", "F", "G"];
 	this.damage=80;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=15;
 	this.rank="standard";
@@ -2842,6 +2936,7 @@ function BN6WaveArm2(){
 	this.image=BN6WaveArm2IMG;
 	this.code=["L", "M", "N"];
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=22;
 	this.rank="standard";
@@ -2860,6 +2955,7 @@ function BN6WaveArm3(){
 	this.image=BN6WaveArm3IMG;
 	this.code=["R", "S", "T"];
 	this.damage=160;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=29;
 	this.rank="standard";
@@ -2878,6 +2974,7 @@ function BN6SandWorm1(){
 	this.image=BN6SandWorm1IMG;
 	this.code=["A", "G", "L"];
 	this.damage=130;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=30;
 	this.rank="standard";
@@ -2923,6 +3020,7 @@ function BN6SandWorm2(){
 	this.image=BN6SandWorm2IMG;
 	this.code=["B", "R", "Y"];
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=30;
 	this.rank="standard";
@@ -2941,6 +3039,7 @@ function BN6SandWorm3(){
 	this.image=BN6SandWorm3IMG;
 	this.code=["H", "J", "S"];
 	this.damage=170;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=30;
 	this.rank="standard";
@@ -2959,6 +3058,7 @@ function BN6SummonBlack1(){
 	this.image=BN6SummonBlack1IMG;
 	this.code=["E", "I", "P"];
 	this.damage=160;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=30;
 	this.rank="standard";
@@ -2995,6 +3095,7 @@ function BN6SummonBlack2(){
 	this.image=BN6SummonBlack2IMG;
 	this.code=["H", "O", "V"];
 	this.damage=200;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=40;
 	this.rank="standard";
@@ -3013,6 +3114,7 @@ function BN6SummonBlack3(){
 	this.image=BN6SummonBlack3IMG;
 	this.code=["W", "Y", "Z"];
 	this.damage=260;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=40;
 	this.rank="standard";
@@ -3031,6 +3133,7 @@ function BN6Snake(){
 	this.image=BN6SnakeIMG;
 	this.code=["H", "M", "L"];
 	this.damage=30;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=34;
 	this.rank="standard";
@@ -3079,6 +3182,7 @@ function BN6NumberBall(){
 	this.image=BN6NumberBallIMG;
 	this.code=["N"];
 	this.damage=1;
+	this.boostDamage=0;
 	this.hits=4;
 	this.mb=34;
 	this.rank="standard";
@@ -3098,6 +3202,7 @@ function BN6FirePunch1(){
 	this.image=BN6FirePunch1IMG;
 	this.code=["D", "E", "F"];
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=12;
 	this.rank="standard";
@@ -3127,6 +3232,7 @@ function BN6FirePunch2(){
 	this.image=BN6FirePunch2IMG;
 	this.code=["R", "S", "T"];
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=22;
 	this.rank="standard";
@@ -3145,6 +3251,7 @@ function BN6FirePunch3(){
 	this.image=BN6FirePunch3IMG;
 	this.code=["A", "B", "C"];
 	this.damage=180;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=32;
 	this.rank="standard";
@@ -3163,6 +3270,7 @@ function BN6BurnScare1(){
 	this.image=BN6BurnScare1IMG;
 	this.code=["H", "P", "V"];
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=24;
 	this.rank="standard";
@@ -3223,6 +3331,7 @@ function BN6BurnScare2(){
 	this.image=BN6BurnScare2IMG;
 	this.code=["D", "M", "T"];
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=30;
 	this.rank="standard";
@@ -3241,6 +3350,7 @@ function BN6BurnScare3(){
 	this.image=BN6BurnScare3IMG;
 	this.code=["E", "O", "Z"];
 	this.damage=140;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=36;
 	this.rank="standard";
@@ -3259,6 +3369,7 @@ function BN6Meteors(){
 	this.image=BN6MeteorsIMG;
 	this.code=["R"];
 	this.damage=40;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=73;
 	this.rank="standard";
@@ -3316,6 +3427,7 @@ function BN6AquaNeedle1(){
 	this.image=BN6AquaNeedle1IMG;
 	this.code=["C", "J", "P"];
 	this.damage=40;
+	this.boostDamage=0;
 	this.hits=3;
 	this.mb=31;
 	this.rank="standard";
@@ -3341,6 +3453,7 @@ function BN6AquaNeedle2(){
 	this.image=BN6AquaNeedle2IMG;
 	this.code=["F", "K", "T"];
 	this.damage=60;
+	this.boostDamage=0;
 	this.hits=3;
 	this.mb=35;
 	this.rank="standard";
@@ -3359,6 +3472,7 @@ function BN6AquaNeedle3(){
 	this.image=BN6AquaNeedle3IMG;
 	this.code=["A", "L", "U"];
 	this.damage=80;
+	this.boostDamage=0;
 	this.hits=3;
 	this.mb=39;
 	this.rank="standard";
@@ -3378,12 +3492,14 @@ function BN6BlizzardBall(){
 	this.code=["H", "N", "T"];
 	this.damage=150;
 	this.addDamage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=76;
 	this.rank="standard";
 	this.priority=0;
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
+		this.addDamage=0;
 		if(defender.invis < 1){
 			if(attacker.name === "one"){
 				for(var i=0; i < defender.x - attacker.x; i++){
@@ -3436,6 +3552,7 @@ function BN6KillerSensor1(){
 	this.mb=32;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.elec];
@@ -3446,12 +3563,12 @@ function BN6KillerSensor1(){
 	this.effectmiss= function(attacker, defender){
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 		else{
 			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 	};
@@ -3465,6 +3582,7 @@ function BN6KillerSensor2(){
 	this.mb=35;
 	this.rank="standard";
 	this.damage=130;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.elec];
@@ -3475,12 +3593,12 @@ function BN6KillerSensor2(){
 	this.effectmiss= function(attacker, defender){
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 		else{
 			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 	};
@@ -3494,6 +3612,7 @@ function BN6KillerSensor3(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=160;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.elec];
@@ -3504,12 +3623,12 @@ function BN6KillerSensor3(){
 	this.effectmiss= function(attacker, defender){
 		if(attacker.name === "one"){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 		else{
 			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage));
+				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 	};
@@ -3523,6 +3642,7 @@ function BN6Boomerang(){
 	this.mb=16;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
@@ -3568,6 +3688,7 @@ function BN6HiBoomerang(){
 	this.mb=26;
 	this.rank="standard";
 	this.damage=140;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
@@ -3590,6 +3711,7 @@ function BN6MegaBoomerang(){
 	this.mb=36;
 	this.rank="standard";
 	this.damage=170;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
@@ -3612,6 +3734,7 @@ function BN6Lance(){
 	this.mb=42;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[ELEMENTS.wood];
@@ -3647,6 +3770,7 @@ function BN6HeatDragon(){
 	this.mb=40;
 	this.rank="standard";
 	this.damage=140;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.fire];
@@ -3674,6 +3798,7 @@ function BN6ElecDragon(){
 	this.mb=40;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
@@ -3710,6 +3835,7 @@ function BN6AquaDragon(){
 	this.mb=44;
 	this.rank="standard";
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua];
@@ -3746,6 +3872,7 @@ function BN6WoodDragon(){
 	this.mb=48;
 	this.rank="standard";
 	this.damage=130;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
@@ -3782,6 +3909,7 @@ function BN6GolemPunch1(){
 	this.mb=17;
 	this.rank="standard";
 	this.damage=140;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -3819,6 +3947,7 @@ function BN6GolemPunch2(){
 	this.mb=27;
 	this.rank="standard";
 	this.damage=190;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -3841,6 +3970,7 @@ function BN6GolemPunch3(){
 	this.mb=37;
 	this.rank="standard";
 	this.damage=250;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -3864,6 +3994,7 @@ function BN6JusticeOne(){
 	this.rank="standard";
 	this.damage=100;
 	this.addDamage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -3904,6 +4035,7 @@ function BN6AirWheel1(){
 	this.mb=22;
 	this.rank="standard";
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=2;
 	this.priority=2;
 	this.elements=[ELEMENTS.wind];
@@ -3927,7 +4059,7 @@ function BN6AirWheel1(){
 					this.tempX = this.tempX + this.xDirection;
 				}
 			}
-			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, this.damage, this.hits)];
+			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage, this.hits)];
 		}
 	};
 }
@@ -3940,6 +4072,7 @@ function BN6AirWheel2(){
 	this.mb=29;
 	this.rank="standard";
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=3;
 	this.priority=2;
 	this.elements=[ELEMENTS.wind];
@@ -3963,7 +4096,7 @@ function BN6AirWheel2(){
 					this.tempX = this.tempX + this.xDirection;
 				}
 			}
-			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, this.damage, this.hits)];
+			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage, this.hits)];
 		}
 	};
 }
@@ -3976,6 +4109,7 @@ function BN6AirWheel3(){
 	this.mb=36;
 	this.rank="standard";
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=4;
 	this.priority=2;
 	this.elements=[ELEMENTS.wind];
@@ -3999,7 +4133,7 @@ function BN6AirWheel3(){
 					this.tempX = this.tempX + this.xDirection;
 				}
 			}
-			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, this.damage, this.hits)];
+			cells[this.tempX][attacker.y].object = [new BN6AirWheel(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage, this.hits)];
 		}
 	};
 }
@@ -4012,6 +4146,7 @@ function BN6Wind(){
 	this.mb=10;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.wind];
@@ -4039,6 +4174,7 @@ function BN6Fan(){
 	this.mb=10;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.wind];
@@ -4066,6 +4202,7 @@ function BN6Magnum(){
 	this.mb=31;
 	this.rank="standard";
 	this.damage=130;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.cursor];
@@ -4103,6 +4240,7 @@ function BN6CircGun(){
 	this.mb=35;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.cursor];
@@ -4141,6 +4279,7 @@ function BN6RockCube(){
 	this.mb=6;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4167,6 +4306,7 @@ function BN6LittleBoiler1(){
 	this.mb=18;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[ELEMENTS.aqua];
@@ -4185,7 +4325,7 @@ function BN6LittleBoiler1(){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage, attacker));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage + this.boostDamage, attacker));
 		}
 	};
 }
@@ -4198,6 +4338,7 @@ function BN6LittleBoiler2(){
 	this.mb=23;
 	this.rank="standard";
 	this.damage=140;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[ELEMENTS.aqua];
@@ -4216,7 +4357,7 @@ function BN6LittleBoiler2(){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage, attacker));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage + this.boostDamage, attacker));
 		}
 	};
 }
@@ -4229,6 +4370,7 @@ function BN6LittleBoiler3(){
 	this.mb=23;
 	this.rank="standard";
 	this.damage=180;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[ELEMENTS.aqua];
@@ -4247,7 +4389,7 @@ function BN6LittleBoiler3(){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage, attacker));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6LittleBoiler(attacker.x+this.xDirection, attacker.y, this.damage + this.boostDamage, attacker));
 		}
 	};
 }
@@ -4260,6 +4402,7 @@ function BN6AirRaid1(){
 	this.mb=26;
 	this.rank="standard";
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=10;
 	this.priority=0;
 	this.elements=[];
@@ -4286,6 +4429,7 @@ function BN6AirRaid2(){
 	this.mb=32;
 	this.rank="standard";
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=14;
 	this.priority=0;
 	this.elements=[];
@@ -4312,6 +4456,7 @@ function BN6AirRaid3(){
 	this.mb=39;
 	this.rank="standard";
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=18;
 	this.priority=0;
 	this.elements=[];
@@ -4338,6 +4483,7 @@ function BN6TimeBomb1(){
 	this.mb=20;
 	this.rank="standard";
 	this.damage=150;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.fire];
@@ -4358,7 +4504,7 @@ function BN6TimeBomb1(){
 			if(cells[this.tempX]){
 				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
 					if(board.isCellPlayerValid(this.tempX, attacker.y)){
-						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage)];
+						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage)];
 					}
 				}
 				this.tempX++
@@ -4376,6 +4522,7 @@ function BN6TimeBomb2(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=190;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.fire];
@@ -4396,7 +4543,7 @@ function BN6TimeBomb2(){
 			if(cells[this.tempX]){
 				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
 					if(board.isCellPlayerValid(this.tempX, attacker.y)){
-						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage)];
+						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage)];
 					}
 				}
 				this.tempX++
@@ -4414,6 +4561,7 @@ function BN6TimeBomb3(){
 	this.mb=37;
 	this.rank="standard";
 	this.damage=230;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.fire];
@@ -4434,7 +4582,7 @@ function BN6TimeBomb3(){
 			if(cells[this.tempX]){
 				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
 					if(board.isCellPlayerValid(this.tempX, attacker.y)){
-						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage)];
+						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage)];
 					}
 				}
 				this.tempX++
@@ -4452,6 +4600,7 @@ function BN6Mine(){
 	this.mb=28;
 	this.rank="standard";
 	this.damage=200;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4475,7 +4624,7 @@ function BN6Mine(){
 					if(board.isCellThisPlayerValid(i, j, defender)){
 						this.count++
 						if(this.count === this.target){
-							cells[i][j].object.push(new BN6MineObj(i, j, attacker, defender, this.damage));
+							cells[i][j].object.push(new BN6MineObj(i, j, attacker, defender, this.damage + this.boostDamage));
 						}
 					}
 				}
@@ -4492,6 +4641,7 @@ function BN6Fanfare(){
 	this.mb=20;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4518,6 +4668,7 @@ function BN6Discord(){
 	this.mb=20;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4544,6 +4695,7 @@ function BN6Timpani(){
 	this.mb=20;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4570,6 +4722,7 @@ function BN6Silence(){
 	this.mb=20;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4596,6 +4749,7 @@ function BN6VDoll(){
 	this.mb=39;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -4623,6 +4777,7 @@ function BN6Guardian(){
 	this.mb=64;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4649,6 +4804,7 @@ function BN6Anubis(){
 	this.mb=86;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4675,6 +4831,7 @@ function BN6Recover10(){
 	this.mb=4;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -4698,6 +4855,7 @@ function BN6Recover30(){
 	this.mb=12;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -4721,6 +4879,7 @@ function BN6Recover50(){
 	this.mb=18;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -4744,6 +4903,7 @@ function BN6Recover80(){
 	this.mb=24;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -4767,6 +4927,7 @@ function BN6Recover120(){
 	this.mb=32;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -4790,6 +4951,7 @@ function BN6Recover150(){
 	this.mb=38;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -4813,6 +4975,7 @@ function BN6Recover200(){
 	this.mb=42;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -4836,6 +4999,7 @@ function BN6Recover300(){
 	this.mb=48;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=1;
 	this.elements=[];
@@ -4859,6 +5023,7 @@ function BN6PanelGrab(){
 	this.mb=6;
 	this.rank="standard";
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4908,6 +5073,7 @@ function BN6AreaGrab(){
 	this.mb=8;
 	this.rank="standard";
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4930,6 +5096,7 @@ function BN6GrabBanish(){
 	this.mb=24;
 	this.rank="standard";
 	this.damage=20;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -4989,6 +5156,7 @@ function BN6GrabRevenge(){
 	this.mb=50;
 	this.rank="standard";
 	this.damage=40;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5012,6 +5180,7 @@ function BN6PanelReturn(){
 	this.mb=14;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5042,6 +5211,7 @@ function BN6DeathMatch(){
 	this.mb=47;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5066,6 +5236,7 @@ function BN6HolyPanel(){
 	this.mb=24;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5090,6 +5261,7 @@ function BN6Sanctuary(){
 	this.mb=62;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5120,6 +5292,7 @@ function BN6ComingRoad(){
 	this.mb=21;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5150,6 +5323,7 @@ function BN6GoingRoad(){
 	this.mb=21;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5180,6 +5354,7 @@ function BN6Slowgauge(){
 	this.mb=42;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5203,6 +5378,7 @@ function BN6Fastgauge(){
 	this.mb=48;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5226,6 +5402,7 @@ function BN6Fullcust(){
 	this.mb=50;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5246,6 +5423,7 @@ function BN6BusterUp(){
 	this.mb=11;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5266,6 +5444,7 @@ function BN6BugFix(){
 	this.mb=62;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5286,6 +5465,7 @@ function BN6Invis(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5306,6 +5486,7 @@ function BN6Barrier(){
 	this.mb=7;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5326,6 +5507,7 @@ function BN6Barrier100(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5346,6 +5528,7 @@ function BN6Barrier200(){
 	this.mb=52;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5366,6 +5549,7 @@ function BN6BubbleWrap(){
 	this.mb=58;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[ELEMENTS.aqua];
@@ -5386,6 +5570,7 @@ function BN6LifeAura(){
 	this.mb=70;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5406,6 +5591,7 @@ function BN6MagneCoil(){
 	this.mb=14;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=3;
 	this.elements=[];
@@ -5447,6 +5633,7 @@ function BN6ColonelsArmy(){
 	this.mb=25;
 	this.rank="standard";
 	this.damage=40;
+	this.boostDamage=0;
 	this.hits=3;
 	this.priority=2;
 	this.elements=[];
@@ -5502,6 +5689,7 @@ function BN6ElementTrap(){
 	this.mb=42;
 	this.rank="standard";
 	this.damage=240;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5522,6 +5710,7 @@ function BN6AntiNavi(){
 	this.mb=50;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5542,6 +5731,7 @@ function BN6AntiDmg(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];
@@ -5562,6 +5752,7 @@ function BN6AntiSword(){
 	this.mb=30;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=3;
 	this.priority=0;
 	this.elements=[];
@@ -5582,6 +5773,7 @@ function BN6AntiRecover(){
 	this.mb=37;
 	this.rank="standard";
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
 	this.elements=[];

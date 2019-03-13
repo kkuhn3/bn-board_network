@@ -77,6 +77,7 @@ function CANNON2(){
 	this.mb=0;
 	this.rank="standard";
 	this.damage=80;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[];
@@ -95,6 +96,7 @@ function CANNON3(){
 	this.mb=0;
 	this.rank="standard";
 	this.damage=120;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[];
@@ -113,6 +115,7 @@ function PIERCECANNON(){
 	this.mb=0;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.cursor];
@@ -151,6 +154,7 @@ function BREAKCANNON(){
 	this.mb=0;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
@@ -169,6 +173,7 @@ function STUNCANNON(){
 	this.mb=0;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
@@ -189,6 +194,7 @@ function GUARD(){
 	this.image=guard;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.damage=50;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=0;
 	this.rank="standard";
@@ -209,6 +215,7 @@ function INVIS(){
 	this.image=invis;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.damage=0;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=0;
 	this.rank="standard";
@@ -229,6 +236,7 @@ function AREAGRAB(){
 	this.image=areagrab;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=0;
 	this.rank="standard";
@@ -298,6 +306,7 @@ function SWORD(){
 	this.image=sword;
 	this.code=["G","H","I"];
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=0;
 	this.rank="standard";
@@ -331,6 +340,7 @@ function WIDESWORD(){
 	this.image=widesword;
 	this.code=["H","I","J"];
 	this.damage=80;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=0;
 	this.rank="standard";
@@ -364,6 +374,7 @@ function LONGSWORD(){
 	this.image=longsword;
 	this.code=["I","J","K"];
 	this.damage=80;
+	this.boostDamage=0;
 	this.hits=1;
 	this.mb=0;
 	this.rank="standard";
@@ -424,16 +435,16 @@ function Cards(){
 		return offX < 2 && offY < 2;
 	}
 	
-	this.damageText = function(attacker, aCard){
+	this.damageText = function(aCard){
 		this.damageTxt = "" + aCard.damage;
 		if(aCard.addDamage && aCard.addDamage > 0){
-			this.damageTxt = this.damageTxt + "+" + (aCard.addDamage + player.bonusDamage);
+			this.damageTxt = this.damageTxt + "+" + (aCard.addDamage + aCard.boostDamage);
 			if(aCard.hits > 1){
 				return "(" + this.damageTxt + ")x" + aCard.hits;
 			}
 		}
-		else if(player.bonusDamage > 0){
-			this.damageTxt = this.damageTxt + "+" + player.bonusDamage;
+		else if(aCard.boostDamage > 0){
+			this.damageTxt = this.damageTxt + "+" + aCard.boostDamage;
 			if(aCard.hits > 1){
 				return "(" + this.damageTxt + ")x" + aCard.hits;
 			}

@@ -7,6 +7,7 @@ function BN6AntiSwordSlashes(){
 	this.mb=99;
 	this.rank="standard";
 	this.damage=100;
+	this.boostDamage=0;
 	this.hits=3;
 	this.priority=0;
 	this.elements=[ELEMENTS.SWORD];
@@ -25,6 +26,7 @@ function BN6Buster(){
 	this.mb=99;
 	this.rank="standard";
 	this.damage=10;
+	this.boostDamage=0;
 	this.hits=1;
 	this.priority=2;
 	this.elements=[];

@@ -95,7 +95,7 @@ function CustomPick(canvas){
 			}
 			
 			ctx.fillText(DRAW[x].name, left+cellWidth/2, cheight-30);
-			ctx.fillText(cards.damageText(player, DRAW[x]), left+cellWidth/2, cheight-20);
+			ctx.fillText(cards.damageText(DRAW[x]), left+cellWidth/2, cheight-20);
 
 			if(DRAW[x].image && DRAW[x].image !== false){
 				ctx.drawImage(DRAW[x].image, left+8, 3, cellWidth-16, cheight/2);
