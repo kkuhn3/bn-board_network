@@ -109,6 +109,7 @@ function Timer(turncount,canvas){
 								playerTwo.card = cards.getCardById(playerData.card.id);
 								playerTwo.card.boostDamage = playerData.card.boostDamage;
 								playerTwo.card.stunAdded = playerData.card.stunAdded;
+								playerTwo.card.uninstallAdded = playerData.card.uninstallAdded;
 							}
 						}
 						else{
@@ -122,6 +123,7 @@ function Timer(turncount,canvas){
 								playerOne.card = cards.getCardById(playerData.card.id);
 								playerOne.card.boostDamage = playerData.card.boostDamage;
 								playerOne.card.stunAdded = playerData.card.stunAdded;
+								playerOne.card.uninstallAdded = playerData.card.uninstallAdded;
 							}	
 						}
 						this.nextTurn();

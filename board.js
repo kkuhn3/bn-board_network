@@ -46,7 +46,7 @@ var playerOne = {
 	stunned: 0,
 	bubbled: 0,
 	frozen: 0,
-	busterType: new BN6Buster,
+	busterType: new BN6Buster(),
 	bugs: [],
 	barrier: null, 
 	invincible: 0,
@@ -70,7 +70,7 @@ var playerTwo = {
 	stunned:0,
 	bubbled: 0,
 	frozen: 0,
-	busterType: new BN6Buster,
+	busterType: new BN6Buster(),
 	bugs: [],
 	barrier: null,
 	invincible: 0,
@@ -545,6 +545,11 @@ function Board(width,height,canvas){
 						attackCard.effecthit(attacker, defender);
 						if(attackCard.stunAdded){
 							defender.stunned = 1;
+						}
+						if(attackCard.uninstallAdded){
+							//toDo: navicust? 
+							console.log("Uninstalled!");
+							defender.busterType = new BN6Buster();
 						}
 					}
 				}

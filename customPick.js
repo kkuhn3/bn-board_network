@@ -133,10 +133,27 @@ function CustomPick(canvas){
 	
 	this.buildHand = function(selectedList){
 		for(var i = 1; i < selectedList.length; i++){
-			if(selectedList[i].addStun){
-				selectedList[i-1].stunAdded = true;
-				selectedList.splice(i, 1);
-				i--;
+			if(selectedList[i-1].damage > 0){
+				if(selectedList[i].addStun){
+					selectedList[i-1].stunAdded = true;
+					selectedList.splice(i, 1);
+					i--;
+				}
+				else if(selectedList[i].addUninstall){
+					selectedList[i-1].uninstallAdded = true;
+					selectedList.splice(i, 1);
+					i--;
+				}
+				else if(selectedList[i].addboostDamage){
+					selectedList[i-1].boostDamage = selectedList[i-1].boostDamage + selectedList[i].addboostDamage;
+					selectedList.splice(i, 1);
+					i--;
+				}
+				else if(selectedList[i].addNaviboostDamage && selectedList[i-1].rank = "Mega"){
+					selectedList[i-1].boostDamage = selectedList[i-1].boostDamage + selectedList[i].addNaviboostDamage;
+					selectedList.splice(i, 1);
+					i--;
+				}
 			}
 		}
 		return selectedList;
