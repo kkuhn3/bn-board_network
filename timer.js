@@ -107,6 +107,8 @@ function Timer(turncount,canvas){
 							playerTwo.action = playerData.action;
 							if(playerTwo.action === ACTIONS.CARD || playerTwo.action === ACTIONS.SPECIAL){
 								playerTwo.card = cards.getCardById(playerData.card.id);
+								playerTwo.card.boostDamage = playerData.card.boostDamage;
+								playerTwo.card.stunAdded = playerData.card.stunAdded;
 							}
 						}
 						else{
@@ -118,7 +120,9 @@ function Timer(turncount,canvas){
 							playerOne.action = playerData.action;
 							if(playerOne.action === ACTIONS.CARD || playerOne.action === ACTIONS.SPECIAL){
 								playerOne.card = cards.getCardById(playerData.card.id);
-							}
+								playerOne.card.boostDamage = playerData.card.boostDamage;
+								playerOne.card.stunAdded = playerData.card.stunAdded;
+							}	
 						}
 						this.nextTurn();
 						board.resolveTurn();

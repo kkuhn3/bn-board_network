@@ -515,8 +515,8 @@ function Board(width,height,canvas){
 				if(attackCard.elements.includes(ELEMENTS.wind)){
 					defender.barrier = null;
 				}
-				this.actuallyHit = true;
 				if(defender.guard === null){
+					this.actuallyHit = true;
 					if(defender.invincible < 1){
 						this.oneHitmultiplier = this.calculateOneHitMultiplier(attacker, defender, attackCard);
 						this.allHitmultiplier = this.calculateAllHitMultiplier(attacker, defender);
@@ -541,17 +541,18 @@ function Board(width,height,canvas){
 						console.log("it hit! But Player " + defender.name + " was Invincible.");
 					}
 					defender.bubbled = 0;
+					if(this.actuallyHit){
+						attackCard.effecthit(attacker, defender);
+						if(attackCard.stunAdded){
+							defender.stunned = 1;
+						}
+					}
 				}
 				else{
 					defender.guard.onHit(attacker, defender);
 					console.log("it was reflected!");
 				}
-				if(this.actuallyHit){
-					attackCard.effecthit(attacker, defender);
-				}
-				else{
-					attackCard.effectmiss(attacker, defender);
-				}
+				attackCard.effectmiss(attacker, defender);
 			}
 			else{
 				attackCard.effectmiss(attacker, defender);

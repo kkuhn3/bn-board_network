@@ -5786,38 +5786,74 @@ function BN6AntiRecover(){
 	};
 }
 
-var BN6CARDS = [new BN6Cannon(), new BN6HiCannon(), new BN6MegaCannon(), new BN6AirShot(), new BN6Vulcan1(), new BN6Vulcan2(), new BN6Vulcan3(), new 
-				BN6SuperVulcan(), new BN6Spreader1(), new BN6Spreader2(), new BN6Spreader3(), new BN6BigTank1(), new BN6BigTank2(), new 
-				BN6BigTank3(), new BN6GunSol1(), new BN6GunSol2(), new BN6GunSol3(), new BN6Yoyo(), new BN6HellBurner1(), new BN6HellBurner2(), new 
-				BN6HellBurner3(), new BN6WideShot(), new BN6TrainArrow1(), new BN6TrainArrow2(), new BN6TrainArrow3(), new BN6BubbleStar1(), new 
-				BN6BubbleStar2(), new BN6BubbleStar3(), new BN6Thunder(), new BN6DollThunder1(), new BN6DollThunder2(), new 
-				BN6DollThunder3(), new BN6ElecPulse1(), new BN6ElecPulse2(), new BN6ElecPulse3(), new BN6CornShot1(), new BN6CornShot2(), new 
-				BN6CornShot3(), new BN6RiskyHoney1(), new BN6RiskyHoney2(), new BN6RiskyHoney3(), new BN6RollingLog1(), new 
-				BN6RollingLog2(), new BN6RollingLog3(), new BN6IronShell1(), new BN6IronShell2(), new BN6IronShell3(), new BN6AuraHead1(), new 
-				BN6AuraHead2(), new BN6AuraHead3(), new BN6AirHock(), new BN6DrillArm(), new BN6Tornado(), new BN6NoiseStorm(), new 
-				BN6MachineGun1(), new BN6MachineGun2(), new BN6MachineGun3(), new BN6MiniBomb(), new BN6BigBomb(), new BN6EnergyBomb(), new 
-				BN6MegEnBomb(), new BN6FlashBomb1(), new BN6FlashBomb2(), new BN6FlashBomb3(), new BN6BlackBomb(), new BN6BugBomb(), new 
-				BN6GrassSeed(), new BN6IceSeed(), new BN6PoisonSeed(), new BN6Sword(), new BN6WideSword(), new BN6LongSword(), new 
-				BN6WideBlade(), new BN6LongBlade(), new BN6FireSword(), new BN6AquaSword(), new BN6ElecSword(), new BN6WoodSword(), new 
-				BN6WindRacket(), new BN6Fumikomizan(), new BN6VarSword(), new BN6NeoVarSword(), new BN6Kunai(), new BN6Muramasa(), new 
-				BN6MachineSword(), new BN6ElementSword(), new BN6AssassinSword(), new BN6CrackShoot(), new BN6DoubleShoot(), new 
-				BN6TripleShoot(), new BN6ReflectMet1(), new BN6ReflectMet2(), new BN6ReflectMet3(), new BN6WaveArm1(), new BN6WaveArm2(), new 
-				BN6WaveArm3(), new BN6SandWorm1(), new BN6SandWorm2(), new BN6SandWorm3(), new BN6SummonBlack1(), new BN6SummonBlack2(), new 
-				BN6SummonBlack3(), new BN6Snake(), new BN6NumberBall(), new BN6FirePunch1(), new BN6FirePunch2(), new BN6FirePunch3(), new 
-				BN6BurnScare1(), new BN6BurnScare2(), new BN6BurnScare3(), new BN6Meteors(), new BN6AquaNeedle1(), new BN6AquaNeedle2(), new 
-				BN6AquaNeedle3(), new BN6BlizzardBall(), new BN6KillerSensor1(), new BN6KillerSensor2(), new BN6KillerSensor3(), new 
-				BN6Boomerang(), new BN6HiBoomerang(), new BN6MegaBoomerang(), new BN6Lance(), new BN6HeatDragon(), new BN6ElecDragon(), new 
-				BN6AquaDragon(), new BN6WoodDragon(), new BN6GolemPunch1(), new BN6GolemPunch2(), new BN6GolemPunch3(), new BN6JusticeOne(), new 
-				BN6AirWheel1(), new BN6AirWheel2(), new BN6AirWheel3(), new BN6Wind(), new BN6Fan(), new BN6Magnum(), new BN6CircGun(), new BN6RockCube(), new 
-				BN6LittleBoiler1(), new BN6LittleBoiler2(), new BN6LittleBoiler3(), new BN6AirRaid1(), new BN6AirRaid2(), new BN6AirRaid3(), new 
-				BN6TimeBomb1(), new BN6TimeBomb2(), new BN6TimeBomb3(), new BN6Mine(), new BN6Fanfare(), new BN6Discord(), new BN6Timpani(), new 
-				BN6Silence(), new BN6VDoll(), new BN6Guardian(), new BN6Anubis(), new BN6Recover10(), new BN6Recover30(), new BN6Recover50(), new 
-				BN6Recover80(), new BN6Recover120(), new BN6Recover150(), new BN6Recover200(), new BN6Recover300(), new BN6PanelGrab(), new 
-				BN6AreaGrab(), new BN6GrabBanish(), new BN6GrabRevenge(), new BN6PanelReturn(), new BN6DeathMatch(), new BN6HolyPanel(), new 
-				BN6Sanctuary(), new BN6ComingRoad(), new BN6GoingRoad(), new BN6Slowgauge(), new BN6Fastgauge(), new BN6Fullcust(), new 
-				BN6BusterUp(), new BN6BugFix(), new BN6Invis(), new BN6Barrier(), new BN6Barrier100(), new BN6Barrier200(), new BN6BubbleWrap(), new 
-				BN6LifeAura(), new BN6MagneCoil(), new BN6ColonelsArmy(), new BN6ElementTrap(), new BN6AntiNavi(), new BN6AntiDmg(), new 
-				BN6AntiSword(), new BN6AntiRecover()];
+function BN6Whitepill(){
+	this.id="BN6Whitepill";
+	this.name="Whitepill";
+	this.image=BN6WhitepillIMG;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=30;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.addStun = true;
+}
+
+var BN6CARDS = [new BN6Cannon(), new BN6HiCannon(), new BN6MegaCannon(), new BN6AirShot(), 
+				new BN6Vulcan1(), new BN6Vulcan2(), new BN6Vulcan3(), new BN6SuperVulcan(), 
+				new BN6Spreader1(), new BN6Spreader2(), new BN6Spreader3(), new BN6BigTank1(), 
+				new BN6BigTank2(), new BN6BigTank3(), new BN6GunSol1(), new BN6GunSol2(), 
+				new BN6GunSol3(), new BN6Yoyo(), new BN6HellBurner1(), new BN6HellBurner2(), 
+				new BN6HellBurner3(), new BN6WideShot(), new BN6TrainArrow1(), new BN6TrainArrow2(), 
+				new BN6TrainArrow3(), new BN6BubbleStar1(), new BN6BubbleStar2(), new BN6BubbleStar3(), 
+				new BN6Thunder(), new BN6DollThunder1(), new BN6DollThunder2(), new BN6DollThunder3(), 
+				new BN6ElecPulse1(), new BN6ElecPulse2(), new BN6ElecPulse3(), new BN6CornShot1(), 
+				new BN6CornShot2(), new BN6CornShot3(), new BN6RiskyHoney1(), new BN6RiskyHoney2(), 
+				new BN6RiskyHoney3(), new BN6RollingLog1(), new BN6RollingLog2(), new BN6RollingLog3(), 
+				new BN6IronShell1(), new BN6IronShell2(), new BN6IronShell3(), new BN6AuraHead1(), 
+				new BN6AuraHead2(), new BN6AuraHead3(), new BN6AirHock(), new BN6DrillArm(), 
+				new BN6Tornado(), new BN6NoiseStorm(), new BN6MachineGun1(), new BN6MachineGun2(), 
+				new BN6MachineGun3(), new BN6MiniBomb(), new BN6BigBomb(), new BN6EnergyBomb(), 
+				new BN6MegEnBomb(), new BN6FlashBomb1(), new BN6FlashBomb2(), new BN6FlashBomb3(), 
+				new BN6BlackBomb(), new BN6BugBomb(), new BN6GrassSeed(), new BN6IceSeed(), 
+				new BN6PoisonSeed(), new BN6Sword(), new BN6WideSword(), new BN6LongSword(), 
+				new BN6WideBlade(), new BN6LongBlade(), new BN6FireSword(), new BN6AquaSword(), 
+				new BN6ElecSword(), new BN6WoodSword(), new BN6WindRacket(), new BN6Fumikomizan(), 
+				new BN6VarSword(), new BN6NeoVarSword(), new BN6Kunai(), new BN6Muramasa(), 
+				new BN6MachineSword(), new BN6ElementSword(), new BN6AssassinSword(), new BN6CrackShoot(), 
+				new BN6DoubleShoot(), new BN6TripleShoot(), new BN6ReflectMet1(), new BN6ReflectMet2(), 
+				new BN6ReflectMet3(), new BN6WaveArm1(), new BN6WaveArm2(), new BN6WaveArm3(), 
+				new BN6SandWorm1(), new BN6SandWorm2(), new BN6SandWorm3(), new BN6SummonBlack1(), 
+				new BN6SummonBlack2(), new BN6SummonBlack3(), new BN6Snake(), new BN6NumberBall(), 
+				new BN6FirePunch1(), new BN6FirePunch2(), new BN6FirePunch3(), new BN6BurnScare1(),	
+				new BN6BurnScare2(), new BN6BurnScare3(), new BN6Meteors(), new BN6AquaNeedle1(), 
+				new BN6AquaNeedle2(), new BN6AquaNeedle3(), new BN6BlizzardBall(), new BN6KillerSensor1(), 
+				new BN6KillerSensor2(), new BN6KillerSensor3(), new BN6Boomerang(), new BN6HiBoomerang(), 
+				new BN6MegaBoomerang(), new BN6Lance(), new BN6HeatDragon(), new BN6ElecDragon(), 
+				new BN6AquaDragon(), new BN6WoodDragon(), new BN6GolemPunch1(), new BN6GolemPunch2(), 
+				new BN6GolemPunch3(), new BN6JusticeOne(), new BN6AirWheel1(), new BN6AirWheel2(), 
+				new BN6AirWheel3(), new BN6Wind(), new BN6Fan(), new BN6Magnum(), 
+				new BN6CircGun(), new BN6RockCube(), new BN6LittleBoiler1(), new BN6LittleBoiler2(), 
+				new BN6LittleBoiler3(), new BN6AirRaid1(), new BN6AirRaid2(), new BN6AirRaid3(), 
+				new BN6TimeBomb1(), new BN6TimeBomb2(), new BN6TimeBomb3(), new BN6Mine(), 
+				new BN6Fanfare(), new BN6Discord(), new BN6Timpani(), new BN6Silence(), 
+				new BN6VDoll(), new BN6Guardian(), new BN6Anubis(), new BN6Recover10(), 
+				new BN6Recover30(), new BN6Recover50(), new BN6Recover80(), new BN6Recover120(), 
+				new BN6Recover150(), new BN6Recover200(), new BN6Recover300(), new BN6PanelGrab(), 
+				new BN6AreaGrab(), new BN6GrabBanish(), new BN6GrabRevenge(), new BN6PanelReturn(), 
+				new BN6DeathMatch(), new BN6HolyPanel(), new BN6Sanctuary(), new BN6ComingRoad(), 
+				new BN6GoingRoad(), new BN6Slowgauge(), new BN6Fastgauge(), new BN6Fullcust(), 
+				new BN6BusterUp(), new BN6BugFix(), new BN6Invis(), new BN6Barrier(), 
+				new BN6Barrier100(), new BN6Barrier200(), new BN6BubbleWrap(), new BN6LifeAura(), 
+				new BN6MagneCoil(), new BN6ColonelsArmy(), new BN6ElementTrap(), new BN6AntiNavi(), 
+				new BN6AntiDmg(), new BN6AntiSword(), new BN6AntiRecover(), new BN6Whitepill()];
 
 function Bn6Cards(){
 

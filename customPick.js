@@ -111,7 +111,7 @@ function CustomPick(canvas){
 
 	this.confirm = function(){
 		movementEnabled = true;
-		HAND = SELECTED;
+		HAND = this.buildHand(SELECTED);
 		for(var i=0;i<SELECTEDIND.length;i++){
 			DRAW[SELECTEDIND[i]] = null;
 		}
@@ -129,6 +129,17 @@ function CustomPick(canvas){
 			document.getElementById("p2card").style.display='block';
 		}
 		timer.currentturn = 0;
+	}
+	
+	this.buildHand = function(selectedList){
+		for(var i = 1; i < selectedList.length; i++){
+			if(selectedList[i].addStun){
+				selectedList[i-1].stunAdded = true;
+				selectedList.splice(i, 1);
+				i--;
+			}
+		}
+		return selectedList;
 	}
 	
 	this.confirmTimeout = 0;
