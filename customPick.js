@@ -149,7 +149,7 @@ function CustomPick(canvas){
 					selectedList.splice(i, 1);
 					i--;
 				}
-				else if(selectedList[i].addNaviboostDamage && selectedList[i-1].rank = "Mega"){
+				else if(selectedList[i].addNaviboostDamage && selectedList[i-1].rank === "Mega"){
 					selectedList[i-1].boostDamage = selectedList[i-1].boostDamage + selectedList[i].addNaviboostDamage;
 					selectedList.splice(i, 1);
 					i--;

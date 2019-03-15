@@ -108,8 +108,8 @@ function Board(width,height,canvas){
 						defaultside:SIDE.LEFT,
 						sideTimer:-1,
 						object:[],
-						//panelType:PANELTYPE.NORMAL,
-						panelType: paneltypes[Math.floor(Math.random() * paneltypes.length)],
+						panelType:PANELTYPE.NORMAL,
+						//panelType: paneltypes[Math.floor(Math.random() * paneltypes.length)],
 						panelTimer:-1,
 						player:null
 					};
@@ -120,8 +120,8 @@ function Board(width,height,canvas){
 						defaultside:SIDE.RIGHT,
 						sideTimer:-1,
 						object:[],
-						//panelType:PANELTYPE.NORMAL,
-						panelType: paneltypes[Math.floor(Math.random() * paneltypes.length)],
+						panelType:PANELTYPE.NORMAL,
+						//panelType: paneltypes[Math.floor(Math.random() * paneltypes.length)],
 						panelTimer:-1,
 						player:null
 					};

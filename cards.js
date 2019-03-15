@@ -243,7 +243,7 @@ function AREAGRAB(){
 	this.priority=0;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
-		if(defender.x === AREAGRAB.affectedColumn(attacker, defender) && defender.invis < 1){
+		if(defender.x === (new AREAGRAB()).affectedColumn(attacker, defender) && defender.invis < 1){
 			return true;
 		}
 		return false;
@@ -423,7 +423,7 @@ function Cards(){
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
-		//TEMPDECKLIST = [new BN6Whitepill(), new BN6Whitepill(), new BN6Whitepill(), new BN6Whitepill(), new CANNON2()];
+		//TEMPDECKLIST = [new BN6Judgeman(), new BN6JudgemanEX(), new BN6JudgemanSP(), new BN6Killerman(), new CANNON2()];
 	}
 
 	this.around = function(x, y, defender){
