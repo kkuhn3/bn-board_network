@@ -56,10 +56,11 @@ function BN6RockCubeObj(x, y){
 	this.y = y;
 }
 
-function BN6ThunderBall(x, y, attacker, defender, hp){
+function BN6ThunderBall(x, y, attacker, defender, hp, damage){
 	this.attacker = attacker;
 	this.id = "BN6Thunder";
 	this.hp = hp;
+	this.damage = damage;
 	this.image = ThunderBall;
 	this.solid = false;
 	this.effecthit = function(cardHitBy, direction){};
@@ -99,7 +100,7 @@ function BN6ThunderBall(x, y, attacker, defender, hp){
 			}
 			if(this.x === defender.x && this.y === defender.y){
 				console.log("Player " + attacker.name + "'s thunder hit!");
-				defender.hp = defender.hp - BN6Thunder.damage;
+				defender.hp = defender.hp - this.damage;
 				BN6Thunder.effecthit(attacker, defender);
 			}
 		}

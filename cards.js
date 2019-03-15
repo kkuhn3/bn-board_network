@@ -404,7 +404,7 @@ function LONGSWORD(){
 
 var CARDLIST = null;
 var DEFAULTCARDS = [new CANNON1(), new CANNON2(), new CANNON3(), new PIERCECANNON(), new BREAKCANNON(), new STUNCANNON(), new GUARD(), new INVIS(), new AREAGRAB(), new SWORD(), new WIDESWORD(), new LONGSWORD()];
-var TEMPDECKLIST = [new CANNON1(), new CANNON2(), new CANNON3(), new PIERCECANNON(), new BREAKCANNON(), new STUNCANNON(), new GUARD(), new INVIS(), new AREAGRAB(), new SWORD(), new WIDESWORD(), new LONGSWORD()];
+var TEMPDECKLIST = null;
 
 var randomCard = function(){
 	return CARDLIST[Math.floor(Math.random() * CARDLIST.length)]
