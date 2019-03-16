@@ -56,12 +56,15 @@ function BN6RockCubeObj(x, y){
 	this.y = y;
 }
 
-function BN6ThunderBall(x, y, attacker, defender, hp, damage){
+function BN6ThunderBall(x, y, attacker, defender, hp, damage, color){
 	this.attacker = attacker;
 	this.id = "BN6Thunder";
 	this.hp = hp;
 	this.damage = damage;
 	this.image = ThunderBall;
+	if(color === "blue"){
+		this.image = ThunderBall_blue;
+	}
 	this.solid = false;
 	this.effecthit = function(cardHitBy, direction){};
 	this.hitByBuster = function(player){};

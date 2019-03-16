@@ -49,40 +49,66 @@ function BN6BugThunderBuster(){
 	this.hits=1;
 	this.priority=2;
 	this.elements=[];
-	this.chargeBool = false;
+	this.chargeBool = 1;
 	this.hithuh= function(attacker, defender){
-		return (new BN6Sword()).hithuh(attacker, defender);
+		if(this.chargeBool%3 === 0){
+			return (new BN6Sword()).hithuh(attacker, defender);
+		}
+		return (new BN6Recover10()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
-		if(this.chargeBool){
-			if(defender.guard === null){
-				defender.stunned = 2;
-			}
+		if(defender.guard === null){
+			defender.stunned = 2;
 		}
-		this.chargeBool = !this.chargeBool;
+		this.chargeBool++;
 	};
 	this.effectmiss= function(attacker, defender){
-		if(this.chargeBool){
-			if(attacker.name === "one"){
+		if(this.chargeBool%3 === 0){
+			if(attacker.name === playerOne.name){
 				if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
-					this.localBN6ThunderBall = new BN6ThunderBall(attacker.x+1, attacker.y, attacker, defender, 8, this.damage);
-					this.localBN6ThunderBall.image = ThunderBall_blue;
-					cells[attacker.x+1][attacker.y].object.push(this.localBN6ThunderBall);
+					cells[attacker.x+1][attacker.y].object.push(new BN6ThunderBall(attacker.x+1, attacker.y, attacker, defender, 8, this.damage, "blue"));
 				}
 			}
 			else{
 				if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x-1][attacker.y].player === null){
-					this.localBN6ThunderBall = new BN6ThunderBall(attacker.x-1, attacker.y, attacker, defender, 8, this.damage);
-					this.localBN6ThunderBall.image = ThunderBall_blue;
-					cells[attacker.x-1][attacker.y].object.push(this.localBN6ThunderBall);
+					cells[attacker.x-1][attacker.y].object.push(new BN6ThunderBall(attacker.x-1, attacker.y, attacker, defender, 8, this.damage, "blue"));
 				}
 			}
 		}
-		else{
-			console.log("Bug Thunder Buster Charged!");
+		else if(this.chargeBool%3 === 1){
+			console.log("Bug Thunder Buster Starting Charge!");
 		}
-		this.chargeBool = !this.chargeBool;
+		else{
+			console.log("Bug Thunder Buster Fully Charge!");
+		}
+		this.chargeBool++;
 	};
 }
 
-BN6UNCARDS = [new BN6AntiSwordSlashes(), new BN6Buster(), new BN6BugThunderBuster()];
+function BN6BugSwordBuster(){
+	this.id="BN6BugSwordBuster";
+	this.name="BN6BugSwordBuster";
+	this.image=BN6BugSwordBuster;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=99;
+	this.rank="giga";
+	this.damage=200;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.sword];
+	this.chargeBool = 1;
+	this.hithuh= function(attacker, defender){
+		if(this.chargeBool%2 === 0){
+			this.chargeBool++;
+			return (new BN6VarSword()).hithuh(attacker, defender);
+		}
+		this.chargeBool++;
+		console.log("Bug Sword Buster Charged!");
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+BN6UNCARDS = [new BN6AntiSwordSlashes(), new BN6Buster(), new BN6BugThunderBuster(), new BN6BugSwordBuster()];
