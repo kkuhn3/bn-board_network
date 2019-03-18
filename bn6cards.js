@@ -2398,7 +2398,7 @@ function BN6ElecSword(){
 	this.id="BN6ElecSword";
 	this.name="ElecSword";
 	this.image=BN6ElecSwordIMG;
-	this.code=["B", "R", "W"];
+	this.code=["E", "K", "N"];
 	this.mb=35;
 	this.rank="standard";
 	this.damage=120;

@@ -36,6 +36,14 @@ function CustomPick(canvas){
 		this.drawHand();
 	}
 
+	this.setDeck = function(newDeck){
+		for(var i = 0; i < this.drawSize; i++){
+			DRAW[i] = null;
+		}
+		DECK = newDeck;
+		this.openCustom();
+	}
+
 	this.drawFromDeck = function(){
 		for(var i = 0; i < 5; i++){
 			if(DRAW[i] === null){
@@ -105,6 +113,7 @@ function CustomPick(canvas){
 	
 	this.confirmButton = function(){
 		document.getElementById("confirm").disabled = true;
+		document.getElementById("sel").style.display='none';
 		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
 		this.getConfirm();
 	}

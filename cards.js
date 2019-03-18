@@ -426,6 +426,14 @@ function Cards(){
 		//TEMPDECKLIST = [new BN6BugSword(), new BN6ColonelForce(), new BN6DeltaRayEdge(), new BN6BugThunder(), new BN6MeteoKnucle()];
 	}
 
+	this.setDeck = function(newDeckID){
+		for(var i = 0; i < FOLDERS.length; i++){
+			if(FOLDERS[i].id === newDeckID){
+				customPick.setDeck(FOLDERS[i].contents);
+			}
+		}
+	}
+
 	this.around = function(x, y, defender){
 		var offX = Math.abs(defender.x - x);
 		var offY = Math.abs(defender.y - y);

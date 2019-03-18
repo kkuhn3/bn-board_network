@@ -374,6 +374,20 @@
 				<input type='button' id='p1card' value='p1 Card' onclick='custom.card(1)' style="float: left;"/>
 				<input type='button' id='p2card' value='p2 Card' onclick='custom.card(2)' style="float: right; display: none;"/>
 				<input type='button' id='special' value='Special' onclick='' style="display: none;"/>
+				<select id="sel" onchange="cards.setDeck(this.value)">
+					<option value="AllCards">All: One of Everything</option>
+					<option value="BN6AAdversely">A: Adversely</option>
+					<option value="BN6BBaneElemental">B: Bane Elemental</option>
+					<option value="BN6CComboPop">C: Combo-Pop</option>
+					<option value="BN6D">D: </option>
+					<option value="BN6EElecMan">E: ElecMan</option>
+					<option value="BN6FForte">F: Forte</option>
+					<option value="BN6GGroundSlam">G: GroundSlam</option>
+					<option value="BN6HHoleyHell">H: Hole-y Hell</option>
+					<option value="BN6I">I: </option>
+					<option value="BN6JJudgement">J: Judgement</option>
+					<option value="BN6KKillingSwords">K: Killing Swords</option>
+				</select>
 			</div>
 
 			<div style='display: block;margin: 50 0 0 0; width: 80px; float: left;'>
@@ -393,6 +407,7 @@
 	<script src='barriers.js'></script>
 	<script src='traps.js'></script>
 	<script src='board.js'></script>
+	<script src="bn6folders.js"></script>
 	<script>
 		function init(){
 			board = new Board(6,3,board_canvas);
