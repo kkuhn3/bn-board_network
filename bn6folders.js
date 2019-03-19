@@ -74,7 +74,19 @@ function BN6CComboPop(){
 function BN6D(){
 	this.id = "BN6D";
 	this.name = "D: ";
-	this.contents = [];
+	this.contents = [new BN6DivemanSP(),
+					 new BN6DustmanSP(),
+					 new BN6Elementman(),
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6CrossSlash(), 
+					 new BN6HellBurner3(), new BN6HellBurner3(), new BN6HellBurner3(), 
+					 new BN6CornShot2(), new BN6CornShot2(), new BN6CornShot2(), 
+					 new BN6RiskyHoney3(), new BN6RiskyHoney3(), new BN6RiskyHoney3(), 
+					 new BN6BurnScare2(), new BN6BurnScare2(), new BN6BurnScare2(), 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 ];
 }
 
 function BN6EElecMan(){
@@ -205,6 +217,301 @@ function BN6KKillingSwords(){
 					 new BN6Forte()];
 }
 
+function BN6LLightningElemental(){
+	this.id = "BN6LLightningElemental";
+	this.name = "L: Lightning Elemental";
+	this.contents = [new BN6BubbleStar2(), new BN6BubbleStar2(), new BN6BubbleStar2(), 
+					 new BN6ElecPulse1(), new BN6ElecPulse1(), new BN6ElecPulse1(), 
+					 new BN6ElecDragon(), new BN6ElecDragon(), 
+					 new BN6MachineSword(), new BN6MachineSword(), new BN6MachineSword(), 
+					 new BN6Uninstall(), 
+					 new BN6Fastgauge(), 
+					 new BN6FlashBomb1(), new BN6FlashBomb1(), 
+					 new BN6TripleShoot(), new BN6TripleShoot(), 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6Fullcust(), 
+					 new BN6Tomahawkman(), new BN6Tomahawkman(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6Forte()];
+}
+
+function BN6MMurderMasa(){
+	this.id = "BN6MMurderMasa";
+	this.name = "M: MurderMasa";
+	this.contents = [new BN6RiskyHoney3(), new BN6RiskyHoney3(), new BN6RiskyHoney3(), 
+					 new BN6MachineGun3(), new BN6MachineGun3(), new BN6MachineGun3(), 
+					 new BN6MegaBoomerang(), new BN6MegaBoomerang(), new BN6MegaBoomerang(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6AreaGrab(), 
+					 new BN6Timpani(), new BN6Timpani(), 
+					 new BN6TrainArrow3(), new BN6TrainArrow3(), 
+					 new BN6GrabBanish(), new BN6GrabBanish(), 
+					 new BN6Sanctuary(), 
+					 new BN6Muramasa(), 
+					 new BN6LifeAura(), 
+					 new BN6Attack30(), 
+					 new BN6Colorpoint(),
+					 new BN6Doublepoint(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6SuperVulcan(), 
+					 new BN6ForteAnother()];
+}
+
+function BN6NNumbchuckNamco(){
+	this.id = "BN6NNumbchuckNamco";
+	this.name = "N: NumbChuck Namco";
+	this.contents = [new BN6MachineGun1(), new BN6MachineGun1(), 
+					 new BN6TripleShoot(), new BN6TripleShoot(), new BN6TripleShoot(), 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6Invis(), new BN6Invis(), new BN6Invis(), 
+					 new BN6Whitepill(), new BN6Whitepill(), new BN6Whitepill(), 
+					 new BN6AirRaid3(), new BN6AirRaid3(), new BN6AirRaid3(), 
+					 new BN6ElecSword(), new BN6ElecSword(), new BN6ElecSword(), 
+					 new BN6Fastgauge(), 
+					 new BN6Attack30(), 
+					 new BN6Doublepoint(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6NeoVarSword(), 
+					 new BN6NumberBall(), 
+					 new BN6AssassinSword(), 
+					 new BN6Forte()];
+}
+
+function BN6O(){
+	this.id = "BN6O";
+	this.name = "O: ";
+	this.contents = [];
+}
+
+function BN6PPoison(){
+	this.id = "BN6PPoison";
+	this.name = "P: Poison";
+	this.contents = [new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6PoisonSeed(), new BN6PoisonSeed(), new BN6PoisonSeed(), 
+					 new BN6CircGun(), new BN6CircGun(), new BN6CircGun(), 
+					 new BN6FlashBomb3(), new BN6FlashBomb3(), new BN6FlashBomb3(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6Fanfare(), new BN6Fanfare(), new BN6Fanfare(), 
+					 new BN6Slowgauge(), new BN6Slowgauge(), 
+					 new BN6Fullcust(), 
+					 new BN6Anubis(), 
+					 new BN6LifeAura(), 
+					 new BN6Muramasa(), 
+					 new BN6Blues(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6BugThunder()];
+}
+
+function BN6QQuintupleSoldierSalute(){
+	this.id = "BN6QQuintupleSoldierSalute";
+	this.name = "Q: Quintuple Soldier Salute";
+	this.contents = [new BN6Fastgauge(), 
+					 new BN6Fullcust(), 
+					 new BN6GunSol3(), new BN6GunSol3(), new BN6GunSol3(), 
+					 new BN6MachineSword(), new BN6MachineSword(), 
+					 new BN6KillerSensor3(), new BN6KillerSensor3(), new BN6KillerSensor3(), 
+					 new BN6Attack30(),
+					 new BN6Doublepoint(), 
+					 new BN6LifeAura(), 
+					 new BN6Sanctuary(), 
+					 new BN6Muramasa(), 
+					 new BN6SuperVulcan(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6GrabRevenge(),
+					 new BN6BubbleWrap(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6ColonelForce()];
+}
+
+function BN6RRnadoto(){
+	this.id = "BN6RRnadoto";
+	this.name = "R: Rnado, to";
+	this.contents = [new BN6CornShot3(), new BN6CornShot3(), new BN6CornShot3(), 
+					 new BN6Tornado(), new BN6Tornado(), new BN6Tornado(), new BN6Tornado(), 
+					 new BN6BubbleStar3(), new BN6BubbleStar3(), 
+					 new BN6AssassinSword(), 
+					 new BN6Meteors(), 
+					 new BN6AirWheel1(), new BN6AirWheel1(), new BN6AirWheel1(), 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6MachineGun1(), new BN6MachineGun1(), 
+					 new BN6Uninstall(), 
+					 new BN6Attack30(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6RollV3(), 
+					 new BN6CrossSlash()];
+}
+
+function BN6SSlasher(){
+	this.id = "BN6SSlasher";
+	this.name = "S: Slasher";
+	this.contents = [new BN6Slashman(), 
+					 new BN6SlashmanEX(), 
+					 new BN6SlashmanSP(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6Mine(), new BN6Mine(), new BN6Mine(),
+					 new BN6ColonelForce(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6ElecPulse1(), new BN6ElecPulse1(), new BN6ElecPulse1(), 
+					 new BN6ElecPulse3(), new BN6ElecPulse3(),
+					 new BN6TrainArrow3(), new BN6TrainArrow3(), new BN6TrainArrow3(), 
+					 new BN6BubbleStar3(), new BN6BubbleStar3(), 
+					 new BN6FlashBomb3(), new BN6FlashBomb3, new BN6FlashBomb3()];
+}
+
+function BN6TTwistedTantrum(){
+	this.id = "BN6TTwistedTantrum";
+	this.name = "T: Twisted Tantrum";
+	this.contents = [new BN6Tornado, new BN6Tornado, new BN6Tornado, new BN6Tornado, new BN6Tornado, 
+					 new BN6AirWheel2, new BN6AirWheel2, new BN6AirWheel2, 
+					 new BN6AirWheel3, new BN6AirWheel3, new BN6AirWheel3, 
+					 new BN6BubbleStar1, new BN6BubbleStar1, new BN6BubbleStar1, 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6AntiSword(), 
+					 new BN6Whitepill(), new BN6Whitepill(), new BN6Whitepill(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6TomahawkmanSP(), 
+					 new BN6TengumanSP(), 
+					 new BN6ForteAnother()];
+}
+
+function BN6UUndefeatable(){
+	this.id = "BN6UUndefeatable";
+	this.name = "U: Undefeatable";
+	this.contents = [new BN6AquaNeedle3(), new BN6AquaNeedle3(), new BN6AquaNeedle3(), 
+					 new BN6KillerSensor2(), new BN6KillerSensor2(), new BN6KillerSensor2(), 
+					 new BN6AirRaid3(), new BN6AirRaid3(), new BN6AirRaid3(), 
+					 new BN6Barrier200(), 
+					 new BN6LifeAura(), 
+					 new BN6Sanctuary(), 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6Whitepill(), new BN6Whitepill(), new BN6Whitepill(), 
+					 new BN6GolemPunch2(),
+					 new BN6Doublepoint(),
+					 new BN6Attack30(),
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6Blastman(),
+					 new BN6Roll(), 
+					 new BN6BugThunder()];
+}
+
+function BN6VVeryAgro(){
+	this.id = "BN6VVeryAgro";
+	this.name = "V: Very Agro";
+	this.contents = [new BN6BubbleStar2(), new BN6BubbleStar2(), new BN6BubbleStar2(), 
+					 new BN6DollThunder3(), new BN6DollThunder3(), new BN6DollThunder3(), 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6Whitepill(), new BN6Whitepill(), new BN6Whitepill(), 
+					 new BN6HellBurner1(), new BN6HellBurner1(), 
+					 new BN6ElecDragon(), new BN6ElecDragon(), 
+					 new BN6SummonBlack2(), new BN6SummonBlack2(), 
+					 new BN6Invis(), new BN6Invis(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6MachineGun1(), 
+					 new BN6Fullcust(), 
+					 new BN6Attack30(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6SuperVulcan(), 
+					 new BN6CrossSlash()];
+}
+
+function BN6WWoomerangs(){
+	this.id = "BN6WWoomerangs";
+	this.name = "W: Woomerangs";
+	this.contents = [new BN6Fastgauge(), 
+					 new BN6Barrier200(), 
+					 new BN6GunSol3(), new BN6GunSol3(), 
+					 new BN6KillerSensor1(), new BN6KillerSensor1(), new BN6KillerSensor1(), 
+					 new BN6RollingLog3(), new BN6RollingLog3(), new BN6RollingLog3(), 
+					 new BN6MegaBoomerang(), new BN6MegaBoomerang(), new BN6MegaBoomerang(), 
+					 new BN6DrillArm(), new BN6DrillArm(), new BN6DrillArm(), 
+					 new BN6MagneCoil(), new BN6MagneCoil(), 
+					 new BN6Invis(), new BN6Invis(), new BN6Invis(), 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6Tomahawkman(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6Blastman(),
+					 new BN6CrossSlash()];
+}
+
+function BN6X(){
+	this.id = "BN6X";
+	this.name = "X: ";
+	this.contents = [];
+}
+
+function BN6YYikesnFrozen(){
+	this.id = "BN6YYikesnFrozen";
+	this.name = "Y: Yikes 'n' Frozen";
+	this.contents = [new BN6TrainArrow3(), new BN6TrainArrow3(), 
+					 new BN6IceSeed(), new BN6IceSeed(), 
+					 new BN6AquaSword(), new BN6AquaSword(), new BN6AquaSword(), 
+					 new BN6AssassinSword(), 
+					 new BN6KillerSensor2(), new BN6KillerSensor2(), new BN6KillerSensor2(), 
+					 new BN6Recover300(), new BN6Recover300(), 
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6Barrier100(), new BN6Barrier100(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6WindRacket(), new BN6WindRacket(), new BN6WindRacket(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6Blastman(),
+					 new BN6Aquaman(), 
+					 new BN6ForteAnother()];
+}
+
+function BN6ZZebraLevelRandom(){
+	this.id = "BN6ZZebraLevelRandom";
+	this.name = "Z: Zebra Level Random";
+	this.contents = [new BN6DeltaRayEdge(), 
+					 new BN6Killerman(),
+					 new BN6Judgeman(),
+					 new BN6Elementman(),
+					 new BN6Blastman(),
+					 new BN6AirRaid3(), new BN6AirRaid3(), new BN6AirRaid3(),
+					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
+					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
+					 new BN6Whitepill(), new BN6Whitepill(), new BN6Whitepill(), 
+					 new BN6Sanctuary(), 
+					 new BN6LifeAura(), 
+					 new BN6BubbleWrap(), 
+					 new BN6BurnScare3(), new BN6BurnScare3(), new BN6BurnScare3(), 
+					 new BN6LittleBoiler3(), new BN6LittleBoiler3(), new BN6LittleBoiler3(), 
+					 new BN6GrabRevenge(), 
+					 new BN6TrainArrow2(), new BN6TrainArrow2(), new BN6TrainArrow2()];
+}
+
 var FOLDERS = [new AllCards(), new BN6AAdversely(), new BN6BBaneElemental(), new BN6CComboPop(), 
 			   new BN6D(), new BN6EElecMan(), new BN6FForte(), new BN6GGroundSlam(), 
-			   new BN6HHoleyHell(), new BN6I(), new BN6JJudgement(), new BN6KKillingSwords()];
+			   new BN6HHoleyHell(), new BN6I(), new BN6JJudgement(), new BN6KKillingSwords(), 
+			   new BN6LLightningElemental(), new BN6MMurderMasa(), new BN6NNumbchuckNamco(), new BN6O(), 
+			   new BN6PPoison(), new BN6QQuintupleSoldierSalute(), new BN6RRnadoto(), new BN6SSlasher(),
+			   new BN6TTwistedTantrum(), new BN6UUndefeatable(), new BN6VVeryAgro(), new BN6WWoomerangs(), 
+			   new BN6X(), new BN6YYikesnFrozen(), new BN6ZZebraLevelRandom()];
+
