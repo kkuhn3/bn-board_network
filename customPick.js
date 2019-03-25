@@ -141,6 +141,27 @@ function CustomPick(canvas){
 	}
 	
 	this.buildHand = function(selectedList){
+		for(var i = 0; i < selectedList.length-2; i++){
+			for(var j = 0; j < BN6PAS.length; j++){
+				if(selectedList[i] && BN6PAS[j].cardList[0] === selectedList[i].id){
+					if(selectedList[i+1] && BN6PAS[j].cardList[1] === selectedList[i+1].id){
+						if(selectedList[i+2] && BN6PAS[j].cardList[2] === selectedList[i+2].id){
+							if(BN6PAS[j].cardList.length === 4){
+								if(selectedList[i+3] && BN6PAS[j].cardList[3] === selectedList[i+3].id){
+									selectedList.splice(i+1, 3);
+									selectedList[i] = BN6PAS[j];
+								}
+							}
+							else{
+								selectedList.splice(i+1, 2);
+								selectedList[i] = BN6PAS[j];
+							}
+						}
+					}
+				}
+			}
+		}
+		
 		for(var i = 1; i < selectedList.length; i++){
 			if(selectedList[i-1].damage > 0){
 				if(selectedList[i].addStun){

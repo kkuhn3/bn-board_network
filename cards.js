@@ -421,9 +421,9 @@ function Cards(){
 	}
 
 	this.initCards = function(){
-		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS);
+		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS).concat(BN6PAS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
-		//TEMPDECKLIST = [new BN6BugSword(), new BN6ColonelForce(), new BN6DeltaRayEdge(), new BN6BugThunder(), new BN6MeteoKnucle()];
+		//TEMPDECKLIST = [new BN6HellBurner1(), new BN6HellBurner1(), new BN6HellBurner1(), new BN6Cannon(), new BN6Cannon()];
 	}
 
 	this.setDeck = function(newDeckID){

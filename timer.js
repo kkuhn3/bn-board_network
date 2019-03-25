@@ -101,6 +101,8 @@ function Timer(turncount,canvas){
 						if(player.name === "one"){
 							playerTwo.hp = playerData.hp;
 							cells[playerTwo.x][playerTwo.y].player = null;
+							playerTwo.lastX = playerTwo.x;
+							playerTwo.lastY = playerTwo.y;
 							playerTwo.x = playerData.x;
 							playerTwo.y = playerData.y;
 							cells[playerTwo.x][playerTwo.y].player = playerTwo;
@@ -115,6 +117,8 @@ function Timer(turncount,canvas){
 						else{
 							playerOne.hp = playerData.hp;
 							cells[playerOne.x][playerOne.y].player = null;
+							playerOne.lastX = playerOne.x;
+							playerOne.lastY = playerOne.y;
 							playerOne.x = playerData.x;
 							playerOne.y = playerData.y;
 							cells[playerOne.x][playerOne.y].player = playerOne;

@@ -868,7 +868,7 @@ function BN6BubbleStar2(){
 	this.id="BN6BubbleStar2";
 	this.name="BubbleStar2";
 	this.image=BN6BubbleStar2IMG;
-	this.code=["B", "E", "T"];
+	this.code=["C", "L", "V"];
 	this.mb=38;
 	this.rank="standard";
 	this.damage=80;
@@ -889,7 +889,7 @@ function BN6BubbleStar3(){
 	this.id="BN6BubbleStar3";
 	this.name="BubbleStar3";
 	this.image=BN6BubbleStar3IMG;
-	this.code=["B", "E", "T"];
+	this.code=["G", "R", "S"];
 	this.mb=46;
 	this.rank="standard";
 	this.damage=100;
@@ -4518,7 +4518,7 @@ function BN6TimeBomb1(){
 						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage)];
 					}
 				}
-				this.tempX++
+				this.tempX++;
 			}
 			this.bombPlaced = true;
 		}
@@ -4557,7 +4557,7 @@ function BN6TimeBomb2(){
 						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage)];
 					}
 				}
-				this.tempX++
+				this.tempX++;
 			}
 			this.bombPlaced = true;
 		}
@@ -4596,7 +4596,7 @@ function BN6TimeBomb3(){
 						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage)];
 					}
 				}
-				this.tempX++
+				this.tempX++;
 			}
 			this.bombPlaced = true;
 		}
@@ -4829,7 +4829,7 @@ function BN6Anubis(){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AnubisObj(attacker.x + this.xDirection, attacker.y, defender, attacker)];
+			cells[attacker.x + this.xDirection][attacker.y].object = [new BN6AnubisObj(attacker.x + this.xDirection, attacker.y, defender, attacker, 50)];
 		}
 	};
 }

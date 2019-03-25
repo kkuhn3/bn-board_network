@@ -764,7 +764,7 @@ function BN6GuardianObj(x, y, attacker){
 	this.y = y;
 }
 
-function BN6AnubisObj(x, y, defender, attacker){
+function BN6AnubisObj(x, y, defender, attacker, damage){
 	this.attacker = attacker;
 	this.id = "BN6AnubisObj";
 	this.image = BN6AnubisIMG;
@@ -788,7 +788,7 @@ function BN6AnubisObj(x, y, defender, attacker){
 	};
 	this.passiveTriggered = false;
 	this.passive = function(){
-		defender.hp = defender.hp - 100 / timer.turncount;
+		defender.hp = defender.hp - damage;
 	};
 	this.remove = function(){
 		cells[this.x][this.y].object = [];
@@ -797,4 +797,32 @@ function BN6AnubisObj(x, y, defender, attacker){
 	};
 	this.x = x;
 	this.y = y;
+}
+
+function BN6BodyGuardObj(attacker, defender){
+	this.attacker = attacker;
+	this.defender = defender;
+	this.id = "BN6BodyGuardObj";
+	this.image = noObj;
+	this.solid = false;
+	this.hp = 10;
+	this.targetedTurn = true;
+	this.effecthit = function(hitBy){};
+	this.hitByBuster = function(hitBy){};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		if(this.hp = 0){
+			this.index = cells[this.x][this.y].object.indexOf(this);
+			cells[this.x][this.y].object.splice(this.index, 1);
+		}
+		else{
+			this.localBN6AntiDamageShuriken = new BN6AntiDamageShuriken();
+			this.localBN6AntiDamageShuriken.accurate = this.targetedTurn;
+			board.attackWithCard(attacker, defender, this.localBN6AntiDamageShuriken);
+			this.hp = this.hp - 1;
+			this.targetedTurn = !this.targetedTurn;
+		}
+	};
+	this.x = 0;
+	this.y = 0;
 }

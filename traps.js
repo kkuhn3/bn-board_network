@@ -80,7 +80,7 @@ function BN6AntiSwordTrap(){
 	};
 	this.trigger = function(attacker, defender, theCard){
 		defender.invincible = 1;
-		board.attackWithCard(defender, attacker, BN6AntiSwordSlashes);
+		board.attackWithCard(defender, attacker, (new BN6AntiSwordSlashes()));
 		defender.trap = null;
 	};
 	this.dodgesDamage = function(attacker, theCard, one, all){
@@ -108,6 +108,27 @@ function BN6AntiRecoverTrap(){
 	};
 	this.dodgesDamage = function(attacker, theCard, one, all){
 		return 0;
+	};
+}
+
+function BN6BodyGuardTrap(){
+	this.id = "BN6BodyGuardTrap";
+	this.triggerOnCard = function(theCard){
+		return false;
+	};
+	this.triggerOnHit = function(theCard){
+		return false;
+	};
+	this.triggerOnDamage = function(theCard){
+		return true;
+	};
+	this.trigger = function(attacker, defender, theCard){
+		cells[0][0].object.push(new BN6BodyGuardObj(defender, attacker));
+		defender.trap = null;
+	};
+	this.dodgesDamage = function(attacker, theCard, one, all){
+		this.baseDamage = theCard.damage + theCard.addDamage + attacker.bonusDamage;
+		return this.baseDamage * one * all;
 	};
 }
 

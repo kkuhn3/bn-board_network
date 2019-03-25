@@ -111,4 +111,36 @@ function BN6BugSwordBuster(){
 	this.effectmiss= function(attacker, defender){};
 }
 
+function BN6AntiDamageShuriken(){
+	this.id="BN6AntiDamageShuriken";
+	this.name="BN6AntiDamageShuriken";
+	this.image=BN6AntiDamageShuriken;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.mb=99;
+	this.rank="standard";
+	this.damage=100;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.accurate=true;
+	this.elements=[ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
+		if(defender.invis < 1){
+			this.targetPlayer = playerOne;
+			if(attacker.name === playerOne.name){
+				this.targetPlayer = playerTwo;
+			}
+			if(this.accurate){
+				return this.targetPlayer.x === defender.x && this.targetPlayer.y === defender.y;
+			}
+			else{
+				return this.targetPlayer.lastX === defender.x && this.targetPlayer.lastY === defender.y;
+			}
+		}
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
 BN6UNCARDS = [new BN6AntiSwordSlashes(), new BN6Buster(), new BN6BugThunderBuster(), new BN6BugSwordBuster()];

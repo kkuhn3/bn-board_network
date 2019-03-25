@@ -54,6 +54,8 @@ var playerOne = {
 	timpanid: 0,
 	blinded: 0,
 	trap: null,
+	lastX: 1,
+	lastY: 1,
 };
 
 var playerTwo = {
@@ -78,6 +80,8 @@ var playerTwo = {
 	timpanid: 0,
 	blinded: 0,
 	trap: null,
+	lastX: 4,
+	lastY: 1,
 };
 
 var player = -1;
