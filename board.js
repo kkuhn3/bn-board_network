@@ -420,6 +420,13 @@ function Board(width,height,canvas){
 		if(cells[aPlayer.x][aPlayer.y].panelType === PANELTYPE.POISON){
 			aPlayer.hp = aPlayer.hp - 25;
 		}
+		if(aPlayer.lastX !== aPlayer.x || aPlayer.lastY !== aPlayer.y){
+			if(cells[aPlayer.lastX][aPlayer.lastY].panelType === PANELTYPE.CRACKED){
+				this.convertPanel(aPlayer.lastX, aPlayer.lastY, PANELTYPE.BROKEN);
+			}
+			aPlayer.lastX = aPlayer.x;
+			aPlayer.lastY = aPlayer.y;
+		}
 	}
 	
 	this.resolvePanels = function(){
@@ -676,7 +683,7 @@ function Board(width,height,canvas){
 						newPanel = PANELTYPE.CRACKED;
 					}
 					else{
-						cells[x][y].panelTimer = timer.turncount;
+						cells[x][y].panelTimer = 5;
 					}
 				}
 				cells[x][y].panelType = newPanel;

@@ -114,15 +114,14 @@ function BN6EElecMan(){
 function BN6FForte(){
 	this.id = "BN6FForte";
 	this.name = "F: Forte";
-	this.contents = [new BN6RollingLog3(), new BN6RollingLog3(), new BN6RollingLog3(), 
-					 new BN6Magnum(), new BN6Magnum(), new BN6Magnum(), 
+	this.contents = [new BN6Magnum(), new BN6Magnum(), new BN6Magnum(), 
 					 new BN6MachineGun3(), new BN6MachineGun3(), new BN6MachineGun3(), 
-					 new BN6MachineGun1(), new BN6MachineGun1(), 
+					 new BN6MachineGun1(), new BN6MachineGun1(), new BN6MachineGun1(), new BN6MachineGun1(), 
 					 new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), new BN6AreaGrab(), 
-					 new BN6Fastgauge(), 
+					 new BN6Fullcust(), 
 					 new BN6Attack30(), 
 					 new BN6Doublepoint(),
-					 new BN6MagneCoil(), new BN6MagneCoil(), 
+					 new BN6MagneCoil(), new BN6MagneCoil(), new BN6MagneCoil(),
 					 new BN6AntiDmg(), new BN6AntiDmg(), new BN6AntiDmg(), 
 					 new BN6Whitepill(), new BN6Whitepill(), new BN6Whitepill(), 
 					 new BN6Killerman(),
