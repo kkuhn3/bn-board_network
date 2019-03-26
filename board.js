@@ -221,6 +221,7 @@ function Board(width,height,canvas){
 	this.draw = function(){
 		ctx.fillStyle="#000000";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
+		ctx.drawImage(blue_man,0,0,canvas.width,canvas.height/2);
 		for(var x=0;x<this.width;x++){
 			for(var y=0;y<this.height;y++){
 				this.drawCell(x,y);

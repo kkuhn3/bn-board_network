@@ -1,55 +1,26 @@
-TURNCELL = {
-	COMPLETE: "#00FF00",
-	INPROGRESS: "#FFA500",
-	NOTSTARTED: "#FFFFFF",
-}
 
-function Timer(turncount,canvas){
-	this.timercells=[];
-	this.turncount = turncount;
-	this.canvas = canvas;
+function Timer(turncount, completeBar, currentBar, upnextBar){
 	this.currentturn = -1;
 
 	this.initTimer = function(){
-		this.timercells=[];
-		for(var i=0;i<this.turncount;i++){
-			this.timercells[i] = TURNCELL.COMPLETE;
-		}
 		this.currentturn = turncount;
 	}
 
-	this.drawCell = function(x){
-		var canvas = this.canvas;
-		var cwidth = canvas.width;
-		var cheight = canvas.height;
-		var cellWidth = cwidth/this.turncount;
-		var left = x*cellWidth;
-		var ctx = canvas.getContext('2d');
-		ctx.fillStyle=this.timercells[x];
-		ctx.fillRect(left+2,2,cellWidth-4,cheight-4);
-	}
-
 	this.draw = function(){
-		for(var i=0;i<turncount;i++){
-			if(i < this.currentturn){
-				this.timercells[i] = TURNCELL.COMPLETE;
-			}
-			else if(i > this.currentturn){
-				this.timercells[i] = TURNCELL.NOTSTARTED;
-			}
+		this.completeTurns = (this.currentturn) * 100.0 / turncount;
+		if(this.completeTurns === 100){
+			completeBar.innerHTML = "Custom";
 		}
-		if(this.currentturn < this.turncount){
-			this.timercells[this.currentturn] = TURNCELL.INPROGRESS;
+		else{
+			completeBar.innerHTML = "";
 		}
-		var canvas = this.canvas;
-		var ctx = canvas.getContext('2d');
-		var cwidth = canvas.width;
-		var cheight = canvas.height;
-		ctx.fillStyle="#000000";
-		ctx.fillRect(0,0,canvas.width,canvas.height);
-		for(var i=0;i<this.turncount;i++){
-			this.drawCell(i);
+		completeBar.style.width = "" + this.completeTurns + "%";
+		if(this.currentturn < turncount){
+			currentBar.style.width="" + (100.0 / turncount) + "%";
+			currentBar.innerHTML = "" + (this.currentturn + 1);
 		}
+		this.upnextTurns = (turncount - this.currentturn - 1) * 100.0 / turncount;
+		upnextBar.style.width = "" + this.upnextTurns + "%";
 	}
 	
 	this.nextTurnConfirmed = function(){
