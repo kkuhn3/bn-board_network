@@ -37,6 +37,43 @@
 			<img id='aura100' src='img/barriers/aura100.png'/>
 			<img id='aura200' src='img/barriers/aura200.png'/>
 			<img id='bubblebarrier' src='img/barriers/bubblebarrier.png'/>
+
+			<!-- Backgrounds -->
+			<img id='BN6ACDCbg0' src='img/backgrounds/BN6ACDCbg0.png'/>
+			<img id='BN6ACDCbg1' src='img/backgrounds/BN6ACDCbg1.png'/>
+			<img id='BN6ACDCbg2' src='img/backgrounds/BN6ACDCbg2.png'/>
+			<img id='BN6ACDCbg3' src='img/backgrounds/BN6ACDCbg3.png'/>
+			<img id='BN6ACDCbg4' src='img/backgrounds/BN6ACDCbg4.png'/>
+			<img id='BN6ACDCbg5' src='img/backgrounds/BN6ACDCbg5.png'/>
+			<img id='BN6ACDCbg6' src='img/backgrounds/BN6ACDCbg6.png'/>
+			<img id='BN6Centralbg0' src='img/backgrounds/BN6Centralbg0.png'/>
+			<img id='BN6Centralbg1' src='img/backgrounds/BN6Centralbg1.png'/>
+			<img id='BN6Centralbg2' src='img/backgrounds/BN6Centralbg2.png'/>
+			<img id='BN6Centralbg3' src='img/backgrounds/BN6Centralbg3.png'/>
+			<img id='BN6Centralbg4' src='img/backgrounds/BN6Centralbg4.png'/>
+			<img id='BN6Centralbg5' src='img/backgrounds/BN6Centralbg5.png'/>
+			<img id='BN6Centralbg6' src='img/backgrounds/BN6Centralbg6.png'/>
+			<img id='BN6Greenbg0' src='img/backgrounds/BN6Greenbg0.png'/>
+			<img id='BN6Greenbg1' src='img/backgrounds/BN6Greenbg1.png'/>
+			<img id='BN6Greenbg2' src='img/backgrounds/BN6Greenbg2.png'/>
+			<img id='BN6Greenbg3' src='img/backgrounds/BN6Greenbg3.png'/>
+			<img id='BN6Greenbg4' src='img/backgrounds/BN6Greenbg4.png'/>
+			<img id='BN6Greenbg5' src='img/backgrounds/BN6Greenbg5.png'/>
+			<img id='BN6Greenbg6' src='img/backgrounds/BN6Greenbg6.png'/>
+			<img id='BN6Seasidebg0' src='img/backgrounds/BN6Seasidebg0.png'/>
+			<img id='BN6Seasidebg1' src='img/backgrounds/BN6Seasidebg1.png'/>
+			<img id='BN6Seasidebg2' src='img/backgrounds/BN6Seasidebg2.png'/>
+			<img id='BN6Seasidebg3' src='img/backgrounds/BN6Seasidebg3.png'/>
+			<img id='BN6Seasidebg4' src='img/backgrounds/BN6Seasidebg4.png'/>
+			<img id='BN6Seasidebg5' src='img/backgrounds/BN6Seasidebg5.png'/>
+			<img id='BN6Seasidebg6' src='img/backgrounds/BN6Seasidebg6.png'/>
+			<img id='BN6Skybg0' src='img/backgrounds/BN6Skybg0.png'/>
+			<img id='BN6Skybg1' src='img/backgrounds/BN6Skybg1.png'/>
+			<img id='BN6Skybg2' src='img/backgrounds/BN6Skybg2.png'/>
+			<img id='BN6Skybg3' src='img/backgrounds/BN6Skybg3.png'/>
+			<img id='BN6Skybg4' src='img/backgrounds/BN6Skybg4.png'/>
+			<img id='BN6Skybg5' src='img/backgrounds/BN6Skybg5.png'/>
+			<img id='BN6Skybg6' src='img/backgrounds/BN6Skybg6.png'/>
 			
 			<!-- Objects -->
 			<img id='BlackBombObj' src='img/objects/BlackBombObj.png'/>
@@ -439,16 +476,16 @@
 	<script src="bn6pas.js"></script>
 	<script>
 		function init(){
+			timer = new Timer(5, completeBar, currentBar, upnextBar);
+			timer.initTimer();
+			timer.draw();
+
 			board = new Board(6,3,board_canvas);
 			board.reset();
 			board.draw();
 			board_canvas.onmousedown = board.mouseDown;
 			board_canvas.onmouseup = board.mouseUp;
 			board_canvas.onmousemove = board.mouseMove;
-
-			timer = new Timer(5, timer_canvas, completeBar, currentBar, upnextBar);
-			timer.initTimer();
-			timer.draw();
 			
 			cards = new Cards();
 			bn6cards = new Bn6Cards();

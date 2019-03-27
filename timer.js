@@ -1,6 +1,7 @@
 
 function Timer(turncount, completeBar, currentBar, upnextBar){
 	this.currentturn = -1;
+	this.totalTurns = 0;
 
 	this.initTimer = function(){
 		this.currentturn = turncount;
@@ -37,6 +38,7 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 
 	this.nextTurn = function(){
 		this.currentturn++;
+		this.totalTurns++;
 		if(this.currentturn > turncount - 1){
 			this.currentturn = turncount;
 			HAND = [];

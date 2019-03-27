@@ -21,6 +21,8 @@ var paneltypes = [PANELTYPE.NORMAL, PANELTYPE.HOLE, PANELTYPE.GRASS, PANELTYPE.P
 				  PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY, PANELTYPE.BROKEN, 
 				  PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT];
 
+var backgrounds = ["BN6ACDCbg", "BN6Centralbg", "BN6Greenbg", "BN6Seasidebg", "BN6Skybg"];
+
 ACTIONS = {
 	NONE: 0,
 	BUSTER: 1,
@@ -95,6 +97,7 @@ function Board(width,height,canvas){
 	this.height = height;
 	this.canvas = canvas;
 	this.selected = -1;
+	this.backgroundImg = null
 	var ctx = canvas.getContext('2d');
 	var cwidth = this.canvas.width;
 	var cheight = this.canvas.height / 2;
@@ -102,6 +105,7 @@ function Board(width,height,canvas){
 	var cellHeight = cheight/this.height;
 
 	this.initCells = function(){
+		this.backgroundImg = backgrounds[Math.floor(Math.random()*backgrounds.length)];
 		cells = [];
 		for(var x=0;x<this.width;x++){
 			cells[x]=[];
@@ -221,7 +225,7 @@ function Board(width,height,canvas){
 	this.draw = function(){
 		ctx.fillStyle="#000000";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
-		ctx.drawImage(blue_man,0,0,canvas.width,canvas.height/2);
+		ctx.drawImage(document.getElementById(this.backgroundImg+(timer.totalTurns%7)),0,0,canvas.width,canvas.height/2);
 		for(var x=0;x<this.width;x++){
 			for(var y=0;y<this.height;y++){
 				this.drawCell(x,y);
