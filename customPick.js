@@ -16,6 +16,7 @@ function CustomPick(canvas){
 			DRAW[i] = null;
 		}
 		this.openCustom();
+		timer.currentturn = 0;
 	}
 	this.openCustom = function(){
 		movementEnabled = false;
@@ -25,7 +26,7 @@ function CustomPick(canvas){
 		if(playerSelected){
 			document.getElementById("confirm").style.display='block';
 		}
-		if(player.name === "one"){
+		if(player.name === playerOne.name){
 			document.getElementById("p1buster").style.display='none';
 			document.getElementById("p1card").style.display='none';
 		}
@@ -41,6 +42,8 @@ function CustomPick(canvas){
 			DRAW[i] = null;
 		}
 		DECK = newDeck;
+		SELECTED = [];
+		SELECTEDIND = [];
 		this.openCustom();
 	}
 
@@ -95,6 +98,7 @@ function CustomPick(canvas){
 				ctx.fillStyle="rgba(0,225,0,0.5)";
 				ctx.fillRect(left+2,0,cellWidth-4,cheight);
 			}
+			ctx.fillStyle="#000000";
 			if(DRAW[x].code.length === 26){
 				ctx.fillText("*", left+cellWidth/2, cheight-40);
 			}
@@ -137,7 +141,6 @@ function CustomPick(canvas){
 			document.getElementById("p2buster").style.display='block';
 			document.getElementById("p2card").style.display='block';
 		}
-		timer.currentturn = 0;
 	}
 	
 	this.buildHand = function(selectedList){

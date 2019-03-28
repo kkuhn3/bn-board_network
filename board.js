@@ -101,8 +101,11 @@ function Board(width,height,canvas){
 	var ctx = canvas.getContext('2d');
 	var cwidth = this.canvas.width;
 	var cheight = this.canvas.height / 2;
+	var cheightOffset = this.canvas.height / 2 - this.canvas.height / 8;
 	var cellWidth = cwidth/this.width;
 	var cellHeight = cheight/this.height;
+	ctx.textAlign = "center";
+	ctx.textBaseline = "middle";
 
 	this.initCells = function(){
 		this.backgroundImg = backgrounds[Math.floor(Math.random()*backgrounds.length)];
@@ -157,7 +160,7 @@ function Board(width,height,canvas){
 
 	this.drawCell = function(x,y){
 		var left = x*cellWidth;
-		var top = y*cellHeight + cheight;
+		var top = y*cellHeight + cheightOffset;
 		if(this.isOverlayPanel(cells[x][y].panelType)){
 			ctx.drawImage(document.getElementById(cells[x][y].side+PANELTYPE.NORMAL),left,top,cellWidth,cellHeight);
 			ctx.drawImage(document.getElementById(cells[x][y].panelType+"overlay"),left,top,cellWidth,cellHeight);
@@ -165,9 +168,12 @@ function Board(width,height,canvas){
 		else{
 			ctx.drawImage(document.getElementById(cells[x][y].side+cells[x][y].panelType),left,top,cellWidth,cellHeight);
 		}
+		if(y === 2){
+			ctx.drawImage(document.getElementById(cells[x][y].side+"bottom"),left,top+cellHeight,cellWidth,cellHeight/5);
+		}
 		for(var i = 0; i < cells[x][y].object.length; i++){
 			this.objImage = cells[x][y].object[i].image.id;
-			if(cells[x][y].object[i].attacker && cells[x][y].object[i].attacker.name === "two"){
+			if(cells[x][y].object[i].attacker && cells[x][y].object[i].attacker.name === playerTwo.name){
 				this.objImage = this.objImage.concat("2");
 			}
 			ctx.drawImage(document.getElementById(this.objImage), left+cellWidth/8, top-3*cellHeight/4, 3*cellWidth/4, cellHeight*1.5);
@@ -176,13 +182,25 @@ function Board(width,height,canvas){
 
 	this.drawPlayer = function(playerDraw){
 		var centerX = playerDraw.x * cellWidth + cellWidth / 2;
-		var centerY = playerDraw.y * cellHeight + cellHeight / 2 + cheight;
+		var centerY = playerDraw.y * cellHeight + cellHeight / 2 + cheightOffset;
 
 		this.drawPlayerImage(centerX, centerY, playerDraw);
+
+		if(!playerSelected){
+			ctx.fillStyle = "#FFFFFF"; 
+			ctx.fillRect(centerX - cellWidth/3, centerY - cellHeight * 3 / 4 , cellWidth / 1.5, cellHeight / 2);
+			ctx.strokeStyle = "black";
+			ctx.lineWidth = "2";
+			ctx.rect(centerX - cellWidth/3, centerY - cellHeight * 3 / 4 , cellWidth / 1.5, cellHeight / 2);
+			ctx.stroke();
+			ctx.fillStyle = "#000000";
+			ctx.font = "10px Arial";
+			ctx.fillText("Choose player " + playerDraw.name, centerX, centerY - cellHeight / 2);
+		}
 	}
 
 	this.drawPlayerImage = function(centerX, centerY, playerDraw){
-    	ctx.drawImage(playerDraw.image,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+		ctx.drawImage(playerDraw.image,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
 		if(playerDraw.barrier !== null){
 			ctx.globalAlpha = 0.5;
 			if(playerDraw.barrier.id === "BasicBarrier"){
@@ -213,12 +231,19 @@ function Board(width,height,canvas){
 		}
 
 		ctx.globalAlpha = 1.0;
-    	ctx.fillStyle="#FFFFFF";
-    	ctx.textAlign = "center";
-    	ctx.font = "20px Arial";
+		
+		ctx.font = "20px Arial";
 		if(playerDraw.trap !== null){
+			ctx.strokeStyle = 'black';
+			ctx.lineWidth = 8;
+			ctx.strokeText("????", centerX, centerY);
+			ctx.fillStyle="#FFFFFF";
 			ctx.fillText("????", centerX, centerY);
 		}
+		ctx.strokeStyle = 'black';
+		ctx.lineWidth = 8;
+		ctx.strokeText(playerDraw.hp,centerX,centerY+cellHeight/4);
+		ctx.fillStyle="#FFFFFF";
 		ctx.fillText(playerDraw.hp,centerX,centerY+cellHeight/4);
 	}
 
@@ -226,6 +251,7 @@ function Board(width,height,canvas){
 		ctx.fillStyle="#000000";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		ctx.drawImage(document.getElementById(this.backgroundImg+(timer.totalTurns%7)),0,0,canvas.width,canvas.height/2);
+		ctx.drawImage(document.getElementById(this.backgroundImg+(timer.totalTurns%7)),0,canvas.height/2,canvas.width,canvas.height/2);
 		for(var x=0;x<this.width;x++){
 			for(var y=0;y<this.height;y++){
 				this.drawCell(x,y);
@@ -237,9 +263,35 @@ function Board(width,height,canvas){
 		if(player.name === playerTwo.name || playerOne.blinded < 1){
 			this.drawPlayer(playerTwo);
 		}
+
+		if(playerSelected){
+			this.centerX = cellWidth * 5;
+			this.centerY = cheightOffset + cheight + (this.canvas.height - (cheightOffset + cheight)) / 2;
+			if(player.name === playerOne.name){
+				this.centerX = cellWidth * 1;
+			}
+			ctx.strokeStyle = 'black';
+			ctx.lineWidth = 8;
+			ctx.font = "20px Arial";
+			ctx.strokeText("You are Player " + player.name,this.centerX,this.centerY);
+			ctx.fillStyle="#FFFFFF";
+			ctx.fillText("You are Player " + player.name,this.centerX,this.centerY);
+		}
 	}
 
 	this.mouseDown = function(e){
+		if(!playerSelected){
+			this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
+			this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
+			if(this.mouseCellX === 1 && this.mouseCellY < 2){
+				this.turnOffbuttons();
+			}
+			else if(this.mouseCellX === 4 && this.mouseCellY < 2){
+				this.switchPlayer();
+				this.turnOffbuttons();
+			}
+		}
+
 		this.selected = -1;
 		if(movementEnabled){
 			this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
@@ -331,11 +383,17 @@ function Board(width,height,canvas){
 			this.resolve(playerOne, playerTwo);
 		}
 		else if(this.p1priority <= this.p2priority){
-			this.resolve(playerOne, playerTwo);
+			this.hitbool = this.resolve(playerOne, playerTwo);
+			if(this.hitbool && this.p1priority === 1 && this.p2priority === 3){
+				playerTwo.stunned = 1;
+			}
 			this.resolve(playerTwo, playerOne);
 		}
 		else{
-			this.resolve(playerTwo, playerOne);
+			this.hitbool = this.resolve(playerTwo, playerOne);
+			if(this.hitbool && this.p2priority === 1 && this.p1priority === 3){
+				playerOne.stunned = 1;
+			}
 			this.resolve(playerOne, playerTwo);
 		}
 		this.resolveBugs();
@@ -486,11 +544,12 @@ function Board(width,height,canvas){
 	}
 
 	this.resolve = function(attacker, defender){
-		this.resolveActions(attacker, defender);
+		this.hitbool = this.resolveActions(attacker, defender);
 		this.resolveObjects(attacker, defender);
 		attacker.stunned = attacker.stunned - 1;
 		attacker.bubbled = attacker.bubbled - 1;
 		attacker.frozen = attacker.frozen - 1;
+		return this.hitbool;
 	}
 
 	this.resolveActions = function(attacker, defender){
@@ -500,11 +559,11 @@ function Board(width,height,canvas){
 		if(attacker.stunned < 1 && attacker.bubbled < 1 && attacker.frozen < 1){
 			if(attacker.action === ACTIONS.BUSTER){
 				console.log("player " + attacker.name + " used: their BUSTER");
-				this.attackWithCard(attacker, defender, attacker.busterType);
+				return this.attackWithCard(attacker, defender, attacker.busterType);
 			}
 			else if(attacker.action === ACTIONS.CARD || attacker.action === ACTIONS.SPECIAL){
 				console.log("player " + attacker.name + " used: " + attacker.card.name);
-				this.attackWithCard(attacker, defender, attacker.card);
+				return this.attackWithCard(attacker, defender, attacker.card);
 			}
 		}
 		else{
@@ -552,6 +611,7 @@ function Board(width,height,canvas){
 							defender.barrier = null;
 						}
 						console.log("it hit! Dealing " + (this.damageDealt - this.damageReduced) + " damage!");
+						return (this.damageDealt - this.damageReduced) > 0;
 					}
 					else{
 						console.log("it hit! But Player " + defender.name + " was Invincible.");
@@ -775,22 +835,20 @@ function Board(width,height,canvas){
 	}
 
 	this.switchPlayer = function(){
-		if(player === playerOne){
+		if(player.name === playerOne.name){
 			player = playerTwo;
+			document.getElementById("combatWindow").style.float='left';
+			document.getElementById("customWindow").style.float='right';
 		}
 		else{
 			player = playerOne;
+			document.getElementById("combatWindow").style.float='right';
+			document.getElementById("customWindow").style.float='left';
 		}
 		customPick.drawHand();
 	}
 	
 	this.turnOffbuttons = function(){
-		document.getElementById("P1").style.display='none';
-		document.getElementById("P2").style.display='none';
-		
-		document.getElementById("playerText").style.display='block';
-		document.getElementById("playerText").innerHTML ='You are player ' + player.name;
-		
 		document.getElementById("confirm").style.display='block';
 		playerSelected = true;
 	}
@@ -808,7 +866,7 @@ function Board(width,height,canvas){
 				fakeDefender.y = y;
 				if(card.hithuh(attacker, fakeDefender)){
 					var left = x*cellWidth;
-					var top = y*cellHeight + cheight;
+					var top = y*cellHeight + cheightOffset;
 					ctx.fillStyle="#00FF00";
 					ctx.fillRect(left+cellWidth/4,top+cellHeight/4,cellWidth/2,cellHeight/2);
 				}
