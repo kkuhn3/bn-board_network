@@ -425,7 +425,9 @@
 				<input type='button' id='nextturn' value='Next Turn' onclick='timer.nextTurnConfirmed();' style="display: none; float: right;"/>
 				<!-- The select a deck drop down -->
 				<select id="sel" onchange="cards.setDeck(this.value)">
+					<option disabled>─────Debug Folders────</option>
 					<option value="AllCards">All: One of Everything</option>
+					<option disabled>─Alphabetical Pre-built Folders─</option>
 					<option value="BN6AAdversely">A: Adversely</option>
 					<option value="BN6BBaneElemental">B: Bane Elemental</option>
 					<option value="BN6CComboPop">C: Combo-Pop</option>
@@ -449,7 +451,7 @@
 					<option value="BN6UUndefeatable">U: Undefeatable</option>
 					<option value="BN6VVeryAgro">V: Very Agro</option>
 					<option value="BN6WWoomerangs">W: Woomerangs</option>
-					<option value="BN6X">X: </option>
+					<option disabled value="BN6X">X: </option>
 					<option value="BN6YYikesnFrozen">Y: Yikes 'n' Frozen</option>
 					<option value="BN6ZZebraLevelRandom">Z: Zebra Level Random</option>
 				</select>
