@@ -469,12 +469,12 @@ function BN6LittleBoiler(x, y, damage, attacker){
 		if(this.turns < 1){
 			if(playerOne.invis < 1){
 				if(cards.around(this.x, this.y, playerOne)){
-					playerOne.hp = playerOne.hp - damage*hits;
+					playerOne.hp = playerOne.hp - damage;
 				}
 			}
 			if(playerTwo.invis < 1){
 				if(cards.around(this.x, this.y, playerTwo)){
-					playerTwo.hp = playerTwo.hp - damage*hits;
+					playerTwo.hp = playerTwo.hp - damage;
 				}
 			}
 			cells[this.x][this.y].object = [];

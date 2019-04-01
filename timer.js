@@ -2,13 +2,14 @@
 function Timer(turncount, completeBar, currentBar, upnextBar){
 	this.currentturn = -1;
 	this.totalTurns = 0;
+	this.turncount = turncount;
 
 	this.initTimer = function(){
-		this.currentturn = turncount;
+		this.currentturn = this.turncount;
 	}
 
 	this.draw = function(){
-		this.completeTurns = (this.currentturn) * 100.0 / turncount;
+		this.completeTurns = (this.currentturn) * 100.0 / this.turncount;
 		if(this.completeTurns === 100){
 			completeBar.innerHTML = "Custom";
 		}
@@ -16,11 +17,11 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 			completeBar.innerHTML = "";
 		}
 		completeBar.style.width = "" + this.completeTurns + "%";
-		if(this.currentturn < turncount){
-			currentBar.style.width="" + (100.0 / turncount) + "%";
+		if(this.currentturn < this.turncount){
+			currentBar.style.width="" + (100.0 / this.turncount) + "%";
 			currentBar.innerHTML = "" + (this.currentturn + 1);
 		}
-		this.upnextTurns = (turncount - this.currentturn - 1) * 100.0 / turncount;
+		this.upnextTurns = (this.turncount - this.currentturn - 1) * 100.0 / this.turncount;
 		upnextBar.style.width = "" + this.upnextTurns + "%";
 	}
 	
@@ -39,8 +40,8 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 	this.nextTurn = function(){
 		this.currentturn++;
 		this.totalTurns++;
-		if(this.currentturn > turncount - 1){
-			this.currentturn = turncount;
+		if(this.currentturn > this.turncount - 1){
+			this.currentturn = this.turncount;
 			HAND = [];
 			customPick.openCustom();
 			barriers.resetBubbleBarrier(playerOne);
@@ -53,8 +54,6 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 		document.getElementById("p2buster").disabled = false;
 		document.getElementById("p1card").disabled = false;
 		document.getElementById("p2card").disabled = false;
-		custom.nextTurn();
-		custom.drawHand();
 		movementEnabled = true;
 	}
 	
@@ -103,9 +102,12 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 								playerOne.card.uninstallAdded = playerData.card.uninstallAdded;
 							}	
 						}
-						this.nextTurn();
+						custom.nextTurn();
+						custom.drawHand();
 						board.resolveTurn();
+						this.nextTurn();
 						this.draw();
+						board.draw();
 					}.bind(this));
 					return true;
 				}

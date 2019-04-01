@@ -1078,17 +1078,17 @@ function BN6ElecPulse2(){
 	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			defender.invis = 0;
-			if(attacker === "one"){
-				if(board.isCellThisPlayerValid(defender.x-1, defender.y, defender)){
+			if(attacker === playerOne.name){
+				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
 					cells[defender.x][defender.y].player = null;
-					defender.x = defender.x-1;
+					defender.x = defender.x+1;
 					cells[defender.x][defender.y].player = defender;
 				}
 			}
 			else{
-				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
+				if(board.isCellThisPlayerValid(defender.x-1, defender.y, defender)){
 					cells[defender.x][defender.y].player = null;
-					defender.x = defender.x+1;
+					defender.x = defender.x-1;
 					cells[defender.x][defender.y].player = defender;
 				}
 			}
@@ -1213,7 +1213,7 @@ function BN6CornShot3(){
 	this.id="BN6CornShot3";
 	this.name="CornShot3";
 	this.image=BN6CornShot3IMG;
-	this.code=["C", "D", "E"];
+	this.code=["P", "Q", "R"];
 	this.mb=38;
 	this.rank="standard";
 	this.damage=70;
@@ -5069,9 +5069,9 @@ function BN6PanelGrab(){
 		if(attacker.name === "one"){
 			this.sideToConvert = SIDE.LEFT;
 		}
-		if(!board.cellHasSolidObject(x,y)){
-			cells[this.affectedX(attacker, defender)][attacker.y].side = this.sideToConvert;
-			cells[this.affectedX(attacker, defender)][attacker.y].sideTimer = 12;
+		if(!board.cellHasSolidObject((new BN6PanelGrab()).affectedX(attacker, defender), attacker.y)){
+			cells[(new BN6PanelGrab()).affectedX(attacker, defender)][attacker.y].side = this.sideToConvert;
+			cells[(new BN6PanelGrab()).affectedX(attacker, defender)][attacker.y].sideTimer = 12;
 		}
 	};
 }
@@ -6124,9 +6124,9 @@ function BN6Blues(){
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			this.x = playerTwo.x + 1;
-			this.y = playerTwo.y;
-			if(attacker.name === "one"){
+			this.x = playerOne.x + 1;
+			this.y = playerOne.y;
+			if(attacker.name === playerOne.name){
 				this.x = playerTwo.x - 1;
 				this.y = playerTwo.y;
 			}
@@ -6200,8 +6200,8 @@ function BN6Aquaman(){
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			this.backrow = cells.length;
-			this.albackrow = cells.length - 1;
+			this.backrow = cells.length - 1;
+			this.albackrow = cells.length - 2;
 			this.xDirection = -1;
 			this.targetPlayer = playerOne;
 			if(attacker.name === playerOne.name){
@@ -6214,7 +6214,7 @@ function BN6Aquaman(){
 			if(attacker.x === this.backrow || attacker.x === this.albackrow){
 				this.hits = 2;
 				this.tempX = this.targetPlayer.x - this.xDirection;
-				this.tempY = this.targetPlayer.y;
+				this.tempY = attacker.y;
 				this.widHit = (new BN6MachineSword()).wideSwordJump(attacker, defender, this.tempX, this.tempY);
 				if(this.widHit){
 					return true;
@@ -6228,7 +6228,7 @@ function BN6Aquaman(){
 			}
 			else{
 				this.hits = 1;
-				return (attacker.x + 2 === defender.x || attacker.x + 3 === defender.x) && attacker.y === defender.y;
+				return (attacker.x + this.xDirection*2 === defender.x || attacker.x + this.xDirection*3 === defender.x) && attacker.y === defender.y;
 			}
 		}
 		return false;
@@ -6247,7 +6247,7 @@ function BN6Aquaman(){
 		}
 
 		if(attacker.x !== this.backrow && attacker.x !== this.albackrow){
-			board.convertPanel(attacker.x + 2, attacker.y, PANELTYPE.CRACKED);
+			board.convertPanel(attacker.x + this.xDirection*2, attacker.y, PANELTYPE.CRACKED);
 		}
 	};
 }

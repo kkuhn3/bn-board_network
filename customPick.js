@@ -16,13 +16,11 @@ function CustomPick(canvas){
 			DRAW[i] = null;
 		}
 		this.openCustom();
-		timer.currentturn = 0;
 	}
 	this.openCustom = function(){
 		movementEnabled = false;
 		this.drawFromDeck();
 		document.getElementById("pick_canvas").style.display='block';
-		document.getElementById("custom_canvas").style.display='none';
 		if(playerSelected){
 			document.getElementById("confirm").style.display='block';
 		}
@@ -124,6 +122,7 @@ function CustomPick(canvas){
 
 	this.confirm = function(){
 		movementEnabled = true;
+		timer.currentturn = 0;
 		HAND = this.buildHand(SELECTED);
 		for(var i=0;i<SELECTEDIND.length;i++){
 			DRAW[SELECTEDIND[i]] = null;
@@ -144,20 +143,21 @@ function CustomPick(canvas){
 	}
 	
 	this.buildHand = function(selectedList){
-		for(var i = 0; i < selectedList.length-2; i++){
+		this.selectedList = selectedList.slice();
+		for(var i = 0; i < this.selectedList.length-2; i++){
 			for(var j = 0; j < BN6PAS.length; j++){
-				if(selectedList[i] && BN6PAS[j].cardList[0] === selectedList[i].id){
-					if(selectedList[i+1] && BN6PAS[j].cardList[1] === selectedList[i+1].id){
-						if(selectedList[i+2] && BN6PAS[j].cardList[2] === selectedList[i+2].id){
+				if(this.selectedList[i] && BN6PAS[j].cardList[0] === this.selectedList[i].id){
+					if(this.selectedList[i+1] && BN6PAS[j].cardList[1] === this.selectedList[i+1].id){
+						if(this.selectedList[i+2] && BN6PAS[j].cardList[2] === this.selectedList[i+2].id){
 							if(BN6PAS[j].cardList.length === 4){
-								if(selectedList[i+3] && BN6PAS[j].cardList[3] === selectedList[i+3].id){
-									selectedList.splice(i+1, 3);
-									selectedList[i] = BN6PAS[j];
+								if(this.selectedList[i+3] && BN6PAS[j].cardList[3] === this.selectedList[i+3].id){
+									this.selectedList.splice(i+1, 3);
+									this.selectedList[i] = BN6PAS[j];
 								}
 							}
 							else{
-								selectedList.splice(i+1, 2);
-								selectedList[i] = BN6PAS[j];
+								this.selectedList.splice(i+1, 2);
+								this.selectedList[i] = BN6PAS[j];
 							}
 						}
 					}
@@ -165,31 +165,31 @@ function CustomPick(canvas){
 			}
 		}
 		
-		for(var i = 1; i < selectedList.length; i++){
-			if(selectedList[i-1].damage > 0){
-				if(selectedList[i].addStun){
-					selectedList[i-1].stunAdded = true;
-					selectedList.splice(i, 1);
+		for(var i = 1; i < this.selectedList.length; i++){
+			if(this.selectedList[i-1].damage > 0){
+				if(this.selectedList[i].addStun){
+					this.selectedList[i-1].stunAdded = true;
+					this.selectedList.splice(i, 1);
 					i--;
 				}
-				else if(selectedList[i].addUninstall){
-					selectedList[i-1].uninstallAdded = true;
-					selectedList.splice(i, 1);
+				else if(this.selectedList[i].addUninstall){
+					this.selectedList[i-1].uninstallAdded = true;
+					this.selectedList.splice(i, 1);
 					i--;
 				}
-				else if(selectedList[i].addboostDamage){
-					selectedList[i-1].boostDamage = selectedList[i-1].boostDamage + selectedList[i].addboostDamage;
-					selectedList.splice(i, 1);
+				else if(this.selectedList[i].addboostDamage){
+					this.selectedList[i-1].boostDamage = this.selectedList[i-1].boostDamage + this.selectedList[i].addboostDamage;
+					this.selectedList.splice(i, 1);
 					i--;
 				}
-				else if(selectedList[i].addNaviboostDamage && selectedList[i-1].rank === "Mega"){
-					selectedList[i-1].boostDamage = selectedList[i-1].boostDamage + selectedList[i].addNaviboostDamage;
-					selectedList.splice(i, 1);
+				else if(this.selectedList[i].addNaviboostDamage && this.selectedList[i-1].rank === "Mega"){
+					this.selectedList[i-1].boostDamage = this.selectedList[i-1].boostDamage + this.selectedList[i].addNaviboostDamage;
+					this.selectedList.splice(i, 1);
 					i--;
 				}
 			}
 		}
-		return selectedList;
+		return this.selectedList;
 	}
 	
 	this.confirmTimeout = 0;
@@ -237,6 +237,8 @@ function CustomPick(canvas){
 				SELECTEDIND.push(this.mouseCellX);
 			}
 		}
+		HAND = this.buildHand(SELECTED);
+		custom.drawHand();
 	}.bind(this);
 
 	this.mouseMove = function(e){

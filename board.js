@@ -236,9 +236,9 @@ function Board(width,height,canvas){
 		if(playerDraw.trap !== null){
 			ctx.strokeStyle = 'black';
 			ctx.lineWidth = 8;
-			ctx.strokeText("????", centerX, centerY);
+			ctx.strokeText("????", centerX, centerY-cellHeight/8);
 			ctx.fillStyle="#FFFFFF";
-			ctx.fillText("????", centerX, centerY);
+			ctx.fillText("????", centerX, centerY-cellHeight/8);
 		}
 		ctx.strokeStyle = 'black';
 		ctx.lineWidth = 8;
@@ -282,7 +282,7 @@ function Board(width,height,canvas){
 	this.mouseDown = function(e){
 		if(!playerSelected){
 			this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
-			this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
+			this.mouseCellY = Math.floor((this.height * (e.offsetY - cheightOffset )) / (e.target.height/2));
 			if(this.mouseCellX === 1 && this.mouseCellY < 2){
 				this.turnOffbuttons();
 			}
@@ -295,7 +295,7 @@ function Board(width,height,canvas){
 		this.selected = -1;
 		if(movementEnabled){
 			this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
-			this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
+			this.mouseCellY = Math.floor((this.height * (e.offsetY - cheightOffset )) / (e.target.height/2));
 			if(playerOne.x === this.mouseCellX && playerOne.y === this.mouseCellY && player === playerOne && this.playerCanMove(player)){
 				this.selected = 1;
 				cells[this.mouseCellX][this.mouseCellY].player = null;
@@ -321,7 +321,7 @@ function Board(width,height,canvas){
 
 	this.mouseUp = function(e){
 		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
-		this.mouseCellY = Math.floor((this.height * (e.offsetY - e.target.height/2 )) / (e.target.height/2));
+		this.mouseCellY = Math.floor((this.height * (e.offsetY - cheightOffset )) / (e.target.height/2));
 		if(this.selected === 1 && this.isCellThisPlayerValid(this.mouseCellX, this.mouseCellY, playerOne)){
 			playerOne.x = this.mouseCellX;
 			playerOne.y = this.mouseCellY;
@@ -417,16 +417,16 @@ function Board(width,height,canvas){
 	this.generateRandomNum = function(outOf){
 		this.sum = 0;
 		if(playerOne.ACTIONS === ACTIONS.CARD){
-			sum = sum + CARDLIST.indexOf(playerOne.card);
+			this.sum = this.sum + CARDLIST.indexOf(playerOne.card);
 		}
 		else{
-			sum = sum + CARDLIST.length+1;
+			this.sum = this.sum + CARDLIST.length+1;
 		}
 		if(playerTwo.ACTIONS === ACTIONS.CARD){
-			sum = sum + CARDLIST.indexOf(playerTwo.card);
+			this.sum = this.sum + CARDLIST.indexOf(playerTwo.card);
 		}
 		else{
-			sum = sum + CARDLIST.length+2;
+			this.sum = this.sum + CARDLIST.length+2;
 		}
 		this.val = this.sum % outOf;
 		return this.val;
@@ -572,6 +572,7 @@ function Board(width,height,canvas){
 	}
 
 	this.attackWithCard = function(attacker, defender, attackCard){
+		this.resolveHit = false;
 		this.isAllowedbyTrap = true;
 		if(defender.trap && defender.trap.triggerOnCard(attackCard)){
 			this.isAllowedbyTrap = defender.trap.trigger(attacker, defender, attackCard);
@@ -611,7 +612,7 @@ function Board(width,height,canvas){
 							defender.barrier = null;
 						}
 						console.log("it hit! Dealing " + (this.damageDealt - this.damageReduced) + " damage!");
-						return (this.damageDealt - this.damageReduced) > 0;
+						this.resolveHit = (this.damageDealt - this.damageReduced) > 0;
 					}
 					else{
 						console.log("it hit! But Player " + defender.name + " was Invincible.");
@@ -619,7 +620,7 @@ function Board(width,height,canvas){
 					defender.bubbled = 0;
 					if(this.actuallyHit){
 						attackCard.effecthit(attacker, defender);
-						if(attackCard.stunAdded){
+						if(attackCard.stunAdded && defender.stunned < 1){
 							defender.stunned = 1;
 						}
 						if(attackCard.uninstallAdded){
@@ -640,6 +641,7 @@ function Board(width,height,canvas){
 				console.log("it missed!");
 			}
 		}
+		return this.resolveHit;
 	}
 	
 	this.calculateOneHitMultiplier = function(attacker, defender, attackCard){
@@ -839,11 +841,19 @@ function Board(width,height,canvas){
 			player = playerTwo;
 			document.getElementById("combatWindow").style.float='left';
 			document.getElementById("customWindow").style.float='right';
+			document.getElementById("confirm").style.float='right';
+			document.getElementById("nextturn").style.float='right';
+			document.getElementById("pick_canvas").style.float='right';
+			document.getElementById("sel").style.float='left';
 		}
 		else{
 			player = playerOne;
 			document.getElementById("combatWindow").style.float='right';
 			document.getElementById("customWindow").style.float='left';
+			document.getElementById("confirm").style.float='left';
+			document.getElementById("nextturn").style.float='left';
+			document.getElementById("pick_canvas").style.float='left';
+			document.getElementById("sel").style.float='right';
 		}
 		customPick.drawHand();
 	}

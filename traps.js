@@ -62,7 +62,16 @@ function BN6AntiDmgTrap(){
 		defender.trap = null;
 	};
 	this.dodgesDamage = function(attacker, theCard, one, all){
-		this.baseDamage = theCard.damage + theCard.addDamage + attacker.bonusDamage;
+		if(!theCard.damage){
+			theCard.damage = 0;
+		}
+		if(!theCard.addDamage){
+			theCard.addDamage = 0;
+		}
+		if(!theCard.boostDamage){
+			theCard.boostDamage = 0;
+		}
+		this.baseDamage = theCard.damage + theCard.addDamage + theCard.boostDamage;
 		return this.baseDamage * one * all;
 	};
 }
@@ -127,8 +136,7 @@ function BN6BodyGuardTrap(){
 		defender.trap = null;
 	};
 	this.dodgesDamage = function(attacker, theCard, one, all){
-		this.baseDamage = theCard.damage + theCard.addDamage + attacker.bonusDamage;
-		return this.baseDamage * one * all;
+		return (new BN6AntiDmgTrap).dodgesDamage(attacker, theCard, one, all);
 	};
 }
 

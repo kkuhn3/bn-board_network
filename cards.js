@@ -273,7 +273,7 @@ function AREAGRAB(){
 		}
 	};
 	this.effecthit= function(attacker, defender){
-		this.column = AREAGRAB.affectedColumn(attacker, defender);
+		this.column = (new AREAGRAB()).affectedColumn(attacker, defender);
 		if(attacker.name === "one"){
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
@@ -296,7 +296,7 @@ function AREAGRAB(){
 		}
 	};
 	this.effectmiss= function(attacker, defender){
-		AREAGRAB.effecthit(attacker, defender);
+		(new AREAGRAB()).effecthit(attacker, defender);
 	};
 }
 
@@ -423,7 +423,7 @@ function Cards(){
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS).concat(BN6PAS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
-		//TEMPDECKLIST = [new BN6HellBurner1(), new BN6HellBurner1(), new BN6HellBurner1(), new BN6Cannon(), new BN6Cannon()];
+		//TEMPDECKLIST = [new BN6Aquaman(), new BN6Fastgauge(), new BN6Slowgauge(), new BN6Fullcust(), new BN6Cannon()];
 	}
 
 	this.setDeck = function(newDeckID){
