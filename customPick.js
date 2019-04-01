@@ -4,6 +4,7 @@ var SELECTEDIND = [];
 var DECK = [];
 
 function CustomPick(canvas){
+	this.inCustom = true;
 	this.canvas = canvas;
 	this.handSize = 5;
 	this.drawSize = 5;
@@ -24,14 +25,9 @@ function CustomPick(canvas){
 		if(playerSelected){
 			document.getElementById("confirm").style.display='block';
 		}
-		if(player.name === playerOne.name){
-			document.getElementById("p1buster").style.display='none';
-			document.getElementById("p1card").style.display='none';
-		}
-		else{
-			document.getElementById("p2buster").style.display='none';
-			document.getElementById("p2card").style.display='none';
-		}
+		document.getElementById("useBuster").style.display='none';
+		document.getElementById("useCard").style.display='none';
+		this.inCustom = true;
 		this.drawHand();
 	}
 
@@ -122,6 +118,7 @@ function CustomPick(canvas){
 
 	this.confirm = function(){
 		movementEnabled = true;
+		this.inCustom = false;
 		timer.currentturn = 0;
 		HAND = this.buildHand(SELECTED);
 		for(var i=0;i<SELECTEDIND.length;i++){
@@ -132,14 +129,8 @@ function CustomPick(canvas){
 		document.getElementById("pick_canvas").style.display='none';
 		document.getElementById("custom_canvas").style.display='block';
 		document.getElementById("confirm").style.display='none';
-		if(player.name === "one"){
-			document.getElementById("p1buster").style.display='block';
-			document.getElementById("p1card").style.display='block';
-		}
-		else {
-			document.getElementById("p2buster").style.display='block';
-			document.getElementById("p2card").style.display='block';
-		}
+		document.getElementById("useBuster").style.display='block';
+		document.getElementById("useCard").style.display='block';
 	}
 	
 	this.buildHand = function(selectedList){

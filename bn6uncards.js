@@ -20,7 +20,7 @@ function BN6AntiSwordSlashes(){
 
 function BN6Buster(){
 	this.id="BN6Buster";
-	this.name="BN6Buster";
+	this.name="Buster";
 	this.image=BN6BusterUpIMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.mb=99;
@@ -39,7 +39,7 @@ function BN6Buster(){
 
 function BN6BugThunderBuster(){
 	this.id="BN6BugThunderBuster";
-	this.name="BN6BugThunderBuster";
+	this.name="Bug-Thunder";
 	this.image=BN6BugThunderBuster;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.mb=99;
@@ -87,7 +87,7 @@ function BN6BugThunderBuster(){
 
 function BN6BugSwordBuster(){
 	this.id="BN6BugSwordBuster";
-	this.name="BN6BugSwordBuster";
+	this.name="Bug-Sword";
 	this.image=BN6BugSwordBuster;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.mb=99;

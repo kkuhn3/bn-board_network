@@ -558,11 +558,9 @@ function Board(width,height,canvas){
 		}
 		if(attacker.stunned < 1 && attacker.bubbled < 1 && attacker.frozen < 1){
 			if(attacker.action === ACTIONS.BUSTER){
-				console.log("player " + attacker.name + " used: their BUSTER");
 				return this.attackWithCard(attacker, defender, attacker.busterType);
 			}
 			else if(attacker.action === ACTIONS.CARD || attacker.action === ACTIONS.SPECIAL){
-				console.log("player " + attacker.name + " used: " + attacker.card.name);
 				return this.attackWithCard(attacker, defender, attacker.card);
 			}
 		}
@@ -572,6 +570,7 @@ function Board(width,height,canvas){
 	}
 
 	this.attackWithCard = function(attacker, defender, attackCard){
+		console.log("player " + attacker.name + " used: " + attacker.card.name);
 		this.resolveHit = false;
 		this.isAllowedbyTrap = true;
 		if(defender.trap && defender.trap.triggerOnCard(attackCard)){
@@ -632,9 +631,11 @@ function Board(width,height,canvas){
 				}
 				else{
 					defender.guard.onHit(attacker, defender);
-					console.log("it was reflected!");
+					console.log("it was guarded!");
 				}
-				attackCard.effectmiss(attacker, defender);
+				if(!this.resolveHit){
+					attackCard.effectmiss(attacker, defender);
+				}
 			}
 			else{
 				attackCard.effectmiss(attacker, defender);
@@ -845,6 +846,9 @@ function Board(width,height,canvas){
 			document.getElementById("nextturn").style.float='right';
 			document.getElementById("pick_canvas").style.float='right';
 			document.getElementById("sel").style.float='left';
+			document.getElementById("useBuster").style.float='right';
+			document.getElementById("useCard").style.float='right';
+			document.getElementById("special").style.float='right';
 		}
 		else{
 			player = playerOne;
@@ -854,6 +858,9 @@ function Board(width,height,canvas){
 			document.getElementById("nextturn").style.float='left';
 			document.getElementById("pick_canvas").style.float='left';
 			document.getElementById("sel").style.float='right';
+			document.getElementById("useBuster").style.float='left';
+			document.getElementById("useCard").style.float='left';
+			document.getElementById("special").style.float='left';
 		}
 		customPick.drawHand();
 	}

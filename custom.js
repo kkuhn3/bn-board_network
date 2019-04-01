@@ -15,6 +15,15 @@ function Custom(canvas){
 		for(var i=0;i<this.handSize;i++){
 			this.drawCard(i);
 		}
+		if(!HAND[0] || customPick.inCustom){
+			document.getElementById("useCard").style.display='none';
+		}
+		else{
+			document.getElementById("useCard").style.display='block';
+			document.getElementById("useCard").innerHTML=HAND[0].name;
+			document.getElementById("useCard").value=HAND[0].name;
+		}
+		document.getElementById("useBuster").innerHTML=player.busterType.name;
 	}
 
 	this.drawCard = function(x){	
@@ -74,40 +83,22 @@ function Custom(canvas){
 		}
 	}
 	
-	this.buster = function(playerNum){
+	this.buster = function(){
 		document.getElementById("nextturn").style.display='block';
-		if(playerNum === 1){
-			if(playerOne.action === ACTIONS.CARD){
-				playerOne.card = null;
-			}
-			playerOne.action = ACTIONS.BUSTER;
+		if(player.action === ACTIONS.CARD){
+			player.card = null;
 		}
-		else if (playerNum === 2){
-			if(playerTwo.action === ACTIONS.CARD){
-				playerTwo.card = null;
-			}
-			playerTwo.action = ACTIONS.BUSTER;
-		}
+		player.action = ACTIONS.BUSTER;
 	}
 
-	this.card = function(playerNum){
+	this.card = function(){
 		document.getElementById("nextturn").style.display='block';
 		if(HAND.length === 0){
-			this.buster(playerNum);
+			this.buster();
 		}
 		else{
-			if(playerNum === 1){
-				if(playerOne.action !== ACTIONS.CARD){
-					playerOne.action = ACTIONS.CARD;
-					playerOne.card = HAND[0];
-				}
-			}
-			else if (playerNum === 2){
-				if(playerTwo.action !== ACTIONS.CARD){
-					playerTwo.action = ACTIONS.CARD;
-					playerTwo.card = HAND[0];
-				}
-			}
+			player.action = ACTIONS.CARD;
+			player.card = HAND[0];
 		}
 	}
 	
@@ -117,6 +108,26 @@ function Custom(canvas){
 				HAND.shift();
 			}
 		}
+	}
+
+	this.useCardEnter = function(){
+		board.draw();
+		if(HAND[this.mouseCellY]){
+			board.showRange(player, HAND[this.mouseCellY]);
+		}
+	}
+
+	this.useCardExit = function(){
+		board.draw();
+	}
+
+	this.useBusterEnter = function(){
+		board.draw();
+		board.showRange(player, player.busterType);
+	}
+
+	this.useBusterExit = function(){
+		board.draw();
 	}
 
 	this.mouseDown = function(e){}.bind(this);

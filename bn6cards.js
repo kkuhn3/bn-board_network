@@ -361,12 +361,6 @@ function BN6GunSol1(){
 			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
 			document.getElementById("special").value ='Continue Using GunDelSol!';
 			document.getElementById("special").onclick=function () { (new BN6GunSol1()).useSpecial((new BN6GunSol1())); };
-			if(attacker.name === "one"){
-				document.getElementById("special").style.float='left';
-			}
-			else{
-				document.getElementById("special").style.float='right';
-			}
 		}
 	};
 	this.useSpecial= function(card){
@@ -427,12 +421,6 @@ function BN6GunSol2(){
 			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
 			document.getElementById("special").value ='Continue Using GunDelSol!';
 			document.getElementById("special").onclick= function () { (new BN6GunSol2()).useSpecial((new BN6GunSol2())); };
-			if(attacker.name === "one"){
-				document.getElementById("special").style.float='left';
-			}
-			else{
-				document.getElementById("special").style.float='right';
-			}
 		}
 	};
 	this.useSpecial= function(card){
@@ -468,12 +456,6 @@ function BN6GunSol3(){
 			document.getElementById("special").innerHTML ='Continue Using GunDelSol!';
 			document.getElementById("special").value ='Continue Using GunDelSol!';
 			document.getElementById("special").onclick =function () { (new BN6GunSol3()).useSpecial((new BN6GunSol3())); };
-			if(attacker.name === "one"){
-				document.getElementById("special").style.float='left';
-			}
-			else{
-				document.getElementById("special").style.float='right';
-			}
 		}
 	};
 	this.useSpecial= function(card){
