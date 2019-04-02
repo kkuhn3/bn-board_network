@@ -16,7 +16,7 @@ function FolderBuilder(){
 		}
 		this.buildTable();
 	}
-	sortDirs = {'name':0,'damage':0,'hits':0}
+	sortDirs = {'name':0,'damage':0,'hits':0,'copies':0,'goo':0};
 	
 	this.buildTable = function(){
 		var table = document.getElementById("myTable");
@@ -25,8 +25,8 @@ function FolderBuilder(){
 				    		<th onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Name</th> 
 				    		<th onclick="folderBuilder.sortFolderBuilder('damage',${!sortDirs.damage})">Damage</th>
 				    		<th onclick="folderBuilder.sortFolderBuilder('hits',${!sortDirs.hits})">Hits</th>
-				    		<th onclick="folderBuilder.sortFolderBuilder(4)">Copies</th>
-				    		<th onclick="folderBuilder.sortFolderBuilder(5)">GOO</th>
+				    		<th onclick="folderBuilder.sortFolderBuilder('copies',${!sortDirs.copies})">Copies</th>
+				    		<th onclick="folderBuilder.sortFolderBuilder('goo',${!sortDirs.goo})">GOO</th>
 				  		 </tr>`;
 
 		for(var i = 0; i < BUILDABLECARDS.length; i++){
@@ -41,6 +41,8 @@ function FolderBuilder(){
 	  		cell1.innerHTML = BUILDABLECARDS[i].name;
 	  		cell2.innerHTML = BUILDABLECARDS[i].damage;
 	  		cell3.innerHTML = BUILDABLECARDS[i].hits;
+	  		cell4.innerHTML = BUILDABLECARDS[i].copies;
+	  		cell5.innerHTML = BUILDABLECARDS[i].goo;
 		}
 	};
 }

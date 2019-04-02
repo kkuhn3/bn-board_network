@@ -4,7 +4,8 @@ function BN6AntiSwordSlashes(){
 	this.name="BN6AntiSwordSlashes";
 	this.image=BN6AntiSwordIMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="standard";
 	this.damage=100;
 	this.boostDamage=0;
@@ -23,7 +24,8 @@ function BN6Buster(){
 	this.name="Buster";
 	this.image=BN6BusterUpIMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="standard";
 	this.damage=10;
 	this.boostDamage=0;
@@ -42,7 +44,8 @@ function BN6BugThunderBuster(){
 	this.name="Bug-Thunder";
 	this.image=BN6BugThunderBuster;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=200;
 	this.boostDamage=0;
@@ -90,7 +93,8 @@ function BN6BugSwordBuster(){
 	this.name="Bug-Sword";
 	this.image=BN6BugSwordBuster;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=200;
 	this.boostDamage=0;
@@ -116,7 +120,8 @@ function BN6AntiDamageShuriken(){
 	this.name="BN6AntiDamageShuriken";
 	this.image=BN6AntiDamageShuriken;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="standard";
 	this.damage=100;
 	this.boostDamage=0;

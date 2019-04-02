@@ -20,13 +20,10 @@ function CANNON1(){
 	this.image=cannon1;
 	// what codes it can be selected with. any character listed and * means all.
 	this.code=["A","B","C"];
-	// How much it "costs" to add this to a folder. -- TODO -- Add folder restrictions on MB.
-	// a. 0-19 MB - 5
-	// b. 20-29 MB - 4
-	// c. 30-39 MB - 3
-	// d. 40-49 MB - 2
-	// e. 50+ MB - 1
-	this.mb=0;
+	// whic set of cards it comes from.
+	this.goo="Debug";
+	// How many copies per folder
+	this.copies=5;
 	// What "level" of card it is.
 	this.rank="standard";
 	// how much damage it does on hit
@@ -74,7 +71,8 @@ function CANNON2(){
 	this.name="Cannon2";
 	this.image=cannon2;
 	this.code=["B","C","D"];
-	this.mb=0;
+	this.goo="Debug";
+	this.copies=5;
 	this.rank="standard";
 	this.damage=80;
 	this.boostDamage=0;
@@ -93,7 +91,8 @@ function CANNON3(){
 	this.name="Cannon3";
 	this.image=cannon3;
 	this.code=["C","D","E"];
-	this.mb=0;
+	this.goo="Debug";
+	this.copies=5;
 	this.rank="standard";
 	this.damage=120;
 	this.boostDamage=0;
@@ -112,7 +111,8 @@ function PIERCECANNON(){
 	this.name="Pierce Cannon";
 	this.image=piercecannon;
 	this.code=["D","E","F"];
-	this.mb=0;
+	this.goo="Debug";
+	this.copies=5;
 	this.rank="standard";
 	this.damage=100;
 	this.boostDamage=0;
@@ -151,7 +151,8 @@ function BREAKCANNON(){
 	this.name="Break Cannon";
 	this.image=breakcannon;
 	this.code=["E","F","G"];
-	this.mb=0;
+	this.goo="Debug";
+	this.copies=5;
 	this.rank="standard";
 	this.damage=100;
 	this.boostDamage=0;
@@ -170,7 +171,8 @@ function STUNCANNON(){
 	this.name="Stun Cannon";
 	this.image=stuncannon;
 	this.code=["F","G","H"];
-	this.mb=0;
+	this.goo="Debug";
+	this.copies=5;
 	this.rank="standard";
 	this.damage=100;
 	this.boostDamage=0;
@@ -193,10 +195,11 @@ function GUARD(){
 	this.name="Guard";
 	this.image=guard;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="Debug";
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits=1;
-	this.mb=0;
+	this.copies=5;
 	this.rank="standard";
 	this.priority=1;
 	this.elements=[];
@@ -214,10 +217,11 @@ function INVIS(){
 	this.name="Invis";
 	this.image=invis;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="Debug";
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.mb=0;
+	this.copies=5;
 	this.rank="standard";
 	this.priority=0;
 	this.elements=[];
@@ -235,10 +239,11 @@ function AREAGRAB(){
 	this.name="Area Grab";
 	this.image=areagrab;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="Debug";
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=1;
-	this.mb=0;
+	this.copies=5;
 	this.rank="standard";
 	this.priority=0;
 	this.elements=[];
@@ -305,10 +310,11 @@ function SWORD(){
 	this.name="Sword";
 	this.image=sword;
 	this.code=["G","H","I"];
+	this.goo="Debug";
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.mb=0;
+	this.copies=5;
 	this.rank="standard";
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -339,10 +345,11 @@ function WIDESWORD(){
 	this.name="Wide Sword";
 	this.image=widesword;
 	this.code=["H","I","J"];
+	this.goo="Debug";
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits=1;
-	this.mb=0;
+	this.copies=5;
 	this.rank="standard";
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];
@@ -373,10 +380,11 @@ function LONGSWORD(){
 	this.name="Long Sword";
 	this.image=longsword;
 	this.code=["I","J","K"];
+	this.goo="Debug";
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits=1;
-	this.mb=0;
+	this.copies=5;
 	this.rank="standard";
 	this.priority=1;
 	this.elements=[ELEMENTS.sword];

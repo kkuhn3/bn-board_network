@@ -4,7 +4,8 @@ function BN6GigaCan1(){
 	this.name="GigaCan1";
 	this.image=BN6CannonIMG;
 	this.code=["A", "B", "C"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=300;
 	this.boostDamage=0;
@@ -24,7 +25,8 @@ function BN6GigaCan2(){
 	this.name="GigaCan2";
 	this.image=BN6HiCannonIMG;
 	this.code=["L", "M", "N"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=400;
 	this.boostDamage=0;
@@ -44,7 +46,8 @@ function BN6GigaCan3(){
 	this.name="GigaCan3";
 	this.image=BN6MegaCannonIMG;
 	this.code=["R", "S", "T"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=400;
 	this.boostDamage=0;
@@ -64,7 +67,8 @@ function BN6WideBurner1(){
 	this.name="WideBurner1";
 	this.image=BN6HellBurner1IMG;
 	this.code=["F", "G", "H"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=300;
 	this.boostDamage=0;
@@ -95,7 +99,8 @@ function BN6WideBurner2(){
 	this.name="WideBurner2";
 	this.image=BN6HellBurner2IMG;
 	this.code=["S", "T", "U"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=350;
 	this.boostDamage=0;
@@ -115,7 +120,8 @@ function BN6WideBurner3(){
 	this.name="WideBurner3";
 	this.image=BN6HellBurner3IMG;
 	this.code=["C", "D", "E"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=400;
 	this.boostDamage=0;
@@ -135,7 +141,8 @@ function BN6FlameHook1(){
 	this.name="FlameHook1";
 	this.image=BN6FirePunch1IMG;
 	this.code=["D", "E", "F"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=300;
 	this.boostDamage=0;
@@ -166,7 +173,8 @@ function BN6FlameHook2(){
 	this.name="FlameHook2";
 	this.image=BN6FirePunch2IMG;
 	this.code=["R", "S", "T"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=350;
 	this.boostDamage=0;
@@ -186,7 +194,8 @@ function BN6FlameHook3(){
 	this.name="FlameHook3";
 	this.image=BN6FirePunch3IMG;
 	this.code=["A", "B", "C"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=400;
 	this.boostDamage=0;
@@ -206,7 +215,8 @@ function BN6PowerWave1(){
 	this.name="PowerWave1";
 	this.image=BN6WaveArm1IMG;
 	this.code=["E", "F", "G"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=400;
 	this.boostDamage=0;
@@ -253,7 +263,8 @@ function BN6PowerWave2(){
 	this.name="PowerWave2";
 	this.image=BN6WaveArm2IMG;
 	this.code=["L", "M", "N"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=500;
 	this.boostDamage=0;
@@ -273,7 +284,8 @@ function BN6PowerWave3(){
 	this.name="PowerWave3";
 	this.image=BN6WaveArm3IMG;
 	this.code=["R", "S", "T"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=600;
 	this.boostDamage=0;
@@ -293,7 +305,8 @@ function BN6CornPartyA(){
 	this.name="CornParty";
 	this.image=BN6CornShot1IMG;
 	this.code=["J", "K", "L"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=100;
 	this.boostDamage=0;
@@ -331,7 +344,8 @@ function BN6CornPartyB(){
 	this.name="CornParty";
 	this.image=BN6CornShot1IMG;
 	this.code=["C", "D", "E"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=100;
 	this.boostDamage=0;
@@ -355,7 +369,8 @@ function BN6CornPartyC(){
 	this.name="CornParty";
 	this.image=BN6CornShot1IMG;
 	this.code=["P", "Q", "R"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=100;
 	this.boostDamage=0;
@@ -379,7 +394,8 @@ function BN6ParallelShellA(){
 	this.name="ParallelShell";
 	this.image=BN6IronShell1IMG;
 	this.code=["J", "K", "L"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=350;
 	this.boostDamage=0;
@@ -433,7 +449,8 @@ function BN6ParallelShellB(){
 	this.name="ParallelShell";
 	this.image=BN6IronShell1IMG;
 	this.code=["C", "D", "E"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=350;
 	this.boostDamage=0;
@@ -453,7 +470,8 @@ function BN6ParallelShellC(){
 	this.name="ParallelShell";
 	this.image=BN6IronShell1IMG;
 	this.code=["L", "M", "N"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=350;
 	this.boostDamage=0;
@@ -473,7 +491,8 @@ function BN6StreamHeadA(){
 	this.name="StreamHead";
 	this.image=BN6AuraHead1IMG;
 	this.code=["B", "C", "D"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=150;
 	this.boostDamage=0;
@@ -503,7 +522,8 @@ function BN6StreamHeadB(){
 	this.name="StreamHead";
 	this.image=BN6AuraHead1IMG;
 	this.code=["D", "E", "F"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=150;
 	this.boostDamage=0;
@@ -523,7 +543,8 @@ function BN6StreamHeadC(){
 	this.name="StreamHead";
 	this.image=BN6AuraHead1IMG;
 	this.code=["F", "G", "H"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=150;
 	this.boostDamage=0;
@@ -543,7 +564,8 @@ function BN6HyperBurstA(){
 	this.name="HyperBurst";
 	this.image=BN6Spreader1IMG;
 	this.code=["L", "M", "N"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=60;
 	this.boostDamage=0;
@@ -563,7 +585,8 @@ function BN6HyperBurstB(){
 	this.name="HyperBurst";
 	this.image=BN6Spreader1IMG;
 	this.code=["A", "B", "C"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=60;
 	this.boostDamage=0;
@@ -583,7 +606,8 @@ function BN6HyperBurstC(){
 	this.name="HyperBurst";
 	this.image=BN6Spreader1IMG;
 	this.code=["Q", "R", "S"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=60;
 	this.boostDamage=0;
@@ -603,7 +627,8 @@ function BN6GreatYo(){
 	this.name="GreatYo";
 	this.image=BN6YoyoIMG;
 	this.code=["D", "E", "F"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=100;
 	this.boostDamage=0;
@@ -641,7 +666,8 @@ function BN6PitHoky(){
 	this.name="PitHoky";
 	this.image=BN6AirHockIMG;
 	this.code=["L", "M", "N"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=100;
 	this.boostDamage=0;
@@ -666,7 +692,8 @@ function BN6SuperWide(){
 	this.name="SuperWide";
 	this.image=BN6WideShotIMG;
 	this.code=["P", "Q", "R"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=150;
 	this.boostDamage=0;
@@ -698,7 +725,8 @@ function BN6GigaCountBombA(){
 	this.name="GigaCountBomb";
 	this.image=BN6TimeBomb1IMG;
 	this.code=["F", "G", "H"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=700;
 	this.boostDamage=0;
@@ -738,7 +766,8 @@ function BN6GigaCountBombB(){
 	this.name="GigaCountBomb";
 	this.image=BN6TimeBomb1IMG;
 	this.code=["C", "D", "E"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=700;
 	this.boostDamage=0;
@@ -778,7 +807,8 @@ function BN6GigaCountBombC(){
 	this.name="GigaCountBomb";
 	this.image=BN6TimeBomb1IMG;
 	this.code=["L", "M", "N"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=700;
 	this.boostDamage=0;
@@ -818,7 +848,8 @@ function BN6DestroyPulse(){
 	this.name="DestroyPulse";
 	this.image=BN6ElecPulse1IMG;
 	this.code=["J"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=400;
 	this.boostDamage=0;
@@ -844,7 +875,8 @@ function BN6LifeSwordA(){
 	this.name="LifeSword";
 	this.image=BN6SwordIMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=400;
 	this.boostDamage=0;
@@ -864,7 +896,8 @@ function BN6LifeSwordB(){
 	this.name="LifeSword";
 	this.image=BN6SwordIMG;
 	this.code=["B"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=400;
 	this.boostDamage=0;
@@ -884,7 +917,8 @@ function BN6PoisonPharoh(){
 	this.name="PoisonPharoh";
 	this.image=BN6AnubisIMG;
 	this.code=["B"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=400;
 	this.boostDamage=0;
@@ -912,7 +946,8 @@ function BN6BodyGuard(){
 	this.name="BodyGuard";
 	this.image=BN6AntiDmgIMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=100;
 	this.boostDamage=0;
@@ -934,7 +969,8 @@ function BN6DoubleHero(){
 	this.name="DoubleHero";
 	this.image=BN6BluesSPIMG;
 	this.code=["B"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=60;
 	this.boostDamage=0;
@@ -954,7 +990,8 @@ function BN6DarkMessiahA(){
 	this.name="DarkMessiah";
 	this.image=BN6ForteIMG;
 	this.code=["F"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=300;
 	this.boostDamage=0;
@@ -987,7 +1024,8 @@ function BN6DarkMessiahB(){
 	this.name="DarkMessiah";
 	this.image=BN6ForteAnotherIMG;
 	this.code=["F"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=300;
 	this.boostDamage=0;
@@ -1010,7 +1048,8 @@ function BN6MasterCross(){
 	this.name="MasterCross";
 	this.image=BN6FirePunch3IMG;
 	this.code=["A"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=100;
 	this.boostDamage=0;
@@ -1030,7 +1069,8 @@ function BN6SunAndMoon(){
 	this.name="SunAndMoon";
 	this.image=BN6MeteorsIMG;
 	this.code=["R"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=200;
 	this.boostDamage=0;
@@ -1073,7 +1113,8 @@ function BN6TwinLeadersA(){
 	this.name="TwinLeaders";
 	this.image=BN6ColonelSPIMG;
 	this.code=["B"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=200;
 	this.boostDamage=0;
@@ -1105,7 +1146,8 @@ function BN6TwinLeadersB(){
 	this.name="TwinLeaders";
 	this.image=BN6ColonelSPIMG;
 	this.code=["C"];
-	this.mb=99;
+	this.goo="BN6";
+	this.copies=1;
 	this.rank="giga";
 	this.damage=200;
 	this.boostDamage=0;
