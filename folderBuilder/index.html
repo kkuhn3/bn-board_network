@@ -1,0 +1,325 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="index.css">
+	</head>
+	<body>
+		<div style='display:none;' id='imagePreloader'>
+			<!-- Inital Card list -->
+			<img id='cannon1' src='../img/cards/cannon1.png'/>
+			<img id='cannon2' src='../img/cards/cannon2.png'/>
+			<img id='cannon3' src='../img/cards/cannon3.png'/>
+			<img id='stuncannon' src='../img/cards/stuncannon.png'/>
+			<img id='sword' src='../img/cards/sword.png'/>
+			<img id='widesword' src='../img/cards/widesword.png'/>
+			<img id='longsword' src='../img/cards/longsword.png'/>
+			<img id='invis' src='../img/cards/invis.png'/>
+			<img id='guard' src='../img/cards/guard.png'/>
+			<img id='areagrab' src='../img/cards/areagrab.png'/>
+			<img id='piercecannon' src='../img/cards/piercecannon.png'/>
+			<img id='breakcannon' src='../img/cards/breakcannon.png'/>
+			
+			<!-- BN6 Card list -->
+			<img id='BN6CannonIMG' src='../img/cards/BN6/BN6Cannon.png'/>
+			<img id='BN6HiCannonIMG' src='../img/cards/BN6/BN6HiCannon.png'/>
+			<img id='BN6MegaCannonIMG' src='../img/cards/BN6/BN6MegaCannon.png'/>
+			<img id='BN6AirShotIMG' src='../img/cards/BN6/BN6AirShot.png'/>
+			<img id='BN6Vulcan1IMG' src='../img/cards/BN6/BN6Vulcan1.png'/>
+			<img id='BN6Vulcan2IMG' src='../img/cards/BN6/BN6Vulcan2.png'/>
+			<img id='BN6Vulcan3IMG' src='../img/cards/BN6/BN6Vulcan3.png'/>
+			<img id='BN6SuperVulcanIMG' src='../img/cards/BN6/BN6SuperVulcan.png'/>
+			<img id='BN6Spreader1IMG' src='../img/cards/BN6/BN6Spreader1.png'/>
+			<img id='BN6Spreader2IMG' src='../img/cards/BN6/BN6Spreader2.png'/>
+			<img id='BN6Spreader3IMG' src='../img/cards/BN6/BN6Spreader3.png'/>
+			<img id='BN6BigTank1IMG' src='../img/cards/BN6/BN6BigTank1.png'/>
+			<img id='BN6BigTank2IMG' src='../img/cards/BN6/BN6BigTank2.png'/>
+			<img id='BN6BigTank3IMG' src='../img/cards/BN6/BN6BigTank3.png'/>
+			<img id='BN6GunSol1IMG' src='../img/cards/BN6/BN6GunSol1.png'/>
+			<img id='BN6GunSol2IMG' src='../img/cards/BN6/BN6GunSol2.png'/>
+			<img id='BN6GunSol3IMG' src='../img/cards/BN6/BN6GunSol3.png'/>
+			<img id='BN6YoyoIMG' src='../img/cards/BN6/BN6Yoyo.png'/>
+			<img id='BN6HellBurner1IMG' src='../img/cards/BN6/BN6HellBurner1.png'/>
+			<img id='BN6HellBurner2IMG' src='../img/cards/BN6/BN6HellBurner2.png'/>
+			<img id='BN6HellBurner3IMG' src='../img/cards/BN6/BN6HellBurner3.png'/>
+			<img id='BN6WideShotIMG' src='../img/cards/BN6/BN6WideShot.png'/>
+			<img id='BN6TrainArrow1IMG' src='../img/cards/BN6/BN6TrainArrow1.png'/>
+			<img id='BN6TrainArrow2IMG' src='../img/cards/BN6/BN6Chip024.png'/>
+			<img id='BN6TrainArrow3IMG' src='../img/cards/BN6/BN6Chip025.png'/>
+			<img id='BN6BubbleStar1IMG' src='../img/cards/BN6/BN6Chip026.png'/>
+			<img id='BN6BubbleStar2IMG' src='../img/cards/BN6/BN6Chip027.png'/>
+			<img id='BN6BubbleStar3IMG' src='../img/cards/BN6/BN6Chip028.png'/>
+			<img id='BN6ThunderIMG' src='../img/cards/BN6/BN6Chip029.png'/>
+			<img id='BN6DollThunder1IMG' src='../img/cards/BN6/BN6Chip030.png'/>
+			<img id='BN6DollThunder2IMG' src='../img/cards/BN6/BN6Chip031.png'/>
+			<img id='BN6DollThunder3IMG' src='../img/cards/BN6/BN6Chip032.png'/>
+			<img id='BN6ElecPulse1IMG' src='../img/cards/BN6/BN6Chip033.png'/>
+			<img id='BN6ElecPulse2IMG' src='../img/cards/BN6/BN6Chip034.png'/>
+			<img id='BN6ElecPulse3IMG' src='../img/cards/BN6/BN6Chip035.png'/>
+			<img id='BN6CornShot1IMG' src='../img/cards/BN6/BN6Chip036.png'/>
+			<img id='BN6CornShot2IMG' src='../img/cards/BN6/BN6Chip037.png'/>
+			<img id='BN6CornShot3IMG' src='../img/cards/BN6/BN6Chip038.png'/>
+			<img id='BN6RiskyHoney1IMG' src='../img/cards/BN6/BN6Chip039.png'/>
+			<img id='BN6RiskyHoney2IMG' src='../img/cards/BN6/BN6Chip040.png'/>
+			<img id='BN6RiskyHoney3IMG' src='../img/cards/BN6/BN6Chip041.png'/>
+			<img id='BN6RollingLog1IMG' src='../img/cards/BN6/BN6Chip042.png'/>
+			<img id='BN6RollingLog2IMG' src='../img/cards/BN6/BN6Chip043.png'/>
+			<img id='BN6RollingLog3IMG' src='../img/cards/BN6/BN6Chip044.png'/>
+			<img id='BN6IronShell1IMG' src='../img/cards/BN6/BN6Chip045.png'/>
+			<img id='BN6IronShell2IMG' src='../img/cards/BN6/BN6Chip046.png'/>
+			<img id='BN6IronShell3IMG' src='../img/cards/BN6/BN6Chip047.png'/>
+			<img id='BN6AuraHead1IMG' src='../img/cards/BN6/BN6Chip048.png'/>
+			<img id='BN6AuraHead2IMG' src='../img/cards/BN6/BN6Chip049.png'/>
+			<img id='BN6AuraHead3IMG' src='../img/cards/BN6/BN6Chip050.png'/>
+			<img id='BN6AirHockIMG' src='../img/cards/BN6/BN6Chip051.png'/>
+			<img id='BN6DrillArmIMG' src='../img/cards/BN6/BN6Chip052.png'/>
+			<img id='BN6TornadoIMG' src='../img/cards/BN6/BN6Chip053.png'/>
+			<img id='BN6NoiseStormIMG' src='../img/cards/BN6/BN6Chip054.png'/>
+			<img id='BN6MachineGun1IMG' src='../img/cards/BN6/BN6Chip055.png'/>
+			<img id='BN6MachineGun2IMG' src='../img/cards/BN6/BN6Chip056.png'/>
+			<img id='BN6MachineGun3IMG' src='../img/cards/BN6/BN6Chip057.png'/>
+			<img id='BN6MiniBombIMG' src='../img/cards/BN6/BN6Chip058.png'/>
+			<img id='BN6BigBombIMG' src='../img/cards/BN6/BN6Chip059.png'/>
+			<img id='BN6EnergyBombIMG' src='../img/cards/BN6/BN6Chip060.png'/>
+			<img id='BN6MegEnBombIMG' src='../img/cards/BN6/BN6Chip061.png'/>
+			<img id='BN6FlashBomb1IMG' src='../img/cards/BN6/BN6Chip062.png'/>
+			<img id='BN6FlashBomb2IMG' src='../img/cards/BN6/BN6Chip063.png'/>
+			<img id='BN6FlashBomb3IMG' src='../img/cards/BN6/BN6Chip064.png'/>
+			<img id='BN6BlackBombIMG' src='../img/cards/BN6/BN6Chip065.png'/>
+			<img id='BN6BugBombIMG' src='../img/cards/BN6/BN6Chip066.png'/>
+			<img id='BN6GrassSeedIMG' src='../img/cards/BN6/BN6Chip067.png'/>
+			<img id='BN6IceSeedIMG' src='../img/cards/BN6/BN6Chip068.png'/>
+			<img id='BN6PoisonSeedIMG' src='../img/cards/BN6/BN6Chip069.png'/>
+			<img id='BN6SwordIMG' src='../img/cards/BN6/BN6Chip070.png'/>
+			<img id='BN6WideSwordIMG' src='../img/cards/BN6/BN6Chip071.png'/>
+			<img id='BN6LongSwordIMG' src='../img/cards/BN6/BN6Chip072.png'/>
+			<img id='BN6WideBladeIMG' src='../img/cards/BN6/BN6Chip073.png'/>
+			<img id='BN6LongBladeIMG' src='../img/cards/BN6/BN6Chip074.png'/>
+			<img id='BN6FireSwordIMG' src='../img/cards/BN6/BN6Chip075.png'/>
+			<img id='BN6AquaSwordIMG' src='../img/cards/BN6/BN6Chip076.png'/>
+			<img id='BN6ElecSwordIMG' src='../img/cards/BN6/BN6Chip077.png'/>
+			<img id='BN6WoodSwordIMG' src='../img/cards/BN6/BN6Chip078.png'/>
+			<img id='BN6WindRacketIMG' src='../img/cards/BN6/BN6Chip079.png'/>
+			<img id='BN6FumikomizanIMG' src='../img/cards/BN6/BN6Chip080.png'/>
+			<img id='BN6VarSwordIMG' src='../img/cards/BN6/BN6Chip081.png'/>
+			<img id='BN6NeoVarSwordIMG' src='../img/cards/BN6/BN6Chip082.png'/>
+			<img id='BN6KunaiIMG' src='../img/cards/BN6/BN6Chip083.png'/>
+			<img id='BN6MuramasaIMG' src='../img/cards/BN6/BN6Chip084.png'/>
+			<img id='BN6MachineSwordIMG' src='../img/cards/BN6/BN6Chip085.png'/>
+			<img id='BN6ElementSwordIMG' src='../img/cards/BN6/BN6Chip086.png'/>
+			<img id='BN6AssassinSwordIMG' src='../img/cards/BN6/BN6Chip087.png'/>
+			<img id='BN6CrackShootIMG' src='../img/cards/BN6/BN6Chip088.png'/>
+			<img id='BN6DoubleShootIMG' src='../img/cards/BN6/BN6Chip089.png'/>
+			<img id='BN6TripleShootIMG' src='../img/cards/BN6/BN6Chip090.png'/>
+			<img id='BN6ReflectMet1IMG' src='../img/cards/BN6/BN6Chip091.png'/>
+			<img id='BN6ReflectMet2IMG' src='../img/cards/BN6/BN6Chip092.png'/>
+			<img id='BN6ReflectMet3IMG' src='../img/cards/BN6/BN6Chip093.png'/>
+			<img id='BN6WaveArm1IMG' src='../img/cards/BN6/BN6Chip094.png'/>
+			<img id='BN6WaveArm2IMG' src='../img/cards/BN6/BN6Chip095.png'/>
+			<img id='BN6WaveArm3IMG' src='../img/cards/BN6/BN6Chip096.png'/>
+			<img id='BN6SandWorm1IMG' src='../img/cards/BN6/BN6Chip097.png'/>
+			<img id='BN6SandWorm2IMG' src='../img/cards/BN6/BN6Chip098.png'/>
+			<img id='BN6SandWorm3IMG' src='../img/cards/BN6/BN6Chip099.png'/>
+			<img id='BN6SummonBlack1IMG' src='../img/cards/BN6/BN6Chip100.png'/>
+			<img id='BN6SummonBlack2IMG' src='../img/cards/BN6/BN6Chip101.png'/>
+			<img id='BN6SummonBlack3IMG' src='../img/cards/BN6/BN6Chip102.png'/>
+			<img id='BN6SnakeIMG' src='../img/cards/BN6/BN6Chip103.png'/>
+			<img id='BN6NumberBallIMG' src='../img/cards/BN6/BN6Chip104.png'/>
+			<img id='BN6FirePunch1IMG' src='../img/cards/BN6/BN6Chip105.png'/>
+			<img id='BN6FirePunch2IMG' src='../img/cards/BN6/BN6Chip106.png'/>
+			<img id='BN6FirePunch3IMG' src='../img/cards/BN6/BN6Chip107.png'/>
+			<img id='BN6BurnScare1IMG' src='../img/cards/BN6/BN6Chip108.png'/>
+			<img id='BN6BurnScare2IMG' src='../img/cards/BN6/BN6Chip109.png'/>
+			<img id='BN6BurnScare3IMG' src='../img/cards/BN6/BN6Chip110.png'/>
+			<img id='BN6MeteorsIMG' src='../img/cards/BN6/BN6Chip111.png'/>
+			<img id='BN6AquaNeedle1IMG' src='../img/cards/BN6/BN6Chip112.png'/>
+			<img id='BN6AquaNeedle2IMG' src='../img/cards/BN6/BN6Chip113.png'/>
+			<img id='BN6AquaNeedle3IMG' src='../img/cards/BN6/BN6Chip114.png'/>
+			<img id='BN6BlizzardBallIMG' src='../img/cards/BN6/BN6Chip115.png'/>
+			<img id='BN6KillerSensor1IMG' src='../img/cards/BN6/BN6Chip116.png'/>
+			<img id='BN6KillerSensor2IMG' src='../img/cards/BN6/BN6Chip117.png'/>
+			<img id='BN6KillerSensor3IMG' src='../img/cards/BN6/BN6Chip118.png'/>
+			<img id='BN6BoomerangIMG' src='../img/cards/BN6/BN6Chip119.png'/>
+			<img id='BN6HiBoomerangIMG' src='../img/cards/BN6/BN6Chip120.png'/>
+			<img id='BN6MegaBoomerangIMG' src='../img/cards/BN6/BN6Chip121.png'/>
+			<img id='BN6LanceIMG' src='../img/cards/BN6/BN6Chip122.png'/>
+			<img id='BN6HeatDragonIMG' src='../img/cards/BN6/BN6Chip123.png'/>
+			<img id='BN6ElecDragonIMG' src='../img/cards/BN6/BN6Chip124.png'/>
+			<img id='BN6AquaDragonIMG' src='../img/cards/BN6/BN6Chip125.png'/>
+			<img id='BN6WoodDragonIMG' src='../img/cards/BN6/BN6Chip126.png'/>
+			<img id='BN6GolemPunch1IMG' src='../img/cards/BN6/BN6Chip127.png'/>
+			<img id='BN6GolemPunch2IMG' src='../img/cards/BN6/BN6Chip128.png'/>
+			<img id='BN6GolemPunch3IMG' src='../img/cards/BN6/BN6Chip129.png'/>
+			<img id='BN6JusticeOneIMG' src='../img/cards/BN6/BN6Chip130.png'/>
+			<img id='BN6AirWheel1IMG' src='../img/cards/BN6/BN6Chip131.png'/>
+			<img id='BN6AirWheel2IMG' src='../img/cards/BN6/BN6Chip132.png'/>
+			<img id='BN6AirWheel3IMG' src='../img/cards/BN6/BN6Chip133.png'/>
+			<img id='BN6WindIMG' src='../img/cards/BN6/BN6Chip134.png'/>
+			<img id='BN6FanIMG' src='../img/cards/BN6/BN6Chip135.png'/>
+			<img id='BN6MagnumIMG' src='../img/cards/BN6/BN6Chip136.png'/>
+			<img id='BN6CircGunIMG' src='../img/cards/BN6/BN6Chip137.png'/>
+			<img id='BN6RockCubeIMG' src='../img/cards/BN6/BN6Chip138.png'/>
+			<img id='BN6LittleBoiler1IMG' src='../img/cards/BN6/BN6Chip139.png'/>
+			<img id='BN6LittleBoiler2IMG' src='../img/cards/BN6/BN6Chip140.png'/>
+			<img id='BN6LittleBoiler3IMG' src='../img/cards/BN6/BN6Chip141.png'/>
+			<img id='BN6AirRaid1IMG' src='../img/cards/BN6/BN6Chip142.png'/>
+			<img id='BN6AirRaid2IMG' src='../img/cards/BN6/BN6Chip143.png'/>
+			<img id='BN6AirRaid3IMG' src='../img/cards/BN6/BN6Chip144.png'/>
+			<img id='BN6TimeBomb1IMG' src='../img/cards/BN6/BN6Chip145.png'/>
+			<img id='BN6TimeBomb2IMG' src='../img/cards/BN6/BN6Chip146.png'/>
+			<img id='BN6TimeBomb3IMG' src='../img/cards/BN6/BN6Chip147.png'/>
+			<img id='BN6MineIMG' src='../img/cards/BN6/BN6Chip148.png'/>
+			<img id='BN6FanfareIMG' src='../img/cards/BN6/BN6Chip149.png'/>
+			<img id='BN6DiscordIMG' src='../img/cards/BN6/BN6Chip150.png'/>
+			<img id='BN6TimpaniIMG' src='../img/cards/BN6/BN6Chip151.png'/>
+			<img id='BN6SilenceIMG' src='../img/cards/BN6/BN6Chip152.png'/>
+			<img id='BN6VDollIMG' src='../img/cards/BN6/BN6Chip153.png'/>
+			<img id='BN6GuardianIMG' src='../img/cards/BN6/BN6Chip154.png'/>
+			<img id='BN6AnubisIMG' src='../img/cards/BN6/BN6Chip155.png'/>
+			<img id='BN6Recover10IMG' src='../img/cards/BN6/BN6Chip156.png'/>
+			<img id='BN6Recover30IMG' src='../img/cards/BN6/BN6Chip157.png'/>
+			<img id='BN6Recover50IMG' src='../img/cards/BN6/BN6Chip158.png'/>
+			<img id='BN6Recover80IMG' src='../img/cards/BN6/BN6Chip159.png'/>
+			<img id='BN6Recover120IMG' src='../img/cards/BN6/BN6Chip160.png'/>
+			<img id='BN6Recover150IMG' src='../img/cards/BN6/BN6Chip161.png'/>
+			<img id='BN6Recover200IMG' src='../img/cards/BN6/BN6Chip162.png'/>
+			<img id='BN6Recover300IMG' src='../img/cards/BN6/BN6Chip163.png'/>
+			<img id='BN6PanelGrabIMG' src='../img/cards/BN6/BN6Chip164.png'/>
+			<img id='BN6AreaGrabIMG' src='../img/cards/BN6/BN6Chip165.png'/>
+			<img id='BN6GrabBanishIMG' src='../img/cards/BN6/BN6Chip166.png'/>
+			<img id='BN6GrabRevengeIMG' src='../img/cards/BN6/BN6Chip167.png'/>
+			<img id='BN6PanelReturnIMG' src='../img/cards/BN6/BN6Chip168.png'/>
+			<img id='BN6DeathMatchIMG' src='../img/cards/BN6/BN6Chip169.png'/>
+			<img id='BN6HolyPanelIMG' src='../img/cards/BN6/BN6Chip170.png'/>
+			<img id='BN6SanctuaryIMG' src='../img/cards/BN6/BN6Chip171.png'/>
+			<img id='BN6ComingRoadIMG' src='../img/cards/BN6/BN6Chip172.png'/>
+			<img id='BN6GoingRoadIMG' src='../img/cards/BN6/BN6Chip173.png'/>
+			<img id='BN6SlowgaugeIMG' src='../img/cards/BN6/BN6Chip174.png'/>
+			<img id='BN6FastgaugeIMG' src='../img/cards/BN6/BN6Chip175.png'/>
+			<img id='BN6FullcustIMG' src='../img/cards/BN6/BN6Chip176.png'/>
+			<img id='BN6BusterUpIMG' src='../img/cards/BN6/BN6Chip177.png'/>
+			<img id='BN6BugFixIMG' src='../img/cards/BN6/BN6Chip178.png'/>
+			<img id='BN6InvisIMG' src='../img/cards/BN6/BN6Chip179.png'/>
+			<img id='BN6BarrierIMG' src='../img/cards/BN6/BN6Chip180.png'/>
+			<img id='BN6Barrier100IMG' src='../img/cards/BN6/BN6Chip181.png'/>
+			<img id='BN6Barrier200IMG' src='../img/cards/BN6/BN6Chip182.png'/>
+			<img id='BN6BubbleWrapIMG' src='../img/cards/BN6/BN6Chip183.png'/>
+			<img id='BN6LifeAuraIMG' src='../img/cards/BN6/BN6Chip184.png'/>
+			<img id='BN6MagneCoilIMG' src='../img/cards/BN6/BN6Chip185.png'/>
+			<img id='BN6ColonelsArmyIMG' src='../img/cards/BN6/BN6Chip186.png'/>
+			<img id='BN6ElementTrapIMG' src='../img/cards/BN6/BN6Chip187.png'/>
+			<img id='BN6AntiNaviIMG' src='../img/cards/BN6/BN6Chip188.png'/>
+			<img id='BN6AntiDmgIMG' src='../img/cards/BN6/BN6Chip189.png'/>
+			<img id='BN6AntiSwordIMG' src='../img/cards/BN6/BN6Chip190.png'/>
+			<img id='BN6AntiRecoverIMG' src='../img/cards/BN6/BN6Chip191.png'/>
+			<img id='BN6WhitepillIMG' src='../img/cards/BN6/BN6Chip192.png'/>
+			<img id='BN6UninstallIMG' src='../img/cards/BN6/BN6Chip193.png'/>
+			<img id='BN6CopyDamageIMG' src='../img/cards/BN6/BN6Chip194.png'/>
+			<img id='BN6LifeSynchroIMG' src='../img/cards/BN6/BN6Chip195.png'/>
+			<img id='BN6Attack10IMG' src='../img/cards/BN6/BN6Chip196.png'/>
+			<img id='BN6Attack30IMG' src='../img/cards/BN6/BN6Chip197.png'/>
+			<img id='BN6Navi20IMG' src='../img/cards/BN6/BN6Chip198.png'/>
+			<img id='BN6ColorpointIMG' src='../img/cards/BN6/BN6Chip199.png'/>
+			<img id='BN6DoublepointIMG' src='../img/cards/BN6/BN6Chip200.png'/>
+			<!-- Mega -->
+			<img id='BN6RollIMG' src='../img/cards/BN6/BN6MChip001.png'/>
+			<img id='BN6RollV2IMG' src='../img/cards/BN6/BN6MChip002.png'/>
+			<img id='BN6RollV3IMG' src='../img/cards/BN6/BN6MChip003.png'/>
+			<img id='BN6BluesIMG' src='../img/cards/BN6/BN6MChip004.png'/>
+			<img id='BN6BluesEXIMG' src='../img/cards/BN6/BN6MChip005.png'/>
+			<img id='BN6BluesSPIMG' src='../img/cards/BN6/BN6MChip006.png'/>
+			<img id='BN6AquamanIMG' src='../img/cards/BN6/BN6FMChip007.png'/>
+			<img id='BN6AquamanEXIMG' src='../img/cards/BN6/BN6FMChip008.png'/>
+			<img id='BN6AquamanSPIMG' src='../img/cards/BN6/BN6FMChip009.png'/>
+			<img id='BN6TomahawkmanIMG' src='../img/cards/BN6/BN6FMChip010.png'/>
+			<img id='BN6TomahawkmanEXIMG' src='../img/cards/BN6/BN6FMChip011.png'/>
+			<img id='BN6TomahawkmanSPIMG' src='../img/cards/BN6/BN6FMChip012.png'/>
+			<img id='BN6TengumanIMG' src='../img/cards/BN6/BN6FMChip013.png'/>
+			<img id='BN6TengumanEXIMG' src='../img/cards/BN6/BN6FMChip014.png'/>
+			<img id='BN6TengumanSPIMG' src='../img/cards/BN6/BN6FMChip015.png'/>
+			<img id='BN6GroundmanIMG' src='../img/cards/BN6/BN6FMChip016.png'/>
+			<img id='BN6GroundmanEXIMG' src='../img/cards/BN6/BN6FMChip017.png'/>
+			<img id='BN6GroundmanSPIMG' src='../img/cards/BN6/BN6FMChip018.png'/>
+			<img id='BN6DustmanIMG' src='../img/cards/BN6/BN6FMChip019.png'/>
+			<img id='BN6DustmanEXIMG' src='../img/cards/BN6/BN6FMChip020.png'/>
+			<img id='BN6DustmanSPIMG' src='../img/cards/BN6/BN6FMChip021.png'/>
+			<img id='BN6HeatmanIMG' src='../img/cards/BN6/BN6GMChip007.png'/>
+			<img id='BN6HeatmanEXIMG' src='../img/cards/BN6/BN6GMChip008.png'/>
+			<img id='BN6HeatmanSPIMG' src='../img/cards/BN6/BN6GMChip009.png'/>
+			<img id='BN6ElecmanIMG' src='../img/cards/BN6/BN6GMChip010.png'/>
+			<img id='BN6ElecmanEXIMG' src='../img/cards/BN6/BN6GMChip011.png'/>
+			<img id='BN6ElecmanSPIMG' src='../img/cards/BN6/BN6GMChip012.png'/>
+			<img id='BN6SlashmanIMG' src='../img/cards/BN6/BN6GMChip013.png'/>
+			<img id='BN6SlashmanEXIMG' src='../img/cards/BN6/BN6GMChip014.png'/>
+			<img id='BN6SlashmanSPIMG' src='../img/cards/BN6/BN6GMChip015.png'/>
+			<img id='BN6KillermanIMG' src='../img/cards/BN6/BN6GMChip016.png'/>
+			<img id='BN6KillermanEXIMG' src='../img/cards/BN6/BN6GMChip017.png'/>
+			<img id='BN6KillermanSPIMG' src='../img/cards/BN6/BN6GMChip018.png'/>
+			<img id='BN6ChargemanIMG' src='../img/cards/BN6/BN6GMChip019.png'/>
+			<img id='BN6ChargemanEXIMG' src='../img/cards/BN6/BN6GMChip020.png'/>
+			<img id='BN6ChargemanSPIMG' src='../img/cards/BN6/BN6GMChip021.png'/>
+			<img id='BN6BlastmanIMG' src='../img/cards/BN6/BN6MChip022.png'/>
+			<img id='BN6BlastmanEXIMG' src='../img/cards/BN6/BN6MChip023.png'/>
+			<img id='BN6BlastmanSPIMG' src='../img/cards/BN6/BN6MChip024.png'/>
+			<img id='BN6DivemanIMG' src='../img/cards/BN6/BN6MChip025.png'/>
+			<img id='BN6DivemanEXIMG' src='../img/cards/BN6/BN6MChip026.png'/>
+			<img id='BN6DivemanSPIMG' src='../img/cards/BN6/BN6MChip027.png'/>
+			<img id='BN6CircusmanIMG' src='../img/cards/BN6/BN6MChip028.png'/>
+			<img id='BN6CircusmanEXIMG' src='../img/cards/BN6/BN6MChip029.png'/>
+			<img id='BN6CircusmanSPIMG' src='../img/cards/BN6/BN6MChip030.png'/>
+			<img id='BN6JudgemanIMG' src='../img/cards/BN6/BN6MChip031.png'/>
+			<img id='BN6JudgemanEXIMG' src='../img/cards/BN6/BN6MChip032.png'/>
+			<img id='BN6JudgemanSPIMG' src='../img/cards/BN6/BN6MChip033.png'/>
+			<img id='BN6ElementmanIMG' src='../img/cards/BN6/BN6MChip034.png'/>
+			<img id='BN6ElementmanEXIMG' src='../img/cards/BN6/BN6MChip035.png'/>
+			<img id='BN6ElementmanSPIMG' src='../img/cards/BN6/BN6MChip036.png'/>
+			<img id='BN6ColonelIMG' src='../img/cards/BN6/BN6MChip037.png'/>
+			<img id='BN6ColonelEXIMG' src='../img/cards/BN6/BN6MChip038.png'/>
+			<img id='BN6ColonelSPIMG' src='../img/cards/BN6/BN6MChip039.png'/>
+			<!-- Giga -->
+			<img id='BN6ForteAnotherIMG' src='../img/cards/BN6/BN6FGChip001.png'/>
+			<img id='BN6MeteoKnucleIMG' src='../img/cards/BN6/BN6FGChip002.png'/>
+			<img id='BN6CrossSlashIMG' src='../img/cards/BN6/BN6FGChip003.png'/>
+			<img id='BN6SaitoBatchIMG' src='../img/cards/BN6/BN6FGChip004.png'/>
+			<img id='BN6BugThunderIMG' src='../img/cards/BN6/BN6FGChip005.png'/>
+			<img id='BN6ForteIMG' src='../img/cards/BN6/BN6GGChip001.png'/>
+			<img id='BN6GiantHookIMG' src='../img/cards/BN6/BN6GGChip002.png'/>
+			<img id='BN6DeltaRayEdgeIMG' src='../img/cards/BN6/BN6GGChip003.png'/>
+			<img id='BN6ColonelForceIMG' src='../img/cards/BN6/BN6GGChip004.png'/>
+			<img id='BN6BugSwordIMG' src='../img/cards/BN6/BN6GGChip005.png'/>
+		</div>
+		<div>
+			<div id='cardSelectionList' style='width: 800px; float: left;'>
+				<table id="myTable">
+					<tr>
+				    <th onclick="folderBuilder.sortFolderBuilder(1)">Image</th>
+				    <th onclick="folderBuilder.sortFolderBuilder(1)">Name</th>
+				    <th onclick="folderBuilder.sortFolderBuilder(2)">Damage</th>
+				    <th onclick="folderBuilder.sortFolderBuilder(3)">Hits</th>
+				    <th onclick="folderBuilder.sortFolderBuilder(4)">Copies</th>
+				    <th onclick="folderBuilder.sortFolderBuilder(5)">GOO</th>
+				  </tr>
+				</table>
+			</div>
+			<div id='folderViewer' style='width: 100px; float: right;'>
+
+			</div>
+		</div>
+	</body>
+	<script src='../cards.js'></script>
+	<script src='../bn6cards.js'></script>
+	<script src="../bn6uncards.js"></script>
+	<script src="../bn6folders.js"></script>
+	<script src="../bn6pas.js"></script>
+	<script src="folderBuilder.js"></script>
+	<script>
+		function init(){
+			cards = new Cards();
+			bn6cards = new Bn6Cards();
+			cards.initCards();
+
+			folderBuilder = new FolderBuilder();
+			folderBuilder.buildTable();
+		}
+		$(document).ready(function(){init();});
+	</script>
+</html>

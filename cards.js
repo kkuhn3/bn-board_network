@@ -405,6 +405,7 @@ function LONGSWORD(){
 var CARDLIST = null;
 var DEFAULTCARDS = [new CANNON1(), new CANNON2(), new CANNON3(), new PIERCECANNON(), new BREAKCANNON(), new STUNCANNON(), new GUARD(), new INVIS(), new AREAGRAB(), new SWORD(), new WIDESWORD(), new LONGSWORD()];
 var TEMPDECKLIST = null;
+var BUILDABLECARDS = null;
 
 var randomCard = function(){
 	return CARDLIST[Math.floor(Math.random() * CARDLIST.length)]
@@ -422,6 +423,7 @@ function Cards(){
 
 	this.initCards = function(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS).concat(BN6PAS);
+		BUILDABLECARDS = DEFAULTCARDS.concat(BN6CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS);
 		//TEMPDECKLIST = [new BN6Aquaman(), new BN6Fastgauge(), new BN6Slowgauge(), new BN6Fullcust(), new BN6Cannon()];
 	}
