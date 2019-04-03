@@ -289,15 +289,10 @@
 		</div>
 		<div>
 			<div id='cardSelectionList' style='width: 800px; float: left;'>
+				<div id='cardSelectionSearcher'>
+					<input type="text" id="cardNameSearch">
+				</div>
 				<table id="myTable">
-					<tr>
-				    <th onclick="folderBuilder.sortFolderBuilder(1)">Image</th>
-				    <th onclick="folderBuilder.sortFolderBuilder(1)">Name</th>
-				    <th onclick="folderBuilder.sortFolderBuilder(2)">Damage</th>
-				    <th onclick="folderBuilder.sortFolderBuilder(3)">Hits</th>
-				    <th onclick="folderBuilder.sortFolderBuilder(4)">Copies</th>
-				    <th onclick="folderBuilder.sortFolderBuilder(5)">GOO</th>
-				  </tr>
 				</table>
 			</div>
 			<div id='folderViewer' style='width: 100px; float: right;'>
@@ -319,6 +314,11 @@
 
 			folderBuilder = new FolderBuilder();
 			folderBuilder.buildTable();
+
+			$("#cardNameSearch").keyup(function(){
+				folderBuilder.adjustFilter(document.getElementById("cardNameSearch").value); 
+				folderBuilder.buildTable();
+			});
 		}
 		$(document).ready(function(){init();});
 	</script>
