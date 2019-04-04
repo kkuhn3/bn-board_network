@@ -23,6 +23,71 @@ function FolderBuilder(){
 		this.searchString = searchString.toLowerCase();
 	}
 	
+	this.codeFilter = [];
+	this.swapCode = function(codeToSwap){
+		if(this.codeFilter.includes(codeToSwap)){
+			this.ind = this.codeFilter.indexOf(codeToSwap);
+			this.codeFilter.splice(this.ind, 1);
+		}
+		else{
+			this.codeFilter.push(codeToSwap);
+		}
+		this.buildTable();
+	}
+	this.isOnCode = function(cardToCheck){
+		if(this.codeFilter.length < 1){
+			return true;
+		}
+		if(this.codeFilter.includes("*") && cardToCheck.code.length === 26){
+			return true;
+		}
+		if(cardToCheck.code.length === 26){
+			return false;
+		}
+		for(var i = 0; i < cardToCheck.code.length; i++){
+			if(this.codeFilter.includes(cardToCheck.code[i])){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	this.rankFilter = [];
+	this.swapRank = function(rankToSwap){
+		if(this.rankFilter.includes(rankToSwap)){
+			this.ind = this.rankFilter.indexOf(rankToSwap);
+			this.rankFilter.splice(this.ind, 1);
+		}
+		else{
+			this.rankFilter.push(rankToSwap);
+		}
+		this.buildTable();
+	}
+	this.isOnRank = function(cardToCheck){
+		if(this.rankFilter < 1){
+			return true;
+		}
+		return this.rankFilter.includes(cardToCheck.rank)
+	}
+	
+	this.gooFilter = [];
+	this.swapGoo = function(gooToSwap){
+		if(this.gooFilter.includes(gooToSwap)){
+			this.ind = this.gooFilter.indexOf(gooToSwap);
+			this.gooFilter.splice(this.ind, 1);
+		}
+		else{
+			this.gooFilter.push(gooToSwap);
+		}
+		this.buildTable();
+	}
+	this.isOnGoo = function(cardToCheck){
+		if(this.gooFilter < 1){
+			return true;
+		}
+		return this.gooFilter.includes(cardToCheck.goo)
+	}
+	
 	this.buildTable = function(){
 		var table = document.getElementById("myTable");
 		table.innerHTML = 	`<tr> 
@@ -38,30 +103,32 @@ function FolderBuilder(){
 
 		for(var i = 0; i < BUILDABLECARDS.length; i++){
 			if(this.searchString === "" || BUILDABLECARDS[i].name.toLowerCase().includes(this.searchString)){
-				var row = table.insertRow(-1);
-				var cell0 = row.insertCell(0);
-				var cell1 = row.insertCell(1);
-				var cell2 = row.insertCell(2);
-				var cell3 = row.insertCell(3);
-				var cell4 = row.insertCell(4);
-				var cell5 = row.insertCell(5);
-				var cell6 = row.insertCell(6);
-				var cell7 = row.insertCell(7);
-				var img = document.createElement('img');
-				cell0.innerHTML = "";
-				cell0.appendChild(BUILDABLECARDS[i].image);
-				if(BUILDABLECARDS[i].code.length === 26){
-					cell1.innerHTML = "*";
+				if(this.isOnCode(BUILDABLECARDS[i]) && this.isOnRank(BUILDABLECARDS[i]) && this.isOnGoo(BUILDABLECARDS[i])){
+					var row = table.insertRow(-1);
+					var cell0 = row.insertCell(0);
+					var cell1 = row.insertCell(1);
+					var cell2 = row.insertCell(2);
+					var cell3 = row.insertCell(3);
+					var cell4 = row.insertCell(4);
+					var cell5 = row.insertCell(5);
+					var cell6 = row.insertCell(6);
+					var cell7 = row.insertCell(7);
+					var img = document.createElement('img');
+					cell0.innerHTML = "";
+					cell0.appendChild(BUILDABLECARDS[i].image);
+					if(BUILDABLECARDS[i].code.length === 26){
+						cell1.innerHTML = "*";
+					}
+					else{
+						cell1.innerHTML = BUILDABLECARDS[i].code;
+					}
+					cell2.innerHTML = BUILDABLECARDS[i].name;
+					cell3.innerHTML = BUILDABLECARDS[i].damage;
+					cell4.innerHTML = BUILDABLECARDS[i].hits;
+					cell5.innerHTML = BUILDABLECARDS[i].copies;
+					cell6.innerHTML = BUILDABLECARDS[i].rank;
+					cell7.innerHTML = BUILDABLECARDS[i].goo;
 				}
-				else{
-					cell1.innerHTML = BUILDABLECARDS[i].code;
-				}
-				cell2.innerHTML = BUILDABLECARDS[i].name;
-				cell3.innerHTML = BUILDABLECARDS[i].damage;
-				cell4.innerHTML = BUILDABLECARDS[i].hits;
-				cell5.innerHTML = BUILDABLECARDS[i].copies;
-				cell6.innerHTML = BUILDABLECARDS[i].rank;
-				cell7.innerHTML = BUILDABLECARDS[i].goo;
 			}
 		}
 	};
