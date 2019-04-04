@@ -9,7 +9,7 @@ th {
 }
 
 th, td {
-  text-align: left;
+  text-align: center;
   padding: 16px;
 }
 
@@ -18,3 +18,17 @@ tr:nth-child(even) {
 }
 
 #hidn {display:none;}
+
+.toggleActive {
+  background-color:#A1A1A1;
+}
+
+#folderViewer {
+	float: right;
+	width: 40vw;
+}
+
+#cardSelectionList {
+	float: left;
+	width: 60vw;
+}
