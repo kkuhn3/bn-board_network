@@ -5317,7 +5317,7 @@ function BN6GrabRevenge(){
 	this.rank="standard";
 	this.damage=40;
 	this.boostDamage=0;
-	this.hits="1-8;
+	this.hits="1-8";
 	this.priority=0;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
