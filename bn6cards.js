@@ -7690,7 +7690,7 @@ function BN6Elementman(){
 
 function BN6ElementmanEX(){
 	this.id="BN6ElementmanEX";
-	this.name="Elementman";
+	this.name="ElementmanEX";
 	this.image=BN6ElementmanEXIMG;
 	this.code=["E"];
 	this.goo="BN6";
@@ -7718,7 +7718,7 @@ function BN6ElementmanEX(){
 
 function BN6ElementmanSP(){
 	this.id="BN6ElementmanSP";
-	this.name="Elementman";
+	this.name="ElementmanSP";
 	this.image=BN6ElementmanSPIMG;
 	this.code=["E"];
 	this.goo="BN6";

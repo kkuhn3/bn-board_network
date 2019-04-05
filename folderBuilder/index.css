@@ -10,7 +10,12 @@ th {
 
 th, td {
   text-align: center;
-  padding: 16px;
+  padding: 4px;
+}
+
+tr:hover {
+	background-color: aqua !important;
+	cursor: pointer;
 }
 
 tr:nth-child(even) {
@@ -25,7 +30,7 @@ tr:nth-child(even) {
 
 #folderViewer {
 	float: right;
-	width: 40vw;
+	width: 35vw;
 }
 
 #cardSelectionList {

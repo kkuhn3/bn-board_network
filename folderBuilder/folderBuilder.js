@@ -1,3 +1,4 @@
+var SELECTEDCARDS = [];
 
 function FolderBuilder(){
 	this.sortFolderBuilder = function(column, dir){
@@ -88,8 +89,57 @@ function FolderBuilder(){
 		return this.gooFilter.includes(cardToCheck.goo)
 	}
 	
+	this.createListClickHandler = function(cardId, copies) {
+		return function() { 
+			this.currentCount = SELECTEDCARDS.filter(function(id){
+				return id === cardId;
+			}).length;
+			if(this.currentCount < copies){
+				if(SELECTEDCARDS.length < 30){
+					SELECTEDCARDS.push(cardId);
+					this.buildFolderTable();
+				}
+			}
+		}.bind(this);
+	}
+	
+	this.createFolderClickHandler = function(cardId) {
+		return function() { 
+			this.ind = SELECTEDCARDS.lastIndexOf(cardId);
+			SELECTEDCARDS.splice(this.ind, 1);
+			this.buildFolderTable();
+		}.bind(this);
+	}
+	
+	this.buildFolderTable = function(){
+		var table = document.getElementById("folderTable");
+		table.innerHTML =	`<tr>
+							</tr>`;
+							
+		this.alreadyIncludedCards = [];
+		for(var j = 0; j < SELECTEDCARDS.length; j++){
+			if(this.alreadyIncludedCards.includes(SELECTEDCARDS[j])){
+				this.ind = this.alreadyIncludedCards.indexOf(SELECTEDCARDS[j]);
+				this.count = parseInt(table.rows[this.ind+1].cells[0].innerHTML);
+				this.count = this.count + 1;
+				table.rows[this.ind+1].cells[0].innerHTML = this.count;
+			}
+			else{
+				var row = table.insertRow(-1);
+				var cell0 = row.insertCell(0)
+				var cell1 = row.insertCell(1);
+				cell0.innerHTML = 1;
+				cell1.innerHTML = SELECTEDCARDS[j];
+				
+				row.onclick = this.createFolderClickHandler(SELECTEDCARDS[j]);
+				
+				this.alreadyIncludedCards.push(SELECTEDCARDS[j]);
+			}
+		}
+	}
+	
 	this.buildTable = function(){
-		var table = document.getElementById("myTable");
+		var table = document.getElementById("selectionTable");
 		table.innerHTML = 	`<tr> 
 								<th onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Image</th> 
 								<th onclick="folderBuilder.sortFolderBuilder('code',${!sortDirs.code})">Code</th>
@@ -128,6 +178,8 @@ function FolderBuilder(){
 					cell5.innerHTML = BUILDABLECARDS[i].copies;
 					cell6.innerHTML = BUILDABLECARDS[i].rank;
 					cell7.innerHTML = BUILDABLECARDS[i].goo;
+					
+					row.onclick = this.createListClickHandler(BUILDABLECARDS[i].id, BUILDABLECARDS[i].copies);
 				}
 			}
 		}
