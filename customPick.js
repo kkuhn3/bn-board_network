@@ -16,8 +16,36 @@ function CustomPick(canvas){
 		for(var i = 0; i < this.drawSize; i++){
 			DRAW[i] = null;
 		}
+		this.addUserFolders();
 		this.openCustom();
 	}
+
+	this.addUserFolders = function(){
+		var keys = Object.keys(localStorage);
+		for(var i = 0; i < keys.length; i++){
+			if(keys[i].includes("folderNamePrefix")){
+				var selectDrop = document.getElementById("sel");
+				var option = document.createElement("option");
+				var folderName = keys[i].substring(16);
+				option.text = folderName;
+				option.value = folderName;
+				selectDrop.add(option, 1);
+
+				this.newFolder = new function(){
+					this.id = folderName;
+					this.name = folderName;
+					this.contents = [];
+				};
+				this.folderContents = JSON.parse(localStorage.getItem(keys[i]));
+				for(var j = 0; j < this.folderContents.length; j++){
+					this.aCard = cards.getCardById(this.folderContents[j].id);
+					this.newFolder.contents.push(this.aCard);
+				}
+				FOLDERS.push(this.newFolder);
+			}
+		}
+	}
+
 	this.openCustom = function(){
 		movementEnabled = false;
 		this.drawFromDeck();
@@ -35,7 +63,7 @@ function CustomPick(canvas){
 		for(var i = 0; i < this.drawSize; i++){
 			DRAW[i] = null;
 		}
-		DECK = newDeck;
+		DECK = newDeck.slice();
 		SELECTED = [];
 		SELECTEDIND = [];
 		this.openCustom();

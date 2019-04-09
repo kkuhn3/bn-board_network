@@ -94,10 +94,15 @@ function FolderBuilder(){
 			this.currentCount = SELECTEDCARDS.filter(function(savedCard){
 				return savedCard.id === aCard.id;
 			}).length;
+
 			if(this.currentCount < aCard.copies){
 				if(SELECTEDCARDS.length < 30){
-					SELECTEDCARDS.push(aCard);
-					this.buildFolderTable();
+					if(aCard.rank !== "mega" || this.countMega() < 5){
+						if(aCard.rank !== "giga" || this.countGiga() < 1){
+							SELECTEDCARDS.push(aCard);
+							this.buildFolderTable();
+						}
+					}
 				}
 			}
 		}.bind(this);
@@ -150,7 +155,7 @@ function FolderBuilder(){
 		this.alreadyIncludedCards = [];
 		for(var j = 0; j < SELECTEDCARDS.length; j++){
 			if(this.alreadyIncludedCards.includes(SELECTEDCARDS[j].id)){
-				this.ind = this.alreadyIncludedCards.indexOf(SELECTEDCARDS[j].id);
+				this.ind = this.alreadyIncludedCards.indexOf(SELECTEDCARDS[j].id) + 1;
 				this.count = parseInt(table.rows[this.ind].cells[0].innerHTML);
 				this.count = this.count + 1;
 				table.rows[this.ind].cells[0].innerHTML = this.count;
@@ -229,6 +234,48 @@ function FolderBuilder(){
 					row.onclick = this.createListClickHandler(BUILDABLECARDS[i]);
 				}
 			}
+		}
+	};
+
+	this.countMega = function(){
+		this.count = 0;
+		for(var i = 0; i < SELECTEDCARDS.length; i++){
+			if(SELECTEDCARDS[i].rank === "mega"){
+				this.count++;
+			}
+		}
+		return this.count;
+	};
+
+	this.countGiga = function(){
+		this.count = 0;
+		for(var i = 0; i < SELECTEDCARDS.length; i++){
+			if(SELECTEDCARDS[i].rank === "giga"){
+				this.count++;
+			}
+		}
+		return this.count;
+	};
+
+	this.folderisValid = function(){
+		if(SELECTEDCARDS.length !== 30){
+			return false;
+		}
+		if(this.countMega() > 5){
+			return false;
+		}
+		if(this.countGiga() > 1){
+			return false;
+		}
+		return true;
+	}
+
+	this.saveFolder = function(folderName){
+		if(this.folderisValid()){
+			localStorage.setItem("folderNamePrefix" + folderName, JSON.stringify(SELECTEDCARDS));
+		}
+		else{
+			console.log("Folder invalid");
 		}
 	};
 }
