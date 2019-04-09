@@ -89,14 +89,14 @@ function FolderBuilder(){
 		return this.gooFilter.includes(cardToCheck.goo)
 	}
 	
-	this.createListClickHandler = function(cardId, copies) {
+	this.createListClickHandler = function(aCard) {
 		return function() { 
-			this.currentCount = SELECTEDCARDS.filter(function(id){
-				return id === cardId;
+			this.currentCount = SELECTEDCARDS.filter(function(savedCard){
+				return savedCard.id === aCard.id;
 			}).length;
-			if(this.currentCount < copies){
+			if(this.currentCount < aCard.copies){
 				if(SELECTEDCARDS.length < 30){
-					SELECTEDCARDS.push(cardId);
+					SELECTEDCARDS.push(aCard);
 					this.buildFolderTable();
 				}
 			}
@@ -111,31 +111,78 @@ function FolderBuilder(){
 		}.bind(this);
 	}
 	
+	this.mostCommonCodes = function(){
+		this.codeCount = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		this.alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+		for(var i = 0; i < SELECTEDCARDS.length; i++){
+			if(SELECTEDCARDS[i].code.length !== 26){
+				for(var j = 0; j < SELECTEDCARDS[i].code.length; j++){
+					this.ind = this.alphabet.indexOf(SELECTEDCARDS[i].code[j]);
+					this.codeCount[this.ind]++;
+				}
+			}
+		}
+		this.highestcount = 0;
+		this.highestSet = ["A"];
+		for(var i = 1; i < this.codeCount.length; i++){
+			if(this.codeCount[i] > this.highestcount){
+				this.highestcount = this.codeCount[i];
+				this.highestSet = [this.alphabet[i]];
+			}
+			else if(this.codeCount[i] === this.highestcount){
+				this.highestSet.push(this.alphabet[i]);
+			}
+		}
+		if(this.highestSet.length === 26){
+			this.highestSet = ["*"];
+		}
+		return this.highestSet;
+	}
+	
 	this.buildFolderTable = function(){
 		var table = document.getElementById("folderTable");
-		table.innerHTML =	`<tr>
+		table.innerHTML =	`<tr> 
+								<th>Copies</th> 
+								<th>Card</th> 
+								<th>Code</th> 
 							</tr>`;
 							
 		this.alreadyIncludedCards = [];
 		for(var j = 0; j < SELECTEDCARDS.length; j++){
-			if(this.alreadyIncludedCards.includes(SELECTEDCARDS[j])){
-				this.ind = this.alreadyIncludedCards.indexOf(SELECTEDCARDS[j]);
-				this.count = parseInt(table.rows[this.ind+1].cells[0].innerHTML);
+			if(this.alreadyIncludedCards.includes(SELECTEDCARDS[j].id)){
+				this.ind = this.alreadyIncludedCards.indexOf(SELECTEDCARDS[j].id);
+				this.count = parseInt(table.rows[this.ind].cells[0].innerHTML);
 				this.count = this.count + 1;
-				table.rows[this.ind+1].cells[0].innerHTML = this.count;
+				table.rows[this.ind].cells[0].innerHTML = this.count;
 			}
 			else{
 				var row = table.insertRow(-1);
 				var cell0 = row.insertCell(0)
 				var cell1 = row.insertCell(1);
+				var cell2 = row.insertCell(2);
 				cell0.innerHTML = 1;
-				cell1.innerHTML = SELECTEDCARDS[j];
+				cell1.innerHTML = SELECTEDCARDS[j].name;
+				if(SELECTEDCARDS[j].code.length === 26){
+					cell2.innerHTML = "*";
+				}
+				else{
+					cell2.innerHTML = SELECTEDCARDS[j].code;
+				}
 				
 				row.onclick = this.createFolderClickHandler(SELECTEDCARDS[j]);
 				
-				this.alreadyIncludedCards.push(SELECTEDCARDS[j]);
+				this.alreadyIncludedCards.push(SELECTEDCARDS[j].id);
 			}
 		}
+		
+		
+		var rowL = table.insertRow(-1);
+		var cell0L = rowL.insertCell(0);
+		var cell1L = rowL.insertCell(1);
+		var cell2L = rowL.insertCell(2);
+		cell0L.innerHTML = "<b>" + SELECTEDCARDS.length + "</b>";
+		cell1L.innerHTML = "<b>Totals</b>"
+		cell2L.innerHTML = "<b>" + this.mostCommonCodes() + "</b>";
 	}
 	
 	this.buildTable = function(){
@@ -179,7 +226,7 @@ function FolderBuilder(){
 					cell6.innerHTML = BUILDABLECARDS[i].rank;
 					cell7.innerHTML = BUILDABLECARDS[i].goo;
 					
-					row.onclick = this.createListClickHandler(BUILDABLECARDS[i].id, BUILDABLECARDS[i].copies);
+					row.onclick = this.createListClickHandler(BUILDABLECARDS[i]);
 				}
 			}
 		}

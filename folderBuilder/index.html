@@ -334,6 +334,8 @@
 				</table>
 			</div>
 			<div id='folderViewer'>
+				<input type="text" id="folderNameInput">
+				<button type="button" >Save</button>
 				<table id="folderTable">
 				</table>
 			</div>
@@ -353,6 +355,7 @@
 
 			folderBuilder = new FolderBuilder();
 			folderBuilder.buildTable();
+			folderBuilder.buildFolderTable();
 
 			$("#cardNameSearch").keyup(function(){
 				folderBuilder.adjustFilter(document.getElementById("cardNameSearch").value); 
