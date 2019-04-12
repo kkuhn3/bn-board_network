@@ -289,53 +289,57 @@
 		</div>
 		<div>
 			<div id='cardSelectionList'>
-				<div id='cardSelectionSearcher'>
-					<input type="text" id="cardNameSearch">
-				</div>
-				<div>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('A')" >A</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('B')" >B</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('C')" >C</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('D')" >D</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('E')" >E</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('F')" >F</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('G')" >G</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('H')" >H</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('I')" >I</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('J')" >J</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('K')" >K</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('L')" >L</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('M')" >M</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('N')" >N</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('O')" >O</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('P')" >P</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('Q')" >Q</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('R')" >R</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('S')" >S</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('T')" >T</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('U')" >U</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('V')" >V</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('W')" >W</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('X')" >X</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('Y')" >Y</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('Z')" >Z</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('*')" >*</button>
-				</div>
-				<div>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapRank('standard')" >standard</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapRank('mega')" >mega</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapRank('giga')" >giga</button>
-				</div>
-				<div>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapGoo('BN6')" >BN6</button>
-					<button type="button" class="toggleButton" onclick="folderBuilder.swapGoo('Debug')" >Debug</button>
+				<div id='headerSelection'>
+					<div id='cardSelectionSearcher'>
+						<input type="text" id="cardNameSearch">
+					</div>
+					<div>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('A')" >A</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('B')" >B</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('C')" >C</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('D')" >D</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('E')" >E</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('F')" >F</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('G')" >G</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('H')" >H</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('I')" >I</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('J')" >J</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('K')" >K</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('L')" >L</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('M')" >M</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('N')" >N</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('O')" >O</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('P')" >P</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('Q')" >Q</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('R')" >R</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('S')" >S</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('T')" >T</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('U')" >U</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('V')" >V</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('W')" >W</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('X')" >X</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('Y')" >Y</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('Z')" >Z</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('*')" >*</button>
+					</div>
+					<div>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapRank('standard')" >standard</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapRank('mega')" >mega</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapRank('giga')" >giga</button>
+					</div>
+					<div>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapGoo('BN6')" >BN6</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapGoo('Debug')" >Debug</button>
+					</div>
 				</div>
 				<table id="selectionTable">
 				</table>
 			</div>
 			<div id='folderViewer'>
-				<input type="text" id="folderNameInput">
-				<button type="button" onclick="folderBuilder.saveFolder(folderNameInput.value)">Save</button>
+				<div id='headerSelected'>
+					<input type="text" id="folderNameInput">
+					<button type="button" onclick="folderBuilder.saveFolder(folderNameInput.value)">Save</button>
+				</div>
 				<table id="folderTable">
 				</table>
 			</div>
@@ -354,6 +358,7 @@
 			cards.initCards();
 
 			folderBuilder = new FolderBuilder();
+			folderBuilder.init();
 			folderBuilder.buildTable();
 			folderBuilder.buildFolderTable();
 

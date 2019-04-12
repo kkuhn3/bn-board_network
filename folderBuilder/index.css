@@ -2,6 +2,7 @@ table {
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
+  color: black;
 }
 
 th {
@@ -14,12 +15,12 @@ th, td {
 }
 
 tr:hover {
-	background-color: aqua !important;
+	background-color: LightGreen !important;
 	cursor: pointer;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2
+tr{
+  background-color: #f2f2f2;
 }
 
 #hidn {display:none;}
@@ -36,4 +37,12 @@ tr:nth-child(even) {
 #cardSelectionList {
 	float: left;
 	width: 60vw;
+}
+
+#headerSelection {
+  height: 80px;
+}
+
+#headerSelected {
+  height: 80px;
 }

@@ -1,18 +1,134 @@
 var SELECTEDCARDS = [];
+var SORTEDCARDS = [];
 
 function FolderBuilder(){
+	this.init = function(){
+		SORTEDCARDS = BUILDABLECARDS.slice();
+	}
+	this.getIndex = function(aCardId){
+		for(var i = 0; i < SORTEDCARDS.length; i++){
+			if(SORTEDCARDS[i].id === aCardId){
+				return i;
+			}
+		}
+	}
+	this.splitHits = function(stringHits){
+		if (typeof stringHits === 'string' || stringHits instanceof String){
+			var firstArray = stringHits.split(",");
+			var lastString = firstArray[firstArray.length - 1];
+			var hitArray = lastString.split("-");
+			var lastHit = hitArray[hitArray.length-1];
+			return parseInt(lastHit);
+		}
+		return stringHits;
+	}
 	this.sortFolderBuilder = function(column, dir){
-		if(typeof dir == "undefined"){dir=1;}
+		if(typeof dir == "undefined"){
+			dir=1;
+		}
 		sortDirs[column]=dir;
 		if(dir>0){
 			BUILDABLECARDS.sort((a,b)=>{
-				if(a[column]>b[column]){return 1;}
-				else{return -1;}
+				if(column === 'code'){
+					if(a[column].length === 26 && b[column].length === 26){
+						if(this.getIndex(a.id) > this.getIndex(b.id)){
+							return 1;
+						}
+						else{
+							return -1;
+						}
+					}
+					else if(a[column].length === 26){
+						return 1;
+					}
+					else if(b[column].length === 26){
+						return -1;
+					}
+				}
+				if(column === 'hits'){
+					this.aSplit = this.splitHits(a[column]);
+					this.bSplit = this.splitHits(b[column]);
+					if(this.aSplit === this.bSplit){
+						if(this.getIndex(a.id) > this.getIndex(b.id)){
+							return 1;
+						}
+						else{
+							return -1;
+						}
+					}
+					else if(this.aSplit > this.bSplit){
+						return 1;
+					}
+					else{
+						return -1;
+					}
+				}
+				if(a[column] === b[column]){
+					if(this.getIndex(a.id) > this.getIndex(b.id)){
+						return 1;
+					}
+					else{
+						return -1;
+					}
+				}
+				if(a[column]>b[column]){
+					return 1;
+				}
+				else{
+					return -1;
+				}
 			});
-		}else{
+		}
+		else{
 			BUILDABLECARDS.sort((a,b)=>{
-				if(a[column]>b[column]){return -1;}
-				else{return 1;}
+				if(column === 'code'){
+					if(a[column].length === 26 && b[column].length === 26){
+						if(this.getIndex(a.id) > this.getIndex(b.id)){
+							return 1;
+						}
+						else{
+							return -1;
+						}
+					}
+					else if(a[column].length === 26){
+						return -1;
+					}
+					else if(b[column].length === 26){
+						return 1;
+					}
+				}
+				if(column === 'hits'){
+					this.aSplit = this.splitHits(a[column]);
+					this.bSplit = this.splitHits(b[column]);
+					if(this.aSplit === this.bSplit){
+						if(this.getIndex(a.id) > this.getIndex(b.id)){
+							return 1;
+						}
+						else{
+							return -1;
+						}
+					}
+					else if(this.aSplit > this.bSplit){
+						return -1;
+					}
+					else{
+						return 1;
+					}
+				}
+				if(a[column] === b[column]){
+					if(this.getIndex(a.id) > this.getIndex(b.id)){
+						return 1;
+					}
+					else{
+						return -1;
+					}
+				}
+				if(a[column]>b[column]){
+					return -1;
+				}
+				else{
+					return 1;
+				}
 			});
 		}
 		this.buildTable();
@@ -143,6 +259,17 @@ function FolderBuilder(){
 		}
 		return this.highestSet;
 	}
+
+	this.sortSelectedCards = function(){
+		SELECTEDCARDS.sort((a,b)=>{
+			if(this.getIndex(a.id) > this.getIndex(b.id)){
+				return 1;
+			}
+			else{
+				return -1;
+			}
+		});
+	}
 	
 	this.buildFolderTable = function(){
 		var table = document.getElementById("folderTable");
@@ -153,6 +280,7 @@ function FolderBuilder(){
 							</tr>`;
 							
 		this.alreadyIncludedCards = [];
+		this.sortSelectedCards();
 		for(var j = 0; j < SELECTEDCARDS.length; j++){
 			if(this.alreadyIncludedCards.includes(SELECTEDCARDS[j].id)){
 				this.ind = this.alreadyIncludedCards.indexOf(SELECTEDCARDS[j].id) + 1;
@@ -175,6 +303,15 @@ function FolderBuilder(){
 				}
 				
 				row.onclick = this.createFolderClickHandler(SELECTEDCARDS[j]);
+				if(SELECTEDCARDS[j].rank === "standard"){
+					row.style.backgroundColor = "Yellow";
+				}
+				if(SELECTEDCARDS[j].rank === "mega"){
+					row.style.backgroundColor = "LightBlue";
+				}
+				if(SELECTEDCARDS[j].rank === "giga"){
+					row.style.backgroundColor = "Salmon";
+				}
 				
 				this.alreadyIncludedCards.push(SELECTEDCARDS[j].id);
 			}
@@ -230,6 +367,16 @@ function FolderBuilder(){
 					cell5.innerHTML = BUILDABLECARDS[i].copies;
 					cell6.innerHTML = BUILDABLECARDS[i].rank;
 					cell7.innerHTML = BUILDABLECARDS[i].goo;
+
+					if(BUILDABLECARDS[i].rank === "standard"){
+						row.style.backgroundColor = "Yellow";
+					}
+					if(BUILDABLECARDS[i].rank === "mega"){
+						row.style.backgroundColor = "LightBlue";
+					}
+					if(BUILDABLECARDS[i].rank === "giga"){
+						row.style.backgroundColor = "Salmon";
+					}
 					
 					row.onclick = this.createListClickHandler(BUILDABLECARDS[i]);
 				}
@@ -279,4 +426,3 @@ function FolderBuilder(){
 		}
 	};
 }
-

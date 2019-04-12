@@ -4270,7 +4270,7 @@ function BN6Wind(){
 	this.image=BN6WindIMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.goo="BN6";
-	this.copies=1;
+	this.copies=5;
 	this.rank="standard";
 	this.damage=0;
 	this.boostDamage=0;
@@ -4299,7 +4299,7 @@ function BN6Fan(){
 	this.image=BN6FanIMG;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.goo="BN6";
-	this.copies=1;
+	this.copies=5;
 	this.rank="standard";
 	this.damage=0;
 	this.boostDamage=0;
