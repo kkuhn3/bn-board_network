@@ -1,13 +1,17 @@
 table {
   border-spacing: 0;
-  width: 100%;
   border: 1px solid #ddd;
   color: black;
   overflow-y:auto;
+  width: 100%;
 }
 
 th {
   cursor: pointer;
+}
+
+.container {
+  max-width: 100%;
 }
 
 .tableWrapper {
@@ -30,26 +34,10 @@ tr{
   background-color: #f2f2f2;
 }
 
-#hidn {display:none;}
-
 .toggleActive {
   background-color:#A1A1A1;
 }
 
-#folderViewer {
-	float: right;
-	width: 31vw;
-}
-
-#cardSelectionList {
-	float: left;
-	width: 65vw;
-}
-
-#headerSelection {
-  height: 18%;
-}
-
-#headerSelected {
-  height: 18%;
+div {
+  text-align: center;
 }
