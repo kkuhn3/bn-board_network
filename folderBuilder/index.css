@@ -3,10 +3,17 @@ table {
   width: 100%;
   border: 1px solid #ddd;
   color: black;
+  overflow-y:auto;
 }
 
 th {
   cursor: pointer;
+}
+
+.tableWrapper {
+	overflow-y: auto;
+	overflow-x: none;
+	height: 80vh;
 }
 
 th, td {
@@ -31,18 +38,18 @@ tr{
 
 #folderViewer {
 	float: right;
-	width: 35vw;
+	width: 31vw;
 }
 
 #cardSelectionList {
 	float: left;
-	width: 60vw;
+	width: 65vw;
 }
 
 #headerSelection {
-  height: 80px;
+  height: 18%;
 }
 
 #headerSelected {
-  height: 80px;
+  height: 18%;
 }

@@ -330,14 +330,14 @@ function FolderBuilder(){
 	this.buildTable = function(){
 		var table = document.getElementById("selectionTable");
 		table.innerHTML = 	`<tr> 
-								<th onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Image</th> 
-								<th onclick="folderBuilder.sortFolderBuilder('code',${!sortDirs.code})">Code</th>
-								<th onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Name</th> 
-								<th onclick="folderBuilder.sortFolderBuilder('damage',${!sortDirs.damage})">Damage</th>
-								<th onclick="folderBuilder.sortFolderBuilder('hits',${!sortDirs.hits})">Hits</th>
-								<th onclick="folderBuilder.sortFolderBuilder('copies',${!sortDirs.copies})">Copies</th>
-								<th onclick="folderBuilder.sortFolderBuilder('rank',${!sortDirs.rank})">Rank</th>
-								<th onclick="folderBuilder.sortFolderBuilder('goo',${!sortDirs.goo})">GOO</th>
+								<th id="headerImage" onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Image</th> 
+								<th id="headerCode" onclick="folderBuilder.sortFolderBuilder('code',${!sortDirs.code})">Code</th>
+								<th id="headerName" onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Name</th> 
+								<th id="headerDamage" onclick="folderBuilder.sortFolderBuilder('damage',${!sortDirs.damage})">Damage</th>
+								<th id="headerHits" onclick="folderBuilder.sortFolderBuilder('hits',${!sortDirs.hits})">Hits</th>
+								<th id="headerCopies" onclick="folderBuilder.sortFolderBuilder('copies',${!sortDirs.copies})">Copies</th>
+								<th id="headerRank" onclick="folderBuilder.sortFolderBuilder('rank',${!sortDirs.rank})">Rank</th>
+								<th id="headerGOO" onclick="folderBuilder.sortFolderBuilder('goo',${!sortDirs.goo})">GOO</th>
 							</tr>`;
 
 		for(var i = 0; i < BUILDABLECARDS.length; i++){

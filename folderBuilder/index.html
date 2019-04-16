@@ -290,10 +290,7 @@
 		<div>
 			<div id='cardSelectionList'>
 				<div id='headerSelection'>
-					<div id='cardSelectionSearcher'>
-						<input type="text" id="cardNameSearch">
-					</div>
-					<div>
+					<div style="float:left;width:30%;height:100%;text-align:center">
 						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('A')" >A</button>
 						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('B')" >B</button>
 						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('C')" >C</button>
@@ -322,18 +319,23 @@
 						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('Z')" >Z</button>
 						<button type="button" class="toggleButton" onclick="folderBuilder.swapCode('*')" >*</button>
 					</div>
-					<div>
+					<div id='cardSelectionSearcher' style="float:left;width:20%;height:100%">
+						<input type="text" id="cardNameSearch" style="width:100%;margin-top:33%">
+					</div>
+					<div style="float:right; width:12%; margin-top:7%; text-align:center">
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapGoo('BN6')" >BN6</button>
+						<button type="button" class="toggleButton" onclick="folderBuilder.swapGoo('Debug')" >Debug</button>
+					</div>
+					<div style="float:right; width:11%; margin-top:5%; text-align:center">
 						<button type="button" class="toggleButton" onclick="folderBuilder.swapRank('standard')" >standard</button>
 						<button type="button" class="toggleButton" onclick="folderBuilder.swapRank('mega')" >mega</button>
 						<button type="button" class="toggleButton" onclick="folderBuilder.swapRank('giga')" >giga</button>
 					</div>
-					<div>
-						<button type="button" class="toggleButton" onclick="folderBuilder.swapGoo('BN6')" >BN6</button>
-						<button type="button" class="toggleButton" onclick="folderBuilder.swapGoo('Debug')" >Debug</button>
-					</div>
 				</div>
-				<table id="selectionTable">
-				</table>
+				<div class="tableWrapper">	
+					<table id="selectionTable" >
+					</table>
+				</div>
 			</div>
 			<div id='folderViewer'>
 				<div id='headerSelected'>
