@@ -341,6 +341,12 @@
 				<div id='headerSelected'>
 					<input type="text" id="folderNameInput">
 					<button type="button" onclick="folderBuilder.saveFolder(folderNameInput.value)">Save</button>
+					<button type="button" onclick="folderBuilder.deleteFolder(folderNameInput.value)">Delete</button>
+					
+					<select id="sel">
+						<option disabled>User Folders</option>
+					</select>
+					<button type="button" onclick="folderBuilder.importFolder(sel.value)">Import</button>
 				</div>
 				<table id="folderTable">
 				</table>
@@ -363,6 +369,7 @@
 			folderBuilder.init();
 			folderBuilder.buildTable();
 			folderBuilder.buildFolderTable();
+			folderBuilder.addUserFolders();
 
 			$("#cardNameSearch").keyup(function(){
 				folderBuilder.adjustFilter(document.getElementById("cardNameSearch").value); 
