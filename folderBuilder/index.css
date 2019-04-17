@@ -12,12 +12,13 @@ th {
 
 .container {
   max-width: 100%;
+  min-width: 1000px;
 }
 
 .tableWrapper {
 	overflow-y: auto;
 	overflow-x: none;
-	height: 80vh;
+	height:80vh;
 }
 
 th, td {

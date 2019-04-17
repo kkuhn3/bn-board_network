@@ -244,7 +244,7 @@ function FolderBuilder(){
 				}
 			}
 		}
-		this.highestcount = 0;
+		this.highestcount = this.codeCount[0];
 		this.highestSet = ["A"];
 		for(var i = 1; i < this.codeCount.length; i++){
 			if(this.codeCount[i] > this.highestcount){
