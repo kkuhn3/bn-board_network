@@ -474,6 +474,7 @@
 	<script src='board.js'></script>
 	<script src="bn6folders.js"></script>
 	<script src="bn6pas.js"></script>
+	<script src="sf3cards.js"></script>
 	<script>
 		function init(){
 			timer = new Timer(5, completeBar, currentBar, upnextBar);
@@ -489,6 +490,7 @@
 			
 			cards = new Cards();
 			bn6cards = new Bn6Cards();
+			sf3cards = new SF3Cards();
 			cards.initCards();
 
 			barriers = new Barriers();

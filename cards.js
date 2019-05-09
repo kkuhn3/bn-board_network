@@ -430,9 +430,9 @@ function Cards(){
 	}
 
 	this.initCards = function(){
-		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS).concat(BN6PAS);
-		BUILDABLECARDS = DEFAULTCARDS.concat(BN6CARDS);
-		TEMPDECKLIST = [].concat(BN6CARDS);
+		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS).concat(BN6PAS).concat(SF3CARDS);
+		BUILDABLECARDS = DEFAULTCARDS.concat(BN6CARDS).concat(SF3CARDS);
+		TEMPDECKLIST = [].concat(BN6CARDS).concat(SF3CARDS);
 		//TEMPDECKLIST = [new BN6Aquaman(), new BN6Fastgauge(), new BN6Slowgauge(), new BN6Fullcust(), new BN6Cannon()];
 	}
 

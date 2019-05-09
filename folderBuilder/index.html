@@ -288,6 +288,9 @@
 			<img id='BN6DeltaRayEdgeIMG' src='../img/cards/BN6/BN6GGChip003.png'/>
 			<img id='BN6ColonelForceIMG' src='../img/cards/BN6/BN6GGChip004.png'/>
 			<img id='BN6BugSwordIMG' src='../img/cards/BN6/BN6GGChip005.png'/>
+
+			<!-- SF3 Card List -->
+			<img id='SF3CannonIMG' src='../img/cards/SF3/Standard/001_cannon.png'/>
 		</div>
 		<div class="container" id="container">
 			<div id='headers' class="row align-items-end">
@@ -365,11 +368,13 @@
 	<script src="../bn6uncards.js"></script>
 	<script src="../bn6folders.js"></script>
 	<script src="../bn6pas.js"></script>
+	<script src="../sf3cards.js"></script>
 	<script src="folderBuilder.js"></script>
 	<script>
 		function init(){
 			cards = new Cards();
 			bn6cards = new Bn6Cards();
+			sf3cards = new SF3Cards();
 			cards.initCards();
 
 			folderBuilder = new FolderBuilder();
