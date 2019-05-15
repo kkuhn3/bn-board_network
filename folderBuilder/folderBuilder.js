@@ -200,7 +200,7 @@ function FolderBuilder(){
 		this.buildTable();
 	}
 	this.isOnGoo = function(cardToCheck){
-		if(this.gooFilter < 1){
+		if(this.gooFilter.length < 1){
 			return true;
 		}
 		return this.gooFilter.includes(cardToCheck.goo)
