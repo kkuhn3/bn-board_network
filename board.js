@@ -58,6 +58,7 @@ var playerOne = {
 	trap: null,
 	lastX: 1,
 	lastY: 1,
+	bushidoCount: 0,
 };
 
 var playerTwo = {
@@ -84,6 +85,7 @@ var playerTwo = {
 	trap: null,
 	lastX: 4,
 	lastY: 1,
+	bushidoCount: 0,
 };
 
 var player = -1;

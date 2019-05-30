@@ -152,6 +152,12 @@ function CustomPick(canvas){
 		for(var i=0;i<SELECTEDIND.length;i++){
 			DRAW[SELECTEDIND[i]] = null;
 		}
+		player.bushidoCount = 0;
+		for(var i=0;i<HAND.length;i++){
+			if(HAND[i].id.includes("Bushido")){
+				player.bushidoCount++;
+			}
+		}
 		SELECTEDIND = [];
 		SELECTED = [];
 		document.getElementById("pick_canvas").style.display='none';
