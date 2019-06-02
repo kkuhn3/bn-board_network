@@ -48,7 +48,7 @@ var playerOne = {
 	stunned: 0,
 	bubbled: 0,
 	frozen: 0,
-	busterType: new BN6Buster(),
+	busterType: (new BN6Buster()),
 	bugs: [],
 	barrier: null, 
 	invincible: 0,
@@ -75,7 +75,7 @@ var playerTwo = {
 	stunned:0,
 	bubbled: 0,
 	frozen: 0,
-	busterType: new BN6Buster(),
+	busterType: (new BN6Buster()),
 	bugs: [],
 	barrier: null,
 	invincible: 0,
@@ -155,6 +155,8 @@ function Board(width,height,canvas){
 		cells[4][1].player = playerTwo;
 		cells[1][1].panelType = PANELTYPE.NORMAL;
 		cells[4][1].panelType = PANELTYPE.NORMAL;
+		cells[4][0].object = [new BN6RockCubeObj(4,0)];
+		cells[2][2].object = [new BN6RockCubeObj(2,2)];
 		player = playerOne;
 		$.post("save.php",{id:"confirmone", state: JSON.stringify(false)});
 		$.post("save.php",{id:"confirmtwo", state: JSON.stringify(false)});
@@ -572,7 +574,7 @@ function Board(width,height,canvas){
 	}
 
 	this.attackWithCard = function(attacker, defender, attackCard){
-		console.log("player " + attacker.name + " used: " + attacker.card.name);
+		console.log("player " + attacker.name + " used: " + attackCard.name);
 		this.resolveHit = false;
 		this.isAllowedbyTrap = true;
 		if(defender.trap && defender.trap.triggerOnCard(attackCard)){

@@ -27,10 +27,9 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 	
 	this.nextTurnConfirmed = function(){
 		document.getElementById("nextturn").disabled = true;
-		document.getElementById("p1buster").disabled = true;
-		document.getElementById("p2buster").disabled = true;
-		document.getElementById("p1card").disabled = true;
-		document.getElementById("p2card").disabled = true;
+		document.getElementById("useBuster").disabled = true;
+		document.getElementById("useCard").disabled = true;
+		document.getElementById("special").disabled = true;
 		movementEnabled = false;
 		$.post("save.php",{id:"player"+player.name, state: JSON.stringify(player)});
 		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
@@ -50,10 +49,8 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 		}
 		document.getElementById("nextturn").style.display='none';
 		document.getElementById("nextturn").disabled = false;
-		document.getElementById("p1buster").disabled = false;
-		document.getElementById("p2buster").disabled = false;
-		document.getElementById("p1card").disabled = false;
-		document.getElementById("p2card").disabled = false;
+		document.getElementById("useBuster").disabled = false;
+		document.getElementById("useCard").disabled = false;
 		movementEnabled = true;
 	}
 	
@@ -85,6 +82,7 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 								playerTwo.card.stunAdded = playerData.card.stunAdded;
 								playerTwo.card.uninstallAdded = playerData.card.uninstallAdded;
 							}
+							playerTwo.bushidoCount = playerData.bushidoCount;
 						}
 						else{
 							playerOne.hp = playerData.hp;
@@ -101,6 +99,7 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 								playerOne.card.stunAdded = playerData.card.stunAdded;
 								playerOne.card.uninstallAdded = playerData.card.uninstallAdded;
 							}	
+							playerOne.bushidoCount = playerData.bushidoCount;
 						}
 						custom.nextTurn();
 						custom.drawHand();

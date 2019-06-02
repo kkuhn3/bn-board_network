@@ -433,7 +433,7 @@ function Cards(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS).concat(BN6PAS).concat(SF3CARDS);
 		BUILDABLECARDS = DEFAULTCARDS.concat(BN6CARDS).concat(SF3CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS).concat(SF3CARDS);
-		//TEMPDECKLIST = [new BN6Aquaman(), new BN6Fastgauge(), new BN6Slowgauge(), new BN6Fullcust(), new BN6Cannon()];
+		TEMPDECKLIST = [new SF3TyphoonDance(), new SF3TornadoDance(), new SF3DrillArm3(), new BN6DrillArm(), new SF3WindyAttack3()];
 	}
 
 	this.setDeck = function(newDeckID){

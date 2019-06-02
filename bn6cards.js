@@ -1772,8 +1772,10 @@ function BN6DrillArm(){
 				if(attacker.x + this.xDirection === this.tempDefX || attacker.x + this.xDirection*2 === this.tempDefX){
 					this.hitbool = true;
 					this.hits++;
-					if(board.isHole(this.tempDefX + this.xDirection, defender.y)){
-						this.tempDefX = this.tempDefX + this.xDirection;
+					if(!board.isHole(this.tempDefX + this.xDirection, defender.y)){
+						if(this.tempDefX + this.xDirection < 6 && this.tempDefX + this.xDirection > -1){
+							this.tempDefX = this.tempDefX + this.xDirection;
+						}
 					}
 				}
 			}
@@ -1790,8 +1792,12 @@ function BN6DrillArm(){
 		}
 		for(var i = 0; i < 2; i ++){
 			if(attacker.x + this.xDirection === defender.x || attacker.x + this.xDirection*2 === defender.x){
-				if(board.isHole(this.tempDefX + this.xDirection, defender.y)){
-					defender.x = defender.x + this.xDirection
+				if(!board.isHole(defender.x + this.xDirection, defender.y)){
+					if(defender.x + this.xDirection < 6 && defender.x + this.xDirection > -1){
+						cells[defender.x][defender.y].player = null;
+						defender.x = defender.x + this.xDirection;
+						cells[defender.x][defender.y].player = defender;
+					}
 				}
 			}
 		}
