@@ -802,6 +802,55 @@ function SF3TornadoDance(){
 	this.effectmiss= function(attacker, defender){};
 }
 
+function SF3WhiteMeteor(){
+	this.id="SF3WhiteMeteor";
+	this.name="WhiteMeteor";
+	this.image=SF3032_whitemeteor;
+	this.code=["A", "K", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=50;
+	this.boostDamage=0;
+	this.hits="1-9";
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		this.hits = 0;
+		this.xArray = [0, 0, 0, 1, 1, 1, 2, 2, 2];
+		this.yArray = [2, 1, 0, 2, 1, 0, 2, 1, 0];
+		if(attacker.name === playerOne.name){
+			this.xArray = [5, 5, 5, 4, 4, 4, 3, 3, 3];
+			this.yArray = [0, 1, 2, 0, 1, 2, 0, 1, 2];
+		}
+		this.arrInd = 0;
+		this.dropped = 0;
+		this.hitbool = false;
+		while(dropped < 9){
+			if(cells[this.xArray[this.arrInd]][this.yArray[this.arrInd]].panelType === PANELTYPE.NORMAL){
+				if(defender.x === this.xArray[this.arrInd] && defender.y === this.yArray[this.arrInd]){
+					this.hits++;
+				}
+				this.dropped++;
+			}
+			this.arrInd++;
+			if(this.arrInd === 9){
+				this.arrInd = 0;
+			}
+		}
+		if(this.hits === 0){
+			this.hits = 1;
+			return false;
+		}
+		if(defender.invis > 0){
+			return false;
+		}
+		return true;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
 var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new SF3PlasmaGun(), 
 				new SF3AirSpread1(), new SF3AirSpread2(), new SF3AirSpread3(), new SF3MadVulcan1(), 
 				new SF3MadVulcan2(), new SF3MadVulcan3(), new SF3BlackInk(), new SF3MiniGrenade(), 
