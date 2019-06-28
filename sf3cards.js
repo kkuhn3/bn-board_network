@@ -1098,6 +1098,159 @@ function SF3Buki3(){
 	};
 }
 
+function SF3SmileCoin1(){
+	this.id="SF3SmileCoin1";
+	this.name="SmileCoin1";
+	this.image=SF3043_smilecoin1;
+	this.code=["H", "P", "U"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=30;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		if(defender.invis < 1){
+			this.xDir = -1;
+			if(attacker.name === playerOne.name){
+				this.xDir = 1;
+			}
+			this.startingX = (new AREAGRAB()).affectedColumn(defender, attacker);
+			for(var y = 0; y < 3; y++){
+				for(var x = 0; x < 3; x++){
+					if(this.startingX + x*this.xDir === defender.x && y === defender.y){
+						return true;
+					}
+					if(board.cellHasSolidObject(this.startingX + x*this.xDir, y)){
+						break;
+					}
+					if(board.isHole(this.startingX + x*this.xDir, y)){
+						break;
+					}
+				}
+			}
+		}
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3SmileCoin2(){
+	this.id="SF3SmileCoin2";
+	this.name="SmileCoin2";
+	this.image=SF3044_smilecoin2;
+	this.code=["G", "J", "P"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=40;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3SmileCoin1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3SmileCoin3(){
+	this.id="SF3SmileCoin3";
+	this.name="SmileCoin3";
+	this.image=SF3045_smilecoin3;
+	this.code=["P", "S", "T"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=50;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=2;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3SmileCoin1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3BigDrop1(){
+	this.id="SF3BigDrop1";
+	this.name="BigDrop1";
+	this.image=SF3046_heavydawn1;
+	this.code=["A", "C", "R"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=140;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3MiniGrenade()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new BN6JusticeOne()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new BN6JusticeOne()).effectmiss(attacker, defender);
+	};
+}
+
+function SF3BigDrop2(){
+	this.id="SF3BigDrop2";
+	this.name="BigDrop2";
+	this.image=SF3047_heavydawn2;
+	this.code=["A", "L", "N"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=180;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3BigDrop1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3BigDrop1()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3BigDrop1()).effectmiss(attacker, defender);
+	};
+}
+
+function SF3BigDrop3(){
+	this.id="SF3BigDrop3";
+	this.name="BigDrop3";
+	this.image=SF3048_heavydawn3;
+	this.code=["A", "G", "Q"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=220;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3BigDrop1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3BigDrop1()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3BigDrop1()).effectmiss(attacker, defender);
+	};
+}
+
+
 var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new SF3PlasmaGun(), 
 				new SF3AirSpread1(), new SF3AirSpread2(), new SF3AirSpread3(), new SF3MadVulcan1(), 
 				new SF3MadVulcan2(), new SF3MadVulcan3(), new SF3BlackInk(), new SF3MiniGrenade(), 
@@ -1108,7 +1261,8 @@ var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new 
 				new SF3DrillArm3(), new SF3TyphoonDance(), new SF3TornadoDance(), new SF3WhiteMeteor(), 
 				new SF3SilverMeteor(), new SF3GrandWave1(), new SF3GrandWave2(), new SF3GrandWave3(), 
 				new SF3JetAttack1(), new SF3JetAttack2(), new SF3JetAttack3(), new SF3Buki1(), 
-				new SF3Buki2(), new SF3Buki3()];
+				new SF3Buki2(), new SF3Buki3(), new SF3SmileCoin1(), new SF3SmileCoin2(), 
+				new SF3SmileCoin3(), new SF3BigDrop1(), new SF3BigDrop2(), new SF3BigDrop3()];
 
 function SF3Cards(){
 
