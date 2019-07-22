@@ -811,6 +811,15 @@
 	<script src="../sf3cards.js"></script>
 	<script src="folderBuilder.js"></script>
 	<script>
+		function doBarf(){
+			const a = Array.from($("*"));
+			console.log(a);
+			a.forEach(elem=>{
+				elem.style.animationName="rainbowBarf";
+				elem.style.animationDuration = Math.random()*5+"s";
+				elem.style.animationIterationCount="infinite";
+			});
+		}
 		function init(){
 			cards = new Cards();
 			bn6cards = new Bn6Cards();
@@ -831,7 +840,12 @@
 			$(".toggleButton").click(function(){
 			  $(this).toggleClass("toggleActive");
 			});
+
+			$("body")[0].onkeydown = (e)=>{
+				if(e.key==="`"){doBarf();}
+			};
 		}
 		$(document).ready(function(){init();});
 	</script>
+
 </html>
