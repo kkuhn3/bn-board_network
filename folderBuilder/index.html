@@ -820,6 +820,8 @@
 				elem.style.animationIterationCount="infinite";
 			});
 		}
+		let ringBuffer = "";
+		const maxRingLength = 5;
 		function init(){
 			cards = new Cards();
 			bn6cards = new Bn6Cards();
@@ -842,7 +844,12 @@
 			});
 
 			$("body")[0].onkeydown = (e)=>{
-				if(e.key==="`"){doBarf();}
+				ringBuffer += e.key;
+				if(ringBuffer.length>maxRingLength){
+					ringBuffer = ringBuffer.substring(1);
+				}
+				if(ringBuffer==="idkfa"){doBarf();}
+				console.log(ringBuffer);
 			};
 		}
 		$(document).ready(function(){init();});
