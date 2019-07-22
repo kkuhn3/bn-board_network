@@ -813,7 +813,6 @@
 	<script>
 		function doBarf(){
 			const a = Array.from($("*"));
-			console.log(a);
 			a.forEach(elem=>{
 				elem.style.animationName="rainbowBarf";
 				elem.style.animationDuration = Math.random()*5+"s";
@@ -849,7 +848,6 @@
 					ringBuffer = ringBuffer.substring(1);
 				}
 				if(ringBuffer==="idkfa"){doBarf();}
-				console.log(ringBuffer);
 			};
 		}
 		$(document).ready(function(){init();});
