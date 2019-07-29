@@ -1466,7 +1466,7 @@ function SF3MuTechnology2(){
 function SF3MuTechnology3(){
 	this.id="SF3MuTechnology3";
 	this.name="MuTechnology3";
-	this.image=SF3056_mutechnology3;
+	this.image=SF3057_mutechnology3;
 	this.code=["E", "G", "R"];
 	this.goo="SF3";
 	this.copies=5;
@@ -1487,6 +1487,334 @@ function SF3MuTechnology3(){
 	this.effectmiss= function(attacker, defender){};
 }
 
+function SF3TimeBomb1(){
+	this.id="SF3TimeBomb1";
+	this.name="TimeBomb1";
+	this.image=SF3058_countbomb1;
+	this.code=["C", "E", "J"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=130;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.xDirection = -1;
+		this.targetSide = SIDE.LEFT;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+			this.targetSide = SIDE.RIGHT;
+		}
+		this.bombPlaced = false;
+		this.tempX = attacker.x + this.xDirection;
+		while(!this.bombPlaced){
+			if(cells[this.tempX]){
+				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
+					if(board.isCellPlayerValid(this.tempX, attacker.y)){
+						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage)];
+					}
+				}
+				this.tempX++;
+			}
+			this.bombPlaced = true;
+		}
+	};
+}
+
+function SF3TimeBomb2(){
+	this.id="SF3TimeBomb2";
+	this.name="TimeBomb2";
+	this.image=SF3059_countbomb2;
+	this.code=["C", "O", "P"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=160;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.xDirection = -1;
+		this.targetSide = SIDE.LEFT;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+			this.targetSide = SIDE.RIGHT;
+		}
+		this.bombPlaced = false;
+		this.tempX = attacker.x + this.xDirection;
+		while(!this.bombPlaced){
+			if(cells[this.tempX]){
+				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
+					if(board.isCellPlayerValid(this.tempX, attacker.y)){
+						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage)];
+					}
+				}
+				this.tempX++;
+			}
+			this.bombPlaced = true;
+		}
+	};
+}
+
+function SF3TimeBomb3(){
+	this.id="SF3TimeBomb3";
+	this.name="TimeBomb3";
+	this.image=SF3060_countbomb3;
+	this.code=["A", "B", "C"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=200;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.xDirection = -1;
+		this.targetSide = SIDE.LEFT;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+			this.targetSide = SIDE.RIGHT;
+		}
+		this.bombPlaced = false;
+		this.tempX = attacker.x + this.xDirection;
+		while(!this.bombPlaced){
+			if(cells[this.tempX]){
+				if(cells[this.tempX][attacker.y] && cells[this.tempX][attacker.y].side === this.targetSide){
+					if(board.isCellPlayerValid(this.tempX, attacker.y)){
+						cells[this.tempX][attacker.y].object = [new BN6TimeBomb(this.tempX, attacker.y, attacker, defender, this.damage + this.boostDamage)];
+					}
+				}
+				this.tempX++;
+			}
+			this.bombPlaced = true;
+		}
+	};
+}
+
+function SF3HeatUpper1(){
+	this.id="SF3HeatUpper1";
+	this.name="HeatUpper1";
+	this.image=SF3061_heatupper1;
+	this.code=["E", "K", "O"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=120;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Sword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3HeatUpper2(){
+	this.id="SF3HeatUpper2";
+	this.name="HeatUpper2";
+	this.image=SF3062_heatupper2;
+	this.code=["E", "I", "W"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=150;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3HeatUpper1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3HeatUpper3(){
+	this.id="SF3HeatUpper3";
+	this.name="HeatUpper3";
+	this.image=SF3063_heatupper3;
+	this.code=["B", "E", "G"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=200;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3HeatUpper1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3MechFlame1(){
+	this.id="SF3MechFlame1";
+	this.name="MechFlame1";
+	this.image=SF3064_machineflame1;
+	this.code=["F", "T", "W"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=110;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new BN6HellBurner1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3MechFlame1()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === playerOne.name){
+			this.xDirection = 1;
+		}
+		for(var i = 1; i < 4; i++){
+			board.convertPanel(attacker.x + this.xDirection * i, attacker.y, PANELTYPE.BROKEN);
+		}
+	};
+}
+
+function SF3MechFlame2(){
+	this.id="SF3MechFlame2";
+	this.name="MechFlame2";
+	this.image=SF3065_machineflame2;
+	this.code=["B", "F", "O"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=140;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new SF3MechFlame1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3MechFlame1()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3MechFlame1()).effectmiss(attacker, defender);
+	};
+}
+
+function SF3MechFlame3(){
+	this.id="SF3MechFlame3";
+	this.name="MechFlame3";
+	this.image=SF3066_machineflame3;
+	this.code=["F", "S", "Y"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=170;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new SF3MechFlame1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3MechFlame1()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3MechFlame1()).effectmiss(attacker, defender);
+	};
+}
+
+function SF3MadFire1(){
+	this.id="SF3MadFire1";
+	this.name="MadFire1";
+	this.image=SF3067_angerfire1;
+	this.code=["F", "J", "T"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=100;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.hits = 1;
+		if(defender.guard > 1){
+			this.hits = 3;
+		}
+		return (new SF3Cannon()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3MadFire2(){
+	this.id="SF3MadFire2";
+	this.name="MadFire2";
+	this.image=SF3068_angerfire2;
+	this.code=["L", "T", "U"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=140;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.localMadFire = new SF3MadFire1();
+		this.hitbool = this.localMadFire.hithuh(attacker, defender);
+		this.hits = this.localMadFire.hits;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3MadFire3(){
+	this.id="SF3MadFire3";
+	this.name="MadFire3";
+	this.image=SF3069_angerfire3;
+	this.code=["A", "H", "T"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=180;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.fire, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.localMadFire = new SF3MadFire1();
+		this.hitbool = this.localMadFire.hithuh(attacker, defender);
+		this.hits = this.localMadFire.hits;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
 var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new SF3PlasmaGun(), 
 				new SF3AirSpread1(), new SF3AirSpread2(), new SF3AirSpread3(), new SF3MadVulcan1(), 
 				new SF3MadVulcan2(), new SF3MadVulcan3(), new SF3BlackInk(), new SF3MiniGrenade(), 
@@ -1501,7 +1829,10 @@ var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new 
 				new SF3SmileCoin3(), new SF3BigDrop1(), new SF3BigDrop2(), new SF3BigDrop3(), 
 				new SF3Buzzsaw1(), new SF3Buzzsaw2(), new SF3Buzzsaw3(), new SF3SkullArrow1(), 
 				new SF3SkullArrow2(), new SF3SkullArrow3(), new SF3MuTechnology1(), new SF3MuTechnology2(), 
-				new SF3MuTechnology3()];
+				new SF3MuTechnology3(), new SF3TimeBomb1(), new SF3TimeBomb2(), new SF3TimeBomb3(), 
+				new SF3HeatUpper1(), new SF3HeatUpper2(), new SF3HeatUpper3(), new SF3MechFlame1(), 
+				new SF3MechFlame2(), new SF3MechFlame3(), new SF3MadFire1(), new SF3MadFire2(), 
+				new SF3MadFire3()];
 
 function SF3Cards(){
 
