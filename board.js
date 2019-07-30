@@ -436,6 +436,22 @@ function Board(width,height,canvas){
 		return this.val;
 	}
 
+	this.generateRandomPanel = function(){
+		this.sum = 0;
+		this.sum = this.sum + playerOne.hp;
+		this.sum = this.sum + playerTwo.hp * 2;
+		this.sum = this.sum + playerOne.x * 3;
+		this.sum = this.sum + playerOne.y * 4;
+		this.sum = this.sum + playerTwo.x * 5;
+		this.sum = this.sum + playerTwo.y * 6;
+		this.sum = this.sum + PANELTYPE.indexOf(cells[playerOne.x][playerOne.y].panelType) * 7;
+		this.sum = this.sum + PANELTYPE.indexOf(cells[playerTwo.x][playerTwo.y].panelType) * 8;
+		this.locNum = this.sum % 18;
+		this.x = Math.floor(this.locNum / 3);
+		this.y = this.locNum % 3;
+		return [this.x, this.y];
+	}
+
 	this.resolveBugs = function(){
 		for(var i = 0; i < playerOne.bugs.length; i++){
 			playerOne.bugs[i].resolve(playerOne);

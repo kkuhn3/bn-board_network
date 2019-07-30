@@ -1676,7 +1676,7 @@ function BN6AirHock(){
 	this.rank="standard";
 	this.damage=60;
 	this.boostDamage=0;
-	this.hits="1-5";
+	this.hits="1-7";
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){

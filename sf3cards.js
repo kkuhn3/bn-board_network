@@ -1755,12 +1755,12 @@ function SF3MadFire1(){
 	this.rank="standard";
 	this.damage=100;
 	this.boostDamage=0;
-	this.hits=1;
+	this.hits="1,3";
 	this.priority=2;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.hits = 1;
-		if(defender.guard > 1){
+		if(defender.guard === null){
 			this.hits = 3;
 		}
 		return (new SF3Cannon()).hithuh(attacker, defender);
@@ -1779,7 +1779,7 @@ function SF3MadFire2(){
 	this.rank="standard";
 	this.damage=140;
 	this.boostDamage=0;
-	this.hits=1;
+	this.hits="1,3";
 	this.priority=2;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
@@ -1802,7 +1802,7 @@ function SF3MadFire3(){
 	this.rank="standard";
 	this.damage=180;
 	this.boostDamage=0;
-	this.hits=1;
+	this.hits="1,3";
 	this.priority=2;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
@@ -1812,6 +1812,501 @@ function SF3MadFire3(){
 		return this.hitbool;
 	};
 	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3WideWave1(){
+	this.id="SF3WideWave1";
+	this.name="WideWave1";
+	this.image=SF3070_widewave1;
+	this.code=["B", "C", "V"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=70;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6WideShot()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3WideWave2(){
+	this.id="SF3WideWave2";
+	this.name="WideWave2";
+	this.image=SF3071_widewave2;
+	this.code=["E", "L", "V"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=90;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3WideWave1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3WideWave3(){
+	this.id="SF3WideWave3";
+	this.name="WideWave3";
+	this.image=SF3072_widewave3;
+	this.code=["V", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=120;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3WideWave1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3BubbleHook1(){
+	this.id="SF3BubbleHook1";
+	this.name="BubbleHook1";
+	this.image=SF3073_bubblehook1;
+	this.code=["B", "C", "K"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=60;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3GreatAxe()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		if(defender.guard === null){
+			defender.bubbled = 1;
+		}
+	};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3BubbleHook2(){
+	this.id="SF3BubbleHook2";
+	this.name="BubbleHook2";
+	this.image=SF3074_bubblehook2;
+	this.code=["D", "K", "V"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=80;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3BubbleHook1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3BubbleHook1()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3BubbleHook3(){
+	this.id="SF3BubbleHook3";
+	this.name="BubbleHook3";
+	this.image=SF3075_bubblehook3;
+	this.code=["K", "L", "N"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=100;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3BubbleHook1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3BubbleHook1()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3SharkAttack1(){
+	this.id="SF3SharkAttack1";
+	this.name="SharkAttack1";
+	this.image=SF3076_sharkcutter1;
+	this.code=["E", "L", "P"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=70;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		if(defender.invis < 1){
+			if(attacker.name === playerOne.name){
+				return attacker.x+1 === defender.x && attacker.y === defender.y;
+			}
+			else{
+				return attacker.x-1 === defender.x && attacker.y === defender.y;
+			}
+		}
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		if(attacker.name === playerOne.name){
+			if(board.isCellPlayerValid(attacker.x+1, attacker.y)){
+				cells[attacker.x+1][attacker.y].object.push(new SF3SharkAttackObj(attacker.x+1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+		else{
+			if(board.isCellPlayerValid(attacker.x-1, attacker.y)){
+				cells[attacker.x-1][attacker.y].object.push(new SF3SharkAttackObj(attacker.x-1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+	};
+}
+
+function SF3SharkAttack2(){
+	this.id="SF3SharkAttack2";
+	this.name="SharkAttack2";
+	this.image=SF3077_sharkcutter2;
+	this.code=["C", "K", "L"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=80;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3SharkAttack1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		if(attacker.name === playerOne.name){
+			if(board.isCellPlayerValid(attacker.x+1, attacker.y)){
+				cells[attacker.x+1][attacker.y].object.push(new SF3SharkAttackObj(attacker.x+1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+		else{
+			if(board.isCellPlayerValid(attacker.x-1, attacker.y)){
+				cells[attacker.x-1][attacker.y].object.push(new SF3SharkAttackObj(attacker.x-1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+	};
+}
+
+function SF3SharkAttack3(){
+	this.id="SF3SharkAttack3";
+	this.name="SharkAttack3";
+	this.image=SF3078_sharkcutter3;
+	this.code=["I", "L", "M"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=90;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3SharkAttack1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		if(attacker.name === playerOne.name){
+			if(board.isCellPlayerValid(attacker.x+1, attacker.y)){
+				cells[attacker.x+1][attacker.y].object.push(new SF3SharkAttackObj(attacker.x+1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+		else{
+			if(board.isCellPlayerValid(attacker.x-1, attacker.y)){
+				cells[attacker.x-1][attacker.y].object.push(new SF3SharkAttackObj(attacker.x-1, attacker.y, attacker, defender, this.damage));
+			}
+		}
+	};
+}
+
+function SF3IceSpin1(){
+	this.id="SF3IceSpin1";
+	this.name="IceSpin1";
+	this.image=SF3079_icespinning1;
+	this.code=["I", "P", "Q"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=70;
+	this.boostDamage=0;
+	this.hits="1-5";
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.hitbool = false;
+		this.hits = 0;
+		if(defender.invis < 1){
+			this.xDirection = -1;
+			this.yDirection = 1;
+			this.puckX = attacker.x - 1;
+			this.puckY = attacker.y;
+			this.side = SIDE.RIGHT;
+			this.switchedSides = false;
+				
+			if(attacker.name === "one"){
+				this.xDirection = 1;
+				this.puckX = attacker.x + 1;
+				this.side = SIDE.LEFT;
+			}
+			
+			for(var i = 0; i < 7; i++){
+				if(board.isHole(this.puckX, this.puckY)){
+					return this.hitbool;
+				}
+				if(this.puckX === defender.x && this.puckY === defender.y){
+					this.hitbool = true;
+					this.hits++;
+				}
+				if(cells[this.puckX][this.puckY].side !== this.side){
+					this.switchedSides = true;
+				}
+				
+				if(!cells[this.puckX + this.xDirection]){
+					this.xDirection = this.xDirection * -1;
+				}
+				this.puckX = this.puckX + this.xDirection;
+				
+				if(!cells[this.puckX][this.puckY + this.yDirection]){
+					this.yDirection = this.yDirection * -1;
+				}
+				this.puckY = this.puckY + this.yDirection;
+				
+				if(this.switchedSides){
+					if(cells[this.puckX][this.puckY].side === this.side){
+						this.xDirection = this.xDirection * -1;
+						this.puckX = this.puckX + this.xDirection * 2;
+					}
+					if(!cells[this.puckX]){
+						return this.hitbool;
+					}
+					if(cells[this.puckX][this.puckY].side === this.side){
+						this.yDirection = this.yDirection * -1;
+						this.puckY = this.puckY + this.xDirection * 2;
+					}
+					if(!cells[this.puckX][this.puckY]){
+						return this.hitbool;
+					}
+				}
+			}
+		}
+		if(this.hits < 1){
+			this.hits === 1
+		}
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3IceSpin2(){
+	this.id="SF3IceSpin2";
+	this.name="IceSpin2";
+	this.image=SF3080_icespinning2;
+	this.code=["I", "R", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=90;
+	this.boostDamage=0;
+	this.hits="1-5";
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.localIceSpin = new SF3IceSpin1();
+		this.hitbool = this.localIceSpin.hithuh(attacker, defender);
+		this.hits = this.localIceSpin.hits;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3IceSpin3(){
+	this.id="SF3IceSpin3";
+	this.name="IceSpin3";
+	this.image=SF3081_icespinning3;
+	this.code=["I", "J", "K"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=110;
+	this.boostDamage=0;
+	this.hits="1-5";
+	this.priority=2;
+	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.localIceSpin = new SF3IceSpin1();
+		this.hitbool = this.localIceSpin.hithuh(attacker, defender);
+		this.hits = this.localIceSpin.hits;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3StealthLaser1(){
+	this.id="SF3StealthLaser1";
+	this.name="StealthLaser1";
+	this.image=SF3082_stealthlaser1;
+	this.code=["A", "N", "O"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=40;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		this.xDir = -1;
+		this.targetPlayer = playerOne;
+		if(attacker.name === playerOne.name){
+			this.xDir = 1;
+			this.targetPlayer = playerTwo;
+		}
+		this.startX = this.targetPlayer.x - this.xDir*3;
+		while(cells[this.startX] && !cellHasSolidObject(this.startX, this.targetPlayer.y)){
+			this.startX = this.startX + this.xDir;
+			if(defender.x === this.startX && defender.y === this.targetPlayer.y){
+				return true;
+			}
+		}
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3StealthLaser2(){
+	this.id="SF3StealthLaser2";
+	this.name="StealthLaser2";
+	this.image=SF3083_stealthlaser2;
+	this.code=["N", "P", "Y"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=50;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3StealthLaser1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3StealthLaser3(){
+	this.id="SF3StealthLaser3";
+	this.name="StealthLaser3";
+	this.image=SF3084_stealthlaser3;
+	this.code=["M", "N", "T"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=60;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=2;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3StealthLaser1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3MummyHand1(){
+	this.id="SF3MummyHand1";
+	this.name="MummyHand1";
+	this.image=SF3085_mummyhand1;
+	this.code=["D", "I", "N"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=120;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3GreatAxe()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		if(defender.guard === null){
+			defender.stunned = 2;
+		}
+	};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3MummyHand2(){
+	this.id="SF3MummyHand2";
+	this.name="MummyHand2";
+	this.image=SF3086_mummyhand2;
+	this.code=["F", "I", "S"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=150;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3MummyHand1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3MummyHand1()).hithuh(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3MummyHand3(){
+	this.id="SF3MummyHand3";
+	this.name="MummyHand3";
+	this.image=SF3087_mummyhand3;
+	this.code=["I", "T", "V"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=170;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3MummyHand1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3MummyHand1()).hithuh(attacker, defender);
+	};
 	this.effectmiss= function(attacker, defender){};
 }
 
@@ -1832,7 +2327,11 @@ var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new 
 				new SF3MuTechnology3(), new SF3TimeBomb1(), new SF3TimeBomb2(), new SF3TimeBomb3(), 
 				new SF3HeatUpper1(), new SF3HeatUpper2(), new SF3HeatUpper3(), new SF3MechFlame1(), 
 				new SF3MechFlame2(), new SF3MechFlame3(), new SF3MadFire1(), new SF3MadFire2(), 
-				new SF3MadFire3()];
+				new SF3MadFire3(), new SF3WideWave1(), new SF3WideWave2(), new SF3WideWave3(), 
+				new SF3BubbleHook1(), new SF3BubbleHook2(), new SF3BubbleHook3(), new SF3SharkAttack1(), 
+				new SF3SharkAttack2(), new SF3SharkAttack3(), new SF3IceSpin1(), new SF3IceSpin2(), 
+				new SF3IceSpin3(), new SF3StealthLaser1(), new SF3StealthLaser1, new SF3StealthLaser3(), 
+				new SF3MummyHand1(), new SF3MummyHand2(), new SF3MummyHand3()];
 
 function SF3Cards(){
 

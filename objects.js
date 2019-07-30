@@ -492,25 +492,28 @@ function BN6AirRaid(x, y, attacker, defender, hits){
 	this.damage = 10;
 	this.image = FighterPlane;
 	this.solid = true;
-	this.hp = 1;
+	this.hp = 3;
 	this.effecthit = function(hitBy){
 		if(hitBy.name === defender.name){
-			hp--;
+			this.hp = 0;
 			this.remove();
 		}
 	};
 	this.hitByBuster = function(hitBy){
 		if(hitBy.name === defender.name){
-			hp--;
+			this.hp = 0;
 			this.remove();
 		}
 	};
 	this.passiveTriggered = false;
 	this.passive = function(){
 		if(defender.invis < 1){
-			defender.hp = defender.hp - this.damage*hits;
+			defender.hp = defender.hp - this.damage*hits/3;
 		}
-		this.remove();
+		this.hp--;
+		if(this.hp === 0){
+			this.remove();
+		}
 	};
 	this.remove = function(){
 		cells[this.x][this.y].object = [];
@@ -825,4 +828,59 @@ function BN6BodyGuardObj(attacker, defender){
 	};
 	this.x = 0;
 	this.y = 0;
+}
+
+function SF3SharkAttackObj(x, y, attacker, defender, damage){
+	this.attacker = attacker;
+	this.defender = defender;
+	this.id = "SF3SharkAttackObj";
+	this.image = SF3076_sharkcutter1; //TODO shark image!
+	this.solid = false;
+	this.effecthit = function(hitBy){};
+	this.hitByBuster = function(hitBy){};
+	this.passiveTriggered = false;
+	this.yDir = -1;
+	this.xDir = null;
+	this.agroed = false;
+	this.passive = function(){
+		this.index = cells[this.x][this.y].object.indexOf(this);
+		cells[this.x][this.y].object.splice(this.index, 1);
+		if(this.agroed){
+			this.x = this.x+this.xDir;
+			if(board.isCellPlayerValid(this.x, this.y)){
+				cells[this.x][this.y].object.push(this);
+			}
+		}
+		else{
+			if(board.isCellPlayerValid(this.x, this.y+this.yDir)){
+				this.y = this.y + this.yDir;
+				cells[this.x][this.y].object.push(this);
+			}
+			else {
+				this.yDir = this.yDir * -1;
+				if(board.isCellPlayerValid(this.x, this.y+this.yDir)){
+					this.y = this.y + this.yDir;
+					cells[this.x][this.y].object.push(this);
+				}
+				else{
+					if(board.isCellPlayerValid(this.x, this.y)){
+						cells[this.x][this.y].object.push(this);
+					}
+				}
+			}
+			if(this.y = defender.y){
+				this.agroed = true;
+				this.xDir = -1;
+				if(attacker.name = playerOne.name){
+					this.xDir = 1;
+				}
+			}
+		}
+		if(this.x === defender.x && this.y === defender.y){
+			console.log("Player " + attacker.name + "'s SharkAttack hit!");
+			defender.hp = defender.hp - this.damage;
+		}
+	};
+	this.x = x;
+	this.y = y;
 }
