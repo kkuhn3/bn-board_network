@@ -419,6 +419,20 @@ function Board(width,height,canvas){
 	}
 	
 	this.generateRandomNum = function(outOf){
+		this.sum = this.generateRandomSum();
+		this.val = this.sum % outOf;
+		return this.val;
+	}
+
+	this.generateRandomPanel = function(){
+		this.sum = this.generateRandomSum();
+		this.locNum = this.sum % 18;
+		this.x = Math.floor(this.locNum / 3);
+		this.y = this.locNum % 3;
+		return [this.x, this.y];
+	}
+
+	this.generateRandomSum = function(){
 		this.sum = 0;
 		if(playerOne.ACTIONS === ACTIONS.CARD){
 			this.sum = this.sum + CARDLIST.indexOf(playerOne.card);
@@ -432,24 +446,15 @@ function Board(width,height,canvas){
 		else{
 			this.sum = this.sum + CARDLIST.length+2;
 		}
-		this.val = this.sum % outOf;
-		return this.val;
-	}
-
-	this.generateRandomPanel = function(){
-		this.sum = 0;
 		this.sum = this.sum + playerOne.hp;
-		this.sum = this.sum + playerTwo.hp * 2;
-		this.sum = this.sum + playerOne.x * 3;
-		this.sum = this.sum + playerOne.y * 4;
-		this.sum = this.sum + playerTwo.x * 5;
-		this.sum = this.sum + playerTwo.y * 6;
-		this.sum = this.sum + PANELTYPE.indexOf(cells[playerOne.x][playerOne.y].panelType) * 7;
-		this.sum = this.sum + PANELTYPE.indexOf(cells[playerTwo.x][playerTwo.y].panelType) * 8;
-		this.locNum = this.sum % 18;
-		this.x = Math.floor(this.locNum / 3);
-		this.y = this.locNum % 3;
-		return [this.x, this.y];
+		this.sum = this.sum + playerTwo.hp;
+		this.sum = this.sum + playerOne.x;
+		this.sum = this.sum + playerOne.y;
+		this.sum = this.sum + playerTwo.x;
+		this.sum = this.sum + playerTwo.y;
+		this.sum = this.sum + PANELTYPE.indexOf(cells[playerOne.x][playerOne.y].panelType);
+		this.sum = this.sum + PANELTYPE.indexOf(cells[playerTwo.x][playerTwo.y].panelType);
+		return this.sum;
 	}
 
 	this.resolveBugs = function(){
@@ -611,7 +616,6 @@ function Board(width,height,canvas){
 					defender.barrier = null;
 				}
 				if(defender.guard === null){
-					this.actuallyHit = true;
 					if(defender.invincible < 1){
 						this.oneHitmultiplier = this.calculateOneHitMultiplier(attacker, defender, attackCard);
 						this.allHitmultiplier = this.calculateAllHitMultiplier(attacker, defender);
@@ -623,8 +627,17 @@ function Board(width,height,canvas){
 								defender.trap.trigger(attacker, defender, attackCard);
 							}
 						}
-						if(this.damageReduced === this.damageDealt && this.damageReduced > 0){
-							this.actuallyHit = false;
+						if(this.damageReduced !== this.damageDealt || this.damageReduced <= 0){
+							defender.bubbled = 0;
+							attackCard.effecthit(attacker, defender);
+							if(attackCard.stunAdded && defender.stunned < 1){
+								defender.stunned = 1;
+							}
+							if(attackCard.uninstallAdded){
+								//toDo: navicust? 
+								console.log("Uninstalled!");
+								defender.busterType = new BN6Buster();
+							}
 						}
 						defender.hp = defender.hp - this.damageDealt + this.damageReduced;
 						if(defender.barrier && defender.barrier.isBarrierDestroyed()){
@@ -635,18 +648,6 @@ function Board(width,height,canvas){
 					}
 					else{
 						console.log("it hit! But Player " + defender.name + " was Invincible.");
-					}
-					defender.bubbled = 0;
-					if(this.actuallyHit){
-						attackCard.effecthit(attacker, defender);
-						if(attackCard.stunAdded && defender.stunned < 1){
-							defender.stunned = 1;
-						}
-						if(attackCard.uninstallAdded){
-							//toDo: navicust? 
-							console.log("Uninstalled!");
-							defender.busterType = new BN6Buster();
-						}
 					}
 				}
 				else{
