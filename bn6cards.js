@@ -3765,17 +3765,20 @@ function BN6Boomerang(){
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
-		if(defender.y === 0){
-			return true;
+		if(defender.invis < 1){
+			if(defender.y === 0){
+				return true;
+			}
+			if(defender.y === 2){
+				return true;
+			}
+			this.xEnd = 0;
+			if(attacker.name === "one"){
+				this.xEnd = 5;
+			}
+			return defender.x === this.xEnd;
 		}
-		if(defender.y === 2){
-			return true;
-		}
-		this.xEnd = 0;
-		if(attacker.name === "one"){
-			this.xEnd = 5;
-		}
-		return defender.x === this.xEnd;
+		return false;
 	};
 	this.effecthit= function(attacker, defender){
 		(new BN6Boomerang()).effectmiss(attacker, defender);
