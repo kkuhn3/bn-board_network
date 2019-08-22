@@ -134,7 +134,7 @@ function SF3PlasmaGun(){
 	};
 	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
-			defender.stunned = 1;
+			defender.stunned = 2;
 		}
 	};
 	this.effectmiss= function(attacker, defender){};
@@ -2404,7 +2404,7 @@ function SF3FlashStrike1(){
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
-		return (new SF3LongSword()).hithuh(attacker, defender);
+		return (new BN6ElecPulse1()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){};
@@ -2460,7 +2460,7 @@ function SF3ArachAttack1(){
 	this.rank="standard";
 	this.damage=40;
 	this.boostDamage=0;
-	this.hits=1;
+	this.hits=3;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
@@ -2486,7 +2486,7 @@ function SF3ArachAttack2(){
 	this.rank="standard";
 	this.damage=50;
 	this.boostDamage=0;
-	this.hits=1;
+	this.hits=3;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
@@ -2506,7 +2506,7 @@ function SF3ArachAttack3(){
 	this.rank="standard";
 	this.damage=60;
 	this.boostDamage=0;
-	this.hits=1;
+	this.hits=3;
 	this.priority=2;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
@@ -2903,7 +2903,9 @@ function SF3MalWizard1(){
 		return false
 	};
 	this.effecthit= function(attacker, defender){
-		defender.stunned = 1;
+		if(defender.guard < 1){
+			defender.stunned = 1;
+		}
 	};
 	this.effectmiss= function(attacker, defender){};
 }
@@ -3016,6 +3018,33 @@ function SF3BlackHole3(){
 		defender.hp = 0;
 	};
 	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3DoubleStone(){
+	this.id="SF3DoubleStone";
+	this.name="DoubleStone";
+	this.image=SF3118_doublestone;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		if(board.isCellPlayerValid(1, 1)){
+			cells[1][1].object = [(new SF3DoubleStoneObj(1, 1))];
+		}
+		if(board.isCellPlayerValid(4, 1)){
+			cells[4][1].object = [(new SF3DoubleStoneObj(4, 1))];
+		}
+	};
 }
 
 var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new SF3PlasmaGun(), 

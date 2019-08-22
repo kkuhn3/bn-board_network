@@ -884,3 +884,36 @@ function SF3SharkAttackObj(x, y, attacker, defender, damage){
 	this.x = x;
 	this.y = y;
 }
+
+function SF3DoubleStoneObj(x, y){
+	this.id = "SF3DoubleStone";
+	this.hp = 200;
+	this.image = RockCubeCube;
+	this.solid = true;
+	this.effecthit = function(attacker){
+		var cardHitBy = attacker.card;
+		if(cardHitBy.elements.indexOf(ELEMENTS.break)){
+			this.hp = 0;
+		}
+		else{
+			this.hp = this.hp - cardHitBy.damage * cardHitBy.hits;
+		}
+		if(this.hp < 1){
+			cells[this.x][this.y].object = [];
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.hitByBuster = function(player){
+		this.hp = this.hp - player.busterDamage;
+		if(this.hp < 1){
+			cells[this.x][this.y].object = [];
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){};
+	this.x = x;
+	this.y = y;
+}
