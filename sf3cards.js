@@ -2472,7 +2472,11 @@ function SF3ArachAttack1(){
 			return defender.x === this.targetPlayer.x && defender.y === this.targetPlayer.y;
 		}
 	};
-	this.effecthit= function(attacker, defender){};
+	this.effecthit= function(attacker, defender){
+		if(defender.guard < 1){
+			defender.confused = 1;
+		}
+	};
 	this.effectmiss= function(attacker, defender){};
 }
 
@@ -2492,7 +2496,9 @@ function SF3ArachAttack2(){
 	this.hithuh= function(attacker, defender){
 		return (new SF3ArachAttack1()).hithuh(attacker, defender);
 	};
-	this.effecthit= function(attacker, defender){};
+	this.effecthit= function(attacker, defender){
+		(new SF3ArachAttack1()).effecthit(attacker, defender);
+	};
 	this.effectmiss= function(attacker, defender){};
 }
 
@@ -2512,7 +2518,9 @@ function SF3ArachAttack3(){
 	this.hithuh= function(attacker, defender){
 		return (new SF3ArachAttack1()).hithuh(attacker, defender);
 	};
-	this.effecthit= function(attacker, defender){};
+	this.effecthit= function(attacker, defender){
+		(new SF3ArachAttack1()).effecthit(attacker, defender);
+	};
 	this.effectmiss= function(attacker, defender){};
 }
 
@@ -3047,6 +3055,429 @@ function SF3DoubleStone(){
 	};
 }
 
+function SF3Bombalizer(){
+	this.id="SF3Bombalizer";
+	this.name="Bombalizer";
+	this.image=SF3119_bombriser;
+	this.code=["L", "M", "S"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=200;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		if(defender.invis < 1){
+			for(var x = 0; x < cells.length; x++){
+				for(var y = 0; y < cells[x].length; y++){
+					if(board.cellHasSolidObject(x, y)){
+						if(cards.around(x, y, defender)){
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3Bombalizer()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		for(var x = 0; x < cells.length; x++){
+			for(var y = 0; y < cells[x].length; y++){
+				if(board.cellHasSolidObject(x, y)){
+					cells[x][y].object = [];
+				}
+			}
+		}
+	};
+}
+
+function SF3DivideLine(){
+	this.id="SF3DivideLine";
+	this.name="DivideLine";
+	this.image=SF3120_divideline;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.xDir = -1;
+		if(attacker.name === playerOne.name){
+			this.xDir = 1;
+		}
+		for(var y = 0; y < 3; y++){
+			board.convertPanel(attacker.x + this.xDir, y, PANELTYPE.BROKEN);
+		}
+	};
+}
+
+function SF3PanelFormat(){
+	this.id="SF3PanelFormat";
+	this.name="PanelFormat";
+	this.image=SF3122_panelformat;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		for(var x = 0; x < cells.length; x++){
+			for(var y = 0; y < cells[x].length; y++){
+				board.convertPanel(x, y, PANELTYPE.NORMAL);
+			}
+		}
+	};
+}
+
+function SF3PanicCloud(){
+	this.id="SF3PanicCloud";
+	this.name="PanicCloud";
+	this.image=SF3123_paniccloud;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		if(cells[defender.x][defender.y].panelType === PANELTYPE.NORML){
+			defender.confused = 3;
+		}
+	};
+}
+
+function SF3Recover10(){
+	this.id="SF3Recover10";
+	this.name="Recover10";
+	this.image=SF3124_recovery10;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		cards.recoverHealth(attacker, 10);
+	};
+}
+
+function SF3Recover30(){
+	this.id="SF3Recover30";
+	this.name="Recover30";
+	this.image=SF3125_recovery30;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		cards.recoverHealth(attacker, 30);
+	};
+}
+
+function SF3Recover50(){
+	this.id="SF3Recover50";
+	this.name="Recover50";
+	this.image=SF3126_recovery50;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		cards.recoverHealth(attacker, 50);
+	};
+}
+
+function SF3Recover80(){
+	this.id="SF3Recover80";
+	this.name="Recover80";
+	this.image=SF3126_recovery80;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		cards.recoverHealth(attacker, 80);
+	};
+}
+
+function SF3Recover120(){
+	this.id="SF3Recover120";
+	this.name="Recover120";
+	this.image=SF3127_recovery120;
+	this.code=["A", "G", "M"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		cards.recoverHealth(attacker, 120);
+	};
+}
+
+function SF3Recover150(){
+	this.id="SF3Recover150";
+	this.name="Recover150";
+	this.image=SF3128_recovery150;
+	this.code=["C", "S", "T"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		cards.recoverHealth(attacker, 150);
+	};
+}
+
+function SF3Recover200(){
+	this.id="SF3Recover200";
+	this.name="Recover200";
+	this.image=SF3128_recovery200;
+	this.code=["J", "W", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		cards.recoverHealth(attacker, 200);
+	};
+}
+
+function SF3Recover300(){
+	this.id="SF3Recover300";
+	this.name="Recover300";
+	this.image=SF3129_recovery300;
+	this.code=["C", "F", "M"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=1;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		cards.recoverHealth(attacker, 300);
+	};
+}
+
+function SF3Barrier(){
+	this.id="SF3Barrier";
+	this.name="Barrier";
+	this.image=SF3132_barrier;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		attacker.barrier = new HitsBarrier(1);
+	};
+}
+
+function SF3SuperBarrier(){
+	this.id="SF3SuperBarrier";
+	this.name="SuperBarrier";
+	this.image=SF3133_superbarrier;
+	this.code=["A", "L", "T"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		attacker.barrier = new HitsBarrier(5);
+	};
+}
+
+function SF3Aura(){
+	this.id="SF3Aura";
+	this.name="Aura";
+	this.image=SF3134_aura;
+	this.code=["E", "S", "V"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		attacker.barrier = new AuraBarrier(100);
+	};
+}
+
+function SF3Invisible(){
+	this.id="SF3Invisible";
+	this.name="Invisible";
+	this.image=SF3135_invisible;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Recover10()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		(new BN6Invis()).effectmiss(attacker, defender);
+	};
+}
+
+function SF3Whistle(){
+	this.id="SF3Whistle";
+	this.name="Whistle";
+	this.image=SF3136_whistle;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=3;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		defender.barrier = null;
+		this.xDirection = 1;
+		if(attacker.name === playerOne.name){
+			this.xDirection = -1;
+		}
+		if(defender.guard === null){
+			for(var i = 0; i < 4; i++){
+				this.xTile = defender.x + this.xDirection;
+				this.yTile = defender.y;
+				if(board.isCellThisPlayerValid(this.xTile, this.yTile, defender)){
+					cells[defender.x][defender.y].player = null;
+					cells[this.xTile][this.yTile].player = defender;
+					defender.x = this.xTile;
+				}
+				else{
+					break;
+				}
+			}
+		}
+	};
+}
+
 var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new SF3PlasmaGun(), 
 				new SF3AirSpread1(), new SF3AirSpread2(), new SF3AirSpread3(), new SF3MadVulcan1(), 
 				new SF3MadVulcan2(), new SF3MadVulcan3(), new SF3BlackInk(), new SF3MiniGrenade(), 
@@ -3076,7 +3507,11 @@ var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new 
 				new SF3AcornBomb3(), new SF3BeastSlap1(), new SF3BeastSlap2(), new SF3BeastSlap3(), 
 				new SF3NoisedWizard1(), new SF3NoisedWizard2(), new SF3NoisedWizard3(), new SF3MalWizard1(), 
 				new SF3MalWizard2(), new SF3MalWizard3(), new SF3BlackHole1(), new SF3BlackHole2(), 
-				new SF3BlackHole3()];
+				new SF3BlackHole3(), new SF3Bombalizer(), new SF3DivideLine(), new SF3PanelFormat(), 
+				new SF3PanicCloud(), new SF3Recover10(), new SF3Recover30(), new SF3Recover50(), 
+				new SF3Recover120(), new SF3Recover150(), new SF3Recover200(), new SF3Recover300(), 
+				new SF3Barrier(), new SF3SuperBarrier(), new SF3Aura(), new SF3Invisible(), 
+				new SF3Whistle()];
 
 function SF3Cards(){
 

@@ -232,6 +232,17 @@ function Board(width,height,canvas){
 					ctx.drawImage(bubblebarrier,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
 				}
 			}
+			else if(playerDraw.barrier.id === "HitsBarrier"){
+				if(playerDraw.barrier.hp <= 1){
+					ctx.drawImage(barrier10,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+				}
+				else if(playerDraw.barrier.hp <= 4){
+					ctx.drawImage(barrier100,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+				}
+				else{
+					ctx.drawImage(barrier200,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+				}
+			}
 		}
 
 		ctx.globalAlpha = 1.0;

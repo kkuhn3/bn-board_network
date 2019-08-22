@@ -472,4 +472,13 @@ function Cards(){
 		}
 		return this.damageTxt;
 	}
+
+	this.recoverHealth = function(attacker, health){
+		if(attacker.hp > 0){
+			attacker.hp = attacker.hp + health;
+			if(attacker.hp > playerHP){
+				attacker.hp = playerHP;
+			}
+		}
+	}
 }

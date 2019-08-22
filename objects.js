@@ -888,7 +888,7 @@ function SF3SharkAttackObj(x, y, attacker, defender, damage){
 function SF3DoubleStoneObj(x, y){
 	this.id = "SF3DoubleStone";
 	this.hp = 200;
-	this.image = RockCubeCube;
+	this.image = DoubleStone;
 	this.solid = true;
 	this.effecthit = function(attacker){
 		var cardHitBy = attacker.card;

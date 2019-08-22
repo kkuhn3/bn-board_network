@@ -4998,10 +4998,7 @@ function BN6Recover10(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.hp = attacker.hp + 10;
-		if(attacker.hp > playerHP){
-			attacker.hp = playerHP;
-		}
+		cards.recoverHealth(attacker, 10);
 	};
 }
 
@@ -5023,10 +5020,7 @@ function BN6Recover30(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.hp = attacker.hp + 30;
-		if(attacker.hp > playerHP){
-			attacker.hp = playerHP;
-		}
+		cards.recoverHealth(attacker, 30);
 	};
 }
 
@@ -5048,10 +5042,7 @@ function BN6Recover50(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.hp = attacker.hp + 50;
-		if(attacker.hp > playerHP){
-			attacker.hp = playerHP;
-		}
+		cards.recoverHealth(attacker, 50);
 	};
 }
 
@@ -5073,10 +5064,7 @@ function BN6Recover80(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.hp = attacker.hp + 80;
-		if(attacker.hp > playerHP){
-			attacker.hp = playerHP;
-		}
+		cards.recoverHealth(attacker, 80);
 	};
 }
 
@@ -5098,10 +5086,7 @@ function BN6Recover120(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.hp = attacker.hp + 120;
-		if(attacker.hp > playerHP){
-			attacker.hp = playerHP;
-		}
+		cards.recoverHealth(attacker, 120);
 	};
 }
 
@@ -5123,10 +5108,7 @@ function BN6Recover150(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.hp = attacker.hp + 150;
-		if(attacker.hp > playerHP){
-			attacker.hp = playerHP;
-		}
+		cards.recoverHealth(attacker, 150);
 	};
 }
 
@@ -5148,10 +5130,7 @@ function BN6Recover200(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.hp = attacker.hp + 200;
-		if(attacker.hp > playerHP){
-			attacker.hp = playerHP;
-		}
+		cards.recoverHealth(attacker, 200);
 	};
 }
 
@@ -5173,10 +5152,7 @@ function BN6Recover300(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		attacker.hp = attacker.hp + 300;
-		if(attacker.hp > playerHP){
-			attacker.hp = playerHP;
-		}
+		cards.recoverHealth(attacker, 300);
 	};
 }
 

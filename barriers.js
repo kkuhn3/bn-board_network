@@ -65,6 +65,29 @@ function BubbleBarrier(){
 	};
 }
 
+function HitsBarrier(hp){
+	this.id = "HitsBarrier";
+	this.hp = hp;
+	this.calculateDamageAbsorbed = function(base, one, multi, hits){
+		this.damageAbsorbed = 0;
+		this.hitcount = 0;
+		if(this.hp > 0){
+			this.hp = this.hp - 1;
+			this.damageAbsorbed = this.damageAbsorbed + base * one * multi;
+			this.hitcount++;
+			while(this.hp > 0 && this.hitcount < hits){
+				this.hp = this.hp - 1;
+				this.damageAbsorbed = this.damageAbsorbed + base*multi;
+				this.hitcount++;
+			}
+		}
+		return this.damageAbsorbed;
+	};
+	this.isBarrierDestroyed = function(){
+		return this.hp < 1;
+	};
+}
+
 function Barriers(){
 	this.resetBubbleBarrier = function(aPlayer){
 		if(aPlayer.barrier){
