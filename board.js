@@ -16,10 +16,18 @@ PANELTYPE = {
 	RIGHT: "right",
 	DOWN: "down",
 	LEFT: "left",
+	SPIRITFURY: "spiritfury",
+	ANTISWORD: "antisword",
+	POISONAPPLE: "poisonapple",
+	DOUBLECROSS: "doublecross",
+	GIGAMINE: "gigamine",
+	MISS: "miss",
 }
 var paneltypes = [PANELTYPE.NORMAL, PANELTYPE.HOLE, PANELTYPE.GRASS, PANELTYPE.POISON, 
 				  PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY, PANELTYPE.BROKEN, 
-				  PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT];
+				  PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT, 
+				  PANELTYPE.MISS,
+				  PANELTYPE.SPIRITFURY, PANELTYPE.ANTISWORD, PANELTYPE.POISONAPPLE, PANELTYPE.DOUBLECROSS, PANELTYPE.GIGAMINE];
 
 var backgrounds = ["BN6ACDCbg", "BN6Centralbg", "BN6Greenbg", "BN6Seasidebg", "BN6Skybg"];
 
@@ -151,12 +159,8 @@ function Board(width,height,canvas){
 		playerTwo.hp = playerHP;
 		playerTwo.x = 4;
 		playerTwo.y = 1;
-		cells[1][1].player = playerOne;
-		cells[4][1].player = playerTwo;
-		cells[1][1].panelType = PANELTYPE.NORMAL;
-		cells[4][1].panelType = PANELTYPE.NORMAL;
-		cells[4][0].object = [new BN6RockCubeObj(4,0)];
-		cells[2][2].object = [new BN6RockCubeObj(2,2)];
+		cells[playerOne.x][playerOne.y].player = playerOne;
+		cells[playerTwo.x][playerTwo.y].player = playerTwo;
 		player = playerOne;
 		$.post("save.php",{id:"confirmone", state: JSON.stringify(false)});
 		$.post("save.php",{id:"confirmtwo", state: JSON.stringify(false)});
@@ -165,22 +169,28 @@ function Board(width,height,canvas){
 	this.drawCell = function(x,y){
 		var left = x*cellWidth;
 		var top = y*cellHeight + cheightOffset;
-		if(this.isOverlayPanel(cells[x][y].panelType)){
-			ctx.drawImage(document.getElementById(cells[x][y].side+PANELTYPE.NORMAL),left,top,cellWidth,cellHeight);
-			ctx.drawImage(document.getElementById(cells[x][y].panelType+"overlay"),left,top,cellWidth,cellHeight);
-		}
-		else{
-			ctx.drawImage(document.getElementById(cells[x][y].side+cells[x][y].panelType),left,top,cellWidth,cellHeight);
-		}
-		if(y === 2){
-			ctx.drawImage(document.getElementById(cells[x][y].side+"bottom"),left,top+cellHeight,cellWidth,cellHeight/5);
-		}
-		for(var i = 0; i < cells[x][y].object.length; i++){
-			this.objImage = cells[x][y].object[i].image.id;
-			if(cells[x][y].object[i].attacker && cells[x][y].object[i].attacker.name === playerTwo.name){
-				this.objImage = this.objImage.concat("2");
+		if(cells[x][y].panelType !== PANELTYPE.MISS){
+			if(this.isOverlayPanel(cells[x][y].panelType)){
+				ctx.drawImage(document.getElementById(cells[x][y].side+PANELTYPE.NORMAL),left,top,cellWidth,cellHeight);
+				ctx.drawImage(document.getElementById(cells[x][y].panelType+"overlay"),left,top,cellWidth,cellHeight);
 			}
-			ctx.drawImage(document.getElementById(this.objImage), left+cellWidth/8, top-3*cellHeight/4, 3*cellWidth/4, cellHeight*1.5);
+			else if(this.isTrapPanel(cells[x][y].panelType)){
+				ctx.drawImage(document.getElementById(cells[x][y].side+PANELTYPE.NORMAL),left,top,cellWidth,cellHeight);
+				ctx.drawImage(document.getElementById("trapoverlay"),left,top,cellWidth,cellHeight);
+			}
+			else{
+				ctx.drawImage(document.getElementById(cells[x][y].side+cells[x][y].panelType),left,top,cellWidth,cellHeight);
+			}
+			if(y === 2|| (cells[x][y+1] && cells[x][y+1].panelType === PANELTYPE.MISS)){
+				ctx.drawImage(document.getElementById(cells[x][y].side+"bottom"),left,top+cellHeight,cellWidth,cellHeight/5);
+			}
+			for(var i = 0; i < cells[x][y].object.length; i++){
+				this.objImage = cells[x][y].object[i].image.id;
+				if(cells[x][y].object[i].attacker && cells[x][y].object[i].attacker.name !== playerOne.name){
+					this.objImage = this.objImage.concat("2");
+				}
+				ctx.drawImage(document.getElementById(this.objImage), left+cellWidth/8, top-3*cellHeight/4, 3*cellWidth/4, cellHeight*1.5);
+			}
 		}
 	}
 
@@ -597,11 +607,16 @@ function Board(width,height,canvas){
 				return this.attackWithCard(attacker, defender, attacker.busterType);
 			}
 			else if(attacker.action === ACTIONS.CARD || attacker.action === ACTIONS.SPECIAL){
+				if(attacker.card.rank === "mega" && this.isMegaCrushed(attacker)){
+					console.log("player " + attacker.name + " Mega Card was Crushed!");
+					return false;
+				}
 				return this.attackWithCard(attacker, defender, attacker.card);
 			}
 		}
 		else{
 			console.log("player " + attacker.name + " is Stunned!");
+			return false;
 		}
 	}
 
@@ -611,6 +626,9 @@ function Board(width,height,canvas){
 		this.isAllowedbyTrap = true;
 		if(defender.trap && defender.trap.triggerOnCard(attackCard)){
 			this.isAllowedbyTrap = defender.trap.trigger(attacker, defender, attackCard);
+		}
+		if(this.isTrapPanel(cells[attacker.x][attacker.y].panelType)){
+			this.isAllowedbyTrap = this.checkTrapPanel(attacker, defender, attackCard);
 		}
 		if(this.isAllowedbyTrap){
 			if(attackCard.hithuh(attacker, defender)){
@@ -675,6 +693,67 @@ function Board(width,height,canvas){
 			}
 		}
 		return this.resolveHit;
+	}
+
+	this.checkTrapPanel = function(attacker, defender, attackCard){
+		//PANELTYPE.SPIRITFURY, PANELTYPE.ANTISWORD, PANELTYPE.POISONAPPLE, PANELTYPE.DOUBLECROSS, PANELTYPE.GIGAMINE
+		if(cells[attacker.x][attacker.y].panelType === PANELTYPE.SPIRITFURY){
+			if(attackCard.elements.includes(ELEMENTS.aqua) ||
+			   attackCard.elements.includes(ELEMENTS.fire) ||
+			   attackCard.elements.includes(ELEMENTS.wood) || 
+			   attackCard.elements.includes(ELEMENTS.elec) ){
+				attacker.hp = attacker.hp - 220;
+				console.log("Trap Panel Triggered!");
+				return false;
+			}
+		}
+		else if(cells[attacker.x][attacker.y].panelType === PANELTYPE.ANTISWORD){
+			if(attackCard.elements.includes(ELEMENTS.sword)){
+				attacker.hp = attacker.hp - 240;
+				console.log("Trap Panel Triggered!");
+				return false;
+			}
+		}
+		else if(cells[attacker.x][attacker.y].panelType === PANELTYPE.POISONAPPLE){
+			if(attackCard.name.indexOf("Recover") > 0){
+				this.s = attackCard.name.indexOf("Recover") + 7;
+				this.e = attackCard.name.length;
+				this.val = parseInt(attackCard.name.substring(this.s, this.e));
+				attacker.hp = attacker.hp - this.val;
+				console.log("Trap Panel Triggered!");
+				return false;
+			}
+		}
+		else if(cells[attacker.x][attacker.y].panelType === PANELTYPE.DOUBLECROSS){
+			if(attackCard.rank === "mega"){
+				console.log("Trap Panel Triggered!");
+				this.attackWithCard(defender, attacker, attackCard);
+				return false;
+			}
+		}
+		else if(cells[attacker.x][attacker.y].panelType === PANELTYPE.GIGAMINE){
+			if(attackCard.rank === "giga"){
+				attacker.hp = attacker.hp - 300;
+				console.log("Trap Panel Triggered!");
+				return false;
+			}
+		}
+	}
+
+	this.removeTrapPanels = function(attacker){
+		this.acceptedSide = SIDE.RIGHT;
+		if(attacker.name === playerOne.name){
+			this.acceptedSide = SIDE.LEFT;
+		}
+		for(var x = 0; x < cells.length; x++){
+			for(var y = 0; y < cells[x].length; y++){
+				if(cells[x][y].side === this.acceptedSide){
+					if(this.isTrapPanel(cells[x][y].panelType)){
+						this.convertPanel(x, y, PANELTYPE.normal);
+					}
+				}
+			}
+		}
 	}
 	
 	this.calculateOneHitMultiplier = function(attacker, defender, attackCard){
@@ -762,9 +841,33 @@ function Board(width,height,canvas){
 		cells[defender.x][defender.y].object = [];
 	}
 
+	this.isMegaCrushed = function(attacker){
+		for(var x = 0; x < cells.length; x++){
+			for(var y = 0; y < cells[x].length; y++){
+				if(cells[x][y].object){
+					for(var i = 0; i < cells[x][y].object.length; i++){
+						if(cells[x][y].object[i].id === "SF3MegaCrusherObj"){
+							if(cells[x][y].object[i].attacker.name !== attacker.name){
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
 	this.convertPanel = function(x, y, newPanel){
 		if(cells[x]){
 			if(cells[x][y]){
+				if(cells[x][y].panelType === PANELTYPE.MISS && PANELTYPE.NORMAL === newPanel){
+					cells[x][y].panelType = newPanel;
+					return true;
+				}
+				if(cells[x][y].panelType === PANELTYPE.MISS){
+					return false;
+				}
 				if(cells[x][y].panelType === PANELTYPE.HOLE){
 					return false;
 				}
@@ -785,6 +888,9 @@ function Board(width,height,canvas){
 					else{
 						cells[x][y].panelTimer = 5;
 					}
+				}
+				if(newPanel === PANELTYPE.MISS){
+					cells[x][y].panelTimer = 12;
 				}
 				cells[x][y].panelType = newPanel;
 				return true;
@@ -823,6 +929,9 @@ function Board(width,height,canvas){
 	this.isCellPlayerValid = function(x, y){
 		if(cells[x]){
 			if(cells[x][y]){
+				if(cells[x][y].panelType === PANELTYPE.MISS){
+					return false;
+				}
 				if(this.isHole(x, y)){
 					return false;
 				}
@@ -856,6 +965,65 @@ function Board(width,height,canvas){
 			return true;
 		}
 		return false;
+	}
+
+	this.isTrapPanel = function(panel){
+		var trapPanels = [PANELTYPE.SPIRITFURY, PANELTYPE.ANTISWORD, PANELTYPE.POISONAPPLE, PANELTYPE.DOUBLECROSS, PANELTYPE.GIGAMINE];
+		if(trapPanels.indexOf(panel) !== -1){
+			return true;
+		}
+		return false;
+	}
+
+	this.endOfRow = function(y, isRedSide){
+		this.panelsStarted = false;
+		if(isRedSide){
+			for(var x = 0; x < cells.length; x++){
+				if(cells[x][y].panelType === PANELTYPE.MISS){
+					if(this.panelsStarted){
+						return x-1;
+					}
+				}
+				else{
+					this.panelsStarted = true;
+				}
+			}
+			return cells.length - 1;
+		}
+		else{
+			for(var x = cells.length - 1; x >= 0; x--){
+				if(cells[x][y].panelType === PANELTYPE.MISS){
+					if(this.panelsStarted){
+						return x+1;
+					}
+				}
+				else{
+					this.panelsStarted = true;
+				}
+			}
+			return 0;
+		}
+	}
+
+	this.farthestEndOfRow = function(isRedSide){
+		if(isRedSide){
+			this.farthest = 0;
+			for(var y = 0; y < 3; y++){
+				if(this.farthest < this.endOfRow(y, true)){
+					this.farthest = this.endOfRow(y, true);
+				}
+			}
+			return this.farthest;
+		}
+		else{
+			this.farthest = 6;
+			for(var y = 0; y < 3; y++){
+				if(this.farthest > this.endOfRow(y, false)){
+					this.farthest = this.endOfRow(y, false);
+				}
+			}
+			return this.farthest;
+		}
 	}
 
 	this.resetPlayer = function(player){
@@ -911,13 +1079,15 @@ function Board(width,height,canvas){
 		};
 		for(var x=0;x<cells.length;x++){
 			for(var y=0;y<cells[x].length;y++){
-				fakeDefender.x = x;
-				fakeDefender.y = y;
-				if(card.hithuh(attacker, fakeDefender)){
-					var left = x*cellWidth;
-					var top = y*cellHeight + cheightOffset;
-					ctx.fillStyle="#00FF00";
-					ctx.fillRect(left+cellWidth/4,top+cellHeight/4,cellWidth/2,cellHeight/2);
+				if(cells[x][y].panelType !== PANELTYPE.MISS){
+					fakeDefender.x = x;
+					fakeDefender.y = y;
+					if(card.hithuh(attacker, fakeDefender)){
+						var left = x*cellWidth;
+						var top = y*cellHeight + cheightOffset;
+						ctx.fillStyle="#00FF00";
+						ctx.fillRect(left+cellWidth/4,top+cellHeight/4,cellWidth/2,cellHeight/2);
+					}
 				}
 			}
 		}

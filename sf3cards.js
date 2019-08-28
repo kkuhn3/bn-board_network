@@ -1129,6 +1129,9 @@ function SF3SmileCoin1(){
 					if(board.isHole(this.startingX + x*this.xDir, y)){
 						break;
 					}
+					if(cells[this.startingX + x*this.xDir][y].panelType === PANELTYPE.MISS){
+						break;
+					}
 				}
 			}
 		}
@@ -1351,9 +1354,9 @@ function SF3SkullArrow1(){
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			this.targetCol = 0;
+			this.targetCol = board.farthestEndOfRow(false);
 			if(attacker.name === playerOne.name){
-				this.targetCol = 5;
+				this.targetCol = board.farthestEndOfRow(true);;
 			}
 			if(defender.x = this.targetCol){
 				for(var ydiff = -1; ydiff < 2; ydiff++){
@@ -2054,7 +2057,7 @@ function SF3IceSpin1(){
 	this.rank="standard";
 	this.damage=70;
 	this.boostDamage=0;
-	this.hits="1-5";
+	this.hits="1-4";
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
@@ -2090,11 +2093,25 @@ function SF3IceSpin1(){
 					this.xDirection = this.xDirection * -1;
 				}
 				this.puckX = this.puckX + this.xDirection;
-				
 				if(!cells[this.puckX][this.puckY + this.yDirection]){
 					this.yDirection = this.yDirection * -1;
 				}
 				this.puckY = this.puckY + this.yDirection;
+
+				if(cells[this.puckX][this.puckY].panelType === PANELTYPE.MISS){
+					if(cells[this.puckX - this.xDirection*2]){
+						if(cells[this.puckX - this.xDirection*2][this.puckY].panelType !== PANELTYPE.MISS){
+							this.xDirection = this.xDirection * -1;
+							this.puckX = this.puckX + this.xDirection * 2;
+						}
+					}
+					else if(cells[this.puckX][this.puckY - this.yDirection*2]){
+						if(cells[this.puckX][this.puckY - this.yDirection*2].panelType !== PANELTYPE.MISS){
+							this.yDirection = this.yDirection * -1;
+							this.puckY = this.puckY + this.xDirection * 2;
+						}
+					}
+				}
 				
 				if(this.switchedSides){
 					if(cells[this.puckX][this.puckY].side === this.side){
@@ -2104,18 +2121,18 @@ function SF3IceSpin1(){
 					if(!cells[this.puckX]){
 						return this.hitbool;
 					}
-					if(cells[this.puckX][this.puckY].side === this.side){
+					if(cells[this.puckX][this.puckY].side === this.side || cells[this.puckX][this.puckY].panelType === PANELTYPE.MISS){
 						this.yDirection = this.yDirection * -1;
 						this.puckY = this.puckY + this.xDirection * 2;
 					}
-					if(!cells[this.puckX][this.puckY]){
+					if(!cells[this.puckX][this.puckY] || cells[this.puckX][this.puckY].panelType === PANELTYPE.MISS){
 						return this.hitbool;
 					}
 				}
 			}
 		}
 		if(this.hits < 1){
-			this.hits === 1
+			this.hits = 1
 		}
 		return this.hitbool;
 	};
@@ -2133,7 +2150,7 @@ function SF3IceSpin2(){
 	this.rank="standard";
 	this.damage=90;
 	this.boostDamage=0;
-	this.hits="1-5";
+	this.hits="1-4";
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
@@ -2156,7 +2173,7 @@ function SF3IceSpin3(){
 	this.rank="standard";
 	this.damage=110;
 	this.boostDamage=0;
-	this.hits="1-5";
+	this.hits="1-4";
 	this.priority=2;
 	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
@@ -3243,7 +3260,7 @@ function SF3Recover50(){
 function SF3Recover80(){
 	this.id="SF3Recover80";
 	this.name="Recover80";
-	this.image=SF3126_recovery80;
+	this.image=SF3127_recovery80;
 	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 	this.goo="SF3";
 	this.copies=5;
@@ -3265,7 +3282,7 @@ function SF3Recover80(){
 function SF3Recover120(){
 	this.id="SF3Recover120";
 	this.name="Recover120";
-	this.image=SF3127_recovery120;
+	this.image=SF3128_recovery120;
 	this.code=["A", "G", "M"];
 	this.goo="SF3";
 	this.copies=5;
@@ -3287,7 +3304,7 @@ function SF3Recover120(){
 function SF3Recover150(){
 	this.id="SF3Recover150";
 	this.name="Recover150";
-	this.image=SF3128_recovery150;
+	this.image=SF3129_recovery150;
 	this.code=["C", "S", "T"];
 	this.goo="SF3";
 	this.copies=5;
@@ -3309,7 +3326,7 @@ function SF3Recover150(){
 function SF3Recover200(){
 	this.id="SF3Recover200";
 	this.name="Recover200";
-	this.image=SF3128_recovery200;
+	this.image=SF3130_recovery200;
 	this.code=["J", "W", "Z"];
 	this.goo="SF3";
 	this.copies=5;
@@ -3331,7 +3348,7 @@ function SF3Recover200(){
 function SF3Recover300(){
 	this.id="SF3Recover300";
 	this.name="Recover300";
-	this.image=SF3129_recovery300;
+	this.image=SF3131_recovery300;
 	this.code=["C", "F", "M"];
 	this.goo="SF3";
 	this.copies=5;
@@ -3478,6 +3495,34 @@ function SF3Whistle(){
 	};
 }
 
+function SF3MegaCrusher(){
+	this.id="SF3MegaCrusher";
+	this.name="MegaCrusher";
+	this.image=SF3137_megacrasher;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Sword()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.xDirection = -1;
+		if(attacker.name === "one"){
+			this.xDirection = 1;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
+			cells[attacker.x + this.xDirection][attacker.y].object = [new SF3MegaCrusherObj(attacker.x + this.xDirection, attacker.y, attacker)];
+		}
+	};
+}
+
 var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new SF3PlasmaGun(), 
 				new SF3AirSpread1(), new SF3AirSpread2(), new SF3AirSpread3(), new SF3MadVulcan1(), 
 				new SF3MadVulcan2(), new SF3MadVulcan3(), new SF3BlackInk(), new SF3MiniGrenade(), 
@@ -3511,7 +3556,7 @@ var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new 
 				new SF3PanicCloud(), new SF3Recover10(), new SF3Recover30(), new SF3Recover50(), 
 				new SF3Recover120(), new SF3Recover150(), new SF3Recover200(), new SF3Recover300(), 
 				new SF3Barrier(), new SF3SuperBarrier(), new SF3Aura(), new SF3Invisible(), 
-				new SF3Whistle()];
+				new SF3Whistle(), new SF3MegaCrusher()];
 
 function SF3Cards(){
 

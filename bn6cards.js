@@ -78,7 +78,7 @@ function BN6AirShot(){
 	};
 	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
-			if(attacker.name === "one" && defender.x < 5){
+			if(attacker.name === playerOne.name && defender.x < 5){
 				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
 					cells[defender.x][defender.y].player = null;
 					defender.x = defender.x+1;
@@ -112,7 +112,7 @@ function BN6Vulcan1(){
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i=1; i <= 5 - attacker.x; i++){
 					if(attacker.y === defender.y && attacker.x + i === defender.x){
 						return true;
@@ -214,7 +214,7 @@ function BN6Spreader1(){
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i=1; i <= 5 - attacker.x; i++){
 					if(attacker.y === defender.y && attacker.x + i === defender.x){
 						return true;
@@ -304,11 +304,15 @@ function BN6BigTank1(){
 					return false;
 				}
 			}
-			if(attacker.name === "one" && defender.x === 5){
-				return attacker.y === defender.y || attacker.y === defender.y+1 || attacker.y === defender.y-1;
+			if(attacker.name === playerOne.name){
+				if(defender.x === board.endOfRow(attacker.y, true)){
+					return attacker.y === defender.y || attacker.y === defender.y+1 || attacker.y === defender.y-1;
+				}
 			}
-			if(attacker.name === "two" && defender.x === 0){
-				return attacker.y === defender.y || attacker.y === defender.y+1 || attacker.y === defender.y-1;
+			else{
+				if(defender.x === board.endOfRow(attacker.y, false)){
+					return attacker.y === defender.y || attacker.y === defender.y+1 || attacker.y === defender.y-1;
+				}
 			}
 		}
 		return false;
@@ -380,14 +384,14 @@ function BN6GunSol1(){
 	};
 	this.useSpecial= function(card){
 		document.getElementById("nextturn").style.display='block';
-		if(player.name === "one"){
+		if(player.name === playerOne.name){
 			if(playerOne.action === ACTIONS.CARD){
 				HAND.unshift(playerOne.card);
 			}
 			playerOne.action = ACTIONS.SPECIAL;
 			playerOne.card = card;
 		}
-		else if (player.name === "two"){
+		else{
 			if(playerTwo.action === ACTIONS.CARD){
 				HAND.unshift(playerTwo.card);
 			}
@@ -396,7 +400,7 @@ function BN6GunSol1(){
 		}
 	};
 	this.hithuh= function(attacker, defender){
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			if(attacker.x + 2 === defender.x){
 				return attacker.y + 1 === defender.y || attacker.y === defender.y || attacker.y - 1 === defender.y;
 			}
@@ -506,7 +510,7 @@ function BN6Yoyo(){
 	this.hithuh= function(attacker, defender){
 		this.hits = 1;
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i=1; i < 4; i++){
 					if(cells[attacker.x + i][attacker.y].player){
 						if(i < 3){
@@ -562,7 +566,7 @@ function BN6HellBurner1(){
 				return true;
 			}
 			else{
-				if(attacker.name === "one"){
+				if(attacker.name === playerOne.name){
 					if(attacker.y === defender.y && attacker.x + 3 === defender.x){
 						return true;
 					}
@@ -635,7 +639,7 @@ function BN6WideShot(){
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i=1; i <= defender.x - attacker.x; i++){
 					if(board.cellHasSolidObject(attacker.x + i - 1, attacker.y)){
 						return false;
@@ -687,7 +691,7 @@ function BN6TrainArrow1(){
 		this.hits = 1;
 		this.hitPlayer = false;
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i=attacker.x+1; i < 6; i++){
 					if(board.cellHasSolidObject(i, attacker.y)){
 						return false;
@@ -787,7 +791,7 @@ function BN6BubbleStar1(){
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				if(defender.x === attacker.x+1 && defender.y === attacker.y-1){
 					return true;
 				}
@@ -931,7 +935,7 @@ function BN6Thunder(){
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				return attacker.x+1 === defender.x && attacker.y === defender.y;
 			}
 			else{
@@ -946,7 +950,7 @@ function BN6Thunder(){
 		}
 	};
 	this.effectmiss= function(attacker, defender){
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
 				cells[attacker.x+1][attacker.y].object.push(new BN6ThunderBall(attacker.x+1, attacker.y, attacker, defender, 8, this.damage, "yellow"));
 			}
@@ -974,7 +978,7 @@ function BN6DollThunder1(){
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				return defender.y === attacker.y && defender.x > attacker.x;
 			}
 			else{
@@ -1041,7 +1045,7 @@ function BN6ElecPulse1(){
 	this.priority=2;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			if(attacker.y === defender.y && attacker.x+1 === defender.x){
 				return true;
 			}
@@ -1154,7 +1158,7 @@ function BN6CornShot1(){
 	this.hithuh= function(attacker, defender){
 		this.hits = 1;
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				if(cells[attacker.x+2] && cells[attacker.x+2][attacker.y] && attacker.x+2 === defender.x && attacker.y === defender.y){
 					this.hits = 2;
 					return true;
@@ -1192,7 +1196,7 @@ function BN6CornShot1(){
 		board.convertPanel(defender.x, defender.y, PANELTYPE.GRASS);
 	};
 	this.effectmiss= function(attacker, defender){
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			board.convertPanel(attacker.x+2, attacker.y, PANELTYPE.GRASS);
 		}
 		else{
@@ -1276,7 +1280,7 @@ function BN6RiskyHoney1(){
 	};
 	this.effectmiss= function(attacker, defender){
 		(new BN6RiskyHoney1()).effecthit(attacker, defender);
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
 				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
@@ -1310,7 +1314,7 @@ function BN6RiskyHoney2(){
 	};
 	this.effectmiss= function(attacker, defender){
 		(new BN6RiskyHoney2()).effecthit(attacker, defender);
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
 				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
@@ -1344,7 +1348,7 @@ function BN6RiskyHoney3(){
 	};
 	this.effectmiss= function(attacker, defender){
 		(new BN6RiskyHoney3()).effecthit(attacker, defender);
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			if(!board.cellHasSolidObject(attacker.x+1, attacker.y)){
 				cells[attacker.x+1][attacker.y].object.push(new BN6HoneyBall(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
@@ -1403,7 +1407,7 @@ function BN6RollingLog1(){
 		return false;
 	};
 	this.oneloghit= function(attacker, defender, top, bottom){
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			for(var i=1; i <= defender.x - attacker.x; i++){
 				if(board.cellHasSolidObject(attacker.x + i - 1, top) || board.cellHasSolidObject(attacker.x + i - 1, bottom)){
 					return false;
@@ -1492,13 +1496,13 @@ function BN6IronShell1(){
 	this.hithuh= function(attacker, defender){
 		this.hits = 1;
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i=1; i <= defender.x - attacker.x; i++){
 					if(board.isHole(attacker.x+i, attacker.y)){
 						return false;
 					}
 				}
-				if(attacker.y === defender.y && defender.x === 5){
+				if(attacker.y === defender.y && defender.x === board.endOfRow(attacker.y, true)){
 					this.hits = 2;
 					return true;
 				}
@@ -1513,7 +1517,7 @@ function BN6IronShell1(){
 						return false;
 					}
 				}
-				if(attacker.y === defender.y && defender.x === 0){
+				if(attacker.y === defender.y && defender.x === board.endOfRow(attacker.y, false)){
 					this.hits = 2;
 					return true;
 				}
@@ -1597,7 +1601,7 @@ function BN6AuraHead1(){
 	};
 	this.hitbool= function(attacker, defender){
 		if(attacker.y === defender.y && defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i = 1; i < 4; i++){
 					if(attacker.x + i === defender.x){
 						return true;
@@ -1676,7 +1680,7 @@ function BN6AirHock(){
 	this.rank="standard";
 	this.damage=60;
 	this.boostDamage=0;
-	this.hits="1-7";
+	this.hits="1-6";
 	this.priority=2;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
@@ -1690,7 +1694,7 @@ function BN6AirHock(){
 			this.side = SIDE.RIGHT;
 			this.switchedSides = false;
 				
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.xDirection = 1;
 				this.puckX = attacker.x + 1;
 				this.side = SIDE.LEFT;
@@ -1717,6 +1721,21 @@ function BN6AirHock(){
 					this.yDirection = this.yDirection * -1;
 				}
 				this.puckY = this.puckY + this.yDirection;
+
+				if(cells[this.puckX][this.puckY].panelType === PANELTYPE.MISS){
+					if(cells[this.puckX - this.xDirection*2]){
+						if(cells[this.puckX - this.xDirection*2][this.puckY].panelType !== PANELTYPE.MISS){
+							this.xDirection = this.xDirection * -1;
+							this.puckX = this.puckX + this.xDirection * 2;
+						}
+					}
+					else if(cells[this.puckX][this.puckY - this.yDirection*2]){
+						if(cells[this.puckX][this.puckY - this.yDirection*2].panelType !== PANELTYPE.MISS){
+							this.yDirection = this.yDirection * -1;
+							this.puckY = this.puckY + this.xDirection * 2;
+						}
+					}
+				}
 				
 				if(this.switchedSides){
 					if(cells[this.puckX][this.puckY].side === this.side){
@@ -1726,11 +1745,11 @@ function BN6AirHock(){
 					if(!cells[this.puckX]){
 						return this.hitbool;
 					}
-					if(cells[this.puckX][this.puckY].side === this.side){
+					if(cells[this.puckX][this.puckY].side === this.side || cells[this.puckX][this.puckY].panelType === PANELTYPE.MISS){
 						this.yDirection = this.yDirection * -1;
 						this.puckY = this.puckY + this.xDirection * 2;
 					}
-					if(!cells[this.puckX][this.puckY]){
+					if(!cells[this.puckX][this.puckY] || cells[this.puckX][this.puckY].panelType === PANELTYPE.MISS){
 						return this.hitbool;
 					}
 				}
@@ -1765,14 +1784,14 @@ function BN6DrillArm(){
 		
 		if(defender.invis < 1 && defender.y === attacker.y){
 			this.xDirection = -1;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.xDirection = 1;
 			}
 			for(var i = 0; i < 3; i++){
 				if(attacker.x + this.xDirection === this.tempDefX || attacker.x + this.xDirection*2 === this.tempDefX){
 					this.hitbool = true;
 					this.hits++;
-					if(!board.isHole(this.tempDefX + this.xDirection, defender.y)){
+					if(!board.isHole(this.tempDefX + this.xDirection, defender.y) && cells[this.tempDefX + this.xDirection][defender.y].panelType !== PANELTYPE.MISS){
 						if(this.tempDefX + this.xDirection < 6 && this.tempDefX + this.xDirection > -1){
 							this.tempDefX = this.tempDefX + this.xDirection;
 						}
@@ -1787,12 +1806,12 @@ function BN6DrillArm(){
 	};
 	this.effecthit= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		for(var i = 0; i < 2; i ++){
 			if(attacker.x + this.xDirection === defender.x || attacker.x + this.xDirection*2 === defender.x){
-				if(!board.isHole(defender.x + this.xDirection, defender.y)){
+				if(!board.isHole(defender.x + this.xDirection, defender.y) && cells[this.tempDefX + this.xDirection][defender.y].panelType !== PANELTYPE.MISS){
 					if(defender.x + this.xDirection < 6 && defender.x + this.xDirection > -1){
 						cells[defender.x][defender.y].player = null;
 						defender.x = defender.x + this.xDirection;
@@ -1821,7 +1840,7 @@ function BN6Tornado(){
 	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
 		this.xDirection = -2;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 2;
 		}
 		if(cells[attacker.x + this.xDirection][attacker.y].planelType === PANELTYPE.GRASS){
@@ -1852,7 +1871,7 @@ function BN6NoiseStorm(){
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.xDirection = -1;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.xDirection = 1;
 			}
 			if(attacker.bugs.length < 1){
@@ -1898,7 +1917,7 @@ function BN6MachineGun1(){
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.affectedColumn = playerOne.x;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.affectedColumn = playerTwo.x;
 			}
 			if(defender.x === this.affectedColumn){
@@ -1982,7 +2001,7 @@ function BN6MiniBomb(){
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.xDirection = -3;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.xDirection = 3;
 			}
 			return attacker.x + this.xDirection === defender.x && attacker.y === defender.y;
@@ -2009,13 +2028,13 @@ function BN6BigBomb(){
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.xDirection = -3;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.xDirection = 3;
 			}
 			if(attacker.x + this.xDirection === defender.x && attacker.y === defender.y){
 				return true;
 			}
-			if(cells[attacker.x + this.xDirection]){
+			if(cells[attacker.x + this.xDirection] && cells[attacker.x + this.xDirection][attacker.y].panelType !== PANELTYPE.MISS){
 				return cards.around(attacker.x + this.xDirection, attacker.y, defender);
 			}
 		}
@@ -2084,7 +2103,7 @@ function BN6FlashBomb1(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -2112,7 +2131,7 @@ function BN6FlashBomb2(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -2140,7 +2159,7 @@ function BN6FlashBomb3(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -2168,7 +2187,7 @@ function BN6BlackBomb(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -2220,12 +2239,12 @@ function BN6GrassSeed(){
 	};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		this.x = attacker.x + this.xDirection;
 		this.y = attacker.y
-		if(!board.isHole(this.x, this.y)){
+		if(!board.isHole(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.MISS){
 			if(board.cellHasSolidObject(this.x, this.y)){
 				board.convertPanel(this.x, this.y, PANELTYPE.GRASS);
 			}
@@ -2261,12 +2280,12 @@ function BN6IceSeed(){
 	};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		this.x = attacker.x + this.xDirection;
 		this.y = attacker.y
-		if(!board.isHole(this.x, this.y)){
+		if(!board.isHole(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.MISS){
 			if(board.cellHasSolidObject(this.x, this.y)){
 				board.convertPanel(this.x, this.y, PANELTYPE.ICE);
 			}
@@ -2302,12 +2321,12 @@ function BN6PoisonSeed(){
 	};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		this.x = attacker.x + this.xDirection;
 		this.y = attacker.y
-		if(!board.isHole(this.x, this.y)){
+		if(!board.isHole(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.MISS){
 			if(board.cellHasSolidObject(this.x, this.y)){
 				board.convertPanel(this.x, this.y, PANELTYPE.POISON);
 			}
@@ -2524,9 +2543,9 @@ function BN6WindRacket(){
 	};
 	this.effecthit= function(attacker, defender){
 		defender.barrier = null;
-		this.xDirection = 1;
-		if(attacker.name === "two"){
-			this.xDirection = -1;
+		this.xDirection = -1;
+		if(attacker.name === playerOne.name){
+			this.xDirection = 1;
 		}
 		if(defender.guard === null){
 			for(var i = 0; i < 4; i++){
@@ -2593,7 +2612,7 @@ function BN6VarSword(){
 				return true;
 			}
 			this.xDirection = -1;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.xDirection = 1;
 			}
 			attacker.x = attacker.x + this.xDirection;
@@ -2691,7 +2710,7 @@ function BN6MachineSword(){
 		if(defender.stunned > 0 && defender.invis < 1){
 			this.x = playerOne.x+1;
 			this.y = playerOne.y;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.x = playerTwo.x-1;
 				this.y = playerTwo.y;
 			}
@@ -2743,7 +2762,7 @@ function BN6ElementSword(){
 		if(defender.invis < 1 && (cells[defender.x][defender.y].panelType === PANELTYPE.GRASS || cells[defender.x][defender.y].panelType === PANELTYPE.ICE)){
 			this.x = playerOne.x+1;
 			this.y = playerOne.y;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.x = playerTwo.x-1;
 				this.y = playerTwo.y;
 			}
@@ -2803,7 +2822,7 @@ function BN6CrackShoot(){
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y)){
@@ -2816,7 +2835,7 @@ function BN6CrackShoot(){
 	};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x+this.xDirection, attacker.y)){
@@ -2840,7 +2859,7 @@ function BN6DoubleShoot(){
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		attacker.x + this.xDirection;
@@ -2863,7 +2882,7 @@ function BN6DoubleShoot(){
 	};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		attacker.x + this.xDirection;
@@ -2992,7 +3011,7 @@ function BN6WaveArm1(){
 			this.xDirection = -1;
 			this.yDirection = 0;
 			this.target = playerOne;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.xDirection = 1;
 				this.target = playerTwo;
 			}
@@ -3076,9 +3095,9 @@ function BN6SandWorm1(){
 	this.hithuh= function(attacker, defender){
 		this.hitbool = false;
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.target = playerTwo;
-				if(this.target.x < 5){
+				if(this.target.x < board.endOfRow(attacker.y, true)){
 					this.tempX = attacker.x;
 					this.tempY = attacker.y;
 					attacker.x = this.target.x - 1;
@@ -3088,9 +3107,9 @@ function BN6SandWorm1(){
 					attacker.y = this.tempY;
 				}
 			}
-			if(attacker.name === "two"){
+			else{
 				this.target = playerOne;
-				if(this.target.x > -1){
+				if(this.target.x > board.endOfRow(attacker.y, false)){
 					this.tempX = attacker.x;
 					this.tempY = attacker.y;
 					attacker.x = this.target.x + 1;
@@ -3164,7 +3183,7 @@ function BN6SummonBlack1(){
 		if(defender.invis < 1){
 			this.target = playerOne;
 			this.xDirection = -1;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.target = playerTwo;
 				this.xDirection = 1;
 			}
@@ -3244,7 +3263,7 @@ function BN6Snake(){
 			this.xDirection = -1;
 			this.target = playerOne;
 			this.allySide = SIDE.RIGHT;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.xDirection = 1;
 				this.target = playerTwo;
 				this.allySide = SIDE.LEFT;
@@ -3253,7 +3272,7 @@ function BN6Snake(){
 				for(var j = 0; j < cells[i].length; j++){
 					if(cells[i][j].side === this.allySide){
 						if(board.isHole(i, j)){
-							if(attacker.name === "one"){
+							if(attacker.name === playerOne.name){
 								if(i > attacker.x){
 									this.hits++;
 								}
@@ -3267,8 +3286,11 @@ function BN6Snake(){
 					}
 				}
 			}
-			return defender.x === this.target.x && defender.y === this.target.y;
+			if(this.hits > 0){
+				return defender.x === this.target.x && defender.y === this.target.y;
+			}
 		}
+		this.hits = 1;
 		return false;
 	};
 	this.effecthit= function(attacker, defender){};
@@ -3315,7 +3337,7 @@ function BN6FirePunch1(){
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.target = playerOne;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.target = playerTwo;
 			}
 			if(defender.x === playerTwo.x && defender.y === playerTwo.y){
@@ -3401,7 +3423,7 @@ function BN6BurnScare1(){
 
 			this.targetSide = SIDE.LEFT;
 			this.targetPlayer = playerOne;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.targetSide = SIDE.RIGHT;
 				this.targetPlayer = playerTwo;
 			}
@@ -3493,7 +3515,7 @@ function BN6Meteors(){
 			this.xDirection = 1;
 			this.xStart = 0;
 			this.xEnd = 5;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.targetSide = SIDE.RIGHT;
 				this.xDirection = -1;
 				this.xStart = 5;
@@ -3503,7 +3525,7 @@ function BN6Meteors(){
 			var i = 0;
 			this.y = 0;
 			while(i < 30){
-				if(cells[this.x][this.y].side === this.targetSide){
+				if(cells[this.x][this.y].side === this.targetSide && cells[this.x][this.y].panelType !== PANELTYPE.MISS){
 					i++;
 					if(defender.x === this.x && defender.y === this.y){
 						this.hits++;
@@ -3547,7 +3569,7 @@ function BN6AquaNeedle1(){
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.target = playerOne;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.target = playerTwo;
 			}
 			return defender.x === playerTwo.x && defender.y === playerTwo.y
@@ -3615,7 +3637,7 @@ function BN6BlizzardBall(){
 	this.hithuh= function(attacker, defender){
 		this.addDamage=0;
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i=0; i < defender.x - attacker.x; i++){
 					if(board.cellHasSolidObject(attacker.x + i, attacker.y)){
 						this.addDamage = this.addDamage + 150;
@@ -3637,7 +3659,7 @@ function BN6BlizzardBall(){
 	this.effecthit= function(attacker, defender){
 		this.xEnd = defender.x;
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		this.xStart = attacker.x + this.xDirection;
@@ -3650,7 +3672,7 @@ function BN6BlizzardBall(){
 	this.effectmiss= function(attacker, defender){
 		this.tempX = defender.x;
 		defender.x = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			defender.x = 6;
 		}
 		(new BN6BlizzardBall()).effecthit(attacker, defender);
@@ -3676,13 +3698,13 @@ function BN6KillerSensor1(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		if(attacker.name === "one"){
-			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+		if(attacker.name === playerOne.name){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null && cells[attacker.x+1][attacker.y].panelType !== PANELTYPE.MISS){
 				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 		else{
-			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x-1][attacker.y].player === null && cells[attacker.x-1][attacker.y].panelType !== PANELTYPE.MISS){
 				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
@@ -3707,13 +3729,13 @@ function BN6KillerSensor2(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		if(attacker.name === "one"){
-			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+		if(attacker.name === playerOne.name){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null && cells[attacker.x+1][attacker.y].panelType !== PANELTYPE.MISS){
 				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 		else{
-			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x-1][attacker.y].player === null && cells[attacker.x-1][attacker.y].panelType !== PANELTYPE.MISS){
 				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
@@ -3738,13 +3760,13 @@ function BN6KillerSensor3(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
-		if(attacker.name === "one"){
-			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+		if(attacker.name === playerOne.name){
+			if(!board.cellHasSolidObject(attacker.x+1, attacker.y) && cells[attacker.x+1][attacker.y].player === null && cells[attacker.x+1][attacker.y].panelType !== PANELTYPE.MISS){
 				cells[attacker.x+1][attacker.y].object.push(new BN6KillerSensor(attacker.x+1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
 		else{
-			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x+1][attacker.y].player === null){
+			if(!board.cellHasSolidObject(attacker.x-1, attacker.y) && cells[attacker.x-1][attacker.y].player === null && cells[attacker.x-1][attacker.y].panelType !== PANELTYPE.MISS){
 				cells[attacker.x-1][attacker.y].object.push(new BN6KillerSensor(attacker.x-1, attacker.y, attacker, defender, this.damage + this.boostDamage));
 			}
 		}
@@ -3766,17 +3788,26 @@ function BN6Boomerang(){
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(defender.y === 0){
-				return true;
+			if(attacker.name === playerOne.name){
+				this.xEnd = board.endOfRow(2, true);
+				if(defender.y === 0 && defender.x < this.xEnd){
+					return true;
+				}
+				if(defender.y === 2 && defender.x < this.xEnd){
+					return true;
+				}
+				return defender.x === this.xEnd;
 			}
-			if(defender.y === 2){
-				return true;
+			else{
+				this.xEnd = board.endOfRow(0, false);
+				if(defender.y === 0 && defender.x > this.xEnd){
+					return true;
+				}
+				if(defender.y === 2 && defender.x > this.xEnd){
+					return true;
+				}
+				return defender.x === this.xEnd;
 			}
-			this.xEnd = 0;
-			if(attacker.name === "one"){
-				this.xEnd = 5;
-			}
-			return defender.x === this.xEnd;
 		}
 		return false;
 	};
@@ -3784,17 +3815,29 @@ function BN6Boomerang(){
 		(new BN6Boomerang()).effectmiss(attacker, defender);
 	};
 	this.effectmiss= function(attacker, defender){
-		this.xEnd = 0;
-		if(attacker.name === "one"){
-			this.xEnd = 5;
-		}
-		for(var i = 0; i < cells.length; i++){
-			for(var j = 0; j < cells[i].length; j++){
-				if(i === this.xEnd){
-					board.convertPanel(i, j, PANELTYPE.GRASS);
+		if(attacker.name === playerOne.name){
+			this.xEnd = board.endOfRow(0, false);
+			for(var i = 0; i < cells.length; i++){
+				for(var j = 0; j < cells[i].length; j++){
+					if(i === this.xEnd){
+						board.convertPanel(i, j, PANELTYPE.GRASS);
+					}
+					else if((j === 0 || j === 2) && i < this.xEnd){
+						board.convertPanel(i, j, PANELTYPE.GRASS);
+					}
 				}
-				else if(j === 0 || j === 2){
-					board.convertPanel(i, j, PANELTYPE.GRASS);
+			}
+		}
+		else{
+			this.xEnd = board.endOfRow(2, true);
+			for(var i = 0; i < cells.length; i++){
+				for(var j = 0; j < cells[i].length; j++){
+					if(i === this.xEnd){
+						board.convertPanel(i, j, PANELTYPE.GRASS);
+					}
+					else if((j === 0 || j === 2) && i > this.xEnd){
+						board.convertPanel(i, j, PANELTYPE.GRASS);
+					}
 				}
 			}
 		}
@@ -3864,18 +3907,18 @@ function BN6Lance(){
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			this.lastCol = 0;
-			if(attacker.name === "one"){
-				this.lastCol = 5;
+			this.lastCol = board.farthestEndOfRow(false);
+			if(attacker.name === playerOne.name){
+				this.lastCol = board.farthestEndOfRow(true);
 			}
 			return defender.x === this.lastCol;
 		}
 		return false;
 	};
 	this.effecthit= function(attacker, defender){
-		this.nextCol = 1
-		if(attacker.name === "one"){
-			this.nextCol = 4;
+		this.nextCol = board.farthestEndOfRow(false) + 1;
+		if(attacker.name === playerOne.name){
+			this.nextCol = board.farthestEndOfRow(true) - 1;
 		}
 		if(board.isCellThisPlayerValid(this.nextCol, defender.y, defender)){
 			cells[defender.x][defender.y].player = null;
@@ -3903,7 +3946,7 @@ function BN6HeatDragon(){
 		if(defender.invis < 1){
 			this.xDirection = -1;
 			this.target = playerOne;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.xDirection = 1;
 				this.target = playerTwo;
 			}
@@ -4178,7 +4221,7 @@ function BN6AirWheel1(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		this.tempX = attacker.x + this.xDirection;
@@ -4216,7 +4259,7 @@ function BN6AirWheel2(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		this.tempX = attacker.x + this.xDirection;
@@ -4254,7 +4297,7 @@ function BN6AirWheel3(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		this.tempX = attacker.x + this.xDirection;
@@ -4292,7 +4335,7 @@ function BN6Wind(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		this.tempX = attacker.x + this.xDirection;
@@ -4321,7 +4364,7 @@ function BN6Fan(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		this.tempX = attacker.x + this.xDirection;
@@ -4347,7 +4390,7 @@ function BN6Magnum(){
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.target = playerOne;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.target = playerTwo;
 			}
 			if(defender.x === this.target.x){
@@ -4361,7 +4404,7 @@ function BN6Magnum(){
 	};
 	this.effectmiss= function(attacker, defender){
 		this.target = playerOne;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.target = playerTwo;
 		}
 		for(var j = 0; j < cells[this.target.x].length; j++){
@@ -4388,7 +4431,7 @@ function BN6CircGun(){
 			this.target = playerOne;
 			this.targetsX = [2, 2, 2, 1, 0, 0, 0, 1];
 			this.targetsY = [0, 1, 2, 2, 2, 1, 0, 0];
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.target = playerTwo;
 				this.targetsX = [3, 3, 3, 4, 5, 5, 5, 4];
 			}
@@ -4429,7 +4472,7 @@ function BN6RockCube(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4462,7 +4505,7 @@ function BN6LittleBoiler1(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4495,7 +4538,7 @@ function BN6LittleBoiler2(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4528,7 +4571,7 @@ function BN6LittleBoiler3(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4556,7 +4599,7 @@ function BN6AirRaid1(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4584,7 +4627,7 @@ function BN6AirRaid2(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4612,7 +4655,7 @@ function BN6AirRaid3(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4641,7 +4684,7 @@ function BN6TimeBomb1(){
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		this.targetSide = SIDE.LEFT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 			this.targetSide = SIDE.RIGHT;
 		}
@@ -4681,7 +4724,7 @@ function BN6TimeBomb2(){
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		this.targetSide = SIDE.LEFT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 			this.targetSide = SIDE.RIGHT;
 		}
@@ -4721,7 +4764,7 @@ function BN6TimeBomb3(){
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
 		this.targetSide = SIDE.LEFT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 			this.targetSide = SIDE.RIGHT;
 		}
@@ -4802,7 +4845,7 @@ function BN6Fanfare(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4830,7 +4873,7 @@ function BN6Discord(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4858,7 +4901,7 @@ function BN6Timpani(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4886,7 +4929,7 @@ function BN6Silence(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4914,7 +4957,7 @@ function BN6VDoll(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4943,7 +4986,7 @@ function BN6Guardian(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -4971,7 +5014,7 @@ function BN6Anubis(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
@@ -5178,7 +5221,7 @@ function BN6PanelGrab(){
 	this.affectedX= function(attacker, defender){
 		this.xDirection = -1;
 		this.sideToSteal = SIDE.LEFT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 			this.sideToSteal = SIDE.RIGHT;
 		}
@@ -5196,11 +5239,12 @@ function BN6PanelGrab(){
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
+		this.affectX = (new BN6PanelGrab()).affectedX(attacker, defender);
 		this.sideToConvert = SIDE.RIGHT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.sideToConvert = SIDE.LEFT;
 		}
-		if(!board.cellHasSolidObject((new BN6PanelGrab()).affectedX(attacker, defender), attacker.y)){
+		if(!board.cellHasSolidObject(this.affectX , attacker.y) && !cells[this.affectX][attacker.y].panelType !== PANELTYPE.MISS){
 			cells[(new BN6PanelGrab()).affectedX(attacker, defender)][attacker.y].side = this.sideToConvert;
 			cells[(new BN6PanelGrab()).affectedX(attacker, defender)][attacker.y].sideTimer = 12;
 		}
@@ -5248,7 +5292,7 @@ function BN6GrabBanish(){
 		this.hits = (new BN6GrabBanish()).panelCount(attacker, defender);
 		if(defender.invis < 1){
 			this.targetPlayer = playerOne;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.targetPlayer = playerTwo;
 			}
 			return defender.x === this.targetPlayer.x && defender.y === this.targetPlayer.y;
@@ -5258,7 +5302,7 @@ function BN6GrabBanish(){
 	this.panelCount= function(attacker, defender){
 		this.count = 0;
 		this.mySide = SIDE.RIGHT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.mySide = SIDE.LEFT;
 		}
 		for(var i = 0; i < cells.length; i ++){
@@ -5277,7 +5321,7 @@ function BN6GrabBanish(){
 	};
 	this.effectmiss= function(attacker, defender){
 		this.mySide = SIDE.RIGHT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.mySide = SIDE.LEFT;
 		}
 		for(var i = 0; i < cells.length; i ++){
@@ -5336,7 +5380,7 @@ function BN6PanelReturn(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.mySide = SIDE.RIGHT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.mySide = SIDE.LEFT;
 		}
 		for(var i = 0; i < cells.length; i ++){
@@ -5394,7 +5438,7 @@ function BN6HolyPanel(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		board.convertPanel(attacker.x + this.xDirection, attacker.y, PANELTYPE.HOLY);
@@ -5420,7 +5464,7 @@ function BN6Sanctuary(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.mySide = SIDE.RIGHT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.mySide = SIDE.LEFT;
 		}
 		for(var i = 0; i < cells.length; i ++){
@@ -5453,7 +5497,7 @@ function BN6ComingRoad(){
 	this.effectmiss= function(attacker, defender){
 		this.convertToPanel = PANELTYPE.RIGHT;
 		this.targetSide = SIDE.LEFT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.convertToPanel = PANELTYPE.LEFT;
 			this.targetSide = SIDE.RIGHT;
 		}
@@ -5485,7 +5529,7 @@ function BN6GoingRoad(){
 	this.effectmiss= function(attacker, defender){
 		this.convertToPanel = PANELTYPE.LEFT;
 		this.targetSide = SIDE.LEFT;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.convertToPanel = PANELTYPE.RIGHT;
 			this.targetSide = SIDE.RIGHT;
 		}
@@ -5764,7 +5808,7 @@ function BN6MagneCoil(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		this.inRange = false;
@@ -5805,7 +5849,7 @@ function BN6ColonelsArmy(){
 		this.hitbool = false;
 		if(defender.invis < 1){
 			this.targetPlayer = playerOne;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.targetPlayer = playerTwo;
 			}
 			this.hits = 0;
@@ -6135,7 +6179,7 @@ function BN6Colorpoint(){
 		this.xDirection = -1;
 		this.xStart = this.xLength;
 		this.xEnd = 0;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.targetSide = SIDE.LEFT;
 			this.otherSide = SIDE.RIGHT;
 			this.xDirection = 1;
@@ -6205,7 +6249,7 @@ function BN6Roll(){
 		if(defender.invis < 1){
 			this.targetPlayer = playerOne;
 			this.xDirection = 1;
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				this.targetPlayer = playerTwo;
 				this.xDirection = -1;
 			}
@@ -6758,9 +6802,9 @@ function BN6Dustman(){
 		}
 	};
 	this.effectmiss= function(attacker, defender){
-		this.xEnd = 0;
+		this.xEnd = board.endOfRow(attacker.y, false);
 		if(attacker.name === playerOne.name){
-			this.xEnd = 5;
+			this.xEnd = board.endOfRow(attacker.y, true);;
 		}
 		board.convertPanel(this.xEnd, attacker.y, PANELTYPE.BROKEN);
 		for(var x = 0; x < cells.length; x++){
@@ -7859,7 +7903,7 @@ function BN6MeteoKnucle(){
 			this.sideCount = 0;
 			for(var x = 0; x < cells.length; x++){
 				for(var y = 0; y < cells[x].length; y++){
-					if(cells[x][y].side === this.targetSide){
+					if(cells[x][y].side === this.targetSide && cells[x][y].panelType !== PANELTYPE.MISS){
 						this.sideCount++;
 						if(defender.x === x && defender.y === y){
 							this.hitbool = true;
@@ -8099,7 +8143,7 @@ function BN6ColonelForce(){
 			this.allySide = SIDE.LEFT;
 		}
 		for(var x = 0; x < cells.length; x++){
-			if(cells[x][defender.y].side === this.allySide){	
+			if(cells[x][defender.y].side === this.allySide && cells[x][defender.y].panelType !== PANELTYPE.MISS){	
 				var fakeAttacker = {
 					x: x,
 					y: defender.y,

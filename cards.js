@@ -41,7 +41,7 @@ function CANNON1(){
 	// may adjust damage
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i=0; i < defender.x - attacker.x; i++){
 					if(board.cellHasSolidObject(attacker.x + i, attacker.y)){
 						return false;
@@ -120,7 +120,7 @@ function PIERCECANNON(){
 	this.priority=2;
 	this.elements=[ELEMENTS.cursor];
 	this.hithuh= function(attacker, defender){
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			for(var i=1; i <= defender.x - attacker.x; i++){
 				if(board.cellHasSolidObject(attacker.x + i, attacker.y)){
 					return false;
@@ -254,7 +254,7 @@ function AREAGRAB(){
 		return false;
 	};
 	this.affectedColumn= function(attacker, defender){
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.column = 7;
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
@@ -279,10 +279,10 @@ function AREAGRAB(){
 	};
 	this.effecthit= function(attacker, defender){
 		this.column = (new AREAGRAB()).affectedColumn(attacker, defender);
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
-					if(x === this.column && !(playerTwo.x === x && playerTwo.y === y) && !board.cellHasSolidObject(x,y)){
+					if(x === this.column && !(playerTwo.x === x && playerTwo.y === y) && !board.cellHasSolidObject(x,y) && cells[x][y].panelType !== PANELTYPE.MISS){
 						cells[x][y].side = SIDE.LEFT;
 						cells[x][y].sideTimer = 12;
 					}
@@ -292,7 +292,7 @@ function AREAGRAB(){
 		else{
 			for(var x=0;x<cells.length;x++){
 				for(var y=0;y<cells[x].length;y++){
-					if(x === this.column && !(playerOne.x === x && playerOne.y === y) && !board.cellHasSolidObject(x,y)){
+					if(x === this.column && !(playerOne.x === x && playerOne.y === y) && !board.cellHasSolidObject(x,y) && cells[x][y].panelType !== PANELTYPE.MISS){
 						cells[x][y].side = SIDE.RIGHT;
 						cells[x][y].sideTimer = 12;
 					}
@@ -320,7 +320,7 @@ function SWORD(){
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.direction = 0;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.direction = 1;
 		}
 		else{
@@ -355,7 +355,7 @@ function WIDESWORD(){
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.direction = 0;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.direction = 1;
 		}
 		else{
@@ -390,7 +390,7 @@ function LONGSWORD(){
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.direction = 0;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.direction = 1;
 		}
 		else{
@@ -433,7 +433,7 @@ function Cards(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS).concat(BN6PAS).concat(SF3CARDS);
 		BUILDABLECARDS = DEFAULTCARDS.concat(BN6CARDS).concat(SF3CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS).concat(SF3CARDS);
-		TEMPDECKLIST = [new SF3JetAttack3(), new SF3Buki1(), new SF3Buki2(), new SF3Buki3(), new SF3JetAttack1()];
+		TEMPDECKLIST = [new BN6BigBomb(), new BN6SandWorm1(), new SF3WhiteMeteor(), new BN6Boomerang(), new BN6Lance()];
 	}
 
 	this.setDeck = function(newDeckID){

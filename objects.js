@@ -1,4 +1,3 @@
-
 function BN6RockCubeObj(x, y){
 	this.id = "BN6RockCube";
 	this.hp = 200;
@@ -7,7 +6,7 @@ function BN6RockCubeObj(x, y){
 	this.effecthit = function(attacker){
 		var cardHitBy = attacker.card;
 		if(cardHitBy.id === "BN6AirShot" || cardHitBy.id === "BN6WindRacket"){
-			if(attacker.name === "one"){
+			if(attacker.name === playerOne.name){
 				for(var i=this.x; i < 6; i++){
 					if(board.cellHasSolidObject(i, this.y)){
 						this.hp = 0;
@@ -121,7 +120,7 @@ function BN6HoneyBall(x, y, attacker, defender, damage){
 	this.hp = 2;
 	this.directionX = -1;
 	this.directionY = 0;
-	if(attacker.name === "one"){
+	if(attacker.name === playerOne.name){
 		this.directionX = 1;
 	}
 	this.effecthit = function(cardHitBy, direction){};
@@ -196,7 +195,6 @@ function PlayerObject(){
 	this.passive = function(){}
 }
 
-
 function BN6FlashBomb(x, y, attacker, defender, damage){
 	this.attacker = attacker;
 	this.id = "BN6FlashBomb";
@@ -239,7 +237,6 @@ function BN6FlashBomb(x, y, attacker, defender, damage){
 	this.x = x;
 	this.y = y;
 }
-
 
 function BN6BlackBombObj(x, y){
 	this.id = "BN6BlackBombObj";
@@ -316,7 +313,7 @@ function BN6KillerSensor(x, y, attacker, defender, damage){
 	this.passiveTriggered = false;
 	this.passive = function(){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		this.xLoc = this.x + this.xDirection;
@@ -416,7 +413,7 @@ function BN6WindBox(x, y, attacker, defender, direction){
 	this.passive = function(){
 		defender.barrier = null;
 		this.xDirection = direction;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = -1*direction;
 		}
 		this.tempX = defender.x + this.xDirection;
@@ -907,6 +904,32 @@ function SF3DoubleStoneObj(x, y){
 	this.hitByBuster = function(player){
 		this.hp = this.hp - player.busterDamage;
 		if(this.hp < 1){
+			cells[this.x][this.y].object = [];
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){};
+	this.x = x;
+	this.y = y;
+}
+
+function SF3MegaCrusherObj(x, y, attacker){
+	this.id = "SF3MegaCrusherObj";
+	this.hp = 1;
+	this.image = MegaCrusherObj;
+	this.solid = true;
+	this.attacker = attacker;
+	this.effecthit = function(player){
+		if(player.name !== this.attacker.name){
+			cells[this.x][this.y].object = [];
+			this.x = -1;
+			this.y = -1;
+		}
+	};
+	this.hitByBuster = function(player){
+		if(player.name !== this.attacker.name){
 			cells[this.x][this.y].object = [];
 			this.x = -1;
 			this.y = -1;
