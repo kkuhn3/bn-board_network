@@ -22,12 +22,13 @@ PANELTYPE = {
 	DOUBLECROSS: "doublecross",
 	GIGAMINE: "gigamine",
 	MISS: "miss",
-	PARALYZE: "paralyze"
+	PARALYZE: "paralyze",
+	ATTACK: "attack",
 }
 var paneltypes = [PANELTYPE.NORMAL, PANELTYPE.HOLE, PANELTYPE.GRASS, PANELTYPE.POISON, 
 				  PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY, PANELTYPE.BROKEN, 
 				  PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT, 
-				  PANELTYPE.MISS, PANELTYPE.PARALYZE, 
+				  PANELTYPE.MISS, PANELTYPE.PARALYZE, PANELTYPE.ATTACK,
 				  PANELTYPE.SPIRITFURY, PANELTYPE.ANTISWORD, PANELTYPE.POISONAPPLE, PANELTYPE.DOUBLECROSS, PANELTYPE.GIGAMINE];
 
 var backgrounds = ["BN6ACDCbg", "BN6Centralbg", "BN6Greenbg", "BN6Seasidebg", "BN6Skybg"];
@@ -620,6 +621,14 @@ function Board(width,height,canvas){
 					console.log("player " + attacker.name + " Mega Card was Crushed!");
 					return false;
 				}
+				if(cells[attacker.x][attacker.y].panelType = PANELTYPE.ATTACK){
+					if(attacker.card.boostDamage){
+						attacker.card.boostDamage = attacker.card.boostDamage + 10;
+					}
+					else{
+						attacker.card.boostDamage = 10;
+					}
+				}
 				return this.attackWithCard(attacker, defender, attacker.card);
 			}
 		}
@@ -670,6 +679,9 @@ function Board(width,height,canvas){
 							attackCard.effecthit(attacker, defender);
 							if(attackCard.stunAdded && defender.stunned < 1){
 								defender.stunned = 1;
+							}
+							if(attackCard.gravityAdded) {
+								defender.timpanid = 1;
 							}
 							if(attackCard.uninstallAdded){
 								//toDo: navicust? 

@@ -3854,6 +3854,93 @@ function SF3HolyPanel(){
 	};
 }
 
+function SF3AttackPanel(){
+	this.id="SF3AttackPanel";
+	this.name="AttackPanel";
+	this.image=SF3147_attackpanel;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		for(var y = 0; y < cells[attacker.x].length; y++){
+			board.convertPanel(attacker.x, attacker.y, PANELTYPE.ATTACK);
+		}
+	};
+}
+
+function SF3GravityPlus(){
+	this.id="SF3GravityPlus";
+	this.name="GravityPlus";
+	this.image=SF3148_gravityplus;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.addGravity = true;
+}
+
+function SF3ParalyzePlus(){
+	this.id="SF3ParalyzePlus";
+	this.name="ParalyzePlus";
+	this.image=SF3149_mahiplus;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.addStun = true;
+}
+
+function SF3Attack10(){
+	this.id="SF3Attack10";
+	this.name="Attack +10";
+	this.image=SF3150_attack10;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.addboostDamage = 10;
+}
+
 var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new SF3PlasmaGun(), 
 				new SF3AirSpread1(), new SF3AirSpread2(), new SF3AirSpread3(), new SF3MadVulcan1(), 
 				new SF3MadVulcan2(), new SF3MadVulcan3(), new SF3BlackInk(), new SF3MiniGrenade(), 
@@ -3883,13 +3970,15 @@ var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new 
 				new SF3AcornBomb3(), new SF3BeastSlap1(), new SF3BeastSlap2(), new SF3BeastSlap3(), 
 				new SF3NoisedWizard1(), new SF3NoisedWizard2(), new SF3NoisedWizard3(), new SF3MalWizard1(), 
 				new SF3MalWizard2(), new SF3MalWizard3(), new SF3BlackHole1(), new SF3BlackHole2(), 
-				new SF3BlackHole3(), new SF3Bombalizer(), new SF3DivideLine(), new SF3DoubleEater(), 
-				new SF3PanelFormat(), new SF3PanicCloud(), new SF3Recover10(), new SF3Recover30(), 
-				new SF3Recover50(), new SF3Recover120(), new SF3Recover150(), new SF3Recover200(), 
-				new SF3Recover300(), new SF3Barrier(), new SF3SuperBarrier(), new SF3Aura(), 
-				new SF3Invisible(), new SF3Whistle(), new SF3MegaCrusher(), new SF3SpiritFury(), 
-				new SF3AntiSword(), new SF3PoisonApple(), new SF3DoubleCross(), new SF3GigaMine(), 
-				new SF3GrassStage(), new SF3IceStage(), new SF3ParalyzeStage(), new SF3HolyPanel()];
+				new SF3BlackHole3(), new SF3DoubleStone(), new SF3Bombalizer(), new SF3DivideLine(), 
+				new SF3DoubleEater(), new SF3PanelFormat(), new SF3PanicCloud(), new SF3Recover10(), 
+				new SF3Recover30(), new SF3Recover50(), new SF3Recover80(), new SF3Recover120(), 
+				new SF3Recover150(), new SF3Recover200(), new SF3Recover300(), new SF3Barrier(), 
+				new SF3SuperBarrier(), new SF3Aura(), new SF3Invisible(), new SF3Whistle(), 
+				new SF3MegaCrusher(), new SF3SpiritFury(), new SF3AntiSword(), new SF3PoisonApple(), 
+				new SF3DoubleCross(), new SF3GigaMine(), new SF3GrassStage(), new SF3IceStage(), 
+				new SF3ParalyzeStage(), new SF3HolyPanel(), new SF3AttackPanel(), new SF3GravityPlus(), 
+				new SF3ParalyzePlus(), new SF3Attack10()];
 
 function SF3Cards(){
 

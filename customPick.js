@@ -197,6 +197,11 @@ function CustomPick(canvas){
 					this.selectedList.splice(i, 1);
 					i--;
 				}
+				else if(this.selectedList[i].addGravity){
+					this.selectedList[i-1].gravityAdded = true;
+					this.selectedList.splice(i, 1);
+					i--;
+				}
 				else if(this.selectedList[i].addUninstall){
 					this.selectedList[i-1].uninstallAdded = true;
 					this.selectedList.splice(i, 1);
