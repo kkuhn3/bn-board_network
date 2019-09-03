@@ -428,9 +428,7 @@ function BN6WindBox(x, y, attacker, defender, direction){
 					this.tempX = this.tempX + this.xDirection;
 				}
 			}
-			cells[defender.x][defender.y].player = null;
-			defender.x = this.tempX;
-			cells[defender.x][defender.y].player = defender;
+			board.movePlayer(this.tempX, defender.y, defender);
 		}
 	};
 	this.x = x;

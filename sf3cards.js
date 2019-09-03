@@ -3141,6 +3141,65 @@ function SF3DivideLine(){
 	};
 }
 
+function SF3DoubleEater(){
+	this.id="SF3DoubleEater";
+	this.name="DoubleEater";
+	this.image=SF3121_doubleeater;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.col1 = board.farthestEndOfRow(true);
+		this.col2 = board.farthestEndOfRow(false);
+		for(var y = 0; y < 1; y++){
+			board.convertPanel(this.col1, y, PANELTYPE.MISS);
+			board.convertPanel(this.col2, y, PANELTYPE.MISS);
+		}
+		if(attacker.x === this.col1){
+			if(!board.isCellThisPlayerValid(this.col1-1, attacker.y, attacker)){
+				board.convertPanel(attacker.x, attacker.y, PANELTYPE.NORMAL);
+			}
+			else{
+				board.movePlayer(attacker.x - 1, attacker.y, attacker);
+			}
+		}
+		if(attacker.x === this.col2){
+			if(!board.isCellThisPlayerValid(this.col2+1, attacker.y, attacker)){
+				board.convertPanel(attacker.x, attacker.y, PANELTYPE.NORMAL);
+			}
+			else{
+				board.movePlayer(attacker.x + 1, attacker.y, attacker);
+			}
+		}
+		if(defender.x === this.col1){
+			if(!board.isCellThisPlayerValid(this.col1-1, defender.y, defender)){
+				board.convertPanel(defender.x, defender.y, PANELTYPE.NORMAL);
+			}
+			else{
+				board.movePlayer(defender.x - 1, defender.y, defender);
+			}
+		}
+		if(defender.x === this.col2){
+			if(!board.isCellThisPlayerValid(this.col2+1, defender.y, defender)){
+				board.convertPanel(defender.x, defender.y, PANELTYPE.NORMAL);
+			}
+			else{
+				board.movePlayer(defender.x + 1, defender.y, defender);
+			}
+		}
+	};
+}
+
 function SF3PanelFormat(){
 	this.id="SF3PanelFormat";
 	this.name="PanelFormat";
@@ -3482,14 +3541,7 @@ function SF3Whistle(){
 			for(var i = 0; i < 4; i++){
 				this.xTile = defender.x + this.xDirection;
 				this.yTile = defender.y;
-				if(board.isCellThisPlayerValid(this.xTile, this.yTile, defender)){
-					cells[defender.x][defender.y].player = null;
-					cells[this.xTile][this.yTile].player = defender;
-					defender.x = this.xTile;
-				}
-				else{
-					break;
-				}
+				board.movePlayer(this.xTile, this.yTile, defender);
 			}
 		}
 	};
@@ -3514,12 +3566,291 @@ function SF3MegaCrusher(){
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -1;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
 			cells[attacker.x + this.xDirection][attacker.y].object = [new SF3MegaCrusherObj(attacker.x + this.xDirection, attacker.y, attacker)];
 		}
+	};
+}
+
+function SF3SpiritFury(){
+	this.id="SF3SpiritFury";
+	this.name="SpiritFury";
+	this.image=SF3138_seireinoikari;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.col1 = board.farthestEndOfRow(false);
+		this.col2 = this.col1 + 1;
+		if(attacker.name === playerOne.name){
+			this.col1 = board.farthestEndOfRow(true);
+			this.col2 = this.col1 - 1;
+		}
+		for(var y = 0; y < 3; y++){
+			board.convertPanel(this.col1, y, PANELTYPE.SPIRITFURY);
+			board.convertPanel(this.col2, y, PANELTYPE.SPIRITFURY);
+		}
+	};
+}
+
+function SF3AntiSword(){
+	this.id="SF3AntiSword";
+	this.name="AntiSword";
+	this.image=SF3139_shirahadori;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.col1 = board.farthestEndOfRow(false);
+		this.col2 = this.col1 + 1;
+		if(attacker.name === playerOne.name){
+			this.col1 = board.farthestEndOfRow(true);
+			this.col2 = this.col1 - 1;
+		}
+		for(var y = 0; y < 3; y++){
+			board.convertPanel(this.col1, y, PANELTYPE.ANTISWORD);
+			board.convertPanel(this.col2, y, PANELTYPE.ANTISWORD);
+		}
+	};
+}
+
+function SF3PoisonApple(){
+	this.id="SF3PoisonApple";
+	this.name="PoisonApple";
+	this.image=SF3140_dokuringo;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.col1 = board.farthestEndOfRow(false);
+		this.col2 = this.col1 + 1;
+		if(attacker.name === playerOne.name){
+			this.col1 = board.farthestEndOfRow(true);
+			this.col2 = this.col1 - 1;
+		}
+		for(var y = 0; y < 3; y++){
+			board.convertPanel(this.col1, y, PANELTYPE.POISONAPPLE);
+			board.convertPanel(this.col2, y, PANELTYPE.POISONAPPLE);
+		}
+	};
+}
+
+function SF3DoubleCross(){
+	this.id="SF3DoubleCross";
+	this.name="DoubleCross";
+	this.image=SF3141_uragirinosusume;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.col1 = board.farthestEndOfRow(false);
+		this.col2 = this.col1 + 1;
+		if(attacker.name === playerOne.name){
+			this.col1 = board.farthestEndOfRow(true);
+			this.col2 = this.col1 - 1;
+		}
+		for(var y = 0; y < 3; y++){
+			board.convertPanel(this.col1, y, PANELTYPE.DOUBLECROSS);
+			board.convertPanel(this.col2, y, PANELTYPE.DOUBLECROSS);
+		}
+	};
+}
+
+function SF3GigaMine(){
+	this.id="SF3GigaMine";
+	this.name="GigaMine";
+	this.image=SF3142_gigamine;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.col1 = board.farthestEndOfRow(false);
+		this.col2 = this.col1 + 1;
+		if(attacker.name === playerOne.name){
+			this.col1 = board.farthestEndOfRow(true);
+			this.col2 = this.col1 - 1;
+		}
+		for(var y = 0; y < 3; y++){
+			board.convertPanel(this.col1, y, PANELTYPE.GIGAMINE);
+			board.convertPanel(this.col2, y, PANELTYPE.GIGAMINE);
+		}
+	};
+}
+
+function SF3GrassStage(){
+	this.id="SF3GrassStage";
+	this.name="GrassStage";
+	this.image=SF3143_kusamurastage;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.mySide = SIDE.RIGHT;
+		this.thSide = SIDE.LEFT;
+		if(attacker.name === playerOne.name){
+			this.mySide = SIDE.LEFT;
+			this.thSide = SIDE.RIGHT;
+		}
+		for(var x = 0; x < cells.length; x++){
+			for(var y = 0; y < cells[x].length; y++){
+				if(cells[x][y].side === this.thSide){
+					board.convertPanel(x, y, PANELTYPE.GRASS);
+				}
+			}
+		}
+	};
+}
+
+function SF3IceStage(){
+	this.id="SF3IceStage";
+	this.name="IceStage";
+	this.image=SF3144_icestage;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.mySide = SIDE.RIGHT;
+		this.thSide = SIDE.LEFT;
+		if(attacker.name === playerOne.name){
+			this.mySide = SIDE.LEFT;
+			this.thSide = SIDE.RIGHT;
+		}
+		for(var x = 0; x < cells.length; x++){
+			for(var y = 0; y < cells[x].length; y++){
+				if(cells[x][y].side === this.thSide){
+					board.convertPanel(x, y, PANELTYPE.ICE);
+				}
+			}
+		}
+	};
+}
+
+function SF3ParalyzeStage(){
+	this.id="SF3ParalyzeStage";
+	this.name="ParalyzeStage";
+	this.image=SF3145_paralyzestage;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.mySide = SIDE.RIGHT;
+		this.thSide = SIDE.LEFT;
+		if(attacker.name === playerOne.name){
+			this.mySide = SIDE.LEFT;
+			this.thSide = SIDE.RIGHT;
+		}
+		for(var x = 0; x < cells.length; x++){
+			for(var y = 0; y < cells[x].length; y++){
+				if(cells[x][y].side === this.thSide){
+					board.convertPanel(x, y, PANELTYPE.PARALYZE);
+				}
+			}
+		}
+	};
+}
+
+function SF3HolyPanel(){
+	this.id="SF3HolyPanel";
+	this.name="HolyPanel";
+	this.image=SF3146_holypanel;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=5;
+	this.rank="standard";
+	this.damage=0;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		board.convertPanel(attacker.x, attacker.y, PANELTYPE.HOLY);
 	};
 }
 
@@ -3552,11 +3883,13 @@ var SF3CARDS = [new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new 
 				new SF3AcornBomb3(), new SF3BeastSlap1(), new SF3BeastSlap2(), new SF3BeastSlap3(), 
 				new SF3NoisedWizard1(), new SF3NoisedWizard2(), new SF3NoisedWizard3(), new SF3MalWizard1(), 
 				new SF3MalWizard2(), new SF3MalWizard3(), new SF3BlackHole1(), new SF3BlackHole2(), 
-				new SF3BlackHole3(), new SF3Bombalizer(), new SF3DivideLine(), new SF3PanelFormat(), 
-				new SF3PanicCloud(), new SF3Recover10(), new SF3Recover30(), new SF3Recover50(), 
-				new SF3Recover120(), new SF3Recover150(), new SF3Recover200(), new SF3Recover300(), 
-				new SF3Barrier(), new SF3SuperBarrier(), new SF3Aura(), new SF3Invisible(), 
-				new SF3Whistle(), new SF3MegaCrusher()];
+				new SF3BlackHole3(), new SF3Bombalizer(), new SF3DivideLine(), new SF3DoubleEater(), 
+				new SF3PanelFormat(), new SF3PanicCloud(), new SF3Recover10(), new SF3Recover30(), 
+				new SF3Recover50(), new SF3Recover120(), new SF3Recover150(), new SF3Recover200(), 
+				new SF3Recover300(), new SF3Barrier(), new SF3SuperBarrier(), new SF3Aura(), 
+				new SF3Invisible(), new SF3Whistle(), new SF3MegaCrusher(), new SF3SpiritFury(), 
+				new SF3AntiSword(), new SF3PoisonApple(), new SF3DoubleCross(), new SF3GigaMine(), 
+				new SF3GrassStage(), new SF3IceStage(), new SF3ParalyzeStage(), new SF3HolyPanel()];
 
 function SF3Cards(){
 

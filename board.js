@@ -22,11 +22,12 @@ PANELTYPE = {
 	DOUBLECROSS: "doublecross",
 	GIGAMINE: "gigamine",
 	MISS: "miss",
+	PARALYZE: "paralyze"
 }
 var paneltypes = [PANELTYPE.NORMAL, PANELTYPE.HOLE, PANELTYPE.GRASS, PANELTYPE.POISON, 
 				  PANELTYPE.CRACKED, PANELTYPE.ICE, PANELTYPE.HOLY, PANELTYPE.BROKEN, 
 				  PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT, 
-				  PANELTYPE.MISS,
+				  PANELTYPE.MISS, PANELTYPE.PARALYZE, 
 				  PANELTYPE.SPIRITFURY, PANELTYPE.ANTISWORD, PANELTYPE.POISONAPPLE, PANELTYPE.DOUBLECROSS, PANELTYPE.GIGAMINE];
 
 var backgrounds = ["BN6ACDCbg", "BN6Centralbg", "BN6Greenbg", "BN6Seasidebg", "BN6Skybg"];
@@ -379,8 +380,8 @@ function Board(width,height,canvas){
 	}
 
 	this.resolveTurn = function(){
-		this.otherPlayer = "one";
-		if(player.name === "one"){
+		this.otherPlayer = playerOne.name;
+		if(player.name === playerOne.name){
 			this.otherPlayer = "two";
 		}
 		$.post("save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
@@ -409,6 +410,10 @@ function Board(width,height,canvas){
 		}
 		else if(this.p1priority <= this.p2priority){
 			this.hitbool = this.resolve(playerOne, playerTwo);
+			if(cells[playerTwo.x][playerTwo.y].panelType === PANELTYPE.PARALYZE){
+				playerTwo.stunned = 1;
+				board.convertPanel(playerTwo.x, playerTwo.y, PANELTYPE.NORMAL);
+			}
 			if(this.hitbool && this.p1priority === 1 && this.p2priority === 3){
 				playerTwo.stunned = 1;
 			}
@@ -416,6 +421,10 @@ function Board(width,height,canvas){
 		}
 		else{
 			this.hitbool = this.resolve(playerTwo, playerOne);
+			if(cells[playerOne.x][playerOne.y].panelType === PANELTYPE.PARALYZE){
+				playerOne.stunned = 1;
+				board.convertPanel(playerOne.x, playerOne.y, PANELTYPE.NORMAL);
+			}
 			if(this.hitbool && this.p2priority === 1 && this.p1priority === 3){
 				playerOne.stunned = 1;
 			}
@@ -704,6 +713,7 @@ function Board(width,height,canvas){
 			   attackCard.elements.includes(ELEMENTS.elec) ){
 				attacker.hp = attacker.hp - 220;
 				console.log("Trap Panel Triggered!");
+				this.removeTrapPanels(attacker);
 				return false;
 			}
 		}
@@ -711,6 +721,7 @@ function Board(width,height,canvas){
 			if(attackCard.elements.includes(ELEMENTS.sword)){
 				attacker.hp = attacker.hp - 240;
 				console.log("Trap Panel Triggered!");
+				this.removeTrapPanels(attacker);
 				return false;
 			}
 		}
@@ -721,12 +732,14 @@ function Board(width,height,canvas){
 				this.val = parseInt(attackCard.name.substring(this.s, this.e));
 				attacker.hp = attacker.hp - this.val;
 				console.log("Trap Panel Triggered!");
+				this.removeTrapPanels(attacker);
 				return false;
 			}
 		}
 		else if(cells[attacker.x][attacker.y].panelType === PANELTYPE.DOUBLECROSS){
 			if(attackCard.rank === "mega"){
 				console.log("Trap Panel Triggered!");
+				this.removeTrapPanels(attacker);
 				this.attackWithCard(defender, attacker, attackCard);
 				return false;
 			}
@@ -735,6 +748,7 @@ function Board(width,height,canvas){
 			if(attackCard.rank === "giga"){
 				attacker.hp = attacker.hp - 300;
 				console.log("Trap Panel Triggered!");
+				this.removeTrapPanels(attacker);
 				return false;
 			}
 		}
@@ -949,13 +963,21 @@ function Board(width,height,canvas){
 
 	this.isCellThisPlayerValid = function(x, y, aPlayer){
 		this.acceptedSide = SIDE.RIGHT;
-		if(aPlayer.name === "one"){
+		if(aPlayer.name === playerOne.name){
 			this.acceptedSide = SIDE.LEFT;
 		}
 		if(this.isCellPlayerValid(x, y)){
 			return cells[x][y].side === this.acceptedSide;
 		}
 		return false;
+	}
+
+	this.movePlayer = function(newX, newY, aPlayer){
+		if(board.isCellThisPlayerValid(newX, newY, aPlayer){
+			cells[aPlayer.x][aPlayer.y].player = null;
+			cells[newX][newX].player = defender;
+			aPlayer.x = newX;
+		}
 	}
 
 	this.isOverlayPanel = function(panel){
@@ -1093,7 +1115,7 @@ function Board(width,height,canvas){
 		}
 		fakeDefender.x = playerOne.x;
 		fakeDefender.y = playerOne.y;
-		if(attacker.name === "one"){
+		if(attacker.name === playerOne.name){
 			fakeDefender.x = playerTwo.x;
 			fakeDefender.y = playerTwo.y;
 		}

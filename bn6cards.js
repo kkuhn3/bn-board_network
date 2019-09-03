@@ -79,18 +79,10 @@ function BN6AirShot(){
 	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
 			if(attacker.name === playerOne.name && defender.x < 5){
-				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
-					cells[defender.x][defender.y].player = null;
-					defender.x = defender.x+1;
-					cells[defender.x][defender.y].player = defender;
-				}
+				board.movePlayer(defender.x+1, defender.y, defender);
 			}
 			else if(defender.x > 0){
-				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
-					cells[defender.x][defender.y].player = null;
-					defender.x = defender.x-1;
-					cells[defender.x][defender.y].player = defender;
-				}
+				board.movePlayer(defender.x-1, defender.y, defender);
 			}
 		}
 	};
@@ -1099,18 +1091,10 @@ function BN6ElecPulse2(){
 		if(defender.guard === null){
 			defender.invis = 0;
 			if(attacker === playerOne.name){
-				if(board.isCellThisPlayerValid(defender.x+1, defender.y, defender)){
-					cells[defender.x][defender.y].player = null;
-					defender.x = defender.x+1;
-					cells[defender.x][defender.y].player = defender;
-				}
+				board.movePlayer(defender.x-1, defender.y, defender);
 			}
 			else{
-				if(board.isCellThisPlayerValid(defender.x-1, defender.y, defender)){
-					cells[defender.x][defender.y].player = null;
-					defender.x = defender.x-1;
-					cells[defender.x][defender.y].player = defender;
-				}
+				board.movePlayer(defender.x+1, defender.y, defender);
 			}
 		}
 	};
@@ -2551,14 +2535,7 @@ function BN6WindRacket(){
 			for(var i = 0; i < 4; i++){
 				this.xTile = defender.x + this.xDirection;
 				this.yTile = defender.y;
-				if(board.isCellThisPlayerValid(this.xTile, this.yTile, defender)){
-					cells[defender.x][defender.y].player = null;
-					cells[this.xTile][this.yTile].player = defender;
-					defender.x = this.xTile;
-				}
-				else{
-					break;
-				}
+				board.movePlayer(this.xTile, this.yTile, defender);
 			}
 		}
 	};
@@ -3920,11 +3897,7 @@ function BN6Lance(){
 		if(attacker.name === playerOne.name){
 			this.nextCol = board.farthestEndOfRow(true) - 1;
 		}
-		if(board.isCellThisPlayerValid(this.nextCol, defender.y, defender)){
-			cells[defender.x][defender.y].player = null;
-			defender.x = this.nextCol;
-			cells[defender.x][defender.y].player = defender;
-		}
+		board.movePlayer(this.nextCol, defender.y, defender);
 	};
 	this.effectmiss= function(attacker, defender){};
 }
