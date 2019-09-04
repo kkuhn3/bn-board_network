@@ -7,7 +7,9 @@ ELEMENTS = {
 	break: "break",
 	cursor: "cursor",
 	wind: "wind",
-	sword: "sword"
+	sword: "sword", 
+
+	normal: "normal"
 }
 
 // Use cannon for example

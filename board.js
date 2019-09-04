@@ -69,6 +69,7 @@ var playerOne = {
 	lastX: 1,
 	lastY: 1,
 	bushidoCount: 0,
+	type:"normal",
 };
 
 var playerTwo = {
@@ -96,6 +97,7 @@ var playerTwo = {
 	lastX: 4,
 	lastY: 1,
 	bushidoCount: 0,
+	type:"normal",
 };
 
 var player = -1;
@@ -994,7 +996,8 @@ function Board(width,height,canvas){
 
 	this.isOverlayPanel = function(panel){
 		var normalPanels = [PANELTYPE.GRASS, PANELTYPE.POISON, PANELTYPE.ICE, PANELTYPE.HOLY, 
-							PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT];
+							PANELTYPE.UP, PANELTYPE.RIGHT, PANELTYPE.DOWN, PANELTYPE.LEFT, 
+							PANELTYPE.PARALYZE, PANELTYPE.ATTACK];
 		if(normalPanels.indexOf(panel) !== -1){
 			return true;
 		}
