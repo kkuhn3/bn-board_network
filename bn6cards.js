@@ -2175,7 +2175,7 @@ function BN6BlackBomb(){
 			this.xDirection = 3;
 		}
 		if(board.isCellPlayerValid(attacker.x + this.xDirection, attacker.y)){
-			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6BlackBombObj(attacker.x+this.xDirection, attacker.y));
+			cells[attacker.x+this.xDirection][attacker.y].object.push(new BN6BlackBombObj(attacker.x+this.xDirection, attacker.y, 250));
 		}
 	};
 }

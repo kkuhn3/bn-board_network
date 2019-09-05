@@ -238,9 +238,9 @@ function BN6FlashBomb(x, y, attacker, defender, damage){
 	this.y = y;
 }
 
-function BN6BlackBombObj(x, y){
+function BN6BlackBombObj(x, y, damage){
 	this.id = "BN6BlackBombObj";
-	this.damage = 250;
+	this.damage = damage;
 	this.image = BlackBombObj;
 	this.solid = true;
 	this.immune = true;
@@ -252,11 +252,8 @@ function BN6BlackBombObj(x, y){
 					for(var j = -1; j < 2; j++){
 						if(cells[i+this.x]){
 							if(cells[i+this.x][j+this.y]){
-								console.log(i+this.x);
-								console.log(j+this.y);
 								if(cells[i+this.x][j+this.y].player){
-									console.log(cells[i+this.x][j+this.y].player);
-									cells[i+this.x][j+this.y].player.hp = cells[i+this.x][j+this.y].player.hp - 250;
+									cells[i+this.x][j+this.y].player.hp = cells[i+this.x][j+this.y].player.hp - this.damage;
 								}
 								if(board.cellHasSolidObject(i, j)){
 									cells[i+this.x][j+this.y].object = [];
