@@ -217,6 +217,26 @@ function CustomPick(canvas){
 					this.selectedList.splice(i, 1);
 					i--;
 				}
+				else if(this.selectedList[i].addFireboostDamage && this.selectedList[i-1].elements.indexOf(ELEMENTS.fire) > -1){
+					this.selectedList[i-1].boostDamage = this.selectedList[i-1].boostDamage + this.selectedList[i].addFireboostDamage;
+					this.selectedList.splice(i, 1);
+					i--;
+				}
+				else if(this.selectedList[i].addAquaboostDamage && this.selectedList[i-1].elements.indexOf(ELEMENTS.aqua) > -1){
+					this.selectedList[i-1].boostDamage = this.selectedList[i-1].boostDamage + this.selectedList[i].addAquaboostDamage;
+					this.selectedList.splice(i, 1);
+					i--;
+				}
+				else if(this.selectedList[i].addElecboostDamage && this.selectedList[i-1].elements.indexOf(ELEMENTS.elec) > -1){
+					this.selectedList[i-1].boostDamage = this.selectedList[i-1].boostDamage + this.selectedList[i].addElecboostDamage;
+					this.selectedList.splice(i, 1);
+					i--;
+				}
+				else if(this.selectedList[i].addWoodboostDamage && this.selectedList[i-1].elements.indexOf(ELEMENTS.wood) > -1){
+					this.selectedList[i-1].boostDamage = this.selectedList[i-1].boostDamage + this.selectedList[i].addWoodboostDamage;
+					this.selectedList.splice(i, 1);
+					i--;
+				}
 			}
 		}
 		return this.selectedList;

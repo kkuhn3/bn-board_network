@@ -1112,7 +1112,8 @@ function Board(width,height,canvas){
 			x: -1,
 			y: -1,
 			invis: 0,
-			guard: null
+			guard: null,
+			hp: 9999
 		};
 		for(var x=0;x<cells.length;x++){
 			for(var y=0;y<cells[x].length;y++){
@@ -1130,9 +1131,11 @@ function Board(width,height,canvas){
 		}
 		fakeDefender.x = playerOne.x;
 		fakeDefender.y = playerOne.y;
+		fakeDefender.hp = playerOne.hp;
 		if(attacker.name === playerOne.name){
 			fakeDefender.x = playerTwo.x;
 			fakeDefender.y = playerTwo.y;
+			fakeDefender.hp = playerTwo.hp;
 		}
 		card.hithuh(attacker, fakeDefender);
 	}
