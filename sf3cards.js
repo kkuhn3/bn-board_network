@@ -8326,6 +8326,7 @@ function SF3SiriusV3(){
 	};
 }
 
+// -------------- Secret Mega --------------
 function SF3SpadeMagnesX(){
 	this.id="SF3SpadeMagnesX";
 	this.name="SpadeMagnesX";
@@ -9110,6 +9111,773 @@ function SF3CancerBubbleX(){
 	this.effectmiss= function(attacker, defender){};
 }
 
+function SF3CrownThunder(){
+	this.id="SF3CrownThunder";
+	this.name="CrownThunder";
+	this.image=SF3xxx_crown_thunder;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=150;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new BN6CrossSlash()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3CrownThunderV2(){
+	this.id="SF3CrownThunderV2";
+	this.name="CrownThunderV2";
+	this.image=SF3xxx_crown_thunderv2;
+	this.code=["U"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=200;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3CrownThunder()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3CrownThunderV3(){
+	this.id="SF3CrownThunderV3";
+	this.name="CrownThunderV3";
+	this.image=SF3xxx_crown_thunderv3;
+	this.code=["U"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=300;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3CrownThunder()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3CrownThunderX(){
+	this.id="SF3CrownThunderX";
+	this.name="CrownThunderX";
+	this.image=SF3xxx_crown_thunderX;
+	this.code=["U"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=400;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3CrownThunder()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3YetiBlizzard(){
+	this.id="SF3YetiBlizzard";
+	this.name="YetiBlizzard";
+	this.image=SF3xxx_yeti_blizzard;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=120;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Forte()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3YetiBlizzardV2(){
+	this.id="SF3YetiBlizzardV2";
+	this.name="YetiBlizzardV2";
+	this.image=SF3xxx_yeti_blizzardv2;
+	this.code=["Y"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=150;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3YetiBlizzard()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3YetiBlizzardV3(){
+	this.id="SF3YetiBlizzardV3";
+	this.name="YetiBlizzardV3";
+	this.image=SF3xxx_yeti_blizzardv3;
+	this.code=["Y"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=200;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3YetiBlizzard()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3YetiBlizzardX(){
+	this.id="SF3YetiBlizzardX";
+	this.name="YetiBlizzardX";
+	this.image=SF3xxx_yeti_blizzardX;
+	this.code=["Y"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=250;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3YetiBlizzard()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3PlesioSurf(){
+	this.id="SF3PlesioSurf";
+	this.name="PlesioSurf";
+	this.image=SF3xxx_plesio_surf;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=150;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new BN6Magnum()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3PlesioSurfV2(){
+	this.id="SF3PlesioSurfV2";
+	this.name="PlesioSurfV2";
+	this.image=SF3xxx_plesio_surfv2;
+	this.code=["E"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=200;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3PlesioSurf()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3PlesioSurfV3(){
+	this.id="SF3PlesioSurfV3";
+	this.name="PlesioSurfV3";
+	this.image=SF3xxx_plesio_surfv3;
+	this.code=["E"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=250;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3PlesioSurf()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3PlesioSurfX(){
+	this.id="SF3PlesioSurfX";
+	this.name="PlesioSurfX";
+	this.image=SF3xxx_plesio_surfX;
+	this.code=["E"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=320;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3PlesioSurf()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3TerraCondor(){
+	this.id="SF3TerraCondor";
+	this.name="TerraCondor";
+	this.image=SF3xxx_terra_condor;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=40;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		this.hitbool = false;
+		this.localCannon = new SF3Cannon();
+		if(this.localCannon.hithuh(attacker, defender)){
+			this.hitbool = true;
+		}
+		attacker.y = attacker.y + 1;
+		if(this.localCannon.hithuh(attacker, defender)){
+			this.hitbool = true;
+		}
+		attacker.y = attacker.y - 2;
+		if(this.localCannon.hithuh(attacker, defender)){
+			this.hitbool = true;
+		}
+		attacker.y = attacker.y + 1;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3TerraCondorV2(){
+	this.id="SF3TerraCondorV2";
+	this.name="TerraCondorV2";
+	this.image=SF3xxx_terra_condorv2;
+	this.code=["K"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=60;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3TerraCondor()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3TerraCondorV3(){
+	this.id="SF3TerraCondorV3";
+	this.name="TerraCondorV3";
+	this.image=SF3xxx_terra_condorv3;
+	this.code=["K"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=80;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3TerraCondor()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3TerraCondorX(){
+	this.id="SF3TerraCondorX";
+	this.name="TerraCondorX";
+	this.image=SF3xxx_terra_condorX;
+	this.code=["K"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=100;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3TerraCondor()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3GeneralAuriga(){
+	this.id="SF3GeneralAuriga";
+	this.name="GeneralAuriga";
+	this.image=SF3xxx_general_auriga;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=140;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		this.hitbool = false;
+		this.localJet = new SF3JetAttack1();
+		if(this.localJet.hithuh(attacker, defender)){
+			this.hitbool = true;
+		}
+		attacker.y = attacker.y + 1;
+		if(this.localJet.hithuh(attacker, defender)){
+			this.hitbool = true;
+		}
+		attacker.y = attacker.y - 2;
+		if(this.localJet.hithuh(attacker, defender)){
+			this.hitbool = true;
+		}
+		attacker.y = attacker.y + 1;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3GeneralAurigaV2(){
+	this.id="SF3GeneralAurigaV2";
+	this.name="GeneralAurigaV2";
+	this.image=SF3xxx_general_aurigav2;
+	this.code=["Q"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=180;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3GeneralAuriga()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3GeneralAurigaV3(){
+	this.id="SF3GeneralAurigaV3";
+	this.name="GeneralAurigaV3";
+	this.image=SF3xxx_general_aurigav3;
+	this.code=["Q"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=220;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3GeneralAuriga()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3GeneralAurigaX(){
+	this.id="SF3GeneralAurigaX";
+	this.name="GeneralAurigaX";
+	this.image=SF3xxx_general_aurigaX;
+	this.code=["Q"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=300;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3GeneralAuriga()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3RocketLaunch(){
+	this.id="SF3RocketLaunch";
+	this.name="RocketLaunch";
+	this.image=SF3xxx_rocket_launch;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=160;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new JetAttack1()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		defender.timpanid = 2;
+	};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3RocketLaunchV2(){
+	this.id="SF3RocketLaunchV2";
+	this.name="RocketLaunchV2";
+	this.image=SF3xxx_rocket_launchv2;
+	this.code=["D"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=210;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3RocketLaunch()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3RocketLaunch()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3RocketLaunchV3(){
+	this.id="SF3RocketLaunchV3";
+	this.name="RocketLaunchV3";
+	this.image=SF3xxx_rocket_launchv3;
+	this.code=["D"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=260;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3RocketLaunch()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3RocketLaunch()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3RocketLaunchX(){
+	this.id="SF3RocketLaunchX";
+	this.name="RocketLaunchX";
+	this.image=SF3xxx_rocket_launchX;
+	this.code=["D"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=340;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3RocketLaunch()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3RocketLaunch()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3IceHammerBreak(){
+	this.id="SF3IceHammerBreak";
+	this.name="IceHammerBreak";
+	this.image=SF3xxx_ice_hammer;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=200;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		if(attacker.name === playerOne.name){
+			this.tempX = attacker.x;
+			this.tempY = attacker.y;
+			attacker.x = playerTwo.x-1;
+			attacker.y = playerTwo.y;
+			this.hitbool = (new SF3Sword()).hithuh(attacker, defender);
+			attacker.x = this.tempX;
+			attacker.y = this.tempY;
+			return this.hitbool;
+		}
+		else{
+			this.tempX = attacker.x;
+			this.tempY = attacker.y;
+			attacker.x = playerOne.x+1;
+			attacker.y = playerOne.y;
+			this.hitbool = (new SF3Sword()).hithuh(attacker, defender);
+			attacker.x = this.tempX;
+			attacker.y = this.tempY;
+			return this.hitbool;
+		}
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3IceHammerBreak()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		board.convertPanel(defender.x, defender.y, PANELTYPE.CRACKED);
+	};
+}
+
+function SF3IceHammerBreakV2(){
+	this.id="SF3IceHammerBreakV2";
+	this.name="IceHammerBreakV2";
+	this.image=SF3xxx_ice_hammerv2;
+	this.code=["H"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=250;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3IceHammerBreak()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3IceHammerBreak()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3IceHammerBreak()).effectmiss(attacker, defender);
+	};
+}
+
+function SF3IceHammerBreakV3(){
+	this.id="SF3IceHammerBreakV3";
+	this.name="IceHammerBreakV3";
+	this.image=SF3xxx_ice_hammerv3;
+	this.code=["H"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=300;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3IceHammerBreak()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3IceHammerBreak()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3IceHammerBreak()).effectmiss(attacker, defender);
+	};
+}
+
+function SF3IceHammerBreakX(){
+	this.id="SF3IceHammerBreakX";
+	this.name="IceHammerBreakX";
+	this.image=SF3xxx_ice_hammerX;
+	this.code=["H"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=370;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3IceHammerBreak()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3IceHammerBreak()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3IceHammerBreak()).effectmiss(attacker, defender);
+	};
+}
+
+function SF3StrongSwing(){
+	this.id="SF3StrongSwing";
+	this.name="StrongSwing";
+	this.image=SF3xxx_strong_swing;
+	this.code=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=50;
+	this.boostDamage=0;
+	this.hits="3,5";
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		this.hits = 5;
+		if(attacker.y === 1){
+			this.hits = 3;
+		}
+		if(defender.invis < 1){
+			if(attacker.name === playerOne.name){
+				this.tempX = attacker.x;
+				attacker.x = playerTwo.x - 1;
+				this.hitbool = (new SF3WideSword()).hithuh(attacker, defender);
+				attacker.x = this.tempX;
+				return this.hitbool;
+			}
+			else{
+				this.tempX = attacker.x;
+				attacker.x = playerOne.x - 1;
+				this.hitbool = (new SF3WideSword()).hithuh(attacker, defender);
+				attacker.x = this.tempX;
+				return this.hitbool;
+			}
+		}
+		return false;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3StrongSwingV2(){
+	this.id="SF3StrongSwingV2";
+	this.name="StrongSwingV2";
+	this.image=SF3xxx_strong_swingv2;
+	this.code=["S"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=60;
+	this.boostDamage=0;
+	this.hits="3,5";
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		this.localSwing = new SF3StrongSwing();
+		this.hitbool = this.localSwing.hithuh(attacker, defender);
+		this.hits = this.localSwing.hits;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3StrongSwingV3(){
+	this.id="SF3StrongSwingV3";
+	this.name="StrongSwingV3";
+	this.image=SF3xxx_strong_swingv3;
+	this.code=["S"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=70;
+	this.boostDamage=0;
+	this.hits="3,5";
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		this.localSwing = new SF3StrongSwing();
+		this.hitbool = this.localSwing.hithuh(attacker, defender);
+		this.hits = this.localSwing.hits;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+function SF3StrongSwingX(){
+	this.id="SF3StrongSwingX";
+	this.name="StrongSwingX";
+	this.image=SF3xxx_strong_swingX;
+	this.code=["S"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=90;
+	this.boostDamage=0;
+	this.hits="3,5";
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		this.localSwing = new SF3StrongSwing();
+		this.hitbool = this.localSwing.hithuh(attacker, defender);
+		this.hits = this.localSwing.hits;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
+// -------------- Giga --------------
+function SF3WingBlade(){
+	this.id="SF3WingBlade";
+	this.name="WingBlade";
+	this.image=SF3g1a_wingblade;
+	this.code=["X"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=450;
+	this.boostDamage=0;
+	this.hits="3,5";
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.wind, ELEMENTS.sword];
+	this.hithuh= function(attacker, defender){
+		this.tempY = attacker.y;
+		attacker.y = defender.y;
+		if((new SF3Cannon()).hithuh(attacker, defender)){
+			this.addDamage = 160;
+		}
+		attacker.y = this.tempY;
+		return (new SF3GeneralAuriga()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+}
+
 var SF3CARDS = [//Standard
 				new SF3Cannon(), new SF3PlusCannon(), new SF3HeavyCannon(), new SF3PlasmaGun(), 
 				new SF3AirSpread1(), new SF3AirSpread2(), new SF3AirSpread3(), new SF3MadVulcan1(), 
@@ -9207,7 +9975,18 @@ var SF3CARDS = [//Standard
 				new SF3LibraScales(), new SF3LibraScalesV2(), new SF3LibraScalesV3(), new SF3LibraScalesX(), 
 				new SF3QueenOphiuca(), new SF3QueenOphiucaV2(), new SF3QueenOphiucaV3(), new SF3QueenOphiucaX(), 
 				new SF3GeminiSpark(), new SF3GeminiSparkV2(), new SF3GeminiSparkV3(), new SF3GeminiSparkX(), 
-				new SF3CancerBubble(), new SF3CancerBubbleV2(), new SF3CancerBubbleV3(), new SF3CancerBubbleX()];
+				new SF3CancerBubble(), new SF3CancerBubbleV2(), new SF3CancerBubbleV3(), new SF3CancerBubbleX(), 
+				new SF3CrownThunder(), new SF3CrownThunderV2(), new SF3CrownThunderV3(), new SF3CrownThunderX(), 
+				new SF3YetiBlizzard(), new SF3YetiBlizzardV2(), new SF3YetiBlizzardV3(), new SF3YetiBlizzardX(), 
+				new SF3PlesioSurf(), new SF3PlesioSurfV2(), new SF3PlesioSurfV3(), new SF3PlesioSurfX(), 
+				new SF3TerraCondor(), new SF3TerraCondorV2(), new SF3TerraCondorV3(), new SF3TerraCondorX(), 
+				new SF3GeneralAuriga(), new SF3GeneralAurigaV2(), new SF3GeneralAurigaV3(), new SF3GeneralAurigaX(), 
+				new SF3RocketLaunch(), new SF3RocketLaunchV2(), new SF3RocketLaunchV3(), new SF3RocketLaunchX(), 
+				new SF3IceHammerBreak(), new SF3IceHammerBreakV2(), new SF3IceHammerBreakV3(), new SF3IceHammerBreakX(), 
+				new SF3StrongSwing(), new SF3StrongSwingV2(), new SF3StrongSwingV3(), new SF3StrongSwingX(), 
+
+				//Giga
+				new SF3WingBlade()];
 
 function SF3Cards(){
 
