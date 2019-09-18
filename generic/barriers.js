@@ -88,10 +88,40 @@ function HitsBarrier(hp){
 	};
 }
 
+function MuBarrier(){
+	this.id = "MuBarrier";
+	this.hp = 1;
+	this.calculateDamageAbsorbed = function(base, one, multi, hits){
+		this.damageAbsorbed = 0;
+		if(this.hp > 0){
+			this.hp = this.hp - base * one * multi;
+			this.damageAbsorbed = this.damageAbsorbed + base * one * multi;
+		}
+		return this.damageAbsorbed;
+	};
+	this.isBarrierDestroyed = function(){
+		return false;
+	};
+}
+
+function MirrorsEdgeBarrier(){
+	this.id = "MirrorsEdgeBarrier";
+	this.hp = 1;
+	this.calculateDamageAbsorbed = function(base, one, multi, hits){
+		return 0;
+	};
+	this.isBarrierDestroyed = function(){
+		return false;
+	};
+}
+
 function Barriers(){
-	this.resetBubbleBarrier = function(aPlayer){
+	this.resetBarriers = function(aPlayer){
 		if(aPlayer.barrier){
 			if(aPlayer.barrier.id === "BubbleBarrier"){
+				aPlayer.barrier.hp = 1;
+			}
+			if(aPlayer.barrier.id === "MuBarrier"){
 				aPlayer.barrier.hp = 1;
 			}
 		}

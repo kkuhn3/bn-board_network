@@ -140,7 +140,7 @@ function CustomPick(canvas){
 	this.confirmButton = function(){
 		document.getElementById("confirm").disabled = true;
 		document.getElementById("sel").style.display='none';
-		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
+		$.post("php/save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
 		this.getConfirm();
 	}
 
@@ -249,7 +249,7 @@ function CustomPick(canvas){
 			this.otherPlayer = "two";
 		}
 		clearTimeout(this.confirmTimeout);
-		$.post("get.php",{id:"confirm"+this.otherPlayer},function(data){
+		$.post("php/get.php",{id:"confirm"+this.otherPlayer},function(data){
 			try{
 				var d = JSON.parse(data);
 				if(d){
@@ -258,7 +258,7 @@ function CustomPick(canvas){
 					if(player.name === "one"){
 						this.otherPlayer = "two";
 					}
-					$.post("save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
+					$.post("php/save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
 					custom.drawHand();
 					timer.draw();
 					return true;

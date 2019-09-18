@@ -31,8 +31,8 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 		document.getElementById("useCard").disabled = true;
 		document.getElementById("special").disabled = true;
 		movementEnabled = false;
-		$.post("save.php",{id:"player"+player.name, state: JSON.stringify(player)});
-		$.post("save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
+		$.post("php/save.php",{id:"player"+player.name, state: JSON.stringify(player)});
+		$.post("php/save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
 		this.getConfirmTurn();
 	}
 
@@ -43,8 +43,8 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 			this.currentturn = this.turncount;
 			HAND = [];
 			customPick.openCustom();
-			barriers.resetBubbleBarrier(playerOne);
-			barriers.resetBubbleBarrier(playerTwo);
+			barriers.resetBarriers(playerOne);
+			barriers.resetBarriers(playerTwo);
 			document.getElementById("confirm").disabled = false;
 		}
 		document.getElementById("nextturn").style.display='none';
@@ -61,11 +61,11 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 		if(player.name === "one"){
 			this.otherPlayer = "two";
 		}
-		$.post("get.php",{id:"confirm"+this.otherPlayer},function(data){
+		$.post("php/get.php",{id:"confirm"+this.otherPlayer},function(data){
 			try{
 				var d = JSON.parse(data);
 				if(d){
-					$.post("get.php",{id:"player"+this.otherPlayer},function(data){
+					$.post("php/get.php",{id:"player"+this.otherPlayer},function(data){
 						var playerData = JSON.parse(data);
 						if(player.name === "one"){
 							playerTwo.hp = playerData.hp;

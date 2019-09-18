@@ -166,8 +166,8 @@ function Board(width,height,canvas){
 		cells[playerOne.x][playerOne.y].player = playerOne;
 		cells[playerTwo.x][playerTwo.y].player = playerTwo;
 		player = playerOne;
-		$.post("save.php",{id:"confirmone", state: JSON.stringify(false)});
-		$.post("save.php",{id:"confirmtwo", state: JSON.stringify(false)});
+		$.post("php/save.php",{id:"confirmone", state: JSON.stringify(false)});
+		$.post("php/save.php",{id:"confirmtwo", state: JSON.stringify(false)});
 	}
 
 	this.drawCell = function(x,y){
@@ -387,10 +387,12 @@ function Board(width,height,canvas){
 		if(player.name === playerOne.name){
 			this.otherPlayer = "two";
 		}
-		$.post("save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
+		$.post("php/save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
 		console.log("======================= turn start =======================");
 		this.resolvePlayerPanels(playerOne);
 		this.resolvePlayerPanels(playerTwo);
+		this.resolveSpecialBarriers(playerOne, playerTwo);
+		this.resolveSpecialBarriers(playerTwo, playerOne);
 		this.objectPassives();
 		this.p1priority = 2;
 		this.p2priority = 2;
@@ -436,6 +438,8 @@ function Board(width,height,canvas){
 		this.resolveBugs();
 		this.resolvePlayerPanels(playerOne);
 		this.resolvePlayerPanels(playerTwo);
+		this.resolveSpecialBarriers(playerOne, playerTwo);
+		this.resolveSpecialBarriers(playerTwo, playerOne);
 		this.resolvePanels();
 		this.resetPlayer(playerOne);
 		this.resetPlayer(playerTwo);
@@ -547,6 +551,16 @@ function Board(width,height,canvas){
 			}
 			aPlayer.lastX = aPlayer.x;
 			aPlayer.lastY = aPlayer.y;
+		}
+	}
+
+	this.resolveSpecialBarriers = function(attacker, defender){
+		if(attacker.barrier){
+			if(attacker.barrier.id = 'MirrorsEdgeBarrier'){
+				if(attacker.x === defender.x){
+					defender.hp = defender.hp - 25;
+				}
+			}
 		}
 	}
 	

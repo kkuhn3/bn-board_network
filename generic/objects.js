@@ -935,3 +935,41 @@ function SF3MegaCrusherObj(x, y, attacker){
 	this.x = x;
 	this.y = y;
 }
+
+function SF3BreakBombObj(x, y, attacker, defender, damage){
+	this.attacker = attacker;
+	this.id = "SF3BreakBombObj";
+	this.image = BlackBombObj;
+	this.solid = true;
+	this.turns = 3;
+	this.hp = 100;
+	this.effecthit = function(hitBy){
+		hp = hp - hitBy.card.damage;
+		if(hp < 1){
+			this.remove();
+		}
+	};
+	this.hitByBuster = function(hitBy){
+		hp = hp - hitBy.busterDamage;
+		if(hp < 1){
+			this.remove();
+		}
+	};
+	this.passiveTriggered = false;
+	this.passive = function(){
+		this.turns--;
+		if(this.turns < 1){
+			if(defender.invis < 1){
+				defender.hp = defender.hp - damage;
+			}
+			this.remove();
+		}
+	};
+	this.remove = function(){
+		cells[this.x][this.y].object = [];
+		this.x = -1;
+		this.y = -1;
+	};
+	this.x = x;
+	this.y = y;
+}
