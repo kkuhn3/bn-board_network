@@ -4231,12 +4231,12 @@ function SF3BigGrenade(){
 	this.boostDamage=0;
 	this.hits=3;
 	this.priority=3;
-	this.elements=[ELEMENTS.ice];
+	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3HeatGrenade()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
-		(new SF3BigGrenade()).effecthit(attacker, defender);
+		(new SF3BigGrenade()).effectmiss(attacker, defender);
 	};
 	this.effectmiss= function(attacker, defender){
 		this.xDirection = -3;
