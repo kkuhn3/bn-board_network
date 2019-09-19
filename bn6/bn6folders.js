@@ -2,7 +2,7 @@
 function AllCards(){
 	this.id = "AllCards";
 	this.name = "All: One of Everything";
-	this.contents = [].concat(BN6CARDS);
+	this.contents = [].concat(BN6CARDS).concat(SF3CARDS);
 }
 
 function BN6AAdversely(){
@@ -545,7 +545,7 @@ function BN6ZZebraLevelRandom(){
 					 new BN6TrainArrow2(), new BN6TrainArrow2(), new BN6TrainArrow2()];
 }
 
-var FOLDERS = [new AllCards(), new BN6AAdversely(), new BN6BBaneElemental(), new BN6CComboPop(), 
+var BN6FOLDERS = [new AllCards(), new BN6AAdversely(), new BN6BBaneElemental(), new BN6CComboPop(), 
 			   new BN6DDastardlyDiver(), new BN6EElecMan(), new BN6FForte(), new BN6GGroundSlam(), 
 			   new BN6HHoleyHell(), new BN6IIndubitablyRandom(), new BN6JJudgement(), new BN6KKillingSwords(), 
 			   new BN6LLightningElemental(), new BN6MMurderMasa(), new BN6NNumbchuckNamco(), new BN6OOH(), 

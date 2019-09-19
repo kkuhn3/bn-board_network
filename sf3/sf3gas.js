@@ -387,7 +387,7 @@ function SF3RogueGA(){
 function SF3MoonDestroyerGA(){
 	this.id="SF3MoonDestroyerGA";
 	this.name="MoonDestroyerGA";
-	this.image=SF3xxx_moon_destroyer_ga;
+	this.image=SF3xxx_moon_destroy_ga;
 	this.code=["M"];
 	this.goo="SF3";
 	this.copies=1;
@@ -631,7 +631,7 @@ function SF3ApolloFlameGA(){
 function SF3SiriusGA(){
 	this.id="SF3SiriusGA";
 	this.name="SiriusGA";
-	this.image=SF3xxx_sirus_ga;
+	this.image=SF3xxx_sirius_ga;
 	this.code=["Z"];
 	this.goo="SF3";
 	this.copies=1;

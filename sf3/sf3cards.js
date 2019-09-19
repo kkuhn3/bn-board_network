@@ -3593,7 +3593,7 @@ function SF3SpiritFury(){
 	this.goo="SF3";
 	this.copies=5;
 	this.rank="standard";
-	this.damage=0;
+	this.damage=220;
 	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
@@ -3624,7 +3624,7 @@ function SF3AntiSword(){
 	this.goo="SF3";
 	this.copies=5;
 	this.rank="standard";
-	this.damage=0;
+	this.damage=240;
 	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
@@ -3717,7 +3717,7 @@ function SF3GigaMine(){
 	this.goo="SF3";
 	this.copies=5;
 	this.rank="standard";
-	this.damage=0;
+	this.damage=300;
 	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
@@ -7442,11 +7442,7 @@ function SF3JackCorvus(){
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
-			this.lastCol = board.farthestEndOfRow(false);
-			if(attacker.name === playerOne.name){
-				this.lastCol = board.farthestEndOfRow(true);
-			}
-			if(defender.x === this.lastCol){
+			if(defender.x === 5 || defender.x === 0){
 				return false;
 			}
 			this.hitbool1 = (new SF3Cannon()).hithuh(attacker, defender);
@@ -9859,7 +9855,7 @@ function SF3WingBlade(){
 	this.code=["X"];
 	this.goo="SF3";
 	this.copies=1;
-	this.rank="mega";
+	this.rank="giga";
 	this.damage=450;
 	this.boostDamage=0;
 	this.hits=1;
@@ -10465,7 +10461,7 @@ var SF3CARDS = [//Standard
 				new SF3MadFire3(), new SF3WideWave1(), new SF3WideWave2(), new SF3WideWave3(), 
 				new SF3BubbleHook1(), new SF3BubbleHook2(), new SF3BubbleHook3(), new SF3SharkAttack1(), 
 				new SF3SharkAttack2(), new SF3SharkAttack3(), new SF3IceSpin1(), new SF3IceSpin2(), 
-				new SF3IceSpin3(), new SF3StealthLaser1(), new SF3StealthLaser1, new SF3StealthLaser3(), 
+				new SF3IceSpin3(), new SF3StealthLaser1(), new SF3StealthLaser2(), new SF3StealthLaser3(), 
 				new SF3MummyHand1(), new SF3MummyHand2(), new SF3MummyHand3(), new SF3ThunderHead1(), 
 				new SF3ThunderHead2(), new SF3ThunderHead3(), new SF3FlashStrike1(), new SF3FlashStrike2(), 
 				new SF3FlashStrike3(), new SF3ArachAttack1(), new SF3ArachAttack2(), new SF3ArachAttack3(), 

@@ -12,6 +12,8 @@ ELEMENTS = {
 	normal: "normal"
 }
 
+var FOLDERS = [];
+
 // Use cannon for example
 function CANNON1(){
 	// It's an ID. Used to map the card to itself.
@@ -436,6 +438,7 @@ function Cards(){
 		BUILDABLECARDS = DEFAULTCARDS.concat(BN6CARDS).concat(SF3CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS).concat(SF3CARDS);
 		TEMPDECKLIST = [new BN6BigBomb(), new BN6SandWorm1(), new SF3WhiteMeteor(), new BN6Boomerang(), new BN6Lance()];
+		FOLDERS = [].concat(BN6FOLDERS).concat(SF3FOLDERS);
 	}
 
 	this.setDeck = function(newDeckID){
