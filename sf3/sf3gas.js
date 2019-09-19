@@ -565,12 +565,455 @@ function SF3PlesioSurfGA(){
 	this.cardList = ["SF3SharkAttack1", "SF3SharkAttack1", "SF3SharkAttack1"];
 }
 
+function SF3TerraCondorGA(){
+	this.id="SF3TerraCondorGA";
+	this.name="TerraCondorGA";
+	this.image=SF3xxx_terra_condor_ga;
+	this.code=["E", "K"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=110;
+	this.boostDamage=0;
+	this.hits=3;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3TerraCondor()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3PollenShot2", "SF3PollenShot2", "SF3TyphoonDance"];
+}
+
+function SF3GeneralAurigaGA(){
+	this.id="SF3GeneralAurigaGA";
+	this.name="GeneralAurigaGA";
+	this.image=SF3xxx_general_auriga_ga;
+	this.code=["A", "G", "Q"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=340;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3GeneralAuriga()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3BigDrop3", "SF3BigDrop3", "SF3BigDrop3"];
+}
+
+function SF3ApolloFlameGA(){
+	this.id="SF3ApolloFlameGA";
+	this.name="ApolloFlameGA";
+	this.image=SF3xxx_apollo_flame_ga;
+	this.code=["F"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=360;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new SF3ApolloFlame()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3MechFlame1", "SF3MechFlame2", "SF3MechFlame3"];
+}
+
+function SF3SiriusGA(){
+	this.id="SF3SiriusGA";
+	this.name="SiriusGA";
+	this.image=SF3xxx_sirus_ga;
+	this.code=["Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=280;
+	this.boostDamage=0;
+	this.hits="1,2";
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		this.localSirius = new SF3Sirius();
+		this.hitbool = this.localSirius.hithuh(attacker, defender);
+		this.hits = this.localSirius.hits;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3Sirius()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3Sirius()).effectmiss(attacker, defender);
+	};
+	this.cardList = ["SF3WhiteMeteor", "SF3SilverMeteor", "SF3BreakSabre"];
+}
+
+function SF3RocketLaunchGA(){
+	this.id="SF3RocketLaunchGA";
+	this.name="RocketLaunchGA";
+	this.image=SF3xxx_rocket_launch_ga;
+	this.code=["D", "H", "U"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=370;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3RocketLaunch()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3RocketLaunch()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3DrillArm1", "SF3DrillArm1", "SF3DrillArm1"];
+}
+
+function SF3IceHammerBreakGA(){
+	this.id="SF3IceHammerBreakGA";
+	this.name="IceHammerBreakGA";
+	this.image=SF3xxx_ice_hammer_ga;
+	this.code=["H", "Y"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=400;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3IceHammerBreak()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3IceHammerBreak()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3IceHammerBreak()).effectmiss(attacker, defender);
+	};
+	this.cardList = ["SF3SnowStorm", "SF3SnowStorm", "SF3Buki3"];
+}
+
+function SF3StrongSwingGA(){
+	this.id="SF3StrongSwingGA";
+	this.name="StrongSwingGA";
+	this.image=SF3xxx_strong_swing_ga;
+	this.code=["S", "W"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="mega";
+	this.damage=100;
+	this.boostDamage=0;
+	this.hits="3,5";
+	this.priority=0;
+	this.elements=[ELEMENTS.break, ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		this.localSwing = new SF3StrongSwing();
+		this.hitbool = this.localSwing.hithuh(attacker, defender);
+		this.hits = this.localSwing.hits;
+		return this.hitbool;
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3AcornBomb2", "SF3AcornBomb2", "SF3WoodSlash"];
+}
+
+function SF3DarknessHoleGA(){
+	this.id="SF3DarknessHoleGA";
+	this.name="DarknessHoleGA";
+	this.image=SF3xxx_darkness_hole_ga;
+	this.code=["D", "H"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=510;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return defender.hp <= this.damage;
+	};
+	this.effecthit= function(attacker, defender){
+		defender.hp = 0;
+	};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3BlackHole1", "SF3BlackHole1", "SF3BlackInk"];
+}
+
+function SF3DestroyMissileGA(){
+	this.id="SF3DestroyMissileGA";
+	this.name="DestroyMissileGA";
+	this.image=SF3xxx_destroy_missile_ga;
+	this.code=["M", "S"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=55;
+	this.boostDamage=0;
+	this.hits=10;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3DestroyMissile()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3JetAttack2", "SF3JetAttack2", "SF3Bombalizer"];
+}
+
+function SF3BreakTimeBombGA(){
+	this.id="SF3BreakTimeBombGA";
+	this.name="BreakTimeBombGA";
+	this.image=SF3xxx_break_time_bomb_ga;
+	this.code=["A", "B", "C"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=630;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3BreakTimeBomb()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){
+		this.xDirection = -2;
+		if(attacker.name === playerOne.name){
+			this.xDirection = 2;
+		}
+		if(board.isCellPlayerValid(attacker.x + this.xDir, attacker.y)){
+			cells[attacker.x + this.xDir][attacker.y].object = [new SF3BreakBombObj(attacker.x + this.xDir, attacker.y, attacker, defender, this.damage + this.boostDamage)];
+		}
+	};
+	this.cardList = ["SF3TimeBomb3", "SF3TimeBomb3", "SF3TimeBomb3"];
+}
+
+function SF3OxTackleGA(){
+	this.id="SF3OxTackleGA";
+	this.name="OxTackleGA";
+	this.image=SF3xxx_ox_tackle_ga;
+	this.code=["K", "O"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=570;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3OxTackle()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3HeatUpper1", "SF3HeatUpper1", "SF3JetAttack1"];
+}
+
+function SF3GorgonEyeGA(){
+	this.id="SF3GorgonEyeGA";
+	this.name="GorgonEyeGA";
+	this.image=SF3xxx_gorgon_eye_ga;
+	this.code=["E", "G", "R"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=580;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.wood];
+	this.hithuh= function(attacker, defender){
+		return (new SF3GorgonEye()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3GrassStage", "SF3MuTechnology3", "SF3MuTechnology3"];
+}
+
+function SF3GeminiThunderGA(){
+	this.id="SF3GeminiThunderGA";
+	this.name="GeminiThunderGA";
+	this.image=SF3xxx_gemini_thunder_ga;
+	this.code=["I", "T", "V"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=430;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.elec];
+	this.hithuh= function(attacker, defender){
+		return (new SF3GeminiThunder()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3GeminiThunder()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3MummyHand3", "SF3MummyHand3", "SF3MummyHand3"];
+}
+
+function SF3RogueBreakGA(){
+	this.id="SF3RogueBreakGA";
+	this.name="RogueBreakGA";
+	this.image=SF3xxx_rogue_break_ga;
+	this.code=["J", "Q", "R"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=480;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.sword, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3RogueBreak()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3Scythe2", "SF3Scythe2", "SF3Scythe2"];
+}
+
+function SF3AvalancheGA(){
+	this.id="SF3AvalancheGA";
+	this.name="AvalancheGA";
+	this.image=SF3xxx_avalanche_ga;
+	this.code=["Y", "Z"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=80;
+	this.boostDamage=0;
+	this.hits=6;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		return (new SF3Avalanche()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3Avalanche()).effecthit(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3Snowball3", "SF3Snowball3", "SF3WideWave3"];
+}
+
+function SF3FlyingImpactGA(){
+	this.id="SF3FlyingImpactGA";
+	this.name="FlyingImpactGA";
+	this.image=SF3xxx_flying_impact_ga;
+	this.code=["N", "P"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=530;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.wood, ELEMENTS.break];
+	this.hithuh= function(attacker, defender){
+		return (new SF3FlyingImpact()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3JetAttack3", "SF3JetAttack3", "SF3JungleStorm"];
+}
+
+function SF3TorrentWaveGA(){
+	this.id="SF3TorrentWaveGA";
+	this.name="TorrentWaveGA";
+	this.image=SF3xxx_turrent_wave_ga;
+	this.code=["N", "O", "T"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=430;
+	this.boostDamage=0;
+	this.hits=1;
+	this.priority=0;
+	this.elements=[ELEMENTS.aqua];
+	this.hithuh= function(attacker, defender){
+		this.localTorrent = new SF3TorrentWave();
+		this.hitbool = this.localTorrent.hithuh(attacker, defender);
+		this.addDamage = this.localTorrent.addDamage;
+		return this.hitbool();
+	};
+	this.effecthit= function(attacker, defender){
+		(new SF3TorrentWave()).effectmiss(attacker, defender);
+	};
+	this.effectmiss= function(attacker, defender){
+		(new SF3TorrentWave()).effectmiss(attacker, defender);
+	};
+	this.cardList = ["SF3PiranhaKiss2", "SF3PiranhaKiss2", "SF3PiranhaKiss2"];
+}
+
+function SF3HolyLightGA(){
+	this.id="SF3HolyLightGA";
+	this.name="HolyLightGA";
+	this.image=SF3xxx_holy_light_ga;
+	this.code=["L", "U"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=100;
+	this.boostDamage=0;
+	this.hits=5;
+	this.priority=0;
+	this.elements=[];
+	this.hithuh= function(attacker, defender){
+		return (new SF3HolyLight()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3PuffBlast3", "SF3PuffBlast3", "SF3TornadoDance"];
+}
+
+function SF3WickedFlameGA(){
+	this.id="SF3WickedFlameGA";
+	this.name="WickedFlameGA";
+	this.image=SF3xxx_wicked_flame_ga;
+	this.code=["J", "V", "W"];
+	this.goo="SF3";
+	this.copies=1;
+	this.rank="giga";
+	this.damage=120;
+	this.boostDamage=0;
+	this.hits=4;
+	this.priority=0;
+	this.elements=[ELEMENTS.fire];
+	this.hithuh= function(attacker, defender){
+		return (new SF3WickedFlame()).hithuh(attacker, defender);
+	};
+	this.effecthit= function(attacker, defender){};
+	this.effectmiss= function(attacker, defender){};
+	this.cardList = ["SF3DanceFire3", "SF3DanceFire3", "SF3DanceFire3"];
+}
+
 var SF3GAS = [new SF3ImpactCannonGA(), new SF3BigGrenadeGA(), new SF3GiantAxeGA(), new SF3HurricaneDanceGA(), new SF3PlatinumMeteorGA(), 
+
 			  new SF3SpadeMagnesGA(), new SF3DiamondIceGA(), new SF3ClubStrongGA(), 
 			  new SF3QueenVirgoGA(), new SF3JackCorvusGA(), new SF3DreadJokerGA(), 
 			  new SF3AcidAceGA(), new SF3TaurusFireGA(), new SF3CygnusWingGA(), 
 			  new SF3WolfWoodsGA(), new SF3DarkPhantomGA(), new SF3RogueGA(), 
 			  new SF3MoonDestroyerGA(), new SF3LibraScalesGA(), new SF3QueenOphiucaGA(), 
 			  new SF3GeminiSparkGA(), new SF3CancerBubbleGA(), new SF3CrownThunderGA(), 
-			  new SF3YetiBlizzardGA(), new SF3PlesioSurfGA()];
+			  new SF3YetiBlizzardGA(), new SF3PlesioSurfGA(), new SF3TerraCondorGA(), 
+			  new SF3GeneralAurigaGA(), new SF3ApolloFlameGA(), new SF3SiriusGA(),
+			  new SF3RocketLaunchGA(), new SF3IceHammerBreakGA(), new SF3StrongSwingGA(), 
+
+			  new SF3DarknessHoleGA(), new SF3DestroyMissileGA(), new SF3BreakTimeBombGA(), new SF3OxTackleGA(), 
+			  new SF3GorgonEyeGA(), new SF3GeminiThunderGA(), new SF3RogueBreakGA(), new SF3AvalancheGA(), 
+			  new SF3FlyingImpactGA(), new SF3TorrentWaveGA(), new SF3HolyLightGA(), new SF3WickedFlameGA()];
 

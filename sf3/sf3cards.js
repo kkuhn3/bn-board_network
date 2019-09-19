@@ -10129,7 +10129,9 @@ function SF3PegasusMagicGX(){
 		return (new SF3ApolloFlame()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
-		defender.frozen = 1;
+		if(defender.guard === null){
+			defender.frozen = 1;
+		}
 	};
 	this.effectmiss= function(attacker, defender){};
 }
@@ -10231,7 +10233,9 @@ function SF3GeminiThunder(){
 		return defender.x === this.endX;
 	};
 	this.effecthit= function(attacker, defender){
-		defender.stunned = 1;
+		if(defender.guard === null){
+			defender.stunned = 1;
+		}
 	};
 	this.effectmiss= function(attacker, defender){};
 }
@@ -10268,7 +10272,7 @@ function SF3Avalanche(){
 	this.boostDamage=0;
 	this.hits=6;
 	this.priority=0;
-	this.elements=[ELEMENTS.sword, ELEMENTS.break];
+	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		this.hitbool1 = (new BN6RollingLog1()).oneloghit(attacker, defender, attacker.y, attacker.y);
 		attacker.y = attacker.y + 1;
@@ -10280,7 +10284,9 @@ function SF3Avalanche(){
 		return (this.hitbool1 || this.hitbool2 || this.hitbool3);
 	};
 	this.effecthit= function(attacker, defender){
-		defender.frozen = 1;
+		if(defender.guard === null){
+			defender.frozen = 1;
+		}
 	};
 	this.effectmiss= function(attacker, defender){};
 }
@@ -10401,7 +10407,7 @@ function SF3HolyLight(){
 	this.boostDamage=0;
 	this.hits=5;
 	this.priority=0;
-	this.elements=[ELEMENTS.aqua];
+	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
 			this.xDir = -3;
