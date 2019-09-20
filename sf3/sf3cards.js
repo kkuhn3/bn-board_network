@@ -7815,7 +7815,7 @@ function SF3CygnusWingV3(){
 	this.goo="SF3";
 	this.copies=1;
 	this.rank="mega";
-	this.damage=170;
+	this.damage=240;
 	this.boostDamage=0;
 	this.hits=1;
 	this.priority=0;
@@ -10491,25 +10491,25 @@ var SF3CARDS = [//Standard
 				new SF3DestroyUpper(), new SF3DrillArmX(), new SF3HurricaneDance(), new SF3PlatinumMeteor(), 
 				new SF3ExtinctionMeteor(), new SF3RadarMissile(), new SF3GrandWaveX(), new SF3JetAttackX(), 
 				new SF3BukiX(), new SF3SmileCoinX(), new SF3BigDropX(), new SF3BuzzsawX(), 
-				new SF3SkullArrowX(), new SF3Scythe1(), new SF3Scythe2(), new SF3Scythe3(), 
-				new SF3ScytheX(), new SF3PuffBlast1(), new SF3PuffBlast2(), new SF3PuffBlast3(), 
-				new SF3PuffBlastX(), new SF3TimeBombX(), new SF3HeatUpperX(), new SF3MechFlameX(), 
-				new SF3MadFireX(), new SF3DanceFire1(), new SF3DanceFire2(), new SF3DanceFire3(), 
-				new SF3DanceFireX(), new SF3KiloBomb1(), new SF3KiloBomb2(), new SF3KiloBomb3(), 
-				new SF3KiloBombX(), new SF3WideWaveX(), new SF3BubbleHookX(), new SF3SharkAttackX(), 
-				new SF3IceSpinX(), new SF3Snowball1(), new SF3Snowball2(), new SF3Snowball3(), 
-				new SF3SnowballX(), new SF3PiranhaKiss1(), new SF3PiranhaKiss2(), new SF3PiranhaKiss3(), 
-				new SF3PiranhaKissX(), new SF3StealthLaserX(), new SF3MummyHandX(), new SF3ThunderHeadX(), 
-				new SF3FlashStrikeX(), new SF3EarthThunder1(), new SF3EarthThunder2(), new SF3EarthThunder3(), 
-				new SF3EarthThunderX(), new SF3ArachAttackX(), new SF3ShurikenX(), new SF3PollenShotX(), 
-				new SF3AcornBombX(), new SF3Squall1(), new SF3Squall2(), new SF3Squall3(), 
-				new SF3SquallX(), new SF3VulcanSeed1(), new SF3VulcanSeed2(), new SF3VulcanSeed3(), 
-				new SF3VulcanSeedX(), new SF3BeastSlapX(), new SF3NoisedWizardX(), new SF3MalWizardX(), 
-				new SF3SpinBlade1(), new SF3SpinBlade2(), new SF3SpinBlade3(), new SF3SpinBladeX(), 
-				new SF3BlackHoleX(), new SF3JungleStorm(), new SF3SnowStorm(), new SF3PoisonStorm(), 
-				new SF3MegaBoost(), new SF3QuickGauge(), new SF3NormalGauge(), new SF3Slowgauge(), 
-				new SF3WarriorSoul(), new SF3AllPoison(), new SF3Fire30(), new SF3Aqua30(), 
-				new SF3Elec30(), new SF3Wood30(), 
+				new SF3SkullArrowX(), new SF3MuTechnologyX(), new SF3Scythe1(), new SF3Scythe2(), 
+				new SF3Scythe3(), new SF3ScytheX(), new SF3PuffBlast1(), new SF3PuffBlast2(), 
+				new SF3PuffBlast3(), new SF3PuffBlastX(), new SF3TimeBombX(), new SF3HeatUpperX(), 
+				new SF3MechFlameX(), new SF3MadFireX(), new SF3DanceFire1(), new SF3DanceFire2(), 
+				new SF3DanceFire3(), new SF3DanceFireX(), new SF3KiloBomb1(), new SF3KiloBomb2(), 
+				new SF3KiloBomb3(), new SF3KiloBombX(), new SF3WideWaveX(), new SF3BubbleHookX(), 
+				new SF3SharkAttackX(), new SF3IceSpinX(), new SF3Snowball1(), new SF3Snowball2(), 
+				new SF3Snowball3(), new SF3SnowballX(), new SF3PiranhaKiss1(), new SF3PiranhaKiss2(), 
+				new SF3PiranhaKiss3(), new SF3PiranhaKissX(), new SF3StealthLaserX(), new SF3MummyHandX(), 
+				new SF3ThunderHeadX(), new SF3FlashStrikeX(), new SF3EarthThunder1(), new SF3EarthThunder2(), 
+				new SF3EarthThunder3(), new SF3EarthThunderX(), new SF3ArachAttackX(), new SF3ShurikenX(), 
+				new SF3PollenShotX(), new SF3AcornBombX(), new SF3Squall1(), new SF3Squall2(), 
+				new SF3Squall3(), new SF3SquallX(), new SF3VulcanSeed1(), new SF3VulcanSeed2(), 
+				new SF3VulcanSeed3(), new SF3VulcanSeedX(), new SF3BeastSlapX(), new SF3NoisedWizardX(), 
+				new SF3MalWizardX(), new SF3SpinBlade1(), new SF3SpinBlade2(), new SF3SpinBlade3(), 
+				new SF3SpinBladeX(), new SF3BlackHoleX(), new SF3JungleStorm(), new SF3SnowStorm(), 
+				new SF3PoisonStorm(), new SF3MegaBoost(), new SF3QuickGauge(), new SF3NormalGauge(), 
+				new SF3Slowgauge(), new SF3WarriorSoul(), new SF3AllPoison(), new SF3Fire30(), 
+				new SF3Aqua30(), new SF3Elec30(), new SF3Wood30(), 
 
 				//Mega
 				new SF3SpadeMagnes(), new SF3SpadeMagnesV2(), new SF3SpadeMagnesV3(), 
