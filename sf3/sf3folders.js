@@ -283,10 +283,101 @@ function SF3STHESTRONGSWING(){
 					 new SF3OxTackle()];
 }
 
+function SF3TTURNUPTHEHEAT(){
+	this.id = "SF3TURNUPTHEHEAT";
+	this.name = "T: Turn up the Heat";
+	this.contents = [new SF3DoubleEater(), new SF3DoubleEater(), new SF3DoubleEater(), new SF3DoubleEater(), new SF3DoubleEater(),
+					 new SF3SuperBarrier(), new SF3SuperBarrier(), new SF3SuperBarrier(), new SF3SuperBarrier(), new SF3SuperBarrier(),
+					 new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), 
+					 new SF3ExtinctionMeteor(), new SF3ExtinctionMeteor(), new SF3ExtinctionMeteor(), new SF3ExtinctionMeteor(), new SF3ExtinctionMeteor(),
+					 new SF3MadFireX(), new SF3MadFireX(), new SF3MadFireX(), new SF3MadFireX(), new SF3MadFireX(),
+					 new SF3Sirius(), 
+					 new SF3TaurusFireX(), 
+					 new SF3GeminiSpark(), 
+					 new SF3CancerBubble(), 
+					 new SF3WingBlade()];
+}
+
+function SF3UNUSTORM(){
+	this.id = "SF3UNUSTORM";
+	this.name = "U: NU Storm";
+	this.contents = [new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(),
+					 new SF3IceStage(), new SF3IceStage(), new SF3IceStage(), new SF3IceStage(), new SF3IceStage(),
+					 new SF3SnowStorm(), new SF3SnowStorm(), new SF3SnowStorm(), new SF3SnowStorm(), new SF3SnowStorm(), 
+					 new SF3QuickGauge(), new SF3QuickGauge(), new SF3QuickGauge(), new SF3QuickGauge(), new SF3QuickGauge(),
+					 new SF3Aqua30(), new SF3Aqua30(), new SF3Aqua30(), new SF3Aqua30(), new SF3Aqua30(),
+					 new SF3DiamondIce(), 
+					 new SF3GeminiSpark(), 
+					 new SF3CancerBubble(), 
+					 new SF3CrownThunderX(), 
+					 new SF3Avalanche()];
+}
+
+function SF3VVIRGOSMASH(){
+	this.id = "SF3VVIRGOSMASH";
+	this.name = "V: Virgo Smash";
+	this.contents = [new SF3WideWave1(), new SF3WideWave1(), new SF3WideWave1(), new SF3WideWave1(), new SF3WideWave1(),
+					 new SF3WideWave2(), new SF3WideWave2(), new SF3WideWave2(), new SF3WideWave2(), new SF3WideWave2(),
+					 new SF3WideWave3(), new SF3WideWave3(), new SF3WideWave3(), new SF3WideWave3(), new SF3WideWave3(), 
+					 new SF3DoubleEater(), new SF3DoubleEater(), new SF3DoubleEater(), new SF3DoubleEater(), new SF3DoubleEater(),
+					 new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), 
+					 new SF3Aqua30(), new SF3Aqua30(), new SF3Aqua30(), new SF3Aqua30(), new SF3Aqua30(), 
+					 new SF3QueenVirgoX()];
+}
+
+function SF3WWOLFY(){
+	this.id = "SF3WWOLFY";
+	this.name = "W: Wolfy";
+	this.contents = [new SF3Shuriken1(), new SF3Shuriken1(), new SF3Shuriken1(), new SF3Shuriken1(), new SF3Shuriken1(),
+					 new SF3Shuriken2(), new SF3Shuriken2(), new SF3Shuriken2(), new SF3Shuriken2(), new SF3Shuriken2(),
+					 new SF3Shuriken3(), new SF3Shuriken3(), new SF3Shuriken3(), new SF3Shuriken3(), new SF3Shuriken3(), 
+					 new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(),
+					 new SF3ParalyzePlus(), new SF3ParalyzePlus(), new SF3ParalyzePlus(), new SF3ParalyzePlus(), new SF3ParalyzePlus(),
+					 new SF3QuickGauge(), 
+					 new SF3WolfWoodsX(), 
+					 new SF3GeminiSpark(), 
+					 new SF3CancerBubble(), 
+					 new SF3WingBlade()];
+}
+
+function SF3X(){
+	this.id = "SF3X";
+	this.name = "X: ";
+	this.contents = [];
+}
+
+function SF3YSEEDSYO(){
+	this.id = "SF3YSEEDSYO";
+	this.name = "Y: Seeds Yo";
+	this.contents = [new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(),
+					 new SF3Whistle(), new SF3Whistle(), new SF3Whistle(), new SF3Whistle(), new SF3Whistle(),
+					 new SF3ParalyzePlus(), new SF3ParalyzePlus(), new SF3ParalyzePlus(), new SF3ParalyzePlus(), new SF3ParalyzePlus(), 
+					 new SF3Attack10(), new SF3Attack10(), new SF3Attack10(), new SF3Attack10(), 
+					 new SF3VulcanSeedX(), new SF3VulcanSeedX(), new SF3VulcanSeedX(), new SF3VulcanSeedX(), new SF3VulcanSeedX(), 
+					 new SF3Wood30(), new SF3Wood30(), new SF3Wood30(), new SF3Wood30(), new SF3Wood30(), 
+					 new SF3YetiBlizzardX()];
+}
+
+function SF3ZZIRIUS(){
+	this.id = "SF3ZZIRIUS";
+	this.name = "Z: Zirius";
+	this.contents = [new SF3WhiteMeteor(), new SF3WhiteMeteor(), new SF3WhiteMeteor(), new SF3WhiteMeteor(), new SF3WhiteMeteor(),
+					 new SF3SilverMeteor(), new SF3SilverMeteor(), new SF3SilverMeteor(), new SF3SilverMeteor(), new SF3SilverMeteor(),
+					 new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), new SF3Invisible(), 
+					 new SF3BreakSabre(), new SF3BreakSabre(), new SF3BreakSabre(), new SF3BreakSabre(), new SF3BreakSabre(),
+					 new SF3PlatinumMeteor(), new SF3PlatinumMeteor(), new SF3PlatinumMeteor(), new SF3PlatinumMeteor(), new SF3PlatinumMeteor(),
+					 new SF3QuickGauge(), 
+					 new SF3Sirius(), 
+					 new SF3SiriusV2(), 
+					 new SF3SiriusV3(), 
+					 new SF3SiriusX()];
+}
 
 var SF3FOLDERS = [new SF3ASQUALL(), new SF3BBUBBLEEM(), new SF3CORVUSFLAME(), new SF3DDRILLARMA(), 
 				  new SF3EESTORM(), new SF3FLAMEOMECH(), new SF3GGEMINISTUNNER(), new SF3HHAMMERTIME(), 
 				  new SF3IMUMMIFY(), new SF3JBUSHIDOS(), new SF3KKOMBO(), new SF3LBOMBALIZER(), 
 				  new SF3MMISSLESAWAY(), new SF3NNIBBLES(), new SF3OOPHIUCA(), new SF3PPHANTOMSTORM(), 
-				  new SF3QQHUH(), new SF3RROGUESFAV(), new SF3STHESTRONGSWING()];
+				  new SF3QQHUH(), new SF3RROGUESFAV(), new SF3STHESTRONGSWING(), new SF3TTURNUPTHEHEAT(), 
+				  new SF3UNUSTORM(), new SF3VVIRGOSMASH(), new SF3WWOLFY(), new SF3X(), 
+				  new SF3YSEEDSYO(), new SF3ZZIRIUS()];
 

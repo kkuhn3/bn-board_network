@@ -873,7 +873,7 @@
 					<option disabled>-----------User Folders-----------</option>
 					<option disabled>----------Debug Folders----------</option>
 					<option value="AllCards">All: One of Everything</option>
-					<option disabled>---Alphabetical Pre-built Folders--</option>
+					<option disabled>-----------BN6 Folders-----------</option>
 					<option value="BN6AAdversely">A: Adversely</option>
 					<option value="BN6BBaneElemental">B: Bane Elemental</option>
 					<option value="BN6CComboPop">C: Combo-Pop</option>
@@ -901,7 +901,35 @@
 					<option value="BN6YYikesnFrozen">Y: Yikes 'n' Frozen</option>
 					<option value="BN6ZZebraLevelRandom">Z: Zebra Level Random</option>
 					<option disabled>-----------SF3 Folders-----------</option>
+					<option value="SF3ASQUALL">A: SquAll</option>
+					<option value="SF3BBUBBLEEM">B: Bubble 'em</option>
+					<option value="SF3CORVUSFLAME">C: Corvus Flame</option>
+					<option value="SF3DDRILLARMA">D: Drill ARMA</option>
+					<option value="SF3EESTORM">E: E Storm</option>
+					<option value="SF3FLAMEOMECH">F: Flame o' Mech</option>
+					<option value="SF3GGEMINISTUNNER">G: Gemini Stunner</option>
+					<option value="SF3HHAMMERTIME">H: Hammer Time</option>
+					<option value="SF3IMUMMIFY">I: MummIfy</option>
+					<option value="SF3JBUSHIDOS">J: Bushidos</option>
+					<option value="SF3KKOMBO">K: Kombo</option>
+					<option value="SF3LBOMBALIZER">L: BombaLizer</option>
+					<option value="SF3MMISSLESAWAY">M: Missles Away</option>
+					<option value="SF3NNIBBLES">N: Nibbles</option>
+					<option value="SF3OOPHIUCA">O: OPHIUCA</option>
+					<option value="SF3PPHANTOMSTORM">P: Phantom Storm</option>
+					<option value="SF3QQHUH">Q: Q Huh?</option>
+					<option value="SF3RROGUESFAV">R: Rogue's Fav</option>
+					<option value="SF3STHESTRONGSWING">S: The Strong Swing</option>
+					<option value="SF3TURNUPTHEHEAT">T: Turn up the Heat</option>
+					<option value="SF3UNUSTORM">U: NU Storm</option>
+					<option value="SF3VVIRGOSMASH">V: Virgo Smash</option>
+					<option value="SF3WWOLFY">W: Wolfy</option>
+					<option disabled value="SF3X">X: </option>
+					<option value="SF3YSEEDSYO">Y: Seeds Yo</option>
+					<option value="SF3ZZIRIUS">Z: Zirius</option>
 				</select>
+				<!-- debug button to go through and check the cards -->
+				<input type='button' id='randomize' value='Randomize' onclick='cards.setDeck("AllCards")' style="float: right;"/>
 			</div>
 			<!-- The window to the side of the board for cards in round progress -->
 			<div id='customWindow' style='margin: 20 0 0 0; width: 80px; float: left;'>
@@ -909,11 +937,13 @@
 			</div>
 		</div>
 	</body>
+
 	<script src='generic/cards.js'></script>
 	<script src='timer.js'></script>
 	<script src='custom.js'></script>
 	<script src='customPick.js'></script>
 	<script src='bn6/bn6cards.js'></script>
+	<script src="sf3/sf3cards.js"></script>
 	<script src='bn6/bn6uncards.js'></script>
 	<script src='generic/objects.js'></script>
 	<script src='generic/bugs.js'></script>
@@ -925,7 +955,7 @@
 	<script src="sf3/sf3folders.js"></script>
 	<script src="bn6/bn6pas.js"></script>
 	<script src="sf3/sf3gas.js"></script>
-	<script src="sf3/sf3cards.js"></script>
+	
 	<script>
 		function init(){
 			timer = new Timer(5, completeBar, currentBar, upnextBar);
