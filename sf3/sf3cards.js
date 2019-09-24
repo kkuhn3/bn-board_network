@@ -1323,7 +1323,7 @@ function SF3Buzzsaw2(){
 	this.priority=2;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
-		return (new SF3Buzzsaw1()).hithuh(attakcer, defender);
+		return (new SF3Buzzsaw1()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){};
@@ -1343,7 +1343,7 @@ function SF3Buzzsaw3(){
 	this.priority=2;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
-		return (new SF3Buzzsaw1()).hithuh(attakcer, defender);
+		return (new SF3Buzzsaw1()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){};
@@ -1368,7 +1368,7 @@ function SF3SkullArrow1(){
 			if(attacker.name === playerOne.name){
 				this.targetCol = board.farthestEndOfRow(true);;
 			}
-			if(defender.x = this.targetCol){
+			if(defender.x === this.targetCol){
 				for(var ydiff = -1; ydiff < 2; ydiff++){
 					if(attacker.y + ydiff === defender.y){
 						return true;
@@ -1443,7 +1443,7 @@ function SF3MuTechnology1(){
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
-		if(cells[attacker.x][attacker.y].panelType = PANELTYPE.holy){
+		if(cells[attacker.x][attacker.y].panelType === PANELTYPE.holy){
 			this.addDamage = 50;
 		}
 		return (new SF3JetAttack1()).hithuh(attacker, defender);
@@ -1467,7 +1467,7 @@ function SF3MuTechnology2(){
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
-		if(cells[attacker.x][attacker.y].panelType = PANELTYPE.holy){
+		if(cells[attacker.x][attacker.y].panelType === PANELTYPE.holy){
 			this.addDamage = 60;
 		}
 		return (new SF3JetAttack1()).hithuh(attacker, defender);
@@ -1491,7 +1491,7 @@ function SF3MuTechnology3(){
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
-		if(cells[attacker.x][attacker.y].panelType = PANELTYPE.holy){
+		if(cells[attacker.x][attacker.y].panelType === PANELTYPE.holy){
 			this.addDamage = 70;
 		}
 		return (new SF3JetAttack1()).hithuh(attacker, defender);
@@ -2217,7 +2217,7 @@ function SF3StealthLaser1(){
 			this.targetPlayer = playerTwo;
 		}
 		this.startX = this.targetPlayer.x - this.xDir*3;
-		while(cells[this.startX] && !cellHasSolidObject(this.startX, this.targetPlayer.y)){
+		while(cells[this.startX] && !board.cellHasSolidObject(this.startX, this.targetPlayer.y)){
 			this.startX = this.startX + this.xDir;
 			if(defender.x === this.startX && defender.y === this.targetPlayer.y){
 				return true;
@@ -2929,7 +2929,7 @@ function SF3MalWizard1(){
 		if(attacker.name === playerOne.name){
 			this.dir = 1;
 		}
-		if(cells[attacker.x + this.dir][attacker.y].player === null && !this.cellHasSolidObject(attacker.x + this.dir, attacker.y)){
+		if(cells[attacker.x + this.dir][attacker.y].player === null && !board.cellHasSolidObject(attacker.x + this.dir, attacker.y)){
 			attacker.x = attacker.x + this.dir;
 			this.hitbool = (new SF3LongSword()).hithuh(attacker, defender);
 			attacker.x = attacker.x - this.dir;
@@ -5061,7 +5061,7 @@ function SF3BuzzsawX(){
 	this.priority=2;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
-		return (new SF3Buzzsaw1()).hithuh(attakcer, defender);
+		return (new SF3Buzzsaw1()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){};
 	this.effectmiss= function(attacker, defender){};
@@ -5104,7 +5104,7 @@ function SF3MuTechnologyX(){
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
-		if(cells[attacker.x][attacker.y].panelType = PANELTYPE.holy){
+		if(cells[attacker.x][attacker.y].panelType === PANELTYPE.holy){
 			this.addDamage = 80;
 		}
 		return (new SF3JetAttack1()).hithuh(attacker, defender);
@@ -7142,12 +7142,14 @@ function SF3SpadeMagnes(){
 		this.hits = 1;
 		if(defender.invis < 1){
 			this.xDir = -1;
+			this.targetPlayer = playerOne;
 			if(attacker.name === playerOne.name){
 				this.xDir = 1;
+				this.targetPlayer = playerTwo;
 			}
-			if(board.isCellPlayerValid(defender.x - this.xDir, attacker.y)){
+			if(board.isCellPlayerValid(this.targetPlayer.x - this.xDir, attacker.y)){
 				this.tempX = attacker.x;
-				attacker.x = defender.x - this.xDir;
+				attacker.x = this.targetPlayer.x - this.xDir;
 				this.hitbool = false;
 				if((new SF3Sword()).hithuh(attacker, defender)){
 					this.hits = 2;
@@ -7712,7 +7714,7 @@ function SF3TaurusFire(){
 					this.x = attacker.x + this.xDir + this.xDir * (i+1);
 					for(var j = 0; j < this.yArray[i].length; j++){
 						this.y = this.yArray[i][j];
-						if(!board.isHole(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.MISS){
+						if(cells[this.x] && !board.isHole(this.x, this.y) && cells[this.x][this.y].panelType !== PANELTYPE.MISS){
 							if(this.x === defender.x && this.y === defender.y){
 								return true;
 							}
@@ -8215,8 +8217,8 @@ function SF3Sirius(){
 				this.xEnd = board.farthestEndOfRow(true);
 				this.yStart = attacker.y - 1;
 				this.yEnd = attacker.y + 1;
-				for(var x = xStart; x <= xEnd; x++){
-					for(var y = yStart; y <= yEnd; y++){
+				for(var x = this.xStart; x <= this.xEnd; x++){
+					for(var y = this.yStart; y <= this.yEnd; y++){
 						if(defender.x === x && defender.y === y){
 							return true;
 						}
@@ -8228,8 +8230,8 @@ function SF3Sirius(){
 				this.xEnd = board.farthestEndOfRow(false);
 				this.yStart = attacker.y - 1;
 				this.yEnd = attacker.y + 1;
-				for(var x = xStart; x >= xEnd; x--){
-					for(var y = yStart; y <= yEnd; y++){
+				for(var x = this.xStart; x >= this.xEnd; x--){
+					for(var y = this.yStart; y <= this.yEnd; y++){
 						if(defender.x === x && defender.y === y){
 							return true;
 						}
@@ -8248,8 +8250,8 @@ function SF3Sirius(){
 			this.xEnd = board.farthestEndOfRow(true);
 			this.yStart = attacker.y - 1;
 			this.yEnd = attacker.y + 1;
-			for(var x = xStart; x <= xEnd; x++){
-				for(var y = yStart; y <= yEnd; y++){
+			for(var x = this.xStart; x <= this.xEnd; x++){
+				for(var y = this.yStart; y <= this.yEnd; y++){
 					board.convertPanel(x, y, PANELTYPE.BROKEN);
 				}
 			}
@@ -8259,8 +8261,8 @@ function SF3Sirius(){
 			this.xEnd = board.farthestEndOfRow(false);
 			this.yStart = attacker.y - 1;
 			this.yEnd = attacker.y + 1;
-			for(var x = xStart; x >= xEnd; x--){
-				for(var y = yStart; y <= yEnd; y++){
+			for(var x = this.xStart; x >= this.xEnd; x--){
+				for(var y = this.yStart; y <= this.yEnd; y++){
 					board.convertPanel(x, y, PANELTYPE.BROKEN);
 				}
 			}
@@ -9006,24 +9008,23 @@ function SF3CancerBubble(){
 		this.tempY = attacker.y;
 		if(attacker.name === playerOne.name){
 			for(var x = 0; x < cells.length; x++){
-				for(var y = 0; y < cells[x].length; y++){
-					if(cells[x][y].object || (cells[x][y].player && cells[x][y].player !== attacker)){
-						attacker.x = x;
+				for(var y = 0; y < cells[0].length; y++){
+					if(cells[x][y].object.length > 0 || (cells[x][y].player && cells[x][y].player !== attacker)){
+						attacker.x = x-1;
 						attacker.y = 1;
-						y = cells[x].length;
-						x = cells.length;
 					}
 				}
 			}
 			this.hitbool = (new SF3GreatAxe()).hithuh(attacker, defender);
 			attacker.x = this.tempX;
 			attacker.y = this.tempY;
+			return this.hitbool;
 		}
 		else{
 			for(var x = 0; x < cells.length; x++){
-				for(var y = 0; y < cells[x].length; y++){
-					if(cells[x][y].object || (cells[x][y].player && cells[x][y].player !== attacker)){
-						attacker.x = x;
+				for(var y = 0; y < cells[0].length; y++){
+					if(cells[x][y].object.length > 0 || (cells[x][y].player && cells[x][y].player !== attacker)){
+						attacker.x = x+1;
 						attacker.y = 1;
 					}
 				}
@@ -9031,6 +9032,7 @@ function SF3CancerBubble(){
 			this.hitbool = (new SF3GreatAxe()).hithuh(attacker, defender);
 			attacker.x = this.tempX;
 			attacker.y = this.tempY;
+			return this.hitbool;
 		}
 	};
 	this.effecthit= function(attacker, defender){
@@ -9549,7 +9551,7 @@ function SF3RocketLaunch(){
 	this.priority=0;
 	this.elements=[ELEMENTS.break, ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
-		return (new JetAttack1()).hithuh(attacker, defender);
+		return (new SF3JetAttack1()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
 		defender.timpanid = 2;
@@ -10371,10 +10373,10 @@ function SF3TorrentWave(){
 			attacker.y = attacker.y - 2;
 			this.hitbool3 = (new SF3Cannon()).hithuh(attacker, defender);
 			attacker.y = attacker.y + 1;
-			if(!this.hitbool1 && !this.hitbool2 && !this.hitbool1){
+			if(!this.hitbool1 && !this.hitbool2 && !this.hitbool3){
 				this.addDamage = 400;
 			}
-			return (new GeneralAuriga()).hithuh(attacker, defender);
+			return (new SF3GeneralAuriga()).hithuh(attacker, defender);
 		}
 	};
 	this.effecthit= function(attacker, defender){

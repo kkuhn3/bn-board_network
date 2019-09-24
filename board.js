@@ -489,8 +489,8 @@ function Board(width,height,canvas){
 		this.sum = this.sum + playerOne.y;
 		this.sum = this.sum + playerTwo.x;
 		this.sum = this.sum + playerTwo.y;
-		this.sum = this.sum + PANELTYPE.indexOf(cells[playerOne.x][playerOne.y].panelType);
-		this.sum = this.sum + PANELTYPE.indexOf(cells[playerTwo.x][playerTwo.y].panelType);
+		//this.sum = this.sum + PANELTYPE.indexOf(cells[playerOne.x][playerOne.y].panelType);
+		//this.sum = this.sum + PANELTYPE.indexOf(cells[playerTwo.x][playerTwo.y].panelType);
 		return this.sum;
 	}
 
@@ -1001,7 +1001,7 @@ function Board(width,height,canvas){
 	}
 
 	this.movePlayer = function(newX, newY, aPlayer){
-		if(board.isCellThisPlayerValid(newX, newY, aPlayer){
+		if(board.isCellThisPlayerValid(newX, newY, aPlayer)){
 			cells[aPlayer.x][aPlayer.y].player = null;
 			cells[newX][newX].player = defender;
 			aPlayer.x = newX;
