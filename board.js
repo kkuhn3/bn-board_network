@@ -414,25 +414,19 @@ function Board(width,height,canvas){
 			this.resolve(playerOne, playerTwo);
 		}
 		else if(this.p1priority <= this.p2priority){
-			this.hitbool = this.resolve(playerOne, playerTwo);
-			if(cells[playerTwo.x][playerTwo.y].panelType === PANELTYPE.PARALYZE){
-				playerTwo.stunned = 1;
-				board.convertPanel(playerTwo.x, playerTwo.y, PANELTYPE.NORMAL);
-			}
-			if(this.hitbool && this.p1priority === 1 && this.p2priority === 3){
-				playerTwo.stunned = 1;
-			}
+			this.resolve(playerOne, playerTwo);
+			//TODO: Counters mor reasonbly
+			//if(this.hitbool && this.p1priority === 1 && this.p2priority === 3){
+			//	playerTwo.stunned = 1;
+			//}
 			this.resolve(playerTwo, playerOne);
 		}
 		else{
 			this.hitbool = this.resolve(playerTwo, playerOne);
-			if(cells[playerOne.x][playerOne.y].panelType === PANELTYPE.PARALYZE){
-				playerOne.stunned = 1;
-				board.convertPanel(playerOne.x, playerOne.y, PANELTYPE.NORMAL);
-			}
-			if(this.hitbool && this.p2priority === 1 && this.p1priority === 3){
-				playerOne.stunned = 1;
-			}
+			//TODO: Counters more reasonbly
+			//if(this.hitbool && this.p2priority === 1 && this.p1priority === 3){
+			//	playerOne.stunned = 1;
+			//}
 			this.resolve(playerOne, playerTwo);
 		}
 		this.resolveBugs();
@@ -621,6 +615,12 @@ function Board(width,height,canvas){
 		attacker.stunned = attacker.stunned - 1;
 		attacker.bubbled = attacker.bubbled - 1;
 		attacker.frozen = attacker.frozen - 1;
+		if(this.hitbool){
+			if(cells[defender.x][defender.y].panelType === PANELTYPE.PARALYZE){
+				defender.stunned = 1;
+				board.convertPanel(playerOne.x, playerOne.y, PANELTYPE.NORMAL);
+			}
+		}
 		return this.hitbool;
 	}
 

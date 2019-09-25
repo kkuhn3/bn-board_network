@@ -437,7 +437,8 @@ function Cards(){
 		CARDLIST = DEFAULTCARDS.concat(BN6CARDS).concat(BN6UNCARDS).concat(BN6PAS).concat(SF3CARDS).concat(SF3GAS);
 		BUILDABLECARDS = DEFAULTCARDS.concat(BN6CARDS).concat(SF3CARDS);
 		TEMPDECKLIST = [].concat(BN6CARDS).concat(SF3CARDS);
-		TEMPDECKLIST = [new SF3CancerBubble(), new SF3SpadeMagnes(), new SF3WhiteMeteor(), new BN6Boomerang(), new BN6Lance()];
+		// Add specific cards to debug them there.
+		// TEMPDECKLIST = [new SF3CancerBubble(), new SF3SpadeMagnes(), new SF3WhiteMeteor(), new BN6Boomerang(), new BN6Lance()];
 		FOLDERS = [].concat(BN6FOLDERS).concat(SF3FOLDERS);
 	}
 
