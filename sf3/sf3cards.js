@@ -11,7 +11,7 @@ function SF3Cannon(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new CANNON1()).hithuh(attacker, defender);
@@ -31,7 +31,7 @@ function SF3PlusCannon(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -79,7 +79,7 @@ function SF3HeavyCannon(){
 	this.damage=160;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -127,14 +127,14 @@ function SF3PlasmaGun(){
 	this.damage=30;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new CANNON1()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
-			defender.stunned = 2;
+			defender.stunned = 1;
 		}
 	};
 	this.effectmiss= function(attacker, defender){};
@@ -151,7 +151,7 @@ function SF3AirSpread1(){
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -193,7 +193,7 @@ function SF3AirSpread2(){
 	this.damage=20;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -241,7 +241,7 @@ function SF3AirSpread3(){
 	this.damage=30;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Spreader1()).hithuh(attacker, defender);
@@ -261,7 +261,7 @@ function SF3MadVulcan1(){
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=5;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Vulcan1()).hithuh(attacker, defender);
@@ -281,7 +281,7 @@ function SF3MadVulcan2(){
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=8;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MadVulcan1()).hithuh(attacker, defender);
@@ -301,7 +301,7 @@ function SF3MadVulcan3(){
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=12;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MadVulcan1()).hithuh(attacker, defender);
@@ -321,7 +321,7 @@ function SF3BlackInk(){
 	this.damage=90;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Spreader1()).hithuh(attacker, defender);
@@ -345,7 +345,7 @@ function SF3MiniGrenade(){
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=6;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6MiniBomb()).hithuh(attacker, defender);
@@ -365,7 +365,7 @@ function SF3Sword(){
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SWORD()).hithuh(attacker, defender);
@@ -385,7 +385,7 @@ function SF3WideSword(){
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new WIDESWORD()).hithuh(attacker, defender);
@@ -405,7 +405,7 @@ function SF3LongSword(){
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new LONGSWORD()).hithuh(attacker, defender);
@@ -425,7 +425,7 @@ function SF3Bushido1(){
 	this.damage=110;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		if(attacker.bushidoCount < 2){
@@ -464,7 +464,7 @@ function SF3Bushido2(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.bushido1 = new SF3Bushido1();
@@ -488,7 +488,7 @@ function SF3Bushido3(){
 	this.damage=170;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.bushido1 = new SF3Bushido1();
@@ -512,7 +512,7 @@ function SF3GreatAxe(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword, ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new BN6VarSword()).hithuh(attacker,  defender);
@@ -532,7 +532,7 @@ function SF3FlameAxe(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword, ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new SF3GreatAxe()).hithuh(attacker,  defender);
@@ -552,7 +552,7 @@ function SF3WindyAttack1(){
 	this.damage=90;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WideSword()).hithuh(attacker,  defender);
@@ -576,7 +576,7 @@ function SF3WindyAttack2(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WindyAttack1()).hithuh(attacker,  defender);
@@ -600,7 +600,7 @@ function SF3WindyAttack3(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WindyAttack1()).hithuh(attacker,  defender);
@@ -624,7 +624,7 @@ function SF3SynchroHook1(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if((new SF3Sword()).hithuh(attacker,  defender)){
@@ -658,7 +658,7 @@ function SF3SynchroHook2(){
 	this.damage=130;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SynchroHook1()).hithuh(attacker, defender);
@@ -678,7 +678,7 @@ function SF3SynchroHook3(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SynchroHook1()).hithuh(attacker, defender);
@@ -698,7 +698,7 @@ function SF3DrillArm1(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits="1-3";
-	this.priority=1;
+	this.priority=4;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localDrillArm = new BN6DrillArm();
@@ -723,7 +723,7 @@ function SF3DrillArm2(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits="1-3";
-	this.priority=1;
+	this.priority=4;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localDrillArm = new BN6DrillArm();
@@ -748,7 +748,7 @@ function SF3DrillArm3(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits="1-3";
-	this.priority=1;
+	this.priority=4;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localDrillArm = new BN6DrillArm();
@@ -773,7 +773,7 @@ function SF3TyphoonDance(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=2;
-	this.priority=1;
+	this.priority=4;
 	this.elements=[ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Kunai()).hithuh(attacker, defender);
@@ -793,7 +793,7 @@ function SF3TornadoDance(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=1;
+	this.priority=4;
 	this.elements=[ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Kunai()).hithuh(attacker, defender);
@@ -813,7 +813,7 @@ function SF3WhiteMeteor(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits="1-9";
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.hits = 0;
@@ -872,7 +872,7 @@ function SF3SilverMeteor(){
 	this.damage=70;
 	this.boostDamage=0;
 	this.hits="1-9";
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.localWhiteMeteor = new SF3WhiteMeteor();
@@ -895,7 +895,7 @@ function SF3GrandWave1(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6WaveArm1()).hithuh(attacker, defender);
@@ -915,7 +915,7 @@ function SF3GrandWave2(){
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3GrandWave1()).hithuh(attacker, defender);
@@ -935,7 +935,7 @@ function SF3GrandWave3(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3GrandWave1()).hithuh(attacker, defender);
@@ -955,7 +955,7 @@ function SF3JetAttack1(){
 	this.damage=90;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wind, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -985,7 +985,7 @@ function SF3JetAttack2(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wind, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3JetAttack1()).hithuh(attacker, defender);
@@ -1005,7 +1005,7 @@ function SF3JetAttack3(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wind, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3JetAttack1()).hithuh(attacker, defender);
@@ -1025,7 +1025,7 @@ function SF3Buki1(){
 	this.damage=130;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -1065,7 +1065,7 @@ function SF3Buki2(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.localBuki = new SF3Buki1();
@@ -1092,7 +1092,7 @@ function SF3Buki3(){
 	this.damage=170;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.localBuki = new SF3Buki1();
@@ -1119,7 +1119,7 @@ function SF3SmileCoin1(){
 	this.damage=30;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -1162,7 +1162,7 @@ function SF3SmileCoin2(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SmileCoin1()).hithuh(attacker, defender);
@@ -1182,7 +1182,7 @@ function SF3SmileCoin3(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SmileCoin1()).hithuh(attacker, defender);
@@ -1202,7 +1202,7 @@ function SF3BigDrop1(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MiniGrenade()).hithuh(attacker, defender);
@@ -1226,7 +1226,7 @@ function SF3BigDrop2(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BigDrop1()).hithuh(attacker, defender);
@@ -1250,7 +1250,7 @@ function SF3BigDrop3(){
 	this.damage=220;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BigDrop1()).hithuh(attacker, defender);
@@ -1274,7 +1274,7 @@ function SF3Buzzsaw1(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -1320,7 +1320,7 @@ function SF3Buzzsaw2(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Buzzsaw1()).hithuh(attacker, defender);
@@ -1340,7 +1340,7 @@ function SF3Buzzsaw3(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Buzzsaw1()).hithuh(attacker, defender);
@@ -1360,7 +1360,7 @@ function SF3SkullArrow1(){
 	this.damage=130;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -1395,7 +1395,7 @@ function SF3SkullArrow2(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SkullArrow1()).hithuh(attacker, defender);
@@ -1417,7 +1417,7 @@ function SF3SkullArrow3(){
 	this.damage=170;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SkullArrow1()).hithuh(attacker, defender);
@@ -1439,7 +1439,7 @@ function SF3MuTechnology1(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
@@ -1463,7 +1463,7 @@ function SF3MuTechnology2(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
@@ -1487,7 +1487,7 @@ function SF3MuTechnology3(){
 	this.damage=70;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
@@ -1631,7 +1631,7 @@ function SF3HeatUpper1(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Sword()).hithuh(attacker, defender);
@@ -1651,7 +1651,7 @@ function SF3HeatUpper2(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3HeatUpper1()).hithuh(attacker, defender);
@@ -1671,7 +1671,7 @@ function SF3HeatUpper3(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3HeatUpper1()).hithuh(attacker, defender);
@@ -1691,7 +1691,7 @@ function SF3MechFlame1(){
 	this.damage=110;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new BN6HellBurner1()).hithuh(attacker, defender);
@@ -1721,7 +1721,7 @@ function SF3MechFlame2(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MechFlame1()).hithuh(attacker, defender);
@@ -1745,7 +1745,7 @@ function SF3MechFlame3(){
 	this.damage=170;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MechFlame1()).hithuh(attacker, defender);
@@ -1769,12 +1769,12 @@ function SF3MadFire1(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits="1,3";
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
-		this.hits = 1;
+		this.hits = 3;
 		if(defender.guard === null){
-			this.hits = 3;
+			this.hits = 1;
 		}
 		return (new SF3Cannon()).hithuh(attacker, defender);
 	};
@@ -1793,7 +1793,7 @@ function SF3MadFire2(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits="1,3";
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localMadFire = new SF3MadFire1();
@@ -1816,7 +1816,7 @@ function SF3MadFire3(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits="1,3";
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localMadFire = new SF3MadFire1();
@@ -1839,7 +1839,7 @@ function SF3WideWave1(){
 	this.damage=70;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		return (new BN6WideShot()).hithuh(attacker, defender);
@@ -1859,7 +1859,7 @@ function SF3WideWave2(){
 	this.damage=90;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WideWave1()).hithuh(attacker, defender);
@@ -1879,7 +1879,7 @@ function SF3WideWave3(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WideWave1()).hithuh(attacker, defender);
@@ -1899,7 +1899,7 @@ function SF3BubbleHook1(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		return (new SF3GreatAxe()).hithuh(attacker, defender);
@@ -1923,7 +1923,7 @@ function SF3BubbleHook2(){
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BubbleHook1()).hithuh(attacker, defender);
@@ -1945,7 +1945,7 @@ function SF3BubbleHook3(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BubbleHook1()).hithuh(attacker, defender);
@@ -2068,7 +2068,7 @@ function SF3IceSpin1(){
 	this.damage=70;
 	this.boostDamage=0;
 	this.hits="1-4";
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.hitbool = false;
@@ -2161,7 +2161,7 @@ function SF3IceSpin2(){
 	this.damage=90;
 	this.boostDamage=0;
 	this.hits="1-4";
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localIceSpin = new SF3IceSpin1();
@@ -2184,7 +2184,7 @@ function SF3IceSpin3(){
 	this.damage=110;
 	this.boostDamage=0;
 	this.hits="1-4";
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localIceSpin = new SF3IceSpin1();
@@ -2207,7 +2207,7 @@ function SF3StealthLaser1(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		this.xDir = -1;
@@ -2240,7 +2240,7 @@ function SF3StealthLaser2(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3StealthLaser1()).hithuh(attacker, defender);
@@ -2260,7 +2260,7 @@ function SF3StealthLaser3(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3StealthLaser1()).hithuh(attacker, defender);
@@ -2280,14 +2280,14 @@ function SF3MummyHand1(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3GreatAxe()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
-			defender.stunned = 2;
+			defender.stunned = 1;
 		}
 	};
 	this.effectmiss= function(attacker, defender){};
@@ -2304,7 +2304,7 @@ function SF3MummyHand2(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MummyHand1()).hithuh(attacker, defender);
@@ -2326,7 +2326,7 @@ function SF3MummyHand3(){
 	this.damage=170;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MummyHand1()).hithuh(attacker, defender);
@@ -2348,7 +2348,7 @@ function SF3ThunderHead1(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		this.targetPanel = board.generateRandomPanel();
@@ -2380,7 +2380,7 @@ function SF3ThunderHead2(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3ThunderHead1()).hithuh(attacker, defender);
@@ -2404,7 +2404,7 @@ function SF3ThunderHead3(){
 	this.damage=230;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3ThunderHead1()).hithuh(attacker, defender);
@@ -2428,7 +2428,7 @@ function SF3FlashStrike1(){
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=5;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new BN6ElecPulse1()).hithuh(attacker, defender);
@@ -2448,7 +2448,7 @@ function SF3FlashStrike2(){
 	this.damage=20;
 	this.boostDamage=0;
 	this.hits=5;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3FlashStrike1()).hithuh(attacker, defender);
@@ -2468,7 +2468,7 @@ function SF3FlashStrike3(){
 	this.damage=30;
 	this.boostDamage=0;
 	this.hits=5;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3FlashStrike1()).hithuh(attacker, defender);
@@ -2488,7 +2488,7 @@ function SF3ArachAttack1(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -2518,7 +2518,7 @@ function SF3ArachAttack2(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3ArachAttack1()).hithuh(attacker, defender);
@@ -2540,7 +2540,7 @@ function SF3ArachAttack3(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3ArachAttack1()).hithuh(attacker, defender);
@@ -2562,7 +2562,7 @@ function SF3Shuriken1(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Boomerang()).hithuh(attacker, defender);
@@ -2582,7 +2582,7 @@ function SF3Shuriken2(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Shuriken1()).hithuh(attacker, defender);
@@ -2602,7 +2602,7 @@ function SF3Shuriken3(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Shuriken1()).hithuh(attacker, defender);
@@ -2622,7 +2622,7 @@ function SF3PollenShot1(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		if(cells[playerOne.x][playerOne.y].panelType === PANELTYPE.GRASS){
@@ -2658,7 +2658,7 @@ function SF3PollenShot2(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3PollenShot1()).hithuh(attacker, defender);
@@ -2682,7 +2682,7 @@ function SF3PollenShot3(){
 	this.damage=160;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3PollenShot1()).hithuh(attacker, defender);
@@ -2706,7 +2706,7 @@ function SF3AcornBomb1(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -2750,7 +2750,7 @@ function SF3AcornBomb2(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3AcornBomb1()).hithuh(attacker, defender);
@@ -2770,7 +2770,7 @@ function SF3AcornBomb3(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3AcornBomb1()).hithuh(attacker, defender);
@@ -2790,7 +2790,7 @@ function SF3BeastSlap1(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3GreatAxe()).hithuh(attacker, defender);
@@ -2814,7 +2814,7 @@ function SF3BeastSlap2(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BeastSlap1()).hithuh(attacker, defender);
@@ -2838,7 +2838,7 @@ function SF3BeastSlap3(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BeastSlap1()).hithuh(attacker, defender);
@@ -2862,7 +2862,7 @@ function SF3NoisedWizard1(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Lance()).hithuh(attacker, defender);
@@ -2882,7 +2882,7 @@ function SF3NoisedWizard2(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3NoisedWizard1()).hithuh(attacker, defender);
@@ -2902,7 +2902,7 @@ function SF3NoisedWizard3(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3NoisedWizard1()).hithuh(attacker, defender);
@@ -2922,7 +2922,7 @@ function SF3MalWizard1(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		this.dir = -1;
@@ -2956,7 +2956,7 @@ function SF3MalWizard2(){
 	this.damage=210;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MalWizard1()).hithuh(attacker, defender);
@@ -2978,7 +2978,7 @@ function SF3MalWizard3(){
 	this.damage=250;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MalWizard1()).hithuh(attacker, defender);
@@ -3093,7 +3093,7 @@ function SF3Bombalizer(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=4;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -3271,7 +3271,7 @@ function SF3Recover10(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Recover10()).hithuh(attacker, defender);
@@ -3293,7 +3293,7 @@ function SF3Recover30(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Recover10()).hithuh(attacker, defender);
@@ -3315,7 +3315,7 @@ function SF3Recover50(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Recover10()).hithuh(attacker, defender);
@@ -3337,7 +3337,7 @@ function SF3Recover80(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Recover10()).hithuh(attacker, defender);
@@ -3359,7 +3359,7 @@ function SF3Recover120(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Recover10()).hithuh(attacker, defender);
@@ -3381,7 +3381,7 @@ function SF3Recover150(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Recover10()).hithuh(attacker, defender);
@@ -3403,7 +3403,7 @@ function SF3Recover200(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Recover10()).hithuh(attacker, defender);
@@ -3425,7 +3425,7 @@ function SF3Recover300(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Recover10()).hithuh(attacker, defender);
@@ -3535,7 +3535,7 @@ function SF3Whistle(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=5;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return false;
@@ -3553,6 +3553,7 @@ function SF3Whistle(){
 				this.yTile = defender.y;
 				board.movePlayer(this.xTile, this.yTile, defender);
 			}
+			defender.stunned = 1;
 		}
 	};
 }
@@ -3899,7 +3900,7 @@ function SF3GravityPlus(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=0;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return false;
@@ -3920,7 +3921,7 @@ function SF3ParalyzePlus(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=0;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return false;
@@ -3941,7 +3942,7 @@ function SF3Attack10(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=0;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return false;
@@ -3963,7 +3964,7 @@ function SF3ImpactCannon(){
 	this.damage=240;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3AirSpread3()).hithuh(attacker, defender);
@@ -3983,13 +3984,15 @@ function SF3PlasmaGunX(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3PlasmaGun()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
-		(new SF3PlasmaGun()).effecthit(attacker, defender);
+		if(defender.guard === null){
+			defender.stunned = 2;
+		}
 	};
 	this.effectmiss= function(attacker, defender){};
 }
@@ -4005,7 +4008,7 @@ function SF3AirSpreadX(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3AirSpread3()).hithuh(attacker, defender);
@@ -4025,7 +4028,7 @@ function SF3MadVulcanX(){
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=15;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MadVulcan1()).hithuh(attacker, defender);
@@ -4045,7 +4048,7 @@ function SF3GreenInk(){
 	this.damage=90;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3AirSpread3()).hithuh(attacker, defender);
@@ -4084,7 +4087,7 @@ function SF3BlueInk(){
 	this.damage=110;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3AirSpread3()).hithuh(attacker, defender);
@@ -4123,7 +4126,7 @@ function SF3PurpleInk(){
 	this.damage=130;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3AirSpread3()).hithuh(attacker, defender);
@@ -4162,7 +4165,7 @@ function SF3HeatGrenade(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new BN6BigBomb()).hithuh(attacker, defender);
@@ -4182,7 +4185,7 @@ function SF3WoodGrenade(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new BN6GrassSeed()).hithuh(attacker, defender);
@@ -4206,7 +4209,7 @@ function SF3IceGrenade(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.ice];
 	this.hithuh= function(attacker, defender){
 		return (new BN6IceSeed()).hithuh(attacker, defender);
@@ -4230,7 +4233,7 @@ function SF3BigGrenade(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3HeatGrenade()).hithuh(attacker, defender);
@@ -4271,7 +4274,7 @@ function SF3BushidoX(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.bushido1 = new SF3Bushido1();
@@ -4295,7 +4298,7 @@ function SF3ElecSlash(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.elec, ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WideSword()).hithuh(attacker, defender);
@@ -4319,7 +4322,7 @@ function SF3WoodSlash(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.wood, ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WideSword()).hithuh(attacker, defender);
@@ -4339,7 +4342,7 @@ function SF3FireSlash(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire, ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WideSword()).hithuh(attacker, defender);
@@ -4359,7 +4362,7 @@ function SF3BreakSabre(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.break, ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis > 1){
@@ -4403,7 +4406,7 @@ function SF3BreakSabreX(){
 	this.damage=250;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.break, ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BreakSabre()).hithuh(attacker, defender);
@@ -4423,7 +4426,7 @@ function SF3GiantAxe(){
 	this.damage=320;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break, ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3GreatAxe()).hithuh(attacker, defender);
@@ -4443,7 +4446,7 @@ function SF3Muramasa(){
 	this.damage=1;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.damage = playerHP - attacker.hp;
@@ -4470,7 +4473,7 @@ function SF3SwordFighter1(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits="1-3";
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.hits = 0;
@@ -4513,7 +4516,7 @@ function SF3SwordFighter2(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits="1-4";
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.hits = 0;
@@ -4553,7 +4556,7 @@ function SF3SwordFighter3(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits="1-5";
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.hits = 0;
@@ -4596,7 +4599,7 @@ function SF3SwordFighterX(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits="1-5";
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		this.hits = 0;
@@ -4636,7 +4639,7 @@ function SF3WindyAttackX(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WindyAttack1()).hithuh(attacker, defender);
@@ -4660,7 +4663,7 @@ function SF3SynchroHookX(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SynchroHook1()).hithuh(attacker, defender);
@@ -4680,14 +4683,14 @@ function SF3StunKnuckle(){
 	this.damage=130;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Sword()).hithuh(attacker, defender);
 	};
 	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
-			defender.stunned = 2;
+			defender.stunned = 1;
 		}
 	};
 	this.effectmiss= function(attacker, defender){};
@@ -4704,7 +4707,7 @@ function SF3PoisonKnuckle(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Sword()).hithuh(attacker, defender);
@@ -4728,7 +4731,7 @@ function SF3FreezeKnuckle(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.ice];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Sword()).hithuh(attacker, defender);
@@ -4752,7 +4755,7 @@ function SF3DestroyUpper(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Sword()).hithuh(attacker, defender);
@@ -4774,7 +4777,7 @@ function SF3DrillArmX(){
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits="1-3";
-	this.priority=1;
+	this.priority=4;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localDrillArm = new BN6DrillArm();
@@ -4799,7 +4802,7 @@ function SF3HurricaneDance(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=4;
-	this.priority=1;
+	this.priority=4;
 	this.elements=[ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Kunai()).hithuh(attacker, defender);
@@ -4819,7 +4822,7 @@ function SF3PlatinumMeteor(){
 	this.damage=90;
 	this.boostDamage=0;
 	this.hits="1-9";
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.localWhiteMeteor = new SF3WhiteMeteor();
@@ -4842,7 +4845,7 @@ function SF3ExtinctionMeteor(){
 	this.damage=70;
 	this.boostDamage=0;
 	this.hits="1-9";
-	this.priority=2;
+	this.priority=0;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.hits = 0;
@@ -4920,7 +4923,7 @@ function SF3RadarMissile(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.targetPlayer = playerOne;
@@ -4947,7 +4950,7 @@ function SF3GrandWaveX(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3GrandWave1()).hithuh(attacker, defender);
@@ -4967,7 +4970,7 @@ function SF3JetAttackX(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wind, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3JetAttack1()).hithuh(attacker, defender);
@@ -4987,7 +4990,7 @@ function SF3BukiX(){
 	this.damage=190;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.localBuki = new SF3Buki1();
@@ -5014,7 +5017,7 @@ function SF3SmileCoinX(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SmileCoin1()).hithuh(attacker, defender);
@@ -5034,7 +5037,7 @@ function SF3BigDropX(){
 	this.damage=280;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BigDrop1()).hithuh(attacker, defender);
@@ -5058,7 +5061,7 @@ function SF3BuzzsawX(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Buzzsaw1()).hithuh(attacker, defender);
@@ -5078,7 +5081,7 @@ function SF3SkullArrowX(){
 	this.damage=190;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SkullArrow1()).hithuh(attacker, defender);
@@ -5100,7 +5103,7 @@ function SF3MuTechnologyX(){
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.addDamage = null;
@@ -5124,7 +5127,7 @@ function SF3Scythe1(){
 	this.damage=20;
 	this.boostDamage=0;
 	this.hits="1,3";
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword, ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		if((new SF3Sword()).hithuh(attacker, defender)){
@@ -5163,7 +5166,7 @@ function SF3Scythe2(){
 	this.damage=30;
 	this.boostDamage=0;
 	this.hits="1,3";
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword, ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		this.scythe = new SF3Scythe1();
@@ -5186,7 +5189,7 @@ function SF3Scythe3(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits="1,3";
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword, ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		this.scythe = new SF3Scythe1();
@@ -5209,7 +5212,7 @@ function SF3ScytheX(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits="1,3";
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.sword, ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		this.scythe = new SF3Scythe1();
@@ -5232,7 +5235,7 @@ function SF3PuffBlast1(){
 	this.damage=80;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -5265,7 +5268,7 @@ function SF3PuffBlast2(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3PuffBlast1()).hithuh(attacker, defender);
@@ -5289,7 +5292,7 @@ function SF3PuffBlast3(){
 	this.damage=130;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3PuffBlast1()).hithuh(attacker, defender);
@@ -5313,7 +5316,7 @@ function SF3PuffBlastX(){
 	this.damage=160;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3PuffBlast1()).hithuh(attacker, defender);
@@ -5377,7 +5380,7 @@ function SF3HeatUpperX(){
 	this.damage=250;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3HeatUpper1()).hithuh(attacker, defender);
@@ -5397,7 +5400,7 @@ function SF3MechFlameX(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MechFlame1()).hithuh(attacker, defender);
@@ -5421,7 +5424,7 @@ function SF3MadFireX(){
 	this.damage=220;
 	this.boostDamage=0;
 	this.hits="1,3";
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localMadFire = new SF3MadFire1();
@@ -5444,7 +5447,7 @@ function SF3DanceFire1(){
 	this.damage=140;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MechFlame1()).hithuh(attacker, defender);
@@ -5464,7 +5467,7 @@ function SF3DanceFire2(){
 	this.damage=160;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -5497,7 +5500,7 @@ function SF3DanceFire3(){
 	this.damage=190;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -5528,7 +5531,7 @@ function SF3DanceFireX(){
 	this.damage=230;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new SF3DanceFire3()).hithuh(attacker, defender);
@@ -5548,7 +5551,7 @@ function SF3KiloBomb1(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MiniGrenade()).hithuh(attacker, defender);
@@ -5576,7 +5579,7 @@ function SF3KiloBomb2(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3KiloBomb1()).hithuh(attacker, defender);
@@ -5604,7 +5607,7 @@ function SF3KiloBomb3(){
 	this.damage=250;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3KiloBomb1()).hithuh(attacker, defender);
@@ -5632,7 +5635,7 @@ function SF3KiloBombX(){
 	this.damage=300;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.fire, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new SF3KiloBomb1()).hithuh(attacker, defender);
@@ -5660,7 +5663,7 @@ function SF3WideWaveX(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		return (new SF3WideWave1()).hithuh(attacker, defender);
@@ -5680,7 +5683,7 @@ function SF3BubbleHookX(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.aqua];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BubbleHook1()).hithuh(attacker, defender);
@@ -5733,7 +5736,7 @@ function SF3IceSpinX(){
 	this.damage=130;
 	this.boostDamage=0;
 	this.hits="1-4";
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.aqua, ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		this.localIceSpin = new SF3IceSpin1();
@@ -5973,7 +5976,7 @@ function SF3StealthLaserX(){
 	this.damage=70;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3StealthLaser1()).hithuh(attacker, defender);
@@ -5993,7 +5996,7 @@ function SF3MummyHandX(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MummyHand1()).hithuh(attacker, defender);
@@ -6015,7 +6018,7 @@ function SF3ThunderHeadX(){
 	this.damage=260;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3ThunderHead1()).hithuh(attacker, defender);
@@ -6039,7 +6042,7 @@ function SF3FlashStrikeX(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits=5;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3FlashStrike1()).hithuh(attacker, defender);
@@ -6059,7 +6062,7 @@ function SF3EarthThunder1(){
 	this.damage=30;
 	this.boostDamage=0;
 	this.hits="1-9";
-	this.priority=2;
+	this.priority=4;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		this.hits = 0;
@@ -6134,7 +6137,7 @@ function SF3EarthThunder2(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits="1-9";
-	this.priority=2;
+	this.priority=4;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3EarthThunder1()).hithuh(attacker, defender);
@@ -6180,7 +6183,7 @@ function SF3EarthThunder3(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits="1-9";
-	this.priority=2;
+	this.priority=4;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3EarthThunder1()).hithuh(attacker, defender);
@@ -6226,7 +6229,7 @@ function SF3EarthThunderX(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits="1-9";
-	this.priority=2;
+	this.priority=4;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3EarthThunder1()).hithuh(attacker, defender);
@@ -6272,7 +6275,7 @@ function SF3ArachAttackX(){
 	this.damage=70;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3ArachAttack1()).hithuh(attacker, defender);
@@ -6294,7 +6297,7 @@ function SF3ShurikenX(){
 	this.damage=160;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Shuriken1()).hithuh(attacker, defender);
@@ -6314,7 +6317,7 @@ function SF3PollenShotX(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3PollenShot1()).hithuh(attacker, defender);
@@ -6338,7 +6341,7 @@ function SF3AcornBombX(){
 	this.damage=160;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		return (new SF3AcornBomb1()).hithuh(attacker, defender);
@@ -6358,7 +6361,7 @@ function SF3Squall1(){
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=8;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.wood, ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		if((new SF3Sword()).hithuh(attacker, defender)){
@@ -6381,7 +6384,7 @@ function SF3Squall2(){
 	this.damage=20;
 	this.boostDamage=0;
 	this.hits=8;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.wood, ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Squall1()).hithuh(attacker, defender);
@@ -6401,7 +6404,7 @@ function SF3Squall3(){
 	this.damage=30;
 	this.boostDamage=0;
 	this.hits=8;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.wood, ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Squall1()).hithuh(attacker, defender);
@@ -6421,7 +6424,7 @@ function SF3SquallX(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits=8;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.wood, ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Squall1()).hithuh(attacker, defender);
@@ -6441,7 +6444,7 @@ function SF3VulcanSeed1(){
 	this.damage=20;
 	this.boostDamage=0;
 	this.hits="3,9";
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -6493,7 +6496,7 @@ function SF3VulcanSeed2(){
 	this.damage=30;
 	this.boostDamage=0;
 	this.hits="3,9";
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		this.localVulcan = new SF3VulcanSeed1();
@@ -6516,7 +6519,7 @@ function SF3VulcanSeed3(){
 	this.damage=40;
 	this.boostDamage=0;
 	this.hits="3,9";
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		this.localVulcan = new SF3VulcanSeed1();
@@ -6539,7 +6542,7 @@ function SF3VulcanSeedX(){
 	this.damage=50;
 	this.boostDamage=0;
 	this.hits="3,9";
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.wood];
 	this.hithuh= function(attacker, defender){
 		this.localVulcan = new SF3VulcanSeed1();
@@ -6562,7 +6565,7 @@ function SF3BeastSlapX(){
 	this.damage=240;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BeastSlap1()).hithuh(attacker, defender);
@@ -6586,7 +6589,7 @@ function SF3NoisedWizardX(){
 	this.damage=210;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3NoisedWizard1()).hithuh(attacker, defender);
@@ -6606,7 +6609,7 @@ function SF3MalWizardX(){
 	this.damage=290;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new SF3MalWizard1()).hithuh(attacker, defender);
@@ -6628,7 +6631,7 @@ function SF3SpinBlade1(){
 	this.damage=120;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -6663,7 +6666,7 @@ function SF3SpinBlade2(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SpinBlade1()).hithuh(attacker, defender);
@@ -6683,7 +6686,7 @@ function SF3SpinBlade3(){
 	this.damage=180;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SpinBlade1()).hithuh(attacker, defender);
@@ -6703,7 +6706,7 @@ function SF3SpinBladeX(){
 	this.damage=210;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3SpinBlade1()).hithuh(attacker, defender);
@@ -7051,7 +7054,7 @@ function SF3Fire30(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return false;
@@ -7072,7 +7075,7 @@ function SF3Aqua30(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return false;
@@ -7093,7 +7096,7 @@ function SF3Elec30(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return false;
@@ -7114,7 +7117,7 @@ function SF3Wood30(){
 	this.damage=0;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=3;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return false;
@@ -9909,7 +9912,7 @@ function SF3MilliKick(){
 	this.damage=20;
 	this.boostDamage=0;
 	this.hits=24;
-	this.priority=2;
+	this.priority=4;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3Sword()).hithuh(attacker, defender);

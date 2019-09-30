@@ -10,7 +10,7 @@ function SF3ImpactCannonGA(){
 	this.damage=240;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3AirSpread3()).hithuh(attacker, defender);
@@ -31,7 +31,7 @@ function SF3BigGrenadeGA(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new SF3BigGrenade()).hithuh(attacker, defender);
@@ -56,7 +56,7 @@ function SF3GiantAxeGA(){
 	this.damage=320;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=3;
+	this.priority=9;
 	this.elements=[ELEMENTS.break, ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new SF3GiantAxe()).hithuh(attacker, defender);
@@ -77,7 +77,7 @@ function SF3HurricaneDanceGA(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=4;
-	this.priority=1;
+	this.priority=4;
 	this.elements=[ELEMENTS.wind];
 	this.hithuh= function(attacker, defender){
 		return (new SF3HurricaneDance()).hithuh(attacker, defender);
@@ -98,7 +98,7 @@ function SF3PlatinumMeteorGA(){
 	this.damage=90;
 	this.boostDamage=0;
 	this.hits="1-9";
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.localWhiteMeteor = new SF3WhiteMeteor();
