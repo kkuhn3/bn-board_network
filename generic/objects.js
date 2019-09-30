@@ -103,7 +103,7 @@ function BN6ThunderBall(x, y, attacker, defender, hp, damage, color){
 			if(this.x === defender.x && this.y === defender.y){
 				console.log("Player " + attacker.name + "'s thunder hit!");
 				defender.hp = defender.hp - this.damage;
-				BN6Thunder.effecthit(attacker, defender);
+				(new BN6Thunder()).effecthit(attacker, defender);
 			}
 		}
 	};
@@ -341,6 +341,7 @@ function BN6KillerSensor(x, y, attacker, defender, damage){
 		defender.hp = defender.hp - damage;
 		defender.guard = null;
 		defender.invis = 0;
+		defender.stunned = 1;
 		if(defender.frozen > 0 || defender.bubbled > 0){
 			defender.hp = defender.hp - damage;
 		}

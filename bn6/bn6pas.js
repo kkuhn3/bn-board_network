@@ -10,7 +10,7 @@ function BN6GigaCan1(){
 	this.damage=300;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Spreader1()).hithuh(attacker, defender);
@@ -31,7 +31,7 @@ function BN6GigaCan2(){
 	this.damage=400;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Spreader1()).hithuh(attacker, defender);
@@ -52,7 +52,7 @@ function BN6GigaCan3(){
 	this.damage=400;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Spreader1()).hithuh(attacker, defender);
@@ -73,7 +73,7 @@ function BN6WideBurner1(){
 	this.damage=300;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		this.xDirection = -1;
@@ -105,7 +105,7 @@ function BN6WideBurner2(){
 	this.damage=350;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new BN6WideBurner1()).hithuh(attacker, defender);
@@ -126,7 +126,7 @@ function BN6WideBurner3(){
 	this.damage=400;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new BN6WideBurner1()).hithuh(attacker, defender);
@@ -147,7 +147,7 @@ function BN6FlameHook1(){
 	this.damage=300;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		this.xDirection = -1;
@@ -179,7 +179,7 @@ function BN6FlameHook2(){
 	this.damage=350;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new BN6FlameHook1()).hithuh(attacker, defender);
@@ -200,7 +200,7 @@ function BN6FlameHook3(){
 	this.damage=400;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.fire];
 	this.hithuh= function(attacker, defender){
 		return (new BN6FlameHook1()).hithuh(attacker, defender);
@@ -221,7 +221,7 @@ function BN6PowerWave1(){
 	this.damage=400;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis > 1){
@@ -269,7 +269,7 @@ function BN6PowerWave2(){
 	this.damage=500;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6PowerWave1).hithuh(attacker, defender);
@@ -290,7 +290,7 @@ function BN6PowerWave3(){
 	this.damage=600;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6PowerWave1).hithuh(attacker, defender);
@@ -311,7 +311,7 @@ function BN6CornPartyA(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=6;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6FlameHook1()).hithuh(attacker, defender);
@@ -350,7 +350,7 @@ function BN6CornPartyB(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=6;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6FlameHook1()).hithuh(attacker, defender);
@@ -375,7 +375,7 @@ function BN6CornPartyC(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=6;
-	this.priority=2;
+	this.priority=9;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6FlameHook1()).hithuh(attacker, defender);
@@ -400,7 +400,7 @@ function BN6ParallelShellA(){
 	this.damage=350;
 	this.boostDamage=0;
 	this.hits=2;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -455,7 +455,7 @@ function BN6ParallelShellB(){
 	this.damage=350;
 	this.boostDamage=0;
 	this.hits=2;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new BN6ParallelShellA()).hithuh(attacker, defender);
@@ -476,7 +476,7 @@ function BN6ParallelShellC(){
 	this.damage=350;
 	this.boostDamage=0;
 	this.hits=2;
-	this.priority=2;
+	this.priority82;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new BN6ParallelShellA()).hithuh(attacker, defender);
@@ -497,7 +497,7 @@ function BN6StreamHeadA(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=5;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -528,7 +528,7 @@ function BN6StreamHeadB(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=5;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new BN6StreamHeadA()).hithuh(attacker, defender);
@@ -549,7 +549,7 @@ function BN6StreamHeadC(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=5;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[ELEMENTS.break];
 	this.hithuh= function(attacker, defender){
 		return (new BN6StreamHeadA()).hithuh(attacker, defender);
@@ -570,7 +570,7 @@ function BN6HyperBurstA(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=10;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Spreader1()).hithuh(attacker, defender);
@@ -591,7 +591,7 @@ function BN6HyperBurstB(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=10;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Spreader1()).hithuh(attacker, defender);
@@ -612,7 +612,7 @@ function BN6HyperBurstC(){
 	this.damage=60;
 	this.boostDamage=0;
 	this.hits=10;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Spreader1()).hithuh(attacker, defender);
@@ -633,7 +633,7 @@ function BN6GreatYo(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.localBN6Yoyo = new BN6Yoyo();
@@ -672,7 +672,7 @@ function BN6PitHoky(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		this.localBN6AirHock = new BN6AirHock();
@@ -698,7 +698,7 @@ function BN6SuperWide(){
 	this.damage=150;
 	this.boostDamage=0;
 	this.hits=3;
-	this.priority=2;
+	this.priority=8;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		if(defender.invis < 1){
@@ -854,7 +854,7 @@ function BN6DestroyPulse(){
 	this.damage=400;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=4;
 	this.elements=[ELEMENTS.elec];
 	this.hithuh= function(attacker, defender){
 		return (new BN6ElecPulse1()).hithuh(attacker, defender);
@@ -881,7 +881,7 @@ function BN6LifeSwordA(){
 	this.damage=400;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new BN6VarSword()).hithuh(attacker, defender);
@@ -902,7 +902,7 @@ function BN6LifeSwordB(){
 	this.damage=400;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new BN6VarSword()).hithuh(attacker, defender);
@@ -923,7 +923,7 @@ function BN6PoisonPharoh(){
 	this.damage=400;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=1;
+	this.priority=0;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return false;
@@ -952,7 +952,7 @@ function BN6BodyGuard(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=10;
-	this.priority=0;
+	this.priority=1;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Recover10()).hithuh(attacker, defender);

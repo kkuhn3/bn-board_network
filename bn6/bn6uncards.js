@@ -30,7 +30,7 @@ function BN6Buster(){
 	this.damage=10;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=7;
 	this.elements=[];
 	this.hithuh= function(attacker, defender){
 		return (new BN6Cannon()).hithuh(attacker, defender);
@@ -50,7 +50,7 @@ function BN6BugThunderBuster(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[];
 	this.chargeBool = 1;
 	this.hithuh= function(attacker, defender){
@@ -61,7 +61,7 @@ function BN6BugThunderBuster(){
 	};
 	this.effecthit= function(attacker, defender){
 		if(defender.guard === null){
-			defender.stunned = 2;
+			defender.stunned = 1;
 		}
 		this.chargeBool++;
 	};
@@ -99,7 +99,7 @@ function BN6BugSwordBuster(){
 	this.damage=200;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.elements=[ELEMENTS.sword];
 	this.chargeBool = 1;
 	this.hithuh= function(attacker, defender){
@@ -126,7 +126,7 @@ function BN6AntiDamageShuriken(){
 	this.damage=100;
 	this.boostDamage=0;
 	this.hits=1;
-	this.priority=2;
+	this.priority=6;
 	this.accurate=true;
 	this.elements=[ELEMENTS.sword];
 	this.hithuh= function(attacker, defender){
