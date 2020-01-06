@@ -1,0 +1,50 @@
+table {
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  color: black;
+  overflow-y:auto;
+  width: 100%;
+}
+
+th {
+  cursor: pointer;
+}
+
+.container {
+  max-width: 100%;
+  min-width: 1000px;
+}
+
+.tableWrapper {
+	overflow-y: auto;
+	overflow-x: none;
+	height:90vh;
+}
+
+th, td {
+  text-align: center;
+  padding: 4px;
+}
+
+tr:hover {
+	background-color: LightGreen !important;
+	cursor: pointer;
+}
+
+tr{
+  background-color: #f2f2f2;
+}
+
+.toggleActive {
+  background-color:#A1A1A1;
+}
+
+div {
+  text-align: center;
+}
+
+img {width:auto; max-height:40}
+
+
+
+
