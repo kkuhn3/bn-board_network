@@ -18,7 +18,7 @@ th {
 .tableWrapper {
 	overflow-y: auto;
 	overflow-x: none;
-	height:80vh;
+	height:90vh;
 }
 
 th, td {
@@ -43,12 +43,11 @@ div {
   text-align: center;
 }
 
-@keyframes rainbowBarf {
-  0%  {background:hsl(0,100%,50%);color:hsl(180,100%,50%);}
-  25%  {background:hsl(90,100%,50%);color:hsl(270,100%,50%);}
-  50% {background:hsl(180,100%,50%);color:hsl(360,100%,50%);}
-  75% {background:hsl(270,100%,50%);color:hsl(90,100%,50%);}
-  100% {background:hsl(360,100%,50%);color:hsl(180,100%,50%);}
- }
+img {width:auto; max-height:40}
+
+.letterButton {
+  width: 30px;
+  margin-bottom: 10px;
+}
 
 

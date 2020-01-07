@@ -370,83 +370,59 @@ function FolderBuilder(){
 	
 	this.buildTable = function(){
 		var table = document.getElementById("selectionTable");
-		table.innerHTML = 	`<thead> 
-								<tr>
-								<th id="headerImage" >Image</th> 
-								<th id="headerCode" >Code</th>
-								<th id="headerName" >Name</th> 
-								<th id="headerDamage" >Damage</th>
-								<th id="headerHits" >Hits</th>
-								<th id="headerCopies" >Copies</th>
-								<th id="headerRank" >Rank</th>
-								<th id="headerGOO" >GOO</th>
-								</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td id="headerImage" >Image</th> 
-								<td id="headerCode" >Code</th>
-								<td id="headerName" >Name</th> 
-								<td id="headerDamage" >Damage</th>
-								<td id="headerHits" >Hits</th>
-								<td id="headerCopies" >Copies</th>
-								<td id="headerRank" >Rank</th>
-								<td id="headerGOO" >GOO</th>
+		table.innerHTML = 	`<tr> 
+								<th id="headerImage" onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Image</th> 
+								<th id="headerCode" onclick="folderBuilder.sortFolderBuilder('code',${!sortDirs.code})">Code</th>
+								<th id="headerName" onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Name</th> 
+								<th id="headerDamage" onclick="folderBuilder.sortFolderBuilder('damage',${!sortDirs.damage})">Damage</th>
+								<th id="headerHits" onclick="folderBuilder.sortFolderBuilder('hits',${!sortDirs.hits})">Hits</th>
+								<th id="headerCopies" onclick="folderBuilder.sortFolderBuilder('copies',${!sortDirs.copies})">Copies</th>
+								<th id="headerRank" onclick="folderBuilder.sortFolderBuilder('rank',${!sortDirs.rank})">Rank</th>
+								<th id="headerGOO" onclick="folderBuilder.sortFolderBuilder('goo',${!sortDirs.goo})">GOO</th>
 							</tr>`;
 
 		for(var i = 0; i < BUILDABLECARDS.length; i++){
-			var row = table.insertRow(-1);
-			var cell0 = row.insertCell(0);
-			var cell1 = row.insertCell(1);
-			var cell2 = row.insertCell(2);
-			var cell3 = row.insertCell(3);
-			var cell4 = row.insertCell(4);
-			var cell5 = row.insertCell(5);
-			var cell6 = row.insertCell(6);
-			var cell7 = row.insertCell(7);
-			var img = document.createElement('img');
-			cell0.innerHTML = "";
-			cell0.appendChild(BUILDABLECARDS[i].image);
-			if(BUILDABLECARDS[i].code.length === 26){
-				cell1.innerHTML = "*";
-			}
-			else{
-				cell1.innerHTML = BUILDABLECARDS[i].code;
-			}
-			cell2.innerHTML = BUILDABLECARDS[i].name;
-			cell3.innerHTML = BUILDABLECARDS[i].damage;
-			cell4.innerHTML = BUILDABLECARDS[i].hits;
-			cell5.innerHTML = BUILDABLECARDS[i].copies;
-			cell6.innerHTML = BUILDABLECARDS[i].rank;
-			cell7.innerHTML = BUILDABLECARDS[i].goo;
+			if(this.searchString === "" || BUILDABLECARDS[i].name.toLowerCase().includes(this.searchString)){
+				if(this.isOnCode(BUILDABLECARDS[i]) && this.isOnRank(BUILDABLECARDS[i]) && this.isOnGoo(BUILDABLECARDS[i])){
+					var row = table.insertRow(-1);
+					var cell0 = row.insertCell(0);
+					var cell1 = row.insertCell(1);
+					var cell2 = row.insertCell(2);
+					var cell3 = row.insertCell(3);
+					var cell4 = row.insertCell(4);
+					var cell5 = row.insertCell(5);
+					var cell6 = row.insertCell(6);
+					var cell7 = row.insertCell(7);
+					var img = document.createElement('img');
+					cell0.innerHTML = "";
+					cell0.appendChild(BUILDABLECARDS[i].image);
+					if(BUILDABLECARDS[i].code.length === 26){
+						cell1.innerHTML = "*";
+					}
+					else{
+						cell1.innerHTML = BUILDABLECARDS[i].code;
+					}
+					cell2.innerHTML = BUILDABLECARDS[i].name;
+					cell3.innerHTML = BUILDABLECARDS[i].damage;
+					cell4.innerHTML = BUILDABLECARDS[i].hits;
+					cell5.innerHTML = BUILDABLECARDS[i].copies;
+					cell6.innerHTML = BUILDABLECARDS[i].rank;
+					cell7.innerHTML = BUILDABLECARDS[i].goo;
 
-			if(BUILDABLECARDS[i].rank === "standard"){
-				row.style.backgroundColor = "Yellow";
+					if(BUILDABLECARDS[i].rank === "standard"){
+						row.style.backgroundColor = "Yellow";
+					}
+					if(BUILDABLECARDS[i].rank === "mega"){
+						row.style.backgroundColor = "LightBlue";
+					}
+					if(BUILDABLECARDS[i].rank === "giga"){
+						row.style.backgroundColor = "Salmon";
+					}
+					
+					row.onclick = this.createListClickHandler(BUILDABLECARDS[i]);
+				}
 			}
-			if(BUILDABLECARDS[i].rank === "mega"){
-				row.style.backgroundColor = "LightBlue";
-			}
-			if(BUILDABLECARDS[i].rank === "giga"){
-				row.style.backgroundColor = "Salmon";
-			}
-			
-			row.onclick = this.createListClickHandler(BUILDABLECARDS[i]);
 		}
-		table.deleteRow(1);
-		table.innerHTML = table.innerHTML +
-				`</tbody>
-				<tfoot> 
-					<tr>
-					<th id="headerImage" >Image</th> 
-					<th id="headerCode" >Code</th>
-					<th id="headerName" >Name</th> 
-					<th id="headerDamage" >Damage</th>
-					<th id="headerHits" >Hits</th>
-					<th id="headerCopies" >Copies</th>
-					<th id="headerRank" >Rank</th>
-					<th id="headerGOO" >GOO</th>
-					</tr>
-				</tfoot>`;
 	};
 
 	this.countMega = function(){

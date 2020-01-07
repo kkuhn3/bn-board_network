@@ -13,133 +13,6 @@ function FolderBuilder(){
 			}
 		}
 	}
-	this.splitHits = function(stringHits){
-		if (typeof stringHits === 'string' || stringHits instanceof String){
-			var firstArray = stringHits.split(",");
-			var lastString = firstArray[firstArray.length - 1];
-			var hitArray = lastString.split("-");
-			var lastHit = hitArray[hitArray.length-1];
-			return parseInt(lastHit);
-		}
-		return stringHits;
-	}
-	this.sortFolderBuilder = function(column, dir){
-		if(typeof dir == "undefined"){
-			dir=1;
-		}
-		sortDirs[column]=dir;
-		if(dir>0){
-			BUILDABLECARDS.sort((a,b)=>{
-				if(column === 'code'){
-					if(a[column].length === 26 && b[column].length === 26){
-						if(this.getIndex(a.id) > this.getIndex(b.id)){
-							return 1;
-						}
-						else{
-							return -1;
-						}
-					}
-					else if(a[column].length === 26){
-						return 1;
-					}
-					else if(b[column].length === 26){
-						return -1;
-					}
-				}
-				if(column === 'hits'){
-					this.aSplit = this.splitHits(a[column]);
-					this.bSplit = this.splitHits(b[column]);
-					if(this.aSplit === this.bSplit){
-						if(this.getIndex(a.id) > this.getIndex(b.id)){
-							return 1;
-						}
-						else{
-							return -1;
-						}
-					}
-					else if(this.aSplit > this.bSplit){
-						return 1;
-					}
-					else{
-						return -1;
-					}
-				}
-				if(a[column] === b[column]){
-					if(this.getIndex(a.id) > this.getIndex(b.id)){
-						return 1;
-					}
-					else{
-						return -1;
-					}
-				}
-				if(a[column]>b[column]){
-					return 1;
-				}
-				else{
-					return -1;
-				}
-			});
-		}
-		else{
-			BUILDABLECARDS.sort((a,b)=>{
-				if(column === 'code'){
-					if(a[column].length === 26 && b[column].length === 26){
-						if(this.getIndex(a.id) > this.getIndex(b.id)){
-							return 1;
-						}
-						else{
-							return -1;
-						}
-					}
-					else if(a[column].length === 26){
-						return -1;
-					}
-					else if(b[column].length === 26){
-						return 1;
-					}
-				}
-				if(column === 'hits'){
-					this.aSplit = this.splitHits(a[column]);
-					this.bSplit = this.splitHits(b[column]);
-					if(this.aSplit === this.bSplit){
-						if(this.getIndex(a.id) > this.getIndex(b.id)){
-							return 1;
-						}
-						else{
-							return -1;
-						}
-					}
-					else if(this.aSplit > this.bSplit){
-						return -1;
-					}
-					else{
-						return 1;
-					}
-				}
-				if(a[column] === b[column]){
-					if(this.getIndex(a.id) > this.getIndex(b.id)){
-						return 1;
-					}
-					else{
-						return -1;
-					}
-				}
-				if(a[column]>b[column]){
-					return -1;
-				}
-				else{
-					return 1;
-				}
-			});
-		}
-		this.buildTable();
-	}
-	sortDirs = {'name':0,'code':0,'damage':0,'hits':0,'copies':0,'rank':0,'goo':0};
-
-	this.searchString = "";
-	this.adjustFilter = function(searchString){
-		this.searchString = searchString.toLowerCase();
-	}
 	
 	this.codeFilter = [];
 	this.swapCode = function(codeToSwap){
@@ -169,43 +42,7 @@ function FolderBuilder(){
 		}
 		return false;
 	}
-	
-	this.rankFilter = [];
-	this.swapRank = function(rankToSwap){
-		if(this.rankFilter.includes(rankToSwap)){
-			this.ind = this.rankFilter.indexOf(rankToSwap);
-			this.rankFilter.splice(this.ind, 1);
-		}
-		else{
-			this.rankFilter.push(rankToSwap);
-		}
-		this.buildTable();
-	}
-	this.isOnRank = function(cardToCheck){
-		if(this.rankFilter < 1){
-			return true;
-		}
-		return this.rankFilter.includes(cardToCheck.rank)
-	}
-	
-	this.gooFilter = [];
-	this.swapGoo = function(gooToSwap){
-		if(this.gooFilter.includes(gooToSwap)){
-			this.ind = this.gooFilter.indexOf(gooToSwap);
-			this.gooFilter.splice(this.ind, 1);
-		}
-		else{
-			this.gooFilter.push(gooToSwap);
-		}
-		this.buildTable();
-	}
-	this.isOnGoo = function(cardToCheck){
-		if(this.gooFilter.length < 1){
-			return true;
-		}
-		return this.gooFilter.includes(cardToCheck.goo)
-	}
-	
+
 	this.createListClickHandler = function(aCard) {
 		return function() { 
 			this.currentCount = SELECTEDCARDS.filter(function(savedCard){
@@ -369,60 +206,81 @@ function FolderBuilder(){
 	}
 	
 	this.buildTable = function(){
+		var datatable = document.getElementById('selectionTable_wrapper');
+		if(datatable){
+			datatable.parentNode.removeChild(datatable);
+		}
+		var tableWrapper = document.getElementById("tableWrapper");
+		tableWrapper.innerHTML = '<table id="selectionTable" class="table"> </table>';
 		var table = document.getElementById("selectionTable");
-		table.innerHTML = 	`<tr> 
-								<th id="headerImage" onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Image</th> 
-								<th id="headerCode" onclick="folderBuilder.sortFolderBuilder('code',${!sortDirs.code})">Code</th>
-								<th id="headerName" onclick="folderBuilder.sortFolderBuilder('name',${!sortDirs.name})">Name</th> 
-								<th id="headerDamage" onclick="folderBuilder.sortFolderBuilder('damage',${!sortDirs.damage})">Damage</th>
-								<th id="headerHits" onclick="folderBuilder.sortFolderBuilder('hits',${!sortDirs.hits})">Hits</th>
-								<th id="headerCopies" onclick="folderBuilder.sortFolderBuilder('copies',${!sortDirs.copies})">Copies</th>
-								<th id="headerRank" onclick="folderBuilder.sortFolderBuilder('rank',${!sortDirs.rank})">Rank</th>
-								<th id="headerGOO" onclick="folderBuilder.sortFolderBuilder('goo',${!sortDirs.goo})">GOO</th>
-							</tr>`;
+		table.innerHTML = 	`<thead> 
+								<tr>
+								<th id="headerImage" >Image</th> 
+								<th id="headerCode" >Code</th>
+								<th id="headerName" >Name</th> 
+								<th id="headerDamage" >Damage</th>
+								<th id="headerHits" >Hits</th>
+								<th id="headerCopies" >Copies</th>
+								<th id="headerRank" >Rank</th>
+								<th id="headerGOO" >GOO</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+							<tfoot> 
+								<tr>
+								<th id="headerImage" >Image</th> 
+								<th id="headerCode" >Code</th>
+								<th id="headerName" >Name</th> 
+								<th id="headerDamage" >Damage</th>
+								<th id="headerHits" >Hits</th>
+								<th id="headerCopies" >Copies</th>
+								<th id="headerRank" >Rank</th>
+								<th id="headerGOO" >GOO</th>
+								</tr>
+							</tfoot>`;
 
 		for(var i = 0; i < BUILDABLECARDS.length; i++){
-			if(this.searchString === "" || BUILDABLECARDS[i].name.toLowerCase().includes(this.searchString)){
-				if(this.isOnCode(BUILDABLECARDS[i]) && this.isOnRank(BUILDABLECARDS[i]) && this.isOnGoo(BUILDABLECARDS[i])){
-					var row = table.insertRow(-1);
-					var cell0 = row.insertCell(0);
-					var cell1 = row.insertCell(1);
-					var cell2 = row.insertCell(2);
-					var cell3 = row.insertCell(3);
-					var cell4 = row.insertCell(4);
-					var cell5 = row.insertCell(5);
-					var cell6 = row.insertCell(6);
-					var cell7 = row.insertCell(7);
-					var img = document.createElement('img');
-					cell0.innerHTML = "";
-					cell0.appendChild(BUILDABLECARDS[i].image);
-					if(BUILDABLECARDS[i].code.length === 26){
-						cell1.innerHTML = "*";
-					}
-					else{
-						cell1.innerHTML = BUILDABLECARDS[i].code;
-					}
-					cell2.innerHTML = BUILDABLECARDS[i].name;
-					cell3.innerHTML = BUILDABLECARDS[i].damage;
-					cell4.innerHTML = BUILDABLECARDS[i].hits;
-					cell5.innerHTML = BUILDABLECARDS[i].copies;
-					cell6.innerHTML = BUILDABLECARDS[i].rank;
-					cell7.innerHTML = BUILDABLECARDS[i].goo;
-
-					if(BUILDABLECARDS[i].rank === "standard"){
-						row.style.backgroundColor = "Yellow";
-					}
-					if(BUILDABLECARDS[i].rank === "mega"){
-						row.style.backgroundColor = "LightBlue";
-					}
-					if(BUILDABLECARDS[i].rank === "giga"){
-						row.style.backgroundColor = "Salmon";
-					}
-					
-					row.onclick = this.createListClickHandler(BUILDABLECARDS[i]);
+			if(this.isOnCode(BUILDABLECARDS[i])){
+				var row = table.getElementsByTagName('tbody')[0].insertRow(-1);
+				var cell0 = row.insertCell(0);
+				var cell1 = row.insertCell(1);
+				var cell2 = row.insertCell(2);
+				var cell3 = row.insertCell(3);
+				var cell4 = row.insertCell(4);
+				var cell5 = row.insertCell(5);
+				var cell6 = row.insertCell(6);
+				var cell7 = row.insertCell(7);
+				var img = document.createElement('img');
+				cell0.innerHTML = "";
+				cell0.appendChild(BUILDABLECARDS[i].image);
+				if(BUILDABLECARDS[i].code.length === 26){
+					cell1.innerHTML = "*";
 				}
+				else{
+					cell1.innerHTML = BUILDABLECARDS[i].code;
+				}
+				cell2.innerHTML = BUILDABLECARDS[i].name;
+				cell3.innerHTML = BUILDABLECARDS[i].damage;
+				cell4.innerHTML = BUILDABLECARDS[i].hits;
+				cell5.innerHTML = BUILDABLECARDS[i].copies;
+				cell6.innerHTML = BUILDABLECARDS[i].rank;
+				cell7.innerHTML = BUILDABLECARDS[i].goo;
+
+				if(BUILDABLECARDS[i].rank === "standard"){
+					row.style.backgroundColor = "Yellow";
+				}
+				if(BUILDABLECARDS[i].rank === "mega"){
+					row.style.backgroundColor = "LightBlue";
+				}
+				if(BUILDABLECARDS[i].rank === "giga"){
+					row.style.backgroundColor = "Salmon";
+				}
+				
+				row.onclick = this.createListClickHandler(BUILDABLECARDS[i]);
 			}
 		}
+		$('#selectionTable').DataTable();
 	};
 
 	this.countMega = function(){
