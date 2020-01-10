@@ -6,6 +6,10 @@ table {
   width: 100%;
 }
 
+body {
+  background-color: #DDE9F5;
+}
+
 th {
   cursor: pointer;
 }

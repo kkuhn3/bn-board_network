@@ -764,14 +764,14 @@
 					<button type="button" class="toggleButton letterButton" onclick="folderBuilder.swapCode('*')" >*</button>
 				</div>
 				<div class="col-4" >
-					<input type="text" id="folderNameInput">
-					<button type="button" onclick="folderBuilder.saveFolder(folderNameInput.value)">Save</button>
-					<button type="button" onclick="folderBuilder.deleteFolder(folderNameInput.value)">Delete</button>
+					<input type="text" style="width:49%;" id="folderNameInput">
+					<button type="button" style="width:24%;" onclick="folderBuilder.saveFolder(folderNameInput.value)">Save</button>
+					<button type="button" style="width:25%;" onclick="folderBuilder.deleteFolder(folderNameInput.value)">Delete</button>
 					<div class="w-100"></div>
-					<select id="sel">
+					<select style="width:49%;" id="sel">
 						<option disabled>User Folders</option>
 					</select>
-					<button type="button" onclick="folderBuilder.importFolder(sel.value)">Import</button>
+					<button type="button" style="width:50%;" onclick="folderBuilder.importFolder(sel.value)">Import</button>
 				</div>
 			</div>
 			<div id='folders' class="row align-items-start">
