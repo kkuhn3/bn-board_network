@@ -3,9 +3,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-		<style>
-			#hidn {display:none;}
-		</style>
+		<link rel="stylesheet" type="text/css" href="index.css">
 	</head>
 	<body>
 		<div style='display:none;' id='imagePreloader'>
@@ -846,30 +844,30 @@
 			<img id='SF3xxx_wicked_flame_ga' src='img/cards/SF3/SecretGiga/xxx_wicked_flame_ga.png'/>
 			<img id='SF3xxx_wicked_flame' src='img/cards/SF3/SecretGiga/xxx_wicked_flame.png'/>
 		</div>
-		<div style='margin: 0 auto; width: 880px'>
-			<div id='combatWindow' style='width: 800px; float: right;'>
+		<div id='wrapperWindow'>
+			<div id='combatWindow'>
 				<!-- The Custom Bar at the top of the screen -->
-				<div class="progress" style="margin: 0px;background: grey;">
-					<div id=completeBar class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width:100%">
+				<div class="progress">
+					<div id=completeBar class="progress-bar progress-bar-success progress-bar-striped" role="progressbar">
 						Custom
 					</div>
-					<div id=currentBar class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width:0%">
+					<div id=currentBar class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar">
 					</div>
-					<div id=upnextBar class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="width:0%">
+					<div id=upnextBar class="progress-bar progress-bar-info progress-bar-striped" role="progressbar">
 					</div>
 				</div>
 				<!-- The Board with players on it -->
-				<canvas id='board_canvas' width='800' height='400' style="float: right;"></canvas>
+				<canvas id='board_canvas' width='800' height='400'></canvas>
 				<!-- The Canvas below the board with selectable cards -->
-				<canvas id='pick_canvas' width='400' height='120' style="float: left;"></canvas>
+				<canvas id='pick_canvas' width='400' height='120'></canvas>
 				<!-- The input buttons -->
-				<input type='button' id='confirm' value='Confirm' onclick='customPick.confirmButton()' style="display: none;float: left;"/>
-				<input type='button' id='useBuster' value='Buster' onclick='custom.buster()' onmouseenter='custom.useBusterEnter()' onmouseexit='custom.useBusterExit()'style="float: left;"/>
-				<input type='button' id='useCard' value='Card' onclick='custom.card()' onmouseenter='custom.useCardEnter()' onmouseexit='custom.useCardExit()' style="float: left;"/>
-				<input type='button' id='special' value='Special' onclick='' style="display: none; float: left;"/>
-				<input type='button' id='nextturn' value='Confirm' onclick='timer.nextTurnConfirmed();' style="display: none; float: left;"/>
+				<input type='button' id='confirm' value='Confirm' onclick='customPick.confirmButton()'/>
+				<input type='button' id='useBuster' value='Buster' onclick='custom.buster()' onmouseenter='custom.useBusterEnter()' onmouseexit='custom.useBusterExit()'/>
+				<input type='button' id='useCard' value='Card' onclick='custom.card()' onmouseenter='custom.useCardEnter()' onmouseexit='custom.useCardExit()'/>
+				<input type='button' id='special' value='Special' onclick=''/>
+				<input type='button' id='nextturn' value='Confirm' onclick='timer.nextTurnConfirmed();'/>
 				<!-- The select a deck drop down -->
-				<select id="sel" onchange="cards.setDeck(this.value)" style="float: right;">
+				<select id="sel" onchange="cards.setDeck(this.value)">
 					<option disabled>-----------User Folders-----------</option>
 					<option disabled>----------Debug Folders----------</option>
 					<option value="AllCards">All: One of Everything</option>
@@ -928,12 +926,15 @@
 					<option value="SF3YSEEDSYO">Y: Seeds Yo</option>
 					<option value="SF3ZZIRIUS">Z: Zirius</option>
 				</select>
+				<div id="log-container">
+				  <pre id="log"></pre>
+				</div>
 				<!-- debug button to go through and check the cards -->
 				<!-- <input type='button' id='randomize' value='Randomize' onclick='cards.setDeck("AllCards")' style="float: right;"/> -->
 			</div>
 			<!-- The window to the side of the board for cards in round progress -->
-			<div id='customWindow' style='margin: 20 0 0 0; width: 80px; float: left;'>
-				<canvas id='custom_canvas' width='80' height='400' style="float: left;"></canvas>
+			<div id='customWindow'>
+				<canvas id='custom_canvas' width='80' height='400'></canvas>
 			</div>
 		</div>
 	</body>
@@ -990,6 +991,50 @@
 			pick_canvas.onmouseup = customPick.mouseUp;
 			pick_canvas.onmousemove = customPick.mouseMove;
 			pick_canvas.onmouseout = customPick.mouseOut;
+
+			rewireLoggingToElement(
+		    	() => document.getElementById("log"),
+		    	() => document.getElementById("log-container"), 
+		    	true
+		    );
+		}
+
+		function rewireLoggingToElement(eleLocator, eleOverflowLocator, autoScroll) {
+		    fixLoggingFunc('log');
+		    fixLoggingFunc('debug');
+		    fixLoggingFunc('warn');
+		    fixLoggingFunc('error');
+		    fixLoggingFunc('info');
+
+		    function fixLoggingFunc(name) {
+		        console['old' + name] = console[name];
+		        console[name] = function(...arguments) {
+		            const output = produceOutput(name, arguments);
+		            const eleLog = eleLocator();
+
+		            if (autoScroll) {
+		                const eleContainerLog = eleOverflowLocator();
+		                const isScrolledToBottom = eleContainerLog.scrollHeight - eleContainerLog.clientHeight <= eleContainerLog.scrollTop + 1;
+		                eleLog.innerHTML += output + "<br>";
+		                if (isScrolledToBottom) {
+		                    eleContainerLog.scrollTop = eleContainerLog.scrollHeight - eleContainerLog.clientHeight;
+		                }
+		            } else {
+		                eleLog.innerHTML += output + "<br>";
+		            }
+
+		            console['old' + name].apply(undefined, arguments);
+		        };
+		    }
+
+		    function produceOutput(name, args) {
+		        return args.reduce((output, arg) => {
+		            return output +
+		                "<span class=\"log-" + (typeof arg) + " log-" + name + "\">" +
+		                    (typeof arg === "object" && (JSON || {}).stringify ? JSON.stringify(arg) : arg) +
+		                "</span>&nbsp;";
+		        }, '');
+		    }
 		}
 		$(document).ready(function(){init();});
 	</script>

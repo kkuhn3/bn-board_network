@@ -43,6 +43,7 @@ ACTIONS = {
 var playerHP = 1500;
 var busterDefualt = 10;
 var reflDefault = 50;
+var p1HasPriority = true;
 
 var playerOne = {
 	name:"one",
@@ -388,7 +389,7 @@ function Board(width,height,canvas){
 			this.otherPlayer = "two";
 		}
 		$.post("php/save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
-		console.log("======================= turn start =======================");
+		console.log("================== Turn Start ==================");
 		this.resolvePlayerPanels(playerOne);
 		this.resolvePlayerPanels(playerTwo);
 		this.resolveSpecialBarriers(playerOne, playerTwo);
@@ -409,25 +410,27 @@ function Board(width,height,canvas){
 			this.p2priority = playerTwo.card.priority;
 		}
 
-		if(this.p1priority === 0 && this.p2priority === 0){
-			this.resolve(playerTwo, playerOne);
-			this.resolve(playerOne, playerTwo);
+		if(this.p1priority === this.p2priority && p1HasPriority){
+			if(this.p1priority === 0 && this.p2priority === 0){
+				this.attackInOrder(playerTwo, playerOne);
+			}
+			else {
+				this.attackInOrder(playerOne, playerTwo);
+			}
 		}
-		else if(this.p1priority <= this.p2priority){
-			this.resolve(playerOne, playerTwo);
-			//TODO: Counters mor reasonbly
-			//if(this.hitbool && this.p1priority === 1 && this.p2priority === 3){
-			//	playerTwo.stunned = 1;
-			//}
-			this.resolve(playerTwo, playerOne);
+		else if(this.p1priority === this.p2priority && !p1HasPriority){
+			if(this.p1priority === 0 && this.p2priority === 0){
+				this.attackInOrder(playerOne, playerTwo);
+			}
+			else {
+				this.attackInOrder(playerTwo, playerOne);
+			}
+		}
+		else if(this.p1priority < this.p2priority){
+			this.attackInOrder(playerOne, playerTwo);
 		}
 		else{
-			this.hitbool = this.resolve(playerTwo, playerOne);
-			//TODO: Counters more reasonbly
-			//if(this.hitbool && this.p2priority === 1 && this.p1priority === 3){
-			//	playerOne.stunned = 1;
-			//}
-			this.resolve(playerOne, playerTwo);
+			this.attackInOrder(playerTwo, playerOne);
 		}
 		this.resolveBugs();
 		this.resolvePlayerPanels(playerOne);
@@ -439,9 +442,27 @@ function Board(width,height,canvas){
 		this.resetPlayer(playerTwo);
 		this.draw();
 		custom.drawHand();
-		console.log("======================== turn end ========================");
+		p1HasPriority = !p1HasPriority;
+		console.log("=================== Turn End ===================");
 		document.getElementById("nextturn").style.display='none';
 		this.isGameOver();
+	}
+
+	this.flinchPlayer = function(aPlayer, loElements){
+		if(aPlayer.stunned < 1 && aPlayer.frozen < 1 && aPlayer.bubbled < 1){
+			if(aPlayer.invis < 2 && !loElements.includes(ELEMENTS.wood)){
+				aPlayer.invis = 2;
+			}
+			aPlayer.stunned = 1;
+		}
+	}
+
+	this.attackInOrder = function(attacker, defender){
+		this.hitbool = this.resolve(attacker, defender);
+		if(this.hitbool && (attacker.action === ACTIONS.CARD || attacker.action === ACTIONS.SPECIAL)){
+			this.flinchPlayer(defender, attacker.card.elements);
+		}
+		this.resolve(defender, attacker);
 	}
 
 	this.generateRandomBoolean = function(){
@@ -615,7 +636,8 @@ function Board(width,height,canvas){
 		attacker.stunned = attacker.stunned - 1;
 		attacker.bubbled = attacker.bubbled - 1;
 		attacker.frozen = attacker.frozen - 1;
-		if(this.hitbool){
+		attacker.invis = attacker.invis - 1;
+		if(this.hitbool && (attacker.action === ACTIONS.CARD || attacker.action === ACTIONS.SPECIAL)){
 			if(cells[defender.x][defender.y].panelType === PANELTYPE.PARALYZE){
 				defender.stunned = 1;
 				board.convertPanel(playerOne.x, playerOne.y, PANELTYPE.NORMAL);
@@ -1080,7 +1102,7 @@ function Board(width,height,canvas){
 	this.resetPlayer = function(player){
 		player.action = ACTIONS.NONE;
 		player.card = null;
-		player.invis = player.invis - 1;
+		//player.invis = player.invis - 1;
 		player.guard = null;
 		player.invincible = player.invincible - 1;
 		player.confused = player.confused - 1;
@@ -1118,7 +1140,9 @@ function Board(width,height,canvas){
 	
 	this.turnOffbuttons = function(){
 		document.getElementById("confirm").style.display='block';
+		document.getElementById("log-container").style.display='block';
 		playerSelected = true;
+		console.log("Game Start!");
 	}
 
 	this.showRange = function(attacker, card){

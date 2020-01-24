@@ -1,0 +1,73 @@
+#wrapperWindow {
+  margin: 0 auto; 
+  width: 880px;
+}
+
+#combatWindow {
+  width: 800px; 
+  float: right;
+}
+
+.progress {
+  margin: 0px;
+  background: grey;
+}
+
+#board_canvas {
+  float: right;
+}
+
+#pick_canvas {
+  float: left;
+}
+
+#confirm {
+  display: none;
+  float: left;
+}
+
+#useBuster {
+  float: left;
+}
+
+#useCard {
+  float: left;
+}
+
+#special {
+  display: none; 
+  float: left;
+}
+
+#nextturn {
+  display: none; 
+  float: left;
+}
+
+#sel {
+  float: right;
+}
+
+#log-container { 
+  overflow: auto; 
+  height: 95px; 
+  width: 400px;
+  display: none;
+}
+#log {
+  margin: 0px;
+  min-height: 95px;
+}
+
+.log-warn { color: orange }
+.log-error { color: red }
+.log-info { color: skyblue }
+.log-log { color: black }
+
+.log-warn, .log-error { font-weight: bold; }
+
+#customWindow {
+  margin: 20 0 0 0; 
+  width: 80px; 
+  float: left;
+}
