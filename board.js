@@ -659,12 +659,15 @@ function Board(width,height,canvas){
 					console.log("player " + attacker.name + " Mega Card was Crushed!");
 					return false;
 				}
-				if(cells[attacker.x][attacker.y].panelType = PANELTYPE.ATTACK){
-					if(attacker.card.boostDamage){
-						attacker.card.boostDamage = attacker.card.boostDamage + 10;
-					}
-					else{
-						attacker.card.boostDamage = 10;
+				if(cells[attacker.x][attacker.y].panelType === PANELTYPE.ATTACK){
+					if(attacker.card.damage > 0){
+						if(attacker.card.boostDamage){
+							attacker.card.boostDamage = attacker.card.boostDamage + 10;
+						}
+						else{
+							attacker.card.boostDamage = 10;
+						}
+						this.convertPanel(attacker.x, attacker.y, PANELTYPE.NORMAL);
 					}
 				}
 				return this.attackWithCard(attacker, defender, attacker.card);
@@ -672,6 +675,9 @@ function Board(width,height,canvas){
 		}
 		else{
 			console.log("player " + attacker.name + " is Stunned!");
+			if(player.name === attacker.name && attacker.action === ACTIONS.CARD){
+				custom.unUseCard(attacker.card);
+			}
 			return false;
 		}
 	}
@@ -1025,8 +1031,9 @@ function Board(width,height,canvas){
 	this.movePlayer = function(newX, newY, aPlayer){
 		if(board.isCellThisPlayerValid(newX, newY, aPlayer)){
 			cells[aPlayer.x][aPlayer.y].player = null;
-			cells[newX][newX].player = defender;
+			cells[newX][newX].player = aPlayer;
 			aPlayer.x = newX;
+			aPlayer.y = newY;
 		}
 	}
 
@@ -1141,7 +1148,6 @@ function Board(width,height,canvas){
 	
 	this.turnOffbuttons = function(){
 		document.getElementById("confirm").style.display='block';
-		document.getElementById("log-container").style.display='block';
 		playerSelected = true;
 		console.log("Game Start!");
 	}

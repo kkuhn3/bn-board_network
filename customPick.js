@@ -55,6 +55,7 @@ function CustomPick(canvas){
 		}
 		document.getElementById("useBuster").style.display='none';
 		document.getElementById("useCard").style.display='none';
+		document.getElementById("log-container").style.display='none';
 		this.inCustom = true;
 		this.drawHand();
 	}
@@ -165,6 +166,7 @@ function CustomPick(canvas){
 		document.getElementById("confirm").style.display='none';
 		document.getElementById("useBuster").style.display='block';
 		document.getElementById("useCard").style.display='block';
+		document.getElementById("log-container").style.display='block';
 	}
 	
 	this.buildHand = function(selectedList){

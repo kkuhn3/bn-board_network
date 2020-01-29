@@ -2862,9 +2862,9 @@ function BN6DoubleShoot(){
 		if(attacker.name === playerOne.name){
 			this.xDirection = 1;
 		}
-		attacker.x + this.xDirection;
+		attacker.x = attacker.x + this.xDirection;
 		(new BN6CrackShoot()).effectmiss(attacker, defender);
-		attacker.x - this.xDirection;
+		attacker.x = attacker.x - this.xDirection;
 		(new BN6CrackShoot()).effectmiss(attacker, defender);
 	};
 }
@@ -3793,7 +3793,7 @@ function BN6Boomerang(){
 	};
 	this.effectmiss= function(attacker, defender){
 		if(attacker.name === playerOne.name){
-			this.xEnd = board.endOfRow(0, false);
+			this.xEnd = board.endOfRow(0, true);
 			for(var i = 0; i < cells.length; i++){
 				for(var j = 0; j < cells[i].length; j++){
 					if(i === this.xEnd){
@@ -3806,7 +3806,7 @@ function BN6Boomerang(){
 			}
 		}
 		else{
-			this.xEnd = board.endOfRow(2, true);
+			this.xEnd = board.endOfRow(2, false);
 			for(var i = 0; i < cells.length; i++){
 				for(var j = 0; j < cells[i].length; j++){
 					if(i === this.xEnd){

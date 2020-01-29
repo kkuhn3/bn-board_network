@@ -7540,18 +7540,18 @@ function SF3DreadJoker(){
 		this.ys = [];
 		for(var y = 0; y < cells[defender.x].length; y++){
 			if(y !== defender.y){
-				this.ys = this.ys.push(y);
+				this.ys.push(y);
 			}
 		}
 		for(var x = 0; x < cells.length; x++){
 			if(attacker.name === playerOne.name){
 				if(x > attacker.x && x < defender.x){
-					this.xs = this.xs.push(x);
+					this.xs.push(x);
 				}
 			}
 			else{
 				if(x < attacker.x && x > defender.x){
-					this.xs = this.xs.push(x);
+					this.xs.push(x);
 				}
 			}
 		}

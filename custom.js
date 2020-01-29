@@ -103,17 +103,21 @@ function Custom(canvas){
 	}
 	
 	this.nextTurn = function(){
-		if(player.stunned < 1){
+		if(player.stunned < 1 && player.frozen < 1 && player.bubbled < 1){
 			if(player.action === ACTIONS.CARD){
 				HAND.shift();
 			}
 		}
 	}
+	
+	this.unUseCard = function(aCard){
+		HAND.unshift(aCard);
+	}
 
 	this.useCardEnter = function(){
 		board.draw();
-		if(HAND[this.mouseCellY]){
-			board.showRange(player, HAND[this.mouseCellY]);
+		if(HAND[0]){
+			board.showRange(player, HAND[0]);
 		}
 	}
 

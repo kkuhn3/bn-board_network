@@ -31,7 +31,33 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 		document.getElementById("useCard").disabled = true;
 		document.getElementById("special").disabled = true;
 		movementEnabled = false;
-		$.post("php/save.php",{id:"player"+player.name, state: JSON.stringify(player)});
+		var playerData;
+		if(player.action === ACTIONS.CARD || player.action === ACTIONS.SPECIAL){
+			playerData = {
+				hp: player.hp,
+				x: player.x,
+				y: player.y,
+				action: player.action,
+				card: {
+					id: player.card.id,
+					boostDamage: player.card.boostDamage,
+					stunAdded: player.card.stunAdded,
+					uninstallAdded: player.card.uninstallAdded
+				},
+				bushidoCount: player.bushidoCount
+			};
+		}
+		else {
+			playerData = {
+				hp: player.hp,
+				x: player.x,
+				y: player.y,
+				action: player.action,
+				card: null,
+				bushidoCount: player.bushidoCount
+			};
+		}
+		$.post("php/save.php",{id:"player"+player.name, state: JSON.stringify(playerData)});
 		$.post("php/save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
 		this.getConfirmTurn();
 	}
