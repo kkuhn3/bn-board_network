@@ -1,3 +1,7 @@
+body {
+  background-color: #DDE9F5;
+}
+
 #wrapperWindow {
   margin: 0 auto; 
   width: 880px;
@@ -53,6 +57,7 @@
   height: 95px; 
   width: 400px;
   display: none;
+  float: right;
 }
 #log {
   margin: 0px;

@@ -450,7 +450,7 @@ function Board(width,height,canvas){
 
 	this.flinchPlayer = function(aPlayer, loElements){
 		if(aPlayer.stunned < 1 && aPlayer.frozen < 1 && aPlayer.bubbled < 1){
-			if(aPlayer.invis < 2 && !loElements.includes(ELEMENTS.wood)){
+			if(aPlayer.invis < 2 && (!loElements.includes(ELEMENTS.wood) && !loElements.includes(ELEMENTS.wind))){
 				aPlayer.invis = 2;
 			}
 			aPlayer.stunned = 1;
@@ -1122,6 +1122,7 @@ function Board(width,height,canvas){
 			document.getElementById("useBuster").style.float='right';
 			document.getElementById("useCard").style.float='right';
 			document.getElementById("special").style.float='right';
+			document.getElementById("log-container").style.float='left';
 		}
 		else{
 			player = playerOne;
