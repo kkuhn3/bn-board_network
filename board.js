@@ -45,11 +45,13 @@ var busterDefualt = 10;
 var reflDefault = 50;
 var p1HasPriority = true;
 
+var playerImages = ["col", "blast"];
+
 var playerOne = {
 	name:"one",
 	hp:playerHP,
 	color:"#0000FF",
-	image: blue_man,
+	image: playerImages[Math.floor(Math.random()*playerImages.length)],
 	x:1,
 	y:1,
 	action:ACTIONS.NONE,
@@ -77,14 +79,14 @@ var playerTwo = {
 	name:"two",
 	hp:playerHP,
 	color:"#FF0000",
-	image: grey_man,
+	image: playerImages[Math.floor(Math.random()*playerImages.length)],
 	x:4,
 	y:1,
 	action:ACTIONS.NONE,
 	card:null,
 	invis:0,
 	guard:null,
-	stunned:0,
+	stunned: 0,
 	bubbled: 0,
 	frozen: 0,
 	busterType: (new BN6Buster()),
@@ -219,7 +221,37 @@ function Board(width,height,canvas){
 	}
 
 	this.drawPlayerImage = function(centerX, centerY, playerDraw){
-		ctx.drawImage(playerDraw.image,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+		if(playerDraw.invis > 0){
+			ctx.globalAlpha = 0.5;
+		}
+		var playerImageStr = playerDraw.image+"norm"+playerDraw.name;
+		if(playerDraw.frozen > 0 || playerDraw.bubbled > 0 || playerDraw.timpanid > 0){
+			playerImageStr = playerDraw.image+"flinch"+playerDraw.name;
+		}
+		if(playerDraw.stunned > 0){
+			playerImageStr = playerDraw.image+"stun"+playerDraw.name;
+		}
+		ctx.drawImage(document.getElementById(playerImageStr),centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+
+		if(playerDraw.frozen > 0){
+			ctx.globalAlpha = 0.75;
+			ctx.drawImage(frozenoverlay,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+		}
+		if(playerDraw.bubbled > 0){
+			ctx.globalAlpha = 1.0;
+			ctx.drawImage(bubblebarrier,centerX - cellWidth/2,centerY-cellHeight*1.5,cellWidth,cellHeight*2);
+		}
+		if(playerDraw.timpanid > 0){
+		}
+		if(playerDraw.invincible > 0){
+		}
+		if(playerDraw.blinded > 0){
+			ctx.globalAlpha = 1.0;
+			ctx.drawImage(blindoverlay, centerX - cellWidth/4, centerY-cellHeight*1.25, cellWidth / 2, cellHeight / 2)
+		}
+		if(playerDraw.confused > 0){
+		}
+
 		if(playerDraw.barrier !== null){
 			ctx.globalAlpha = 0.5;
 			if(playerDraw.barrier.id === "BasicBarrier"){
