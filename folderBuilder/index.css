@@ -8,25 +8,27 @@ table {
 
 body {
   background-color: #DDE9F5;
+  text-align: center !important;
 }
 
 th {
   cursor: pointer;
+  background-color: #f2f2f2;
 }
 
 .container {
-  max-width: 100%;
+  max-width: 100% !important;
   min-width: 1000px;
 }
 
 .tableWrapper {
 	overflow-y: auto;
 	overflow-x: none;
-	height:90vh;
+	height:100vh;
 }
 
 th, td {
-  text-align: center;
+  text-align: center !important;
   padding: 4px;
 }
 
@@ -35,23 +37,25 @@ tr:hover {
 	cursor: pointer;
 }
 
-tr{
-  background-color: #f2f2f2;
-}
-
 .toggleActive {
   background-color:#A1A1A1;
 }
 
-div {
-  text-align: center;
-}
-
 img {width:auto; max-height:40}
 
-.letterButton {
-  width: 30px;
-  margin-bottom: 10px;
+.dt-button {
+  font-size: 10px !important;
+}
+.dt-button.toggleActive {
+  background-color:#A1A1A1 !important;
+}
+tr{
+  background-color: #FFF;
+}
+
+.dataTables_scrollBody {
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
 }
 
 

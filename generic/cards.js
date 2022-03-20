@@ -24,7 +24,7 @@ function CANNON1(){
 	this.image=cannon1;
 	// what codes it can be selected with. any character listed and * means all.
 	this.code=["A","B","C"];
-	// whic set of cards it comes from.
+	// which set of cards it comes from.
 	this.goo="Debug";
 	// How many copies per folder
 	this.copies=5;
