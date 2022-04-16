@@ -207,32 +207,32 @@ function buildFolderTable() {
 function buildTable() {
 	selectionTable.innerHTML = 	`<thead> 
 							<tr>
-							<th id="headerImage" >Image</th> 
-							<th id="headerCode" >Code</th>
-							<th id="headerName" >Name</th> 
-							<th id="headerDamage" >Damage</th>
-							<th id="headerHits" >Hits</th>
-							<th id="headerHits" >Max Hits</th>
-							<th id="headerHits" >Potential</th>
-							<th id="headerCopies" >Copies</th>
-							<th id="headerRank" >Rank</th>
-							<th id="headerGOO" >GOO</th>
+							<th>Image</th> 
+							<th>Code</th>
+							<th>Name</th> 
+							<th>Damage</th>
+							<th>Hits</th>
+							<th>Max Hits</th>
+							<th>Potential</th>
+							<th>Copies</th>
+							<th>Rank</th>
+							<th>GOO</th>
 							</tr>
 						</thead>
 						<tbody>
 						</tbody>
 						<tfoot> 
 							<tr>
-							<th id="headerImage" >Image</th> 
-							<th id="headerCode" >Code</th>
-							<th id="headerName" >Name</th> 
-							<th id="headerDamage" >Damage</th>
-							<th id="headerHits" >Hits</th>
-							<th id="headerHits" >Max Hits</th>
-							<th id="headerHits" >Potential</th>
-							<th id="headerCopies" >Copies</th>
-							<th id="headerRank" >Rank</th>
-							<th id="headerGOO" >GOO</th>
+							<th>Image</th> 
+							<th>Code</th>
+							<th>Name</th> 
+							<th>Damage</th>
+							<th>Hits</th>
+							<th>Max Hits</th>
+							<th>Potential</th>
+							<th>Copies</th>
+							<th>Rank</th>
+							<th>GOO</th>
 							</tr>
 						</tfoot>`;
 
@@ -258,11 +258,16 @@ function buildTable() {
 			else{
 				cell1.innerHTML = BUILDABLECARDS[i].code;
 			}
+			
+			let maxHits = "" + BUILDABLECARDS[i].hits;
+			maxHits = maxHits.split(",").pop();
+			maxHits = maxHits.split("-").pop();
+
 			cell2.innerHTML = BUILDABLECARDS[i].name;
 			cell3.innerHTML = BUILDABLECARDS[i].damage;
 			cell4.innerHTML = BUILDABLECARDS[i].hits;
-			cell5.innerHTML = BUILDABLECARDS[i].hits;
-			cell6.innerHTML = BUILDABLECARDS[i].hits * BUILDABLECARDS.damage;
+			cell5.innerHTML = maxHits;
+			cell6.innerHTML = parseInt(maxHits) * parseInt(BUILDABLECARDS[i].damage);
 			cell7.innerHTML = BUILDABLECARDS[i].copies;
 			cell8.innerHTML = BUILDABLECARDS[i].rank;
 			cell9.innerHTML = BUILDABLECARDS[i].goo;
