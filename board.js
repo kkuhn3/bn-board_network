@@ -1063,7 +1063,7 @@ function Board(width,height,canvas){
 	this.movePlayer = function(newX, newY, aPlayer){
 		if(board.isCellThisPlayerValid(newX, newY, aPlayer)){
 			cells[aPlayer.x][aPlayer.y].player = null;
-			cells[newX][newX].player = aPlayer;
+			cells[newX][newY].player = aPlayer;
 			aPlayer.x = newX;
 			aPlayer.y = newY;
 		}

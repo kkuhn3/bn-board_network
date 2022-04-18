@@ -2642,7 +2642,11 @@ function BN6Kunai(){
 		}
 		return false;
 	};
-	this.effecthit= function(attacker, defender){};
+	this.effecthit= function(attacker, defender){
+		if(defender.guard === null){
+			defender.bugs = defender.bugs.concat([new HPBug(10)]);
+		}
+	};
 	this.effectmiss= function(attacker, defender){};
 }
 

@@ -3171,7 +3171,7 @@ function SF3DoubleEater(){
 	this.effectmiss= function(attacker, defender){
 		this.col1 = board.farthestEndOfRow(true);
 		this.col2 = board.farthestEndOfRow(false);
-		for(var y = 0; y < 1; y++){
+		for(var y = 0; y < 3; y++){
 			board.convertPanel(this.col1, y, PANELTYPE.MISS);
 			board.convertPanel(this.col2, y, PANELTYPE.MISS);
 		}

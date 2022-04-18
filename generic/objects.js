@@ -827,7 +827,7 @@ function SF3SharkAttackObj(x, y, attacker, defender, damage){
 	this.attacker = attacker;
 	this.defender = defender;
 	this.id = "SF3SharkAttackObj";
-	this.image = SF3076_sharkcutter1; //TODO shark image!
+	this.image = SharkAttack;
 	this.solid = false;
 	this.effecthit = function(hitBy){};
 	this.hitByBuster = function(hitBy){};
@@ -861,10 +861,10 @@ function SF3SharkAttackObj(x, y, attacker, defender, damage){
 					}
 				}
 			}
-			if(this.y = defender.y){
+			if(this.y === defender.y){
 				this.agroed = true;
 				this.xDir = -1;
-				if(attacker.name = playerOne.name){
+				if(attacker.name === playerOne.name){
 					this.xDir = 1;
 				}
 			}
