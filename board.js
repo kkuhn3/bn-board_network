@@ -54,6 +54,8 @@ var playerOne = {
 	image: playerImages[Math.floor(Math.random()*playerImages.length)],
 	x:1,
 	y:1,
+	originalX:1,
+	originalY:1,
 	action:ACTIONS.NONE,
 	card:null,
 	invis:0,
@@ -82,6 +84,8 @@ var playerTwo = {
 	image: playerImages[Math.floor(Math.random()*playerImages.length)],
 	x:4,
 	y:1,
+	originalX:4,
+	originalY:1,
 	action:ACTIONS.NONE,
 	card:null,
 	invis:0,
@@ -340,6 +344,29 @@ function Board(width,height,canvas){
 			ctx.fillText("You are Player " + player.name,this.centerX,this.centerY);
 		}
 	}
+	
+	this.drawMovementOptions = function(aPlayer) {
+		for(let i = -1; i < 2; i++) {
+			const x = aPlayer.originalX - i;
+			const y = aPlayer.originalY;
+			if(this.isCellThisPlayerValid(x, y, aPlayer)) {
+				const left = x*cellWidth;
+				const top = y*cellHeight + cheightOffset;
+				ctx.fillStyle="#00FF00";
+				ctx.fillRect(left+cellWidth/4,top+cellHeight/4,cellWidth/2,cellHeight/2);
+			}
+		}
+		for(let i = -1; i < 2; i++) {
+			const x = aPlayer.originalX;
+			const y = aPlayer.originalY - i;
+			if(this.isCellThisPlayerValid(x, y, aPlayer)) {
+				const left = x*cellWidth;
+				const top = y*cellHeight + cheightOffset;
+				ctx.fillStyle="#00FF00";
+				ctx.fillRect(left+cellWidth/4,top+cellHeight/4,cellWidth/2,cellHeight/2);
+			}
+		}
+	}.bind(this);
 
 	this.mouseDown = function(e){
 		if(!playerSelected){
@@ -373,9 +400,11 @@ function Board(width,height,canvas){
 		this.draw();
 		if(this.selected !== -1){
 			if(this.selected === 1){
+				this.drawMovementOptions(playerOne);
 				this.drawPlayerImage(e.offsetX, e.offsetY, playerOne);
 			}
 			else if (this.selected === 2){
+				this.drawMovementOptions(playerTwo);
 				this.drawPlayerImage(e.offsetX, e.offsetY, playerTwo);
 			}
 		}
@@ -384,12 +413,16 @@ function Board(width,height,canvas){
 	this.mouseUp = function(e){
 		this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
 		this.mouseCellY = Math.floor((this.height * (e.offsetY - cheightOffset )) / (e.target.height/2));
-		if(this.selected === 1 && this.isCellThisPlayerValid(this.mouseCellX, this.mouseCellY, playerOne)){
+		if(	this.selected === 1 && 
+			this.isCellThisPlayerValid(this.mouseCellX, this.mouseCellY, playerOne) &&
+			Math.abs(playerOne.originalX - this.mouseCellX) + Math.abs(playerOne.originalY - this.mouseCellY) < 2) {
 			playerOne.x = this.mouseCellX;
 			playerOne.y = this.mouseCellY;
 			cells[this.mouseCellX][this.mouseCellY].player = playerOne;
 		}
-		else if (this.selected === 2 && this.isCellThisPlayerValid(this.mouseCellX, this.mouseCellY, playerTwo)){
+		else if (	this.selected === 2 && 
+					this.isCellThisPlayerValid(this.mouseCellX, this.mouseCellY, playerTwo) &&
+					Math.abs(playerTwo.originalX - this.mouseCellX) + Math.abs(playerTwo.originalY - this.mouseCellY) < 2) {
 			playerTwo.x = this.mouseCellX;
 			playerTwo.y = this.mouseCellY;
 			cells[this.mouseCellX][this.mouseCellY].player = playerTwo;
@@ -422,6 +455,10 @@ function Board(width,height,canvas){
 		}
 		$.post("php/save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
 		console.log("================== Turn Start ==================");
+		playerOne.originalX = playerOne.x;
+		playerTwo.originalX = playerTwo.x;
+		playerOne.originalY = playerOne.y;
+		playerTwo.originalY = playerTwo.y
 		this.resolvePlayerPanels(playerOne);
 		this.resolvePlayerPanels(playerTwo);
 		this.resolveSpecialBarriers(playerOne, playerTwo);
