@@ -141,8 +141,7 @@ function CustomPick(canvas){
 	this.confirmButton = function(){
 		document.getElementById("confirm").disabled = true;
 		document.getElementById("sel").style.display='none';
-		$.post("php/save.php",{id:"confirm"+player.name, state: JSON.stringify(true)});
-		this.getConfirm();
+		sendDraft();
 	}
 
 	this.confirm = function(){
@@ -244,32 +243,6 @@ function CustomPick(canvas){
 		}
 		return this.selectedList;
 	}
-	
-	this.confirmTimeout = 0;
-	this.getConfirm = function(){
-		this.otherPlayer = "one";
-		if(player.name === "one"){
-			this.otherPlayer = "two";
-		}
-		clearTimeout(this.confirmTimeout);
-		$.post("php/get.php",{id:"confirm"+this.otherPlayer},function(data){
-			try{
-				var d = JSON.parse(data);
-				if(d){
-					this.confirm();
-					this.otherPlayer = "one";
-					if(player.name === "one"){
-						this.otherPlayer = "two";
-					}
-					$.post("php/save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
-					custom.drawHand();
-					timer.draw();
-					return true;
-				}
-			}catch(e){}
-			this.confirmTimeout = setTimeout(this.getConfirm(), 1000);
-		}.bind(this));
-	}.bind(this);
 
 	this.drawRange = function(e){
 		this.mouseCellX = Math.floor(this.drawSize * e.offsetX/e.target.width);

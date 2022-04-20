@@ -881,6 +881,7 @@
 				<!-- The Canvas below the board with selectable cards -->
 				<canvas id='pick_canvas' width='400' height='120'></canvas>
 				<!-- The input buttons -->
+				<input type='button' id='queue' value='Queue Up!' onclick='queueUp()'/>
 				<input type='button' id='confirm' value='Confirm' onclick='customPick.confirmButton()'/>
 				<input type='button' id='useBuster' value='Buster' onclick='custom.buster()' onmouseenter='custom.useBusterEnter()' onmouseexit='custom.useBusterExit()'/>
 				<input type='button' id='useCard' value='Card' onclick='custom.card()' onmouseenter='custom.useCardEnter()' onmouseexit='custom.useCardExit()'/>
@@ -976,7 +977,8 @@
 	<script src="sf3/sf3folders.js"></script>
 	<script src="bn6/bn6pas.js"></script>
 	<script src="sf3/sf3gas.js"></script>
-	
+	<script src="send.js"></script>
+
 	<script>
 		function init(){
 			timer = new Timer(5, completeBar, currentBar, upnextBar);
@@ -1013,10 +1015,10 @@
 			pick_canvas.onmouseout = customPick.mouseOut;
 
 			rewireLoggingToElement(
-		    	() => document.getElementById("log"),
-		    	() => document.getElementById("log-container"), 
-		    	true
-		    );
+				() => document.getElementById("log"),
+				() => document.getElementById("log-container"), 
+				true
+			);
 		}
 
 		function rewireLoggingToElement(eleLocator, eleOverflowLocator, autoScroll) {

@@ -173,8 +173,6 @@ function Board(width,height,canvas){
 		cells[playerOne.x][playerOne.y].player = playerOne;
 		cells[playerTwo.x][playerTwo.y].player = playerTwo;
 		player = playerOne;
-		$.post("php/save.php",{id:"confirmone", state: JSON.stringify(false)});
-		$.post("php/save.php",{id:"confirmtwo", state: JSON.stringify(false)});
 	}
 
 	this.drawCell = function(x,y){
@@ -210,18 +208,6 @@ function Board(width,height,canvas){
 		var centerY = playerDraw.y * cellHeight + cellHeight / 2 + cheightOffset;
 
 		this.drawPlayerImage(centerX, centerY, playerDraw);
-
-		if(!playerSelected){
-			ctx.fillStyle = "#FFFFFF"; 
-			ctx.fillRect(centerX - cellWidth/3, centerY - cellHeight * 3 / 4 , cellWidth / 1.5, cellHeight / 2);
-			ctx.strokeStyle = "black";
-			ctx.lineWidth = "2";
-			ctx.rect(centerX - cellWidth/3, centerY - cellHeight * 3 / 4 , cellWidth / 1.5, cellHeight / 2);
-			ctx.stroke();
-			ctx.fillStyle = "#000000";
-			ctx.font = "10px Arial";
-			ctx.fillText("Choose player " + playerDraw.name, centerX, centerY - cellHeight / 2);
-		}
 	}
 
 	this.drawPlayerImage = function(centerX, centerY, playerDraw){
@@ -369,18 +355,6 @@ function Board(width,height,canvas){
 	}.bind(this);
 
 	this.mouseDown = function(e){
-		if(!playerSelected){
-			this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
-			this.mouseCellY = Math.floor((this.height * (e.offsetY - cheightOffset )) / (e.target.height/2));
-			if(this.mouseCellX === 1 && this.mouseCellY < 2){
-				this.turnOffbuttons();
-			}
-			else if(this.mouseCellX === 4 && this.mouseCellY < 2){
-				this.switchPlayer();
-				this.turnOffbuttons();
-			}
-		}
-
 		this.selected = -1;
 		if(movementEnabled){
 			this.mouseCellX = Math.floor(this.width * e.offsetX/e.target.width);
@@ -449,11 +423,6 @@ function Board(width,height,canvas){
 	}
 
 	this.resolveTurn = function(){
-		this.otherPlayer = playerOne.name;
-		if(player.name === playerOne.name){
-			this.otherPlayer = "two";
-		}
-		$.post("php/save.php",{id:"confirm"+this.otherPlayer, state: JSON.stringify(false)});
 		console.log("================== Turn Start ==================");
 		playerOne.originalX = playerOne.x;
 		playerTwo.originalX = playerTwo.x;
