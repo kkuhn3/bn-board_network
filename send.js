@@ -14,34 +14,39 @@ function socketStart() {
 	});
 
 	socket.addEventListener('message', function (event) {
+		//console.log(event.data);
 		if(event.data === "pong") {
 			let endTime = Date.now();
 			let delta = endTime - startTime;
 			loPings.push(delta);
 			localStorage.setItem("kpow2Pings", JSON.stringify(loPings));
 		}
+		else if(event.data === "drafted") {
+			hasOpponentData = true;
+			if(hasAlleyData) {
+				startRound();
+			}
+		}
 		else {
-			if(event.data === "drafted") {
-				hasOpponentData = true;
-				if(hasAlleyData) {
-					startRound();
-				}
+			const playerData = JSON.parse(event.data);
+			if(playerData.resourceId) {
+				//ignore it
+			}
+			else if(playerData.unsubscribed) {
+				console.log("Opponent has Left");
+			}
+			else if(playerData.match === 1) {
+				board.turnOffbuttons();
+			}
+			else if(playerData.match === 2) {
+				board.switchPlayer();
+				board.turnOffbuttons();
 			}
 			else {
-				const playerData = JSON.parse(event.data);
-				if(playerData.match === 1) {
-					board.turnOffbuttons();
-				}
-				else if(playerData.match === 2) {
-					board.switchPlayer();
-					board.turnOffbuttons();
-				}
-				else {
-					opponentData = playerData;
-					hasOpponentData = true;
-					if(hasAlleyData) {
-						runTurn();
-					}
+				opponentData = playerData;
+				hasOpponentData = true;
+				if(hasAlleyData) {
+					runTurn();
 				}
 			}
 		}
@@ -67,7 +72,7 @@ function insertData(playerData, opposingPlayer) {
 }
 
 function queueUp() {
-	socket = new WebSocket("ws://127.0.0.1:7979");
+	socket = new WebSocket(websocketURL);
 	socketStart();
 	sel.style.display = "none";
 	queue.style.display = "none";

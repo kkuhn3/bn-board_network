@@ -51,6 +51,7 @@ function Timer(turncount, completeBar, currentBar, upnextBar){
 			document.getElementById("nextturn").disabled = false;
 			document.getElementById("useBuster").disabled = false;
 			document.getElementById("useCard").disabled = false;
+			document.getElementById("special").disabled = false;
 			movementEnabled = true;
 		}
 	}
